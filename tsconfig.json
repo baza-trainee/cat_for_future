@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": "./",
         "paths": {
             "src/*": ["./src/*"]
         },
@@ -8,7 +9,6 @@
         "lib": ["ES2020", "DOM", "DOM.Iterable"],
         "module": "ESNext",
         "skipLibCheck": true,
-        "baseUrl": "src",
 
         /* Bundler mode */
         "moduleResolution": "bundler",
