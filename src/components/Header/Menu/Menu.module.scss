@@ -1,4 +1,4 @@
-@use 'src/styles/variables' as v;
+@use 'src/styles/variables' as *;
 
 .list {
 	display: flex;
@@ -11,5 +11,5 @@
 .link {
 	font-size: 1.125rem;
 	font-weight: 500;
-	color: v.$color-system-default-10;
+	color: $color-system-default-10;
 }
