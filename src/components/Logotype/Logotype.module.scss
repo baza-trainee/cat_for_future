@@ -8,11 +8,11 @@
 	}
 }
 
-@media (min-width: 36rem) {
+@media (min-width: 576px) {
 	/* Styles for tablet screens */
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 768px) {
 	/* Styles for smaller desktop screens */
 	.logo {
 		width: 6.25rem;
@@ -20,11 +20,11 @@
 	}
 }
 
-@media (min-width: 62rem) {
+@media (min-width: 992px) {
 	/* Styles for larger desktop screens */
 }
 
-@media (min-width: 75rem) {
+@media (min-width: 1200px) {
 	/* Styles for large desktop screens */
 	.logo {
 		width: 8.5rem;

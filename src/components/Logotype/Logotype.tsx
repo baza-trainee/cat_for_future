@@ -1,4 +1,4 @@
-import logo from 'src/images/logo.png';
+import logo from 'src/images/logo.svg';
 import s from './Logotype.module.scss';
 
 const Logotype: React.FC = () => {
