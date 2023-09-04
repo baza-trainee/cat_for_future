@@ -1,7 +1,7 @@
-$tablet-size: 576px;
+$tablet-size: 320px;
 $small-desktop-size: 768px;
-$large-desktop-size: 992px;
-$full-desktop-size: 1200px;
+$large-desktop-size: 1280px;
+$full-desktop-size: 1440px;
 
 @mixin tablet {
 	@media (min-width: $tablet-size) {
