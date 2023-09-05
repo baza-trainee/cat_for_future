@@ -1,3 +1,6 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
 .logo {
 	width: 5rem;
 	height: 3rem;
@@ -6,27 +9,11 @@
 		height: 100%;
 		object-fit: contain;
 	}
-}
-
-@media (min-width: 576px) {
-	/* Styles for tablet screens */
-}
-
-@media (min-width: 768px) {
-	/* Styles for smaller desktop screens */
-	.logo {
+	@include tablet {
 		width: 6.25rem;
 		height: 3.75rem;
 	}
-}
-
-@media (min-width: 992px) {
-	/* Styles for larger desktop screens */
-}
-
-@media (min-width: 1200px) {
-	/* Styles for large desktop screens */
-	.logo {
+	@include full_desktop {
 		width: 8.5rem;
 		height: 5.125rem;
 	}
