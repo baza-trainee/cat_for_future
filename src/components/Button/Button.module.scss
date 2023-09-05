@@ -1,0 +1,123 @@
+/*Classes named by names of buttons from UI kit*/
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.button {
+	height: 3.5rem;
+	margin: 20px;
+}
+
+.button.primaryTextOnlyButton {
+	display: flex;
+	padding: 1rem 3rem;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	background: $color-primary-orange;
+	color: $color-system-default-0;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 132%;
+	/* 1.485rem */
+
+	&:hover {
+		background: $color-ref-orange-10;
+	}
+
+	&:active {
+		background: $color-ref-orange-20;
+	}
+
+	&:disabled {
+		background: $color-ref-orange-0;
+	}
+}
+
+.secondaryTextOnlyOrangeButton {
+	display: inline-flex;
+	padding: 1rem 3rem;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	border: 3px solid $color-primary-orange;
+	color: $color-primary-orange;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 132%;
+	/* 1.485rem */
+
+	&:hover {
+		border-color: $color-ref-orange-10;
+		color: $color-ref-orange-10;
+	}
+
+	&:active {
+		border-color: $color-ref-orange-20;
+		color: $color-ref-orange-20;
+	}
+
+	&:disabled {
+		background: $color-system-default-0;
+		border-color: $color-ref-orange-0;
+		color: $color-ref-orange-0;
+	}
+}
+
+.secondaryIconLeftButton {
+	height: 3rem;
+	display: flex;
+	padding: 1rem 3rem 1rem 2rem;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	border: 3px solid $color-system-default-10;
+	background: $color-primary-green;
+	color: $color-system-default-10;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 132%;
+	/* 1.485rem */
+
+	@include tablet {
+		height: 3.5rem;
+	}
+}
+
+.tertiaryIconOnlyButton {
+	display: flex;
+	width: 2.75rem;
+	height: 2.75rem;
+	justify-content: center;
+	align-items: center;
+	gap: 0.625rem;
+	flex-shrink: 0;
+	background: $color-primary-green;
+}
+
+.miniIconContainer {
+	width: 1.25rem;
+	height: 1.25rem;
+
+	@include tablet {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+}
+
+.bigIconContainer {
+	display: flex;
+	width: 2.75rem;
+	height: 2.75rem;
+	justify-content: center;
+	align-items: center;
+	gap: 0.625rem;
+}
+
+.bigIcon {
+	width: 2.5rem;
+	height: 2.5rem;
+	flex-shrink: 0;
+}
