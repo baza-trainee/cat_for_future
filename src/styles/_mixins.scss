@@ -1,16 +1,16 @@
-$tablet-size: 576px;
-$small-desktop-size: 768px;
+$small-tablet-size: 576px;
+$tablet-size: 768px;
 $large-desktop-size: 992px;
-$full-desktop-size: 1200px;
+$full-desktop-size: 1280px;
 
-@mixin tablet {
-	@media (min-width: $tablet-size) {
+@mixin small_tablet {
+	@media (min-width: $small-tablet-size) {
 		@content;
 	}
 }
 
-@mixin small_desktop {
-	@media (min-width: $small-desktop-size) {
+@mixin tablet {
+	@media (min-width: $tablet-size) {
 		@content;
 	}
 }
