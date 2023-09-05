@@ -15,6 +15,13 @@ const Header: React.FC = () => {
 				disabled={false}
 				onClick={() => console.log('Enter')}
 			/>
+			<Button
+				type={'button'}
+				name={'Вхід'}
+				imgPath={iconLogIn}
+				disabled={false}
+				onClick={() => console.log('Enter')}
+			/>
 		</div>
 	);
 };
