@@ -1,10 +1,12 @@
 import React from 'react';
+import Logotype from '../Logotype/Logotype';
 // import Button from '../Button/Button';
 // import iconLogIn from 'src/images/log-in-icon.svg';
 // import iconLogOut from 'src/images/log-out-icon.svg';
 // import burgerMenuOpenIcon from 'src/images/burger-menu-open-icon.svg';
 // import burgerMenuCloseIcon from 'src/images/burger-menu-close-icon.svg';
-import Logotype from '../Logotype/Logotype';
+
+// import s from './Header.module.scss';
 
 const Header: React.FC = () => {
 	return (
