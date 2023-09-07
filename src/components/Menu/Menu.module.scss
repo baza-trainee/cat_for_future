@@ -29,8 +29,15 @@
 		opacity: 1;
 	}
 }
+.menu {
+	display: none;
 
-.menu.burger_menu {
+	@include full_desktop {
+		display: block;
+	}
+}
+
+.menu.burgerMenu {
 	.list {
 		flex-direction: column;
 		row-gap: 1.5rem;

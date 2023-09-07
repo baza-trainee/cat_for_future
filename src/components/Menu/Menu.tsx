@@ -7,7 +7,7 @@ interface INavLink {
 	to: string;
 }
 interface IMenuProps {
-	class_name?: string;
+	nameClass?: string;
 	onClick?: () => void;
 }
 
@@ -26,9 +26,9 @@ const navLinks: INavLink[] = [
 	},
 ];
 
-const Menu: React.FC<IMenuProps> = ({ class_name, onClick }) => {
+const Menu: React.FC<IMenuProps> = ({ nameClass, onClick }) => {
 	return (
-		<nav className={[s.menu, class_name && s[class_name]].join(' ')}>
+		<nav className={[s.menu, nameClass && s[nameClass]].join(' ')}>
 			<ul className={s.list}>
 				{navLinks.map((link) => (
 					<li className={s.item} key={link.name}>

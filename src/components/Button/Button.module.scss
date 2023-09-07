@@ -4,7 +4,6 @@
 
 .button {
 	height: 3.5rem;
-	margin: 20px;
 }
 
 .button.primaryTextOnlyButton {
@@ -19,7 +18,6 @@
 	font-style: normal;
 	font-weight: 600;
 	line-height: 132%;
-	/* 1.485rem */
 
 	&:hover {
 		background: $color-ref-orange-10;
@@ -46,7 +44,6 @@
 	font-style: normal;
 	font-weight: 600;
 	line-height: 132%;
-	/* 1.485rem */
 
 	&:hover {
 		border-color: $color-ref-orange-10;
@@ -73,13 +70,12 @@
 	align-items: center;
 	gap: 0.5rem;
 	border: 3px solid $color-system-default-10;
-	background: $color-primary-green;
+	background: transparent;
 	color: $color-system-default-10;
 	font-size: 1.125rem;
 	font-style: normal;
 	font-weight: 600;
 	line-height: 132%;
-	/* 1.485rem */
 
 	@include tablet {
 		height: 3.5rem;
@@ -94,7 +90,7 @@
 	align-items: center;
 	gap: 0.625rem;
 	flex-shrink: 0;
-	background: $color-primary-green;
+	background-color: transparent;
 }
 
 .miniIconContainer {

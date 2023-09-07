@@ -10,7 +10,7 @@ interface IButtonProps {
 	imgClasses?: string;
 	onClick: () => void;
 	type?: 'button' | 'submit' | 'reset';
-	disabled: boolean;
+	disabled?: boolean;
 }
 
 const Button: React.FC<IButtonProps> = ({
