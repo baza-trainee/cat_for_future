@@ -22,48 +22,6 @@ const Header: React.FC = () => {
 		setIsOpenBurgerMenu((prev) => !prev);
 	};
 
-	const authBtn = isLogin ? (
-		<Button
-			buttonClasses={'secondaryIconLeftButton'}
-			divClasses={'miniIconContainer'}
-			imgClasses={'miniIconContainer'}
-			type={'button'}
-			name={'Вихід'}
-			imgPath={logOut}
-			onClick={handleIsLogin}
-		/>
-	) : (
-		<Button
-			buttonClasses={'secondaryIconLeftButton'}
-			divClasses={'miniIconContainer'}
-			imgClasses={'miniIconContainer'}
-			type={'button'}
-			name={'Вхід'}
-			imgPath={logIn}
-			onClick={handleIsLogin}
-		/>
-	);
-
-	const menuBtn = isOpenBurgerMenu ? (
-		<Button
-			buttonClasses={'tertiaryIconOnlyButton burgerMenuBtn'}
-			divClasses={'bigIconContainer'}
-			imgClasses={'bigIcon'}
-			type={'button'}
-			imgPath={burgerMenuClose}
-			onClick={handleIsOpenBurgerMenu}
-		/>
-	) : (
-		<Button
-			buttonClasses={'tertiaryIconOnlyButton burgerMenuBtn'}
-			divClasses={'bigIconContainer'}
-			imgClasses={'bigIcon'}
-			type={'button'}
-			imgPath={burgerMenuOpen}
-			onClick={handleIsOpenBurgerMenu}
-		/>
-	);
-
 	return (
 		<header className={s.header}>
 			<div className={s.container}>
@@ -76,9 +34,24 @@ const Header: React.FC = () => {
 						name={'Допомогти'}
 						onClick={() => console.log('Клік Допомогти')}
 					/>
-					{authBtn}
+					<Button
+						buttonClasses={'secondaryIconLeftButton'}
+						divClasses={'miniIconContainer'}
+						imgClasses={'miniIconContainer'}
+						type={'button'}
+						name={isLogin ? 'Вихід' : 'Вхід'}
+						imgPath={isLogin ? logOut : logIn}
+						onClick={handleIsLogin}
+					/>
 				</div>
-				{menuBtn}
+				<Button
+					buttonClasses={'tertiaryIconOnlyButton burgerMenuBtn'}
+					divClasses={'bigIconContainer'}
+					imgClasses={'bigIcon'}
+					type={'button'}
+					imgPath={isOpenBurgerMenu ? burgerMenuClose : burgerMenuOpen}
+					onClick={handleIsOpenBurgerMenu}
+				/>
 			</div>
 		</header>
 	);
