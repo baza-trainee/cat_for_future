@@ -30,6 +30,13 @@
 	&:disabled {
 		background: $color-ref-orange-0;
 	}
+
+	&.helpBtn {
+		display: none;
+		@include full_desktop {
+			display: flex;
+		}
+	}
 }
 
 .secondaryTextOnlyOrangeButton {
@@ -91,6 +98,11 @@
 	gap: 0.625rem;
 	flex-shrink: 0;
 	background-color: transparent;
+	&.burgerMenuBtn {
+		@include full_desktop {
+			display: none;
+		}
+	}
 }
 
 .miniIconContainer {
@@ -116,4 +128,8 @@
 	width: 2.5rem;
 	height: 2.5rem;
 	flex-shrink: 0;
+}
+
+.hide {
+	display: none;
 }

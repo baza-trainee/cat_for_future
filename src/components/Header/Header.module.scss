@@ -1,2 +1,41 @@
 @use 'src/styles/variables' as *;
 @use 'src/styles/mixins' as *;
+
+.header {
+	position: sticky;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $color-primary-green;
+	z-index: 1000;
+}
+
+.container {
+	width: 20rem;
+	height: 5rem;
+	padding: 1rem 1.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	@include tablet {
+		width: 48rem;
+		height: 5.75rem;
+		padding: 1rem 3.375rem;
+	}
+	@include full_desktop {
+		width: 71.25rem;
+		height: 7.625rem;
+		padding: 0.75rem 0;
+		gap: 2.19rem;
+	}
+}
+.btnWrapper {
+	display: flex;
+	align-items: center;
+
+	@include full_desktop {
+		gap: 1.25rem;
+	}
+}
