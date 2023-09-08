@@ -12,18 +12,21 @@
 }
 
 .container {
-	width: 20rem;
+	min-width: 20rem;
+	width: 100%;
 	height: 5rem;
 	padding: 1rem 1.25rem;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-evenly;
 
 	@include tablet {
 		width: 48rem;
 		height: 5.75rem;
 		padding: 1rem 3.375rem;
+		justify-content: space-between;
 	}
+
 	@include full_desktop {
 		width: 73.25rem;
 		height: 7.625rem;
