@@ -31,9 +31,11 @@ const Button: React.FC<IButtonProps> = ({
 
 	return (
 		<button className={btnClasses} disabled={disabled} type={type} onClick={onClick}>
-			<div className={[divClasses && s[divClasses]].join(' ')}>
-				{imgPath && <img className={[imgClasses && s[imgClasses]].join(' ')} src={imgPath} />}
-			</div>
+			{imgPath && (
+				<div className={clsx(divClasses && s[divClasses])}>
+					<img className={clsx(imgClasses && s[imgClasses])} src={imgPath} />
+				</div>
+			)}
 			{name}
 		</button>
 	);

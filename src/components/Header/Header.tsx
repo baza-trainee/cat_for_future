@@ -29,13 +29,13 @@ const Header: React.FC = () => {
 				<Menu />
 				<div className={s.btnWrapper}>
 					<Button
-						buttonClasses={'primaryTextOnlyButton helpBtn'}
+						buttonClasses={'primaryBtn helpBtn'}
 						type={'button'}
 						name={'Допомогти'}
 						onClick={() => console.log('Клік Допомогти')}
 					/>
 					<Button
-						buttonClasses={'secondaryIconLeftButton'}
+						buttonClasses={'secondaryIconLeftBtn'}
 						divClasses={'miniIconContainer'}
 						imgClasses={'miniIconContainer'}
 						type={'button'}
@@ -45,7 +45,7 @@ const Header: React.FC = () => {
 					/>
 				</div>
 				<Button
-					buttonClasses={'tertiaryIconOnlyButton burgerMenuBtn'}
+					buttonClasses={'tertiaryIconBtn burgerMenuBtn'}
 					divClasses={'bigIconContainer'}
 					imgClasses={'bigIcon'}
 					type={'button'}

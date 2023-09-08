@@ -6,7 +6,7 @@
 	height: 3.5rem;
 }
 
-.button.primaryTextOnlyButton {
+.button.primaryBtn {
 	display: flex;
 	padding: 1rem 3rem;
 	justify-content: center;
@@ -39,7 +39,7 @@
 	}
 }
 
-.secondaryTextOnlyOrangeButton {
+.secondaryBtn {
 	display: inline-flex;
 	padding: 1rem 3rem;
 	justify-content: center;
@@ -69,7 +69,7 @@
 	}
 }
 
-.secondaryIconLeftButton {
+.secondaryIconLeftBtn {
 	height: 3rem;
 	display: flex;
 	padding: 1rem 3rem 1rem 2rem;
@@ -79,17 +79,18 @@
 	border: 3px solid $color-system-default-10;
 	background: transparent;
 	color: $color-system-default-10;
-	font-size: 1.125rem;
+	font-size: 1rem;
 	font-style: normal;
 	font-weight: 600;
 	line-height: 132%;
 
 	@include tablet {
 		height: 3.5rem;
+		font-size: 1.125rem;
 	}
 }
 
-.tertiaryIconOnlyButton {
+.tertiaryIconBtn {
 	display: flex;
 	width: 2.75rem;
 	height: 2.75rem;
