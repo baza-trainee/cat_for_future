@@ -4,10 +4,9 @@
 
 .button {
 	height: 3.5rem;
-	margin: 20px;
 }
 
-.button.primaryTextOnlyButton {
+.button.primaryBtn {
 	display: flex;
 	padding: 1rem 3rem;
 	justify-content: center;
@@ -19,7 +18,6 @@
 	font-style: normal;
 	font-weight: 600;
 	line-height: 132%;
-	/* 1.485rem */
 
 	&:hover {
 		background: $color-ref-orange-10;
@@ -32,9 +30,16 @@
 	&:disabled {
 		background: $color-ref-orange-0;
 	}
+
+	&.helpBtn {
+		display: none;
+		@include full_desktop {
+			display: flex;
+		}
+	}
 }
 
-.secondaryTextOnlyOrangeButton {
+.secondaryBtn {
 	display: inline-flex;
 	padding: 1rem 3rem;
 	justify-content: center;
@@ -46,7 +51,6 @@
 	font-style: normal;
 	font-weight: 600;
 	line-height: 132%;
-	/* 1.485rem */
 
 	&:hover {
 		border-color: $color-ref-orange-10;
@@ -65,7 +69,7 @@
 	}
 }
 
-.secondaryIconLeftButton {
+.secondaryIconLeftBtn {
 	height: 3rem;
 	display: flex;
 	padding: 1rem 3rem 1rem 2rem;
@@ -73,20 +77,20 @@
 	align-items: center;
 	gap: 0.5rem;
 	border: 3px solid $color-system-default-10;
-	background: $color-primary-green;
+	background: transparent;
 	color: $color-system-default-10;
-	font-size: 1.125rem;
+	font-size: 1rem;
 	font-style: normal;
 	font-weight: 600;
 	line-height: 132%;
-	/* 1.485rem */
 
 	@include tablet {
 		height: 3.5rem;
+		font-size: 1.125rem;
 	}
 }
 
-.tertiaryIconOnlyButton {
+.tertiaryIconBtn {
 	display: flex;
 	width: 2.75rem;
 	height: 2.75rem;
@@ -94,7 +98,12 @@
 	align-items: center;
 	gap: 0.625rem;
 	flex-shrink: 0;
-	background: $color-primary-green;
+	background-color: transparent;
+	&.burgerMenuBtn {
+		@include full_desktop {
+			display: none;
+		}
+	}
 }
 
 .miniIconContainer {
@@ -120,4 +129,8 @@
 	width: 2.5rem;
 	height: 2.5rem;
 	flex-shrink: 0;
+}
+
+.hide {
+	display: none;
 }
