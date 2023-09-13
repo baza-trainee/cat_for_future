@@ -1,0 +1,40 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.cookie {
+	display: flex;
+
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	height: 22.5rem;
+	background-color: $color-primary-green;
+	color: $color-system-default-10;
+	font-family: Open Sans;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.5rem;
+
+	@include tablet {
+		height: 15rem;
+	}
+	@include full_desktop {
+		height: 11.25rem;
+	}
+}
+
+.link {
+	font-family: Poppins;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.5rem;
+	text-decoration-line: underline;
+}
+
+.close {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
