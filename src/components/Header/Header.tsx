@@ -35,8 +35,7 @@ const Header: React.FC = () => {
 						onClick={() => console.log('Клік Допомогти')}
 					/>
 					<Button
-						buttonClasses={'secondaryIconLeftBtn'}
-						divClasses={'miniIconContainer'}
+						buttonClasses={'secondaryBtn  secondaryIconLeft'}
 						imgClasses={'miniIconContainer'}
 						type={'button'}
 						name={isLogin ? 'Вихід' : 'Вхід'}
@@ -45,8 +44,7 @@ const Header: React.FC = () => {
 					/>
 				</div>
 				<Button
-					buttonClasses={'tertiaryIconBtn burgerMenuBtn'}
-					divClasses={'bigIconContainer'}
+					buttonClasses={'bigIconContainer burgerMenuBtn'}
 					imgClasses={'bigIcon'}
 					type={'button'}
 					imgPath={isOpenBurgerMenu ? burgerMenuClose : burgerMenuOpen}
