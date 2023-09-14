@@ -1,0 +1,100 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+footer {
+	padding: 1.31rem 1.31rem 0.38rem 1.31rem;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $color-primary-green;
+	color: $color-system-default-10;
+	font-size: 1rem;
+	font-weight: 400;
+
+	@include tablet {
+		font-size: 1.25rem;
+		padding: 1.5625rem 1.4375rem;
+	}
+	@include full_desktop {
+		font-size: 1.25rem;
+		padding: 3.875rem 10.1875rem 2.25rem 10.1875rem;
+	}
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.875rem;
+
+	@include tablet {
+		gap: 3.1875rem;
+		width: 45.188rem;
+	}
+
+	@include full_desktop {
+		gap: 7.125rem;
+		width: 69.625rem;
+		display: flex;
+		//height: 29.0625rem;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+.mainContentContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.75rem;
+
+	@include tablet {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 3.1875rem;
+	}
+
+	@include full_desktop {
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		gap: 10.75rem;
+		flex-direction: row;
+	}
+}
+
+.navContactsContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.875rem;
+
+	@include tablet {
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 6.5625rem;
+	}
+	@include full_desktop {
+		gap: 10.75rem;
+	}
+}
+
+.rights {
+	width: 13.9375rem;
+	text-align: center;
+
+	@include tablet {
+		width: 100%;
+	}
+
+	@include full_desktop {
+		width: 100%;
+	}
+}
