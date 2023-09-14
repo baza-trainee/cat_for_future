@@ -2,39 +2,75 @@
 @import 'src/styles/mixins';
 
 .cookie {
+	position: fixed;
+	bottom: 3rem;
+	left: 0;
+	right: 0;
 	display: flex;
-
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	width: 100%;
-	height: 22.5rem;
+	padding: 3% 5%;
+	gap: 1.875rem;
 	background-color: $color-primary-green;
 	color: $color-system-default-10;
-	font-family: Open Sans;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	font-style: normal;
 	font-weight: 400;
-	line-height: 1.5rem;
+	line-height: 1.2rem;
+	margin: auto;
 
 	@include tablet {
 		height: 15rem;
+		font-size: 1.25rem;
 	}
 	@include full_desktop {
+		max-width: 80rem;
 		height: 11.25rem;
+		gap: 1rem;
+		font-size: 1.25rem;
 	}
 }
 
-.link {
-	font-family: Poppins;
-	font-size: 1.25rem;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 1.5rem;
-	text-decoration-line: underline;
+.closeWrapper {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: flex-end;
 }
 
 .close {
+	cursor: pointer;
+}
+
+.text {
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: left;
+	font-family: Open Sans;
+}
+
+.link {
+	text-decoration-line: underline;
+}
+
+.btnWrapper {
+	width: 8.75rem;
+}
+
+.btn {
+	display: flex;
+	height: 3rem;
+	padding: 1rem 3rem;
+	justify-content: center;
 	align-items: center;
-	justify-content: flex-end;
+	gap: 0.5rem;
+	flex-shrink: 0;
+	background-color: $color-primary-orange;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.485rem;
 }
