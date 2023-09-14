@@ -1,0 +1,63 @@
+@use 'src/styles/variables' as *;
+
+.wrapper {
+	background-color: $color-primary-green;
+}
+.image {
+	overflow: hidden;
+	height: 18.75rem;
+	margin-bottom: 0.88rem;
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+}
+.content {
+	padding-inline: 1rem;
+	margin-bottom: 2.94rem;
+}
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: #ffffff;
+}
+.name {
+	font-family: $secondary-font;
+	font-size: 2rem;
+	font-weight: 900;
+	line-height: normal;
+}
+.status {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0.5rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: normal;
+}
+.id {
+	color: #f2f2f2;
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: normal;
+	margin-bottom: 0.75rem;
+}
+.about {
+	color: #ffffff;
+	font-size: 1.125rem;
+	font-weight: 900;
+	line-height: normal;
+}
+.birthday {
+	color: #e9e9e9;
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: normal;
+}
+.buttonContainer {
+	padding: 0 1.06rem 2.25rem;
+}
