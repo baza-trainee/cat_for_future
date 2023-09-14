@@ -35,7 +35,9 @@ const CookieConsentBanner: React.FC = () => {
 						Цей сайт використовує файли cookies для правильної роботи та покращення сервісу. Якщо ви
 						погоджуєтесь з їх використанням, натисніть OK. Більше інформації в
 					</p>
-					<a className={s.link}>Політика конфіденційності</a>
+					<a href={'/privacy'} className={s.link}>
+						Політика конфіденційності
+					</a>
 				</div>
 				<div className={s.btnWrapper}>
 					<Button
