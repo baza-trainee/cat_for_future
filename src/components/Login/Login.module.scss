@@ -1,0 +1,133 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.login {
+	position: relative;
+	z-index: 1100;
+	&_overlay {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba(206, 206, 206, 0.6);
+		@include tablet {
+			padding-top: 11.69rem;
+		}
+		@include full_desktop {
+			padding-top: 6.88rem;
+		}
+	}
+	&__content {
+		display: flex;
+		margin: 0 auto;
+		flex-direction: column;
+		width: 20rem;
+		padding: 1rem 1rem 1.44rem 1rem;
+		background: #fff;
+	}
+	&__closeBtn {
+		display: flex;
+		justify-content: end;
+		background: none;
+	}
+	&__closeImg {
+		display: block;
+		align-self: self-end;
+		margin-right: 0.25rem;
+		width: 1.5rem;
+		height: 1.5rem;
+		cursor: pointer;
+	}
+	&__title {
+		text-align: center;
+		font-size: 1.125rem;
+		font-weight: 700;
+		line-height: 1.5rem;
+		color: $color-system-default-100;
+	}
+	&__form {
+		margin-top: 1rem;
+		display: flex;
+		flex-direction: column;
+	}
+	&__inputWrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	&__inputBox {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+	&__label {
+		font-size: 1.25rem;
+		font-weight: 400;
+		line-height: 1.5rem;
+		color: $color-primary-orange;
+	}
+	&__inputImg {
+		cursor: pointer;
+		&:hover > path {
+			stroke: $color-system-default-100;
+		}
+	}
+	&__inputImg path {
+		stroke: #939393;
+		transition: stroke 0.2s ease-in-out;
+	}
+	&__input {
+		width: 100%;
+		padding: 0.5rem 1rem;
+		border: 1px solid $color-system-default-50;
+		font-size: 1.25rem;
+		font-weight: 400;
+		line-height: 1.5rem;
+		color: $color-system-default-100;
+		transition:
+			border 0.2s ease-in-out,
+			color 0.2s ease-in-out;
+		&_paddingR {
+			padding-right: 3.25rem;
+		}
+		&:hover {
+			border: 1px solid $color-system-default-100;
+		}
+		&:hover + div svg path {
+			stroke: $color-system-default-100;
+		}
+		&:focus {
+			outline: 2px solid $color-system-default-100;
+		}
+		&:focus + div svg path {
+			stroke: $color-system-default-100;
+		}
+		&:disabled {
+			color: $color-system-default-30;
+			border: 1px solid $color-system-default-30;
+		}
+		&:disabled + div svg path {
+			stroke: $color-system-default-100;
+		}
+	}
+	&__forgetPas {
+		margin-top: 0.5rem;
+		align-self: self-end;
+		color: #000;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.32rem;
+		text-decoration: underline;
+		transition: font-weight 0.1s ease-in-out;
+	}
+	&__inputManipulPass {
+		position: relative;
+	}
+	&__hiddenPass {
+		position: absolute;
+		top: 50%;
+		right: 1rem;
+		transform: translateY(-50%);
+	}
+}
