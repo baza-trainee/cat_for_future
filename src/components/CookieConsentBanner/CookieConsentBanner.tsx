@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import s from './CookieConsentBanner.module.scss';
 import close from 'src/assets/icons/close.svg';
+import Button from '../Button/Button';
 
 const CookieConsentBanner: React.FC = () => {
 	const [showBanner, setShowBanner] = useState<boolean>(true);
@@ -37,9 +38,12 @@ const CookieConsentBanner: React.FC = () => {
 					<a className={s.link}>Політика конфіденційності</a>
 				</div>
 				<div className={s.btnWrapper}>
-					<button className={s.btn} onClick={acceptCookies}>
-						OK
-					</button>
+					<Button
+						buttonClasses={'primaryBtn'}
+						type={'button'}
+						name={'OK'}
+						onClick={acceptCookies}
+					/>
 				</div>
 			</div>
 		)
