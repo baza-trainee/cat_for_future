@@ -160,7 +160,6 @@
 		padding: 0.6875rem 1.8125rem 0.6875rem 1rem;
 		border: none;
 		color: $color-system-default-10;
-
 		&:hover,
 		&:active {
 			color: $color-primary-dark-green;
@@ -221,6 +220,7 @@
 }
 
 .miniIconContainer {
+	display: block;
 	width: 1.5rem;
 	height: 1.5rem;
 	transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;

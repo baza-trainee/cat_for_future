@@ -11,7 +11,8 @@ interface IButtonProps {
 	onClick: () => void;
 	type?: 'button' | 'submit' | 'reset';
 	disabled?: boolean;
-	style?: React.CSSProperties;
+	styleBtn?: React.CSSProperties;
+	styleImg?: React.CSSProperties;
 }
 
 const Button: React.FC<IButtonProps> = ({
@@ -22,15 +23,24 @@ const Button: React.FC<IButtonProps> = ({
 	onClick,
 	type,
 	disabled,
-	style,
+	styleBtn,
+	styleImg,
 }) => {
 	const btnClasses = buttonClasses
 		? clsx(s.button, buttonClasses?.split(' ').map((item) => s[item]))
 		: s.button;
 
 	return (
-		<button className={btnClasses} disabled={disabled} type={type} onClick={onClick} style={style}>
-			{imgPath && <img className={clsx(imgClasses && s[imgClasses])} src={imgPath} />}
+		<button
+			className={btnClasses}
+			disabled={disabled}
+			type={type}
+			onClick={onClick}
+			style={styleBtn}
+		>
+			{imgPath && (
+				<img className={clsx(imgClasses && s[imgClasses])} src={imgPath} style={styleImg} />
+			)}
 			{name}
 		</button>
 	);
