@@ -20,6 +20,7 @@
 	font-weight: 400;
 	line-height: 1.2rem;
 	margin: auto;
+	z-index: 1;
 
 	@include tablet {
 		height: 15rem;

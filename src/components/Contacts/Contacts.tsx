@@ -1,8 +1,6 @@
 import React from 'react';
 import phoneIcon from 'src/assets/icons/phone-icon.svg';
 import emailIcon from 'src/assets/icons/email-icon.svg';
-import instaIcon from 'src/assets/icons/instagram-icon.svg';
-import facebookIcon from 'src/assets/icons/facebook-icon.svg';
 import { Link } from 'react-router-dom';
 
 import s from 'src/components/Contacts/Contacts.module.scss';
