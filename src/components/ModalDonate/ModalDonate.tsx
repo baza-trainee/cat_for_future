@@ -5,75 +5,19 @@ import Button from "src/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
 // import axios from "axios";
 
-interface IProps {
-	modal: string;
-	status: boolean;
-	closeModal: any;
-	size?: "FULL";
-	children?: React.ReactNode;
+interface ModalProps {
+
 	onClose: () => void;
 }
 
-const ModalDonate = ({ size, status, closeModal, modal, onClose }: IProps) => {
-	const [mouseClickTarget, setMouseClickTarget] = useState(false);
-
-	const escFunction = (e: any) => {
-		if (e.key === "Escape") {
-			closeModal(modal);
-		}
-	};
-
-	useEffect((): any => {
-		if (status) {
-			document.addEventListener("keyup", escFunction, false);
-			return () => {
-				document.removeEventListener("keyup", escFunction, false);
-			};
-		}
-	}, [size, modal, status]);
-
-	useEffect(() => {
-		const bhxModalCustomWrapperAll = document.querySelectorAll(".modalClose");
-		const bhxModalCustomAll = document.querySelectorAll(".backdrop");
-		const handleClickModalDown = (e: any) => {
-			if (e.target.classList.contains("modalClose")) {
-				setMouseClickTarget(true);
-			}
-		};
-		const handleClickModalUp = (e: any) => {
-			if (e.target.classList.contains("modalClose") && mouseClickTarget) {
-				bhxModalCustomWrapperAll.forEach(element => {
-					element.removeEventListener("mousedown", handleClickModalDown, false);
-					element.removeEventListener("mouseup", handleClickModalUp, false);
-				});
-				closeModal(modal);
-				setMouseClickTarget(false);
-			}
-		};
-
-		if (status) {
-			bhxModalCustomWrapperAll.forEach(element => {
-				element.addEventListener("mousedown", handleClickModalDown, false);
-				element.addEventListener("mouseup", handleClickModalUp, false);
-			});
-		} else {
-			bhxModalCustomAll.forEach(element => {
-				// eslint-disable-next-line no-param-reassign
-				element.scrollTop = 0;
-			});
-		}
-	}, [status, mouseClickTarget]);
-
-	const [selectedSumOption, setSelectedSumOption] = useState("");
-	const [inputSum, setInputSum] = useState("");
+const ModalDonate = ({onClose }: ModalProps) => {
+	const [selectedSumOption, setSelectedSumOption] = useState<string>('');
 
 	const handleSumChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		console.log(selectedSumOption);
 		setSelectedSumOption(event.target.value);
 	};
 
-	const handleInputSum = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setInputSum(event.target.value);
-	};
 
 	const isDesktop = useMediaQuery({ minWidth: 1280 });
 	const isTablet = useMediaQuery({ minWidth: 767, maxWidth: 1279.99 });
@@ -84,29 +28,64 @@ const ModalDonate = ({ size, status, closeModal, modal, onClose }: IProps) => {
 	};
 
 	return (
-		<>
-			<div
-				className={css.backdrop}
-				style={{ display: status ? "block" : "none" }}
-			>
-				<div
-					id={`js-bhx-modal-custom__wrapper-${modal}`}
-					className={`modalClose ${css.modalWrapper}`}
-				>
-					<div className={`aniModalOpening ${css.modalBody} ${size === "FULL" && "modalBodyFull"}`}>
-						<button
-							className={css.modalCloseBtn}
-							type="button"
-							onClick={onClose}
-						>
-							<img
-								src={closeIcon}
-								alt="close modal"
-							/>
-						</button>
-						<section className={css.contentWrapper}>
-							<div className={css.textWrapper}>
-								<p className={css.text}>Зібрані кошти йдуть на харчування та медичну допомогу</p>
+		<div className={s.backdrop} onClick={handleModalClick }>
+			<div id={`js-bhx-modal-custom__wrapper-donate`} className={`modalClose ${s.modalWrapper}`}>
+				<div className={`aniModalOpening ${s.modalBody} ${'modalBodyFull'}`}>
+					<button className={s.modalCloseBtn} type="button" onClick={onClose}>
+						<img src={closeIcon} alt="close modal" />
+					</button>
+					<section className={s.contentWrapper}>
+						<div className={s.textWrapper}>
+							<p className={s.text}>Зібрані кошти йдуть на харчування та медичну допомогу</p>
+						</div>
+						<form action="#">
+							<div className={s.radioWrapper}>
+								<div className={s.optionsWrapperUp}>
+									<label className={selectedSumOption === 'option1' ? s.selected : ''}>
+										<input
+											className={s.optionIndicatorSum}
+											type="radio"
+											value="option1"
+											checked={selectedSumOption === 'option1'}
+											onChange={handleSumChange}
+										/>
+										100 UAH
+									</label>
+
+									<label className={selectedSumOption === 'option2' ? s.selected : ''}>
+										<input
+											className={s.optionIndicatorSum}
+											type="radio"
+											value="option2"
+											checked={selectedSumOption === 'option2'}
+											onChange={handleSumChange}
+										/>
+										200 UAH
+									</label>
+								</div>
+
+								<div className={s.optionsWrapperDown}>
+									<label className={selectedSumOption === 'option3' ? s.selected : ''}>
+										<input
+											className={s.optionIndicatorSum}
+											type="radio"
+											value="option3"
+											checked={selectedSumOption === 'option3'}
+											onChange={handleSumChange}
+										/>
+										500 UAH
+									</label>
+
+									<label className={s.otherSum}>
+										<input
+											className={s.otherValue}
+											type="number"
+											onFocus={() => setSelectedSumOption('')}
+											onChange={handleSumChange}
+											placeholder="Інша сума, UAH "
+										/>
+									</label>
+								</div>
 							</div>
 							<form action="#">
 								<div className={css.radioWrapper}>
@@ -171,7 +150,7 @@ const ModalDonate = ({ size, status, closeModal, modal, onClose }: IProps) => {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
