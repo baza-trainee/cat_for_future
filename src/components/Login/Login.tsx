@@ -4,6 +4,17 @@ import closeBtn from 'src/assets/icons/login-close-btn.svg';
 import Button from '../Button/Button';
 import s from './Login.module.scss';
 
+const primaryBtnStyle = {
+	width: '100%',
+	padding: '0.81rem 0',
+}
+
+const secondaryBtnStyle = {
+	width: '100%',
+	padding: '0.75rem 0',
+	backgroundColor: 'transparent'
+}
+
 const Login: FC = () => {
 	return (
 		<div className={clsx(s.login_overlay, s.login)}>
@@ -84,20 +95,28 @@ const Login: FC = () => {
 						Забули пароль?
 					</a>
 
-					<Button
-						onClick={() => console.log('Клік Увійти')}
-						name={'Увійти'}
-						buttonClasses={'primaryBtn'}
-						type={'submit'}
-					/>
-					<Button
-						onClick={() => console.log('Клік Зареєструватись')}
-						name={'Зареєструватись'}
-						buttonClasses={'secondaryBtn'}
-						type={'button'}
-					/>
+					<div className={s.login__boxBtn}>
+						<Button
+							onClick={() => console.log('Клік Увійти')}
+							name={'Увійти'}
+							buttonClasses={'primaryBtn'}
+							type={'submit'}
+							styleBtn={primaryBtnStyle}
+						/>
+						<Button
+							onClick={() => console.log('Клік Зареєструватись')}
+							name={'Зареєструватись'}
+							buttonClasses={'secondaryBtn'}
+							type={'button'}
+							styleBtn={secondaryBtnStyle}
+						/>
+					</div>
 
-					<div className={s.login__alternative}>або</div>
+					<div className={s.login__alternative}>
+						<span className={s.login__alernatLine}></span>
+						<span>або</span>
+						<span className={s.login__alernatLine}></span>
+					</div>
 
 					<button>Увійти через Google</button>
 					<button>Увійти через Facebook</button>
