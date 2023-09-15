@@ -1,6 +1,6 @@
 # React + TypeScript + Vite
 
-deploy:https://baza-trainee-cat-for-future-ozj8.vercel.app/
+deploy:https://cat-for-future-9qj7.vercel.app/
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

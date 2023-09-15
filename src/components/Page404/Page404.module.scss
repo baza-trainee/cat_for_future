@@ -1,0 +1,48 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.page404 {
+	height: 100%;
+	align-self: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 1rem;
+
+	.title {
+		color: $color-system-default-100;
+		text-align: center;
+		font-family: Montserrat Alternates;
+		font-style: normal;
+		font-weight: 700;
+		font-size: 3rem;
+		line-height: 120%;
+
+		@include full_desktop {
+			font-size: 4rem;
+			line-height: 132%;
+		}
+	}
+
+	.text {
+		margin: 1.87rem 0 1.88rem;
+		color: $color-system-default-100;
+		text-align: center;
+		font-family: Open Sans;
+		font-size: 1.125rem;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 120%;
+
+		@include tablet {
+			margin: 1.87rem 0 1.25rem;
+			font-size: 1.5rem;
+		}
+
+		@include full_desktop {
+			margin: 2.69rem 0 2.19rem;
+			font-size: 2rem;
+		}
+	}
+}
