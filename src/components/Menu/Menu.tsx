@@ -35,7 +35,7 @@ const docLinks: INavLink[] = [
 	{
 		name: 'Рекомендації по утриманню тварин',
 		//no link yet
-		to: '',
+		to: '*',
 	},
 	{
 		name: 'Політика конфідеційності',
@@ -48,7 +48,7 @@ const docLinks: INavLink[] = [
 	{
 		name: 'Звітність',
 		//no link yet
-		to: '',
+		to: '*',
 	},
 ];
 
