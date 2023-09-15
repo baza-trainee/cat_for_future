@@ -10,13 +10,14 @@ import logIn from 'src/assets/icons/header/log-in-icon.svg';
 import logOut from 'src/assets/icons/header/log-out-icon.svg';
 import burgerMenuOpen from 'src/assets/icons/header/burger-menu-open-icon.svg';
 import burgerMenuClose from 'src/assets/icons/header/burger-menu-close-icon.svg';
-// ---------------------modal------------------------------------------------------
-import ModalDonate from '../ModalDonate/ModalDonate';
-// -----------------------------------------------------------------------------
 
-const Header: React.FC = () => {
-	const [isLogin, setIsLogin] = useState(false);
-	const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
+interface HeaderProps {
+	onOpenModalDonate: () => void;
+}
+const Header: React.FC<HeaderProps> = ({ onOpenModalDonate }) => {
+	const [isLogin, setIsLogin] = useState<boolean>(false);
+	const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState<boolean>(false);
+
 	const handleIsLogin = () => {
 		setIsLogin((prev) => !prev);
 	};
@@ -24,26 +25,6 @@ const Header: React.FC = () => {
 	const handleIsOpenBurgerMenu = () => {
 		setIsOpenBurgerMenu((prev) => !prev);
 	};
-
-	// --------------------modal-------------------------------------------------
-	type modalIndex = 'DONATE_MODAL';
-
-	const [modalState, setModalState] = useState({
-		DONATE_MODAL: { status: false },
-	});
-
-	const openModal = (modalName: modalIndex): void => {
-		setModalState({ ...modalState, [modalName]: { status: true } });
-	};
-
-	const closeModal = (modalName: modalIndex) => {
-		const documentBody: HTMLBodyElement | null = document.querySelector('body');
-		if (documentBody !== null) {
-			documentBody.className = '';
-		}
-		setModalState({ ...modalState, [modalName]: { status: false } });
-	};
-	// -----------------------------------------------------------------------------
 
 	return (
 		<header className={s.header}>
@@ -55,7 +36,7 @@ const Header: React.FC = () => {
 						buttonClasses={'primaryBtn helpBtn'}
 						type={'button'}
 						name={'Допомогти'}
-						onClick={() => openModal('DONATE_MODAL')}
+						onClick={onOpenModalDonate}
 					/>
 					<Button
 						buttonClasses={'secondaryBtn  secondaryIconLeft'}
@@ -74,12 +55,6 @@ const Header: React.FC = () => {
 					onClick={handleIsOpenBurgerMenu}
 				/>
 			</div>
-			<ModalDonate
-				status={modalState.DONATE_MODAL.status}
-				closeModal={closeModal}
-				modal="DONATE_MODAL"
-				onClose={() => closeModal('DONATE_MODAL')}
-			/>
 		</header>
 	);
 };
