@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import clsx from 'clsx';
 import closeBtn from 'src/assets/icons/login-close-btn.svg';
-// import closeEye from 'src/assets/icons/close-eye.svg';
+import Button from '../Button/Button';
 import s from './Login.module.scss';
 
 const Login: FC = () => {
@@ -32,13 +32,12 @@ const Login: FC = () => {
 							</label>
 							<div className={s.login__inputManipulPass}>
 								<input
-									id="login-email"
+									id="login-password"
 									type="password"
 									className={clsx(s.login__input, s.login__input_paddingR)}
 									placeholder="Введіть пароль"
 								/>
 								<div className={s.login__hiddenPass}>
-									{/* <img src={closeEye} className={s.login__inputImg} alt="Close eye" /> */}
 									<svg
 										className={s.login__inputImg}
 										width="24"
@@ -81,12 +80,22 @@ const Login: FC = () => {
 						</div>
 					</div>
 
-					<a href="#" className={s.login__forgetPas}>
+					<a href="#" className={s.login__forgetPass}>
 						Забули пароль?
 					</a>
 
-					<button>Увійти</button>
-					<button>Зареєструватись</button>
+					<Button
+						onClick={() => console.log('Клік Увійти')}
+						name={'Увійти'}
+						buttonClasses={'primaryBtn'}
+						type={'submit'}
+					/>
+					<Button
+						onClick={() => console.log('Клік Зареєструватись')}
+						name={'Зареєструватись'}
+						buttonClasses={'secondaryBtn'}
+						type={'button'}
+					/>
 
 					<div className={s.login__alternative}>або</div>
 

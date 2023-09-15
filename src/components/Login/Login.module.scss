@@ -1,5 +1,5 @@
-@import 'src/styles/variables';
-@import 'src/styles/mixins';
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
 
 .login {
 	position: relative;
@@ -21,6 +21,7 @@
 	&__content {
 		display: flex;
 		margin: 0 auto;
+		min-height: 37.5rem;
 		flex-direction: column;
 		width: 20rem;
 		padding: 1rem 1rem 1.44rem 1rem;
@@ -110,8 +111,11 @@
 		&:disabled + div svg path {
 			stroke: $color-system-default-100;
 		}
+		&:disabled + div svg path {
+			stroke: $color-system-default-100;
+		}
 	}
-	&__forgetPas {
+	&__forgetPass {
 		margin-top: 0.5rem;
 		align-self: self-end;
 		color: #000;
