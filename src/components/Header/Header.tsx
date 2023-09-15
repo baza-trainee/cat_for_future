@@ -11,9 +11,13 @@ import logOut from 'src/assets/icons/header/log-out-icon.svg';
 import burgerMenuOpen from 'src/assets/icons/header/burger-menu-open-icon.svg';
 import burgerMenuClose from 'src/assets/icons/header/burger-menu-close-icon.svg';
 
-const Header: React.FC = () => {
-	const [isLogin, setIsLogin] = useState(false);
-	const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
+interface HeaderProps {
+	onOpenModalDonate: () => void;
+}
+const Header: React.FC<HeaderProps> = ({ onOpenModalDonate }) => {
+	const [isLogin, setIsLogin] = useState<boolean>(false);
+	const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState<boolean>(false);
+
 	const handleIsLogin = () => {
 		setIsLogin((prev) => !prev);
 	};
@@ -32,11 +36,10 @@ const Header: React.FC = () => {
 						buttonClasses={'primaryBtn helpBtn'}
 						type={'button'}
 						name={'Допомогти'}
-						onClick={() => console.log('Клік Допомогти')}
+						onClick={onOpenModalDonate}
 					/>
 					<Button
-						buttonClasses={'secondaryIconLeftBtn'}
-						divClasses={'miniIconContainer'}
+						buttonClasses={'secondaryBtn  secondaryIconLeft'}
 						imgClasses={'miniIconContainer'}
 						type={'button'}
 						name={isLogin ? 'Вихід' : 'Вхід'}
@@ -45,8 +48,7 @@ const Header: React.FC = () => {
 					/>
 				</div>
 				<Button
-					buttonClasses={'tertiaryIconBtn burgerMenuBtn'}
-					divClasses={'bigIconContainer'}
+					buttonClasses={'bigIconContainer burgerMenuBtn'}
 					imgClasses={'bigIcon'}
 					type={'button'}
 					imgPath={isOpenBurgerMenu ? burgerMenuClose : burgerMenuOpen}
