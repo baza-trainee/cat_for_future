@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import css from "./ModalDonate.module.scss";
 import closeIcon from "../../assets/modal/Close.svg";
 import Button from "src/components/Button/Button";
+import { useMediaQuery } from "react-responsive";
 // import axios from "axios";
 
 interface IProps {
@@ -72,6 +73,14 @@ const ModalDonate = ({ size, status, closeModal, modal, onClose }: IProps) => {
 
 	const handleInputSum = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setInputSum(event.target.value);
+	};
+
+	const isDesktop = useMediaQuery({ minWidth: 1280 });
+	const isTablet = useMediaQuery({ minWidth: 767, maxWidth: 1279.99 });
+
+	const stylesForBtn = {
+		width: isDesktop ? "20.4375rem" : isTablet ? "20.4375rem" : "16.75rem",
+		height: isDesktop ? "3.5rem" : isTablet ? "3.25rem" : "3rem",
 	};
 
 	return (
@@ -150,10 +159,11 @@ const ModalDonate = ({ size, status, closeModal, modal, onClose }: IProps) => {
 								</div>
 								<div className={css.btnWrapper}>
 									<Button
-										buttonClasses={"primaryBtn helpBtn"}
+										buttonClasses={"primaryBtn"}
 										type={"submit"}
 										name={"Оплатити"}
 										onClick={() => console.log("go to Wayforpay")}
+										styleBtn={stylesForBtn}
 									/>
 								</div>
 							</form>

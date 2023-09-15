@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 @import "../../styles/mixins";
 
 @keyframes fadeIn {
@@ -38,7 +40,7 @@
 .modalWrapper {
 	animation: fadeIn 0.3s ease-in-out;
 
-	background-color: rgba(0, 0, 0, 0.4);
+	// background-color: rgba(0, 0, 0, 0.4);
 	justify-content: center;
 	min-height: 100vh;
 	display: flex;
@@ -49,10 +51,11 @@
 		url("../../assets/modal/cat_photo_mobile.png"),
 		lightgray -30.777px -207.454px / 107.782% 334.728%;
 	background-repeat: no-repeat;
-	width: 320px;
-	height: 507px;
+	width: 20rem;
+	height: 31.6875rem;
+
 	position: relative;
-	background-color: white;
+	background-color: $color-system-default-0;
 
 	@include tablet {
 		background:
@@ -60,10 +63,10 @@
 			lightgray -30.777px -207.454px / 107.782% 334.728%;
 		background-repeat: no-repeat;
 
-		width: 709px;
-		height: 662px;
+		width: 44.3125rem;
+		height: 41.375rem;
 
-		background-color: white;
+		background-color: $color-system-default-0;
 	}
 	@include full_desktop {
 		background:
@@ -71,12 +74,12 @@
 			lightgray -30.777px -207.454px / 107.782% 334.728%;
 		background-repeat: no-repeat;
 
-		width: 861px;
-		height: 674px;
+		width: 53.8125rem;
+		height: 42.125rem;
 
-		margin-top: 26px;
+		margin-top: 1.63rem;
 
-		background-color: white;
+		background-color: $color-system-default-0;
 	}
 
 	.card-wrapper {
@@ -85,7 +88,7 @@
 }
 
 .modalBodyFull {
-	max-width: 1200px;
+	max-width: 75rem;
 }
 
 body.modal-custom--block {
@@ -98,70 +101,64 @@ body.modal-custom--block {
 	cursor: pointer;
 
 	position: absolute;
-	top: 10px;
-	right: 15px;
+	top: 0.625rem;
+	right: 0.9375rem;
 	padding: 0;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 40px;
-	height: 40px;
+	width: 1.5rem;
+	height: 1.5rem;
 	background: transparent;
 	border: none;
 	outline: 0;
 	scale: 0.75;
 
 	@include tablet {
-		top: 20px;
-		right: 20px;
+		top: 1.25rem;
+		right: 1.25rem;
 		scale: 1;
 	}
 	@include full_desktop {
-		top: 28px;
-		right: 24px;
+		top: 1.75rem;
+		right: 1.5rem;
 		scale: 1;
 	}
 }
 
 .contentWrapper {
-	width: 288px;
+	width: 18rem;
 	margin-left: auto;
 	margin-right: auto;
 	display: flex;
 	flex-direction: column;
 
-	margin: 157px auto 66px auto;
-	gap: 34px;
+	margin: 9.81rem auto 4.13rem auto;
+	gap: 2.12rem;
 
 	@include tablet {
-		width: 626px;
-		margin: 249px auto 62px auto;
-		gap: 56px;
+		width: 39.125rem;
+		margin: 15.56rem auto 5.13rem auto;
+		gap: 3.5rem;
 	}
 
 	@include full_desktop {
-		width: 685px;
-		margin: 244px auto 91px auto;
+		width: 42.8125rem;
+		margin: 15.25rem auto 5.69rem auto;
 	}
 }
 
 .text {
-	color: #131313;
-	font-family: Open Sans;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 120%;
+	color: $color-system-default-100;
+	font-size: 1rem;
 	text-align: center;
 
 	@include tablet {
-		font-size: 18px;
-		margin-top: 12px;
+		font-size: 1.125rem;
 	}
 
 	@include full_desktop {
-		font-size: 20px;
-		margin-top: 12px;
+		font-size: 1.25rem;
 	}
 }
 
@@ -171,45 +168,51 @@ body.modal-custom--block {
 
 .radioWrapper {
 	width: 100%;
-	height: 122px;
+	height: 7.625rem;
 	display: block;
+
+	@include tablet {
+		height: 8.5625rem;
+	}
+
+	@include full_desktop {
+		height: 9rem;
+	}
 }
 
 label {
 	margin: auto;
 
-	font-family: Open Sans;
-	font-size: 16px;
+	font-size: 1rem;
 	font-style: normal;
 	font-weight: 700;
 	line-height: 132%;
 	text-align: center;
 
-	width: 134px;
-	height: 56px;
+	width: 8.375rem;
+	height: 3.5rem;
 	display: inline-block;
-	padding-top: 17px;
-	padding-bottom: 17px;
+	padding: 1.0625rem 2.0625rem;
+
 	background: none;
-	border: 1px solid #131313;
+	border: 1px solid $color-system-default-100;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 
 	@include tablet {
-		width: 307px;
-		font-size: 18px;
-		padding-top: 16px;
-		padding-bottom: 16px;
+		width: 19.1875rem;
+		font-size: 1.125rem;
+		padding: 1rem 7.1875rem;
 	}
 
 	@include full_desktop {
-		width: 320px;
+		width: 20rem;
 	}
 }
 
 label.selected {
-	background-color: #fe702c;
-	color: #fff;
+	background-color: $color-primary-orange;
+	color: $color-system-default-0;
 	border: none;
 }
 
@@ -219,35 +222,35 @@ label.selected {
 
 .optionsWrapperUp {
 	display: flex;
-	gap: 20px;
-	margin-bottom: 10px;
+	gap: 1.25rem;
+	margin-bottom: 0.62rem;
 
 	@include tablet {
-		gap: 12px;
-		margin-bottom: 25px;
+		gap: 0.75rem;
+		margin-bottom: 1.56rem;
 	}
 
 	@include full_desktop {
-		gap: 45px;
-		margin-bottom: 32px;
+		gap: 2.81rem;
+		margin-bottom: 2rem;
 	}
 }
 
 .optionsWrapperDown {
 	display: flex;
-	gap: 20px;
+	gap: 1.25rem;
 
 	@include tablet {
-		gap: 12px;
+		gap: 0.75rem;
 	}
 
 	@include full_desktop {
-		gap: 45px;
+		gap: 2.81rem;
 	}
 }
 
 .otherSum {
-	padding: 0px 16px;
+	padding: 0rem 1rem;
 	align-items: center;
 }
 
@@ -257,64 +260,54 @@ label.selected {
 	outline: none;
 	border: none;
 
-	font-family: Open Sans;
-	font-size: 18px;
+	font-size: 1.125rem;
 	font-style: normal;
-	font-weight: 400;
-	line-height: 120%;
 
 	@include tablet {
-		font-size: 20px;
+		font-size: 1.25rem;
 	}
 }
 ::placeholder {
-	font-family: Open Sans;
-	font-size: 20px;
+	font-size: 1.125rem;
 	font-style: normal;
-	font-weight: 400;
-	line-height: 120%;
-	color: #c7c7c7;
+	color: $color-system-default-30;
 
 	@include tablet {
-		font-size: 20px;
+		font-size: 1.25rem;
 	}
 }
 
 .btnWrapper {
 	display: flex;
 	justify-content: center;
-	margin-top: 42px;
+	align-items: center;
+	margin-top: 2.62rem;
+	margin-left: auto;
+	margin-right: auto;
+
+	width: 18rem;
+	height: 3rem;
 
 	@include tablet {
-		margin-top: 59px;
+		margin-top: 3.69rem;
 		display: flex;
+
+		width: 20.4375rem;
+		height: 3.25rem;
 	}
 
 	@include full_desktop {
 		display: flex;
+
+		height: 3.5rem;
 	}
 }
 
-button {
-	width: 268px;
-	height: 48px;
-
-	@include tablet {
-		width: 327px;
-		height: 52px;
-	}
-
-	@include full_desktop {
-		width: 327px;
-		height: 56px;
-	}
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-	@media (max-width: $tablet-size) {
-		-webkit-appearance: none;
-		appearance: none;
-		margin: 0;
-	}
-}
+// input[type="number"]::-webkit-inner-spin-button,
+// input[type="number"]::-webkit-outer-spin-button {
+// 	@media (max-width: $tablet-size) {
+// 		-webkit-appearance: none;
+// 		appearance: none;
+// 		margin: 0;
+// 	}
+// }
