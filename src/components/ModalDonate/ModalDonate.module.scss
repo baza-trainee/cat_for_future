@@ -1,4 +1,4 @@
-@import "../../styles/mixins";
+@import '../../styles/mixins';
 
 @keyframes fadeIn {
 	from {
@@ -23,21 +23,19 @@
 }
 
 .backdrop {
-	background: rgba(206, 206, 206, 0.6);
-
-	display: none;
+	display: flex;
 	height: 100vh;
 	width: 100%;
 	position: fixed;
+	left: 10;
 	z-index: 100;
 	overflow-y: auto;
 	top: 0px;
-	left: 0px;
+	margin: auto;
 }
 
 .modalWrapper {
 	animation: fadeIn 0.3s ease-in-out;
-
 	background-color: rgba(0, 0, 0, 0.4);
 	justify-content: center;
 	min-height: 100vh;
@@ -46,7 +44,7 @@
 
 .modalBody {
 	background:
-		url("../../assets/modal/cat_photo_mobile.png"),
+		url('../../assets/modal/cat_photo_mobile.png'),
 		lightgray -30.777px -207.454px / 107.782% 334.728%;
 	background-repeat: no-repeat;
 	width: 320px;
@@ -56,7 +54,7 @@
 
 	@include tablet {
 		background:
-			url("../../assets/modal/cat_photo_tablet.png"),
+			url('../../assets/modal/cat_photo_tablet.png'),
 			lightgray -30.777px -207.454px / 107.782% 334.728%;
 		background-repeat: no-repeat;
 
@@ -67,7 +65,7 @@
 	}
 	@include full_desktop {
 		background:
-			url("../../assets/modal/cat_photo_desktop.png"),
+			url('../../assets/modal/cat_photo_desktop.png'),
 			lightgray -30.777px -207.454px / 107.782% 334.728%;
 		background-repeat: no-repeat;
 
@@ -184,7 +182,6 @@ label {
 	font-weight: 700;
 	line-height: 132%;
 	text-align: center;
-
 	width: 134px;
 	height: 56px;
 	display: inline-block;
@@ -295,23 +292,10 @@ label.selected {
 	}
 }
 
-button {
-	width: 268px;
-	height: 48px;
 
-	@include tablet {
-		width: 327px;
-		height: 52px;
-	}
 
-	@include full_desktop {
-		width: 327px;
-		height: 56px;
-	}
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
 	@media (max-width: $tablet-size) {
 		-webkit-appearance: none;
 		appearance: none;
