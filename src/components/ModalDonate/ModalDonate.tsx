@@ -1,23 +1,40 @@
 import React, { useEffect, useState } from "react";
-import css from "./ModalDonate.module.scss";
+import s from "./ModalDonate.module.scss";
 import closeIcon from "../../assets/modal/Close.svg";
 import Button from "src/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
-// import axios from "axios";
 
 interface ModalProps {
-
+	modal: string;
+	status: boolean;
+	closeModal: any;
+	size?: "FULL";
+	children?: React.ReactNode;
+	style?: React.CSSProperties;
 	onClose: () => void;
 }
 
-const ModalDonate = ({onClose }: ModalProps) => {
-	const [selectedSumOption, setSelectedSumOption] = useState<string>('');
-
-	const handleSumChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		console.log(selectedSumOption);
-		setSelectedSumOption(event.target.value);
+const ModalDonate = ({ onClose, size, status, closeModal, modal }: ModalProps) => {
+	const escFunction = (e: any) => {
+		if (e.key === "Escape") {
+			closeModal(modal);
+		}
 	};
 
+	useEffect((): any => {
+		if (status) {
+			document.addEventListener("keyup", escFunction, false);
+			return () => {
+				document.removeEventListener("keyup", escFunction, false);
+			};
+		}
+	}, [size, modal, status]);
+
+	const [selectedSumOption, setSelectedSumOption] = useState<string>("");
+
+	const handleSumChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSelectedSumOption(event.target.value);
+	};
 
 	const isDesktop = useMediaQuery({ minWidth: 1280 });
 	const isTablet = useMediaQuery({ minWidth: 767, maxWidth: 1279.99 });
@@ -27,12 +44,32 @@ const ModalDonate = ({onClose }: ModalProps) => {
 		height: isDesktop ? "3.5rem" : isTablet ? "3.25rem" : "3rem",
 	};
 
+	const handleModalClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		if (e.target === e.currentTarget) {
+			onClose();
+		}
+	};
+
 	return (
-		<div className={s.backdrop} onClick={handleModalClick }>
-			<div id={`js-bhx-modal-custom__wrapper-donate`} className={`modalClose ${s.modalWrapper}`}>
-				<div className={`aniModalOpening ${s.modalBody} ${'modalBodyFull'}`}>
-					<button className={s.modalCloseBtn} type="button" onClick={onClose}>
-						<img src={closeIcon} alt="close modal" />
+		<div
+			className={s.backdrop}
+			style={{ display: status ? "block" : "none" }}
+		>
+			<div
+				id={`js-bhx-modal-custom__wrapper-${modal}`}
+				className={`modalClose ${s.modalWrapper}`}
+				onClick={handleModalClick}
+			>
+				<div className={`aniModalOpening ${s.modalBody} ${size === "FULL" && "modalBodyFull"}`}>
+					<button
+						className={s.modalCloseBtn}
+						type="button"
+						onClick={onClose}
+					>
+						<img
+							src={closeIcon}
+							alt="close modal"
+						/>
 					</button>
 					<section className={s.contentWrapper}>
 						<div className={s.textWrapper}>
@@ -41,23 +78,23 @@ const ModalDonate = ({onClose }: ModalProps) => {
 						<form action="#">
 							<div className={s.radioWrapper}>
 								<div className={s.optionsWrapperUp}>
-									<label className={selectedSumOption === 'option1' ? s.selected : ''}>
+									<label className={selectedSumOption === "option1" ? s.selected : ""}>
 										<input
 											className={s.optionIndicatorSum}
 											type="radio"
 											value="option1"
-											checked={selectedSumOption === 'option1'}
+											checked={selectedSumOption === "option1"}
 											onChange={handleSumChange}
 										/>
 										100 UAH
 									</label>
 
-									<label className={selectedSumOption === 'option2' ? s.selected : ''}>
+									<label className={selectedSumOption === "option2" ? s.selected : ""}>
 										<input
 											className={s.optionIndicatorSum}
 											type="radio"
 											value="option2"
-											checked={selectedSumOption === 'option2'}
+											checked={selectedSumOption === "option2"}
 											onChange={handleSumChange}
 										/>
 										200 UAH
@@ -65,12 +102,12 @@ const ModalDonate = ({onClose }: ModalProps) => {
 								</div>
 
 								<div className={s.optionsWrapperDown}>
-									<label className={selectedSumOption === 'option3' ? s.selected : ''}>
+									<label className={selectedSumOption === "option3" ? s.selected : ""}>
 										<input
 											className={s.optionIndicatorSum}
 											type="radio"
 											value="option3"
-											checked={selectedSumOption === 'option3'}
+											checked={selectedSumOption === "option3"}
 											onChange={handleSumChange}
 										/>
 										500 UAH
@@ -80,74 +117,24 @@ const ModalDonate = ({onClose }: ModalProps) => {
 										<input
 											className={s.otherValue}
 											type="number"
-											onFocus={() => setSelectedSumOption('')}
+											onFocus={() => setSelectedSumOption("")}
 											onChange={handleSumChange}
 											placeholder="Інша сума, UAH "
 										/>
 									</label>
 								</div>
 							</div>
-							<form action="#">
-								<div className={css.radioWrapper}>
-									<div className={css.optionsWrapperUp}>
-										<label className={selectedSumOption === "option1" ? css.selected : ""}>
-											<input
-												className={css.optionIndicatorSum}
-												type="radio"
-												value="option1"
-												checked={selectedSumOption === "option1"}
-												onChange={handleSumChange}
-											/>
-											100 UAH
-										</label>
-
-										<label className={selectedSumOption === "option2" ? css.selected : ""}>
-											<input
-												className={css.optionIndicatorSum}
-												type="radio"
-												value="option2"
-												checked={selectedSumOption === "option2"}
-												onChange={handleSumChange}
-											/>
-											200 UAH
-										</label>
-									</div>
-
-									<div className={css.optionsWrapperDown}>
-										<label className={selectedSumOption === "option3" ? css.selected : ""}>
-											<input
-												className={css.optionIndicatorSum}
-												type="radio"
-												value="option3"
-												checked={selectedSumOption === "option3"}
-												onChange={handleSumChange}
-											/>
-											500 UAH
-										</label>
-
-										<label className={css.otherSum}>
-											<input
-												className={css.otherValue}
-												type="number"
-												onFocus={() => setSelectedSumOption("")}
-												onChange={handleInputSum}
-												placeholder="Інша сума, UAH "
-											/>
-										</label>
-									</div>
-								</div>
-								<div className={css.btnWrapper}>
-									<Button
-										buttonClasses={"primaryBtn"}
-										type={"submit"}
-										name={"Оплатити"}
-										onClick={() => console.log("go to Wayforpay")}
-										styleBtn={stylesForBtn}
-									/>
-								</div>
-							</form>
-						</section>
-					</div>
+							<div className={s.btnWrapper}>
+								<Button
+									buttonClasses={"primaryBtn"}
+									type={"submit"}
+									name={"Оплатити"}
+									onClick={() => console.log("go to Wayforpay")}
+									styleBtn={stylesForBtn}
+								/>
+							</div>
+						</form>
+					</section>
 				</div>
 			</div>
 		</div>

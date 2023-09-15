@@ -25,6 +25,7 @@
 }
 
 .backdrop {
+	background: rgba(206, 206, 206, 0.6);
 	display: flex;
 	height: 100vh;
 	width: 100%;
@@ -39,7 +40,6 @@
 .modalWrapper {
 	animation: fadeIn 0.3s ease-in-out;
 
-	// background-color: rgba(0, 0, 0, 0.4);
 	justify-content: center;
 	min-height: 100vh;
 	display: flex;
@@ -52,7 +52,6 @@
 	background-repeat: no-repeat;
 	width: 20rem;
 	height: 31.6875rem;
-
 	position: relative;
 	background-color: $color-system-default-0;
 
@@ -301,12 +300,3 @@ label.selected {
 		height: 3.5rem;
 	}
 }
-
-// input[type="number"]::-webkit-inner-spin-button,
-// input[type="number"]::-webkit-outer-spin-button {
-// 	@media (max-width: $tablet-size) {
-// 		-webkit-appearance: none;
-// 		appearance: none;
-// 		margin: 0;
-// 	}
-// }
