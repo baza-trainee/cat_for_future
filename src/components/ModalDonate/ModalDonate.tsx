@@ -5,30 +5,28 @@ import Button from "src/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
 
 interface ModalProps {
-	modal: string;
 	status: boolean;
-	closeModal: any;
+	closeModal: () => void;
 	size?: "FULL";
-	children?: React.ReactNode;
 	style?: React.CSSProperties;
 	onClose: () => void;
 }
 
-const ModalDonate = ({ onClose, size, status, closeModal, modal }: ModalProps) => {
-	const escFunction = (e: any) => {
-		if (e.key === "Escape") {
-			closeModal(modal);
-		}
-	};
+const ModalDonate = ({ onClose, size, status, closeModal }: ModalProps) => {
+	useEffect(() => {
+		const escFunction = (e: KeyboardEvent) => {
+			if (e.key === "Escape") {
+				closeModal();
+			}
+		};
 
-	useEffect((): any => {
 		if (status) {
 			document.addEventListener("keyup", escFunction, false);
 			return () => {
 				document.removeEventListener("keyup", escFunction, false);
 			};
 		}
-	}, [size, modal, status]);
+	}, [size, status, closeModal]);
 
 	const [selectedSumOption, setSelectedSumOption] = useState<string>("");
 
@@ -56,7 +54,6 @@ const ModalDonate = ({ onClose, size, status, closeModal, modal }: ModalProps) =
 			style={{ display: status ? "block" : "none" }}
 		>
 			<div
-				id={`js-bhx-modal-custom__wrapper-${modal}`}
 				className={`modalClose ${s.modalWrapper}`}
 				onClick={handleModalClick}
 			>

@@ -23,7 +23,6 @@ const Layout: React.FC = () => {
 			{/* {isModalOpen && <ModalDonate onClose={closeModal} />} */}
 			{isModalOpen && (
 				<ModalDonate
-					modal="modal"
 					status={true}
 					closeModal={closeModal}
 					onClose={closeModal}

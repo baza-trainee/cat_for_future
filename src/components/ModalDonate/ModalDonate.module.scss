@@ -47,18 +47,24 @@
 
 .modalBody {
 	background:
-		url("../../assets/modal/cat_photo_mobile.png"),
+		url("../../assets/modal/cat_photo_desktop.png"),
 		lightgray -30.777px -207.454px / 107.782% 334.728%;
 	background-repeat: no-repeat;
+
 	width: 20rem;
 	height: 31.6875rem;
 	position: relative;
 	background-color: $color-system-default-0;
 
+	@media (max-width: 767px) {
+		background-size: 185%;
+		background-position: -210px 0;
+	}
+
 	@include tablet {
-		background:
-			url("../../assets/modal/cat_photo_tablet.png"),
-			lightgray -30.777px -207.454px / 107.782% 334.728%;
+		@media (max-width: 1280px) {
+			background-position: -40px 0;
+		}
 		background-repeat: no-repeat;
 
 		width: 44.3125rem;
@@ -67,9 +73,6 @@
 		background-color: $color-system-default-0;
 	}
 	@include full_desktop {
-		background:
-			url("../../assets/modal/cat_photo_desktop.png"),
-			lightgray -30.777px -207.454px / 107.782% 334.728%;
 		background-repeat: no-repeat;
 
 		width: 53.8125rem;
@@ -222,7 +225,6 @@ body.modal-custom--block {
 	border: none;
 	width: 8.375rem;
 	height: 3.5rem;
-	// display: inline-block;
 	display: flex;
 	padding: 1.0625rem 2.0625rem;
 
