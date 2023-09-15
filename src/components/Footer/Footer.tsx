@@ -3,7 +3,7 @@ import Logotype from 'src/components/Logotype/Logotype';
 import Contacts from 'src/components/Contacts/Contacts';
 
 import s from 'src/components/Footer/Footer.module.scss';
-import FooterNavMenu from 'src/components/FooterNavMenu/FooterNavMenu';
+import Menu from 'src/components/Menu/Menu';
 
 const Footer: React.FC = () => {
 	return (
@@ -13,10 +13,10 @@ const Footer: React.FC = () => {
 					<Logotype />
 
 					<div className={s.navContactsContainer}>
-						<FooterNavMenu documents={true} navClass={'footerMenu'} />
-
+						<Menu documents={true} navClass={'footerMenu'} />
 						<Contacts />
 					</div>
+
 				</div>
 
 				<div className={s.rights}>Розробка Baza Trainee Ukraine 2023 © Усі права захищені</div>

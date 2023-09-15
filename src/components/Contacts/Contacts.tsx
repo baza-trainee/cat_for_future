@@ -29,15 +29,19 @@ const Contacts: React.FC = () => {
 			<div className={s.socmediaContainer}>
 				<div className={s.socmediaIcn}>
 					{/*no link yet*/}
-					<Link to="">
-						<img src={facebookIcon} alt="Facebook icon" />
+					<Link to="*">
+						<svg>
+							<use xlinkHref="src/assets/icons/facebook-icon.svg#facebook-icon"></use>
+						</svg>
 					</Link>
 				</div>
 
 				<div className={s.socmediaIcn}>
 					{/*no link yet*/}
-					<Link to="">
-						<img src={instaIcon} alt="Instagram icon" />
+					<Link to="*">
+						<svg>
+							<use xlinkHref="src/assets/icons/instagram-icon.svg#insta-icon"></use>
+						</svg>
 					</Link>
 				</div>
 			</div>
