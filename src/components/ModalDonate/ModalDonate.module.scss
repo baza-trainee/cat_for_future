@@ -178,7 +178,7 @@ body.modal-custom--block {
 	}
 }
 
-label {
+.notSelected {
 	margin: auto;
 
 	font-size: 1rem;
@@ -189,7 +189,7 @@ label {
 
 	width: 8.375rem;
 	height: 3.5rem;
-	display: inline-block;
+	display: flex;
 	padding: 1.0625rem 2.0625rem;
 
 	background: none;
@@ -208,10 +208,33 @@ label {
 	}
 }
 
-label.selected {
+.selected {
+	margin: auto;
+
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 132%;
+	text-align: center;
+
 	background-color: $color-primary-orange;
 	color: $color-system-default-0;
 	border: none;
+	width: 8.375rem;
+	height: 3.5rem;
+	// display: inline-block;
+	display: flex;
+	padding: 1.0625rem 2.0625rem;
+
+	@include tablet {
+		width: 19.1875rem;
+		font-size: 1.125rem;
+		padding: 1rem 7.1875rem;
+	}
+
+	@include full_desktop {
+		width: 20rem;
+	}
 }
 
 .optionIndicatorSum {
@@ -250,6 +273,30 @@ label.selected {
 .otherSum {
 	padding: 0rem 1rem;
 	align-items: center;
+
+	margin: auto;
+
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 132%;
+	text-align: center;
+
+	color: $color-system-default-0;
+	background: none;
+	border: 1px solid $color-system-default-100;
+	width: 8.375rem;
+	height: 3.5rem;
+	display: flex;
+
+	@include tablet {
+		width: 19.1875rem;
+		font-size: 1.125rem;
+	}
+
+	@include full_desktop {
+		width: 20rem;
+	}
 }
 
 .otherValue {

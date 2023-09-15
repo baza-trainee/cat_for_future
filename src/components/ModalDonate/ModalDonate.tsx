@@ -78,7 +78,7 @@ const ModalDonate = ({ onClose, size, status, closeModal, modal }: ModalProps) =
 						<form action="#">
 							<div className={s.radioWrapper}>
 								<div className={s.optionsWrapperUp}>
-									<label className={selectedSumOption === "option1" ? s.selected : ""}>
+									<label className={selectedSumOption === "option1" ? s.selected : s.notSelected}>
 										<input
 											className={s.optionIndicatorSum}
 											type="radio"
@@ -89,7 +89,7 @@ const ModalDonate = ({ onClose, size, status, closeModal, modal }: ModalProps) =
 										100 UAH
 									</label>
 
-									<label className={selectedSumOption === "option2" ? s.selected : ""}>
+									<label className={selectedSumOption === "option2" ? s.selected : s.notSelected}>
 										<input
 											className={s.optionIndicatorSum}
 											type="radio"
@@ -102,7 +102,7 @@ const ModalDonate = ({ onClose, size, status, closeModal, modal }: ModalProps) =
 								</div>
 
 								<div className={s.optionsWrapperDown}>
-									<label className={selectedSumOption === "option3" ? s.selected : ""}>
+									<label className={selectedSumOption === "option3" ? s.selected : s.notSelected}>
 										<input
 											className={s.optionIndicatorSum}
 											type="radio"
