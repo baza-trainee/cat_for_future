@@ -2,8 +2,8 @@ import { FC, useState } from 'react';
 import clsx from 'clsx';
 import closeBtn from 'src/assets/icons/login-close-btn.svg';
 import Button from '../Button/Button';
-import google from 'src/assets/icons/google-auth-icon.svg';
-import facebook from 'src/assets/icons/facebook-auth-icon.svg';
+import { ReactComponent as Google } from 'src/assets/icons/google-auth-icon.svg';
+import { ReactComponent as Facebook } from 'src/assets/icons/facebook-auth-icon.svg';
 import s from './Login.module.scss';
 
 const primaryBtnStyle = {
@@ -136,14 +136,12 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 
 					<div className={s.login__boxBtn}>
 						<Button
-							onClick={() => console.log('Клік Увійти')}
 							name={'Увійти'}
 							buttonClasses={'primaryBtn'}
 							type={'submit'}
 							styleBtn={primaryBtnStyle}
 						/>
 						<Button
-							onClick={() => console.log('Клік Зареєструватись')}
 							name={'Зареєструватись'}
 							buttonClasses={'secondaryBtn'}
 							type={'button'}
@@ -157,8 +155,18 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 						<span className={s.login__alernatLine}></span>
 					</div>
 					<div className={s.login__alternatBtnBox}>
-						<button className={s.login__button}><img src={google} alt="Google" />Увійти через Google</button>
-						<button className={s.login__button}><img src={facebook} alt="Facebook" />Увійти через Facebook</button>
+						<Button
+							name={'Увійти через Google'}
+							buttonClasses={'authBtn'}
+							type={'button'}
+							children={<Google className={s.login__authGoogleIcon} />}
+						/>
+						<Button
+							name={'Увійти через Facebook'}
+							buttonClasses={'authBtn'}
+							type={'button'}
+							children={<Facebook className={s.login__authFacebookIcon} />}
+						/>
 					</div>
 				</form>
 			</div>

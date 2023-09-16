@@ -212,4 +212,22 @@
 			line-height: 1.485rem;
 		}
 	}
+	&__authGoogleIcon {
+		display: block;
+		width: 1.125rem;
+		height: 1.125rem;
+		@include full_desktop {
+			width: 1.44444rem;
+			height: 1.4375rem;
+		}
+	}
+	&__authFacebookIcon {
+		display: block;
+		width: 1rem;
+		height: 1rem;
+		@include full_desktop {
+			width: 1.4375rem;
+			height: 1.4375rem;
+		}
+	}
 }
