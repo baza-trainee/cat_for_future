@@ -2,6 +2,8 @@ import { FC, useState } from 'react';
 import clsx from 'clsx';
 import closeBtn from 'src/assets/icons/login-close-btn.svg';
 import Button from '../Button/Button';
+import google from 'src/assets/icons/google-auth-icon.svg';
+import facebook from 'src/assets/icons/facebook-auth-icon.svg';
 import s from './Login.module.scss';
 
 const primaryBtnStyle = {
@@ -154,9 +156,10 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 						<span>або</span>
 						<span className={s.login__alernatLine}></span>
 					</div>
-
-					<button>Увійти через Google</button>
-					<button>Увійти через Facebook</button>
+					<div className={s.login__alternatBtnBox}>
+						<button className={s.login__button}><img src={google} alt="Google" />Увійти через Google</button>
+						<button className={s.login__button}><img src={facebook} alt="Facebook" />Увійти через Facebook</button>
+					</div>
 				</form>
 			</div>
 		</div>

@@ -18,28 +18,33 @@
 		left: 0;
 		background: rgba(206, 206, 206, 0.6);
 		@include tablet {
-			padding-top: 11.69rem;
+			padding: 11.69rem 0 11.75rem 0;
 		}
 		@include full_desktop {
-			padding-top: 6.88rem;
+			padding: 6.88rem 0 8.56rem 0;
 		}
 	}
 	&__content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: auto;
 		display: flex;
-		margin: 0 auto;
-		min-height: 37.5rem;
 		flex-direction: column;
 		width: 20rem;
 		padding: 1rem 1rem 1.44rem 1rem;
 		background: #fff;
 		@include tablet {
 			width: 23.75rem;
-			min-height: 40.5625rem;
+			padding: 1rem 1.5rem 2.25rem 1.5rem;
+		}
+		@include full_desktop {
+			padding: 1rem 1.5rem 2.06rem 1.5rem;
 		}
 	}
 	&__closeBtn {
-		display: flex;
-		justify-content: end;
+		align-self: self-end;
 		background: none;
 	}
 	&__closeImg {
@@ -174,6 +179,37 @@
 		gap: 1rem;
 		@include tablet {
 			margin-top: 1rem;
+		}
+	}
+	&__alternatBtnBox {
+		margin-top: 0.94rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.44rem;
+		@include tablet {
+			margin-top: 1rem;
+			gap: 1.25rem;
+		}
+		@include full_desktop {
+			gap: 1rem;
+		}
+	}
+	&__button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 1rem 0;
+		background-color: #FFF;
+		border: 1px solid $color-system-default-20;
+		font-size: 0.875rem;
+		font-weight: 600;
+		line-height: 1.155rem; 
+		color: #1D1C2B;
+		@include tablet {
+			font-size: 1.125rem;
+			font-weight: 700;
+			line-height: 1.485rem;
 		}
 	}
 }
