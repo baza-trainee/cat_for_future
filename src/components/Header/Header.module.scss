@@ -38,6 +38,16 @@
 	display: flex;
 	align-items: center;
 
+	.icon path {
+		fill: none;
+		stroke: #fff;
+		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+	}
+
+	button:hover .icon path {
+		stroke: $color-primary-dark-green;
+		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+	}
 	@include full_desktop {
 		gap: 1.25rem;
 	}
