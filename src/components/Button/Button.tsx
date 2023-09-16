@@ -6,7 +6,7 @@ import clsx from 'clsx';
 interface IButtonProps {
 	name?: string;
 	buttonClasses?: string;
-	onClick: () => void;
+	onClick?: () => void;
 	type?: 'button' | 'submit' | 'reset';
 	disabled?: boolean;
 	styleBtn?: React.CSSProperties;
