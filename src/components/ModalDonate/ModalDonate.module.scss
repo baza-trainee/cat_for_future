@@ -173,42 +173,42 @@ body.modal-custom--block {
 	display: block;
 }
 
-// label {
-// 	margin: auto;
+label {
+	margin: auto;
 
-// 	font-family: Open Sans;
-// 	font-size: 16px;
-// 	font-style: normal;
-// 	font-weight: 700;
-// 	line-height: 132%;
-// 	text-align: center;
-// 	width: 134px;
-// 	height: 56px;
-// 	display: inline-block;
-// 	padding-top: 17px;
-// 	padding-bottom: 17px;
-// 	background: none;
-// 	border: 1px solid #131313;
-// 	cursor: pointer;
-// 	transition: background-color 0.3s ease;
+	font-family: Open Sans;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 132%;
+	text-align: center;
+	width: 134px;
+	height: 56px;
+	display: inline-block;
+	padding-top: 17px;
+	padding-bottom: 17px;
+	background: none;
+	border: 1px solid #131313;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 
-// 	@include tablet {
-// 		width: 307px;
-// 		font-size: 18px;
-// 		padding-top: 16px;
-// 		padding-bottom: 16px;
-// 	}
+	@include tablet {
+		width: 307px;
+		font-size: 18px;
+		padding-top: 16px;
+		padding-bottom: 16px;
+	}
 
-// 	@include full_desktop {
-// 		width: 320px;
-// 	}
-// }
+	@include full_desktop {
+		width: 320px;
+	}
+}
 
-// label.selected {
-// 	background-color: #fe702c;
-// 	color: #fff;
-// 	border: none;
-// }
+label.selected {
+	background-color: #fe702c;
+	color: #fff;
+	border: none;
+}
 
 .optionIndicatorSum {
 	display: none;
