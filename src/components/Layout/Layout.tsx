@@ -20,7 +20,9 @@ const Layout: React.FC = () => {
 	return (
 		<div className={s.wrapper}>
 			<CookieConsentBanner />
+
 			{isModalOpen && <ModalDonate onClose={closeModal} />}
+
 			<Header onOpenModalDonate={openModal} />
 			<main className={s.main}>
 				<Outlet />
