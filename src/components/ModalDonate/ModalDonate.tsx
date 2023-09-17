@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import s from './ModalDonate.module.scss';
 
-import close from 'src/assets/icons/close.svg';
+import close from 'src/assets/icons/close_white.svg';
 import Button from 'src/components/Button/Button';
 
 interface DonateAmount {
