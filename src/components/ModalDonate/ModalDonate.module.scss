@@ -1,6 +1,5 @@
-@import "../../styles/variables";
-
-@import "../../styles/mixins";
+@import '../../styles/variables';
+@import '../../styles/mixins';
 
 @keyframes fadeIn {
 	from {
@@ -30,322 +29,143 @@
 	height: 100vh;
 	width: 100%;
 	position: fixed;
-	left: 10;
 	z-index: 100;
 	overflow-y: auto;
-	top: 0px;
-	margin: auto;
+	justify-content: center;
 }
 
 .modalWrapper {
-	animation: fadeIn 0.3s ease-in-out;
-
-	justify-content: center;
-	min-height: 100vh;
-	display: flex;
-}
-
-.modalBody {
-	background:
-		url("../../assets/modal/cat_photo_desktop.png"),
-		lightgray -30.777px -207.454px / 107.782% 334.728%;
-	background-repeat: no-repeat;
-
-	width: 20rem;
-	height: 31.6875rem;
-	position: relative;
-	background-color: $color-system-default-0;
-
-	@media (max-width: 767px) {
-		background-size: 185%;
-		background-position: -210px 0;
-	}
-
-	@include tablet {
-		@media (max-width: 1280px) {
-			background-position: -40px 0;
-		}
-		background-repeat: no-repeat;
-
-		width: 44.3125rem;
-		height: 41.375rem;
-
-		background-color: $color-system-default-0;
-	}
-	@include full_desktop {
-		background-repeat: no-repeat;
-
-		width: 53.8125rem;
-		height: 42.125rem;
-
-		margin-top: 1.63rem;
-
-		background-color: $color-system-default-0;
-	}
-
-	.card-wrapper {
-		margin: 0 !important;
-	}
-}
-
-.modalBodyFull {
-	max-width: 75rem;
-}
-
-body.modal-custom--block {
-	padding-right: 14px;
-	height: 100%;
-	overflow: hidden;
-}
-
-.modalCloseBtn {
-	cursor: pointer;
-
-	position: absolute;
-	top: 0.625rem;
-	right: 0.9375rem;
-	padding: 0;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 1.5rem;
-	height: 1.5rem;
-	background: transparent;
-	border: none;
-	outline: 0;
-	scale: 0.75;
-
-	@include tablet {
-		top: 1.25rem;
-		right: 1.25rem;
-		scale: 1;
-	}
-	@include full_desktop {
-		top: 1.75rem;
-		right: 1.5rem;
-		scale: 1;
-	}
-}
-
-.contentWrapper {
-	width: 18rem;
-	margin-left: auto;
-	margin-right: auto;
 	display: flex;
 	flex-direction: column;
+	background-color: $color-system-default-0;
+	width: 100%;
+	height: 32rem;
 
-	margin: 9.81rem auto 4.13rem auto;
-	gap: 2.12rem;
-
-	@include tablet {
-		width: 39.125rem;
-		margin: 15.56rem auto 5.13rem auto;
-		gap: 3.5rem;
+	@include small_tablet {
+		width: 44.31rem;
+		height: 41rem;
 	}
 
 	@include full_desktop {
-		width: 42.8125rem;
-		margin: 15.25rem auto 5.69rem auto;
+		width: 53.81rem;
+		height: 42rem;
+		margin-top: 1.63rem;
 	}
 }
 
-.text {
-	color: $color-system-default-100;
-	font-size: 1rem;
-	text-align: center;
+.modalBanner {
+	display: flex;
+	justify-content: end;
+	height: 9.13rem;
+	padding-top: 1rem;
+	padding-right: 1.25rem;
+	background: url('../../assets/modal/cat_photo_modal.png');
+	background-size: 37.67rem 9.13rem;
+	background-repeat: no-repeat;
+	background-position: right -4rem top;
+
+	@include small_tablet {
+		height: 13rem;
+		background-size: 53.81rem 13rem;
+		background-position: center;
+	}
 
 	@include tablet {
-		font-size: 1.125rem;
+		height: 13rem;
+		background-size: 53.81rem 13rem;
 	}
-
 	@include full_desktop {
-		font-size: 1.25rem;
+		background-position: center;
 	}
+}
+
+.close {
+	cursor: pointer;
+	width: 1.5rem;
+	height: 1.5rem;
 }
 
 .textWrapper {
+	display: flex;
 	width: 100%;
-}
-
-.radioWrapper {
-	width: 100%;
-	height: 7.625rem;
-	display: block;
-
-	@include tablet {
-		height: 8.5625rem;
-	}
-
-	@include full_desktop {
-		height: 9rem;
-	}
-}
-
-.notSelected {
-	margin: auto;
-
+	font-family: Open Sans;
+	color: $color-system-default-100;
 	font-size: 1rem;
 	font-style: normal;
-	font-weight: 700;
-	line-height: 132%;
+	font-weight: 400;
+	line-height: 1.2rem;
+	justify-content: center;
 	text-align: center;
+	padding-top: 0.69rem;
+	padding-bottom: 2.12rem;
 
-	width: 8.375rem;
-	height: 3.5rem;
+	@include small_tablet {
+		padding-top: 2.25rem;
+		padding-bottom: 3.5rem;
+	}
+	@include tablet {
+		font-size: 1.125rem;
+	}
+	@include full_desktop {
+		font-size: 1.25rem;
+	}
+}
+.formDonate {
 	display: flex;
-	padding: 1.0625rem 2.0625rem;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.donatesAmountWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0 1rem;
+	margin-bottom: 2.62rem;
+	@include tablet {
+		padding: 0 2.6rem;
+	}
+	@include full_desktop {
+		padding: 0 5.5rem;
+	}
+}
 
-	background: none;
+.donateAmount {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	border: 1px solid $color-system-default-100;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-
-	@include tablet {
-		width: 19.1875rem;
-		font-size: 1.125rem;
-		padding: 1rem 7.1875rem;
-	}
-
-	@include full_desktop {
-		width: 20rem;
-	}
-}
-
-.selected {
-	margin: auto;
-
+	width: calc(50% - 1rem);
+	margin-bottom: 0.62rem;
+	font-family: Open Sans;
 	font-size: 1rem;
 	font-style: normal;
 	font-weight: 700;
-	line-height: 132%;
+	line-height: 1.32rem;
+	padding: 1rem 0;
 	text-align: center;
-
-	background-color: $color-primary-orange;
-	color: $color-system-default-0;
-	border: none;
-	width: 8.375rem;
-	height: 3.5rem;
-	display: flex;
-	padding: 1.0625rem 2.0625rem;
-
 	@include tablet {
-		width: 19.1875rem;
-		font-size: 1.125rem;
-		padding: 1rem 7.1875rem;
-	}
-
-	@include full_desktop {
-		width: 20rem;
-	}
-}
-
-.optionIndicatorSum {
-	display: none;
-}
-
-.optionsWrapperUp {
-	display: flex;
-	gap: 1.25rem;
-	margin-bottom: 0.62rem;
-
-	@include tablet {
-		gap: 0.75rem;
 		margin-bottom: 1.56rem;
 	}
-
 	@include full_desktop {
-		gap: 2.81rem;
 		margin-bottom: 2rem;
 	}
 }
-
-.optionsWrapperDown {
-	display: flex;
-	gap: 1.25rem;
-
-	@include tablet {
-		gap: 0.75rem;
-	}
-
-	@include full_desktop {
-		gap: 2.81rem;
-	}
-}
-
-.otherSum {
-	padding: 0rem 1rem;
-	align-items: center;
-
-	margin: auto;
-
-	font-size: 1rem;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 132%;
-	text-align: center;
-
+.selected {
+	background-color: $color-primary-orange;
 	color: $color-system-default-0;
-	background: none;
-	border: 1px solid $color-system-default-100;
-	width: 8.375rem;
-	height: 3.5rem;
-	display: flex;
-
-	@include tablet {
-		width: 19.1875rem;
-		font-size: 1.125rem;
-	}
-
-	@include full_desktop {
-		width: 20rem;
-	}
-}
-
-.otherValue {
-	width: 100%;
-	height: 100%;
-	outline: none;
 	border: none;
-
-	font-size: 1.125rem;
-	font-style: normal;
-
-	@include tablet {
-		font-size: 1.25rem;
-	}
-}
-::placeholder {
-	font-size: 1.125rem;
-	font-style: normal;
-	color: $color-system-default-30;
-
-	@include tablet {
-		font-size: 1.25rem;
-	}
 }
 
 .btnWrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 2.62rem;
-	margin-left: auto;
-	margin-right: auto;
-
-	width: 18rem;
-	height: 3rem;
+	width: 16.75rem;
 
 	@include tablet {
-		margin-top: 3.69rem;
-		display: flex;
-
 		width: 20.4375rem;
 		height: 3.25rem;
-	}
-
-	@include full_desktop {
-		display: flex;
-
-		height: 3.5rem;
 	}
 }
