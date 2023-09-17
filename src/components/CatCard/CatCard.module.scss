@@ -1,12 +1,15 @@
-@use 'src/styles/variables' as *;
+@use "src/styles/variables" as *;
 
 .wrapper {
 	background-color: $color-primary-green;
 }
+
 .image {
+	position: relative;
 	overflow: hidden;
 	height: 18.75rem;
 	margin-bottom: 0.88rem;
+
 	img {
 		width: 100%;
 		height: 100%;
@@ -14,22 +17,43 @@
 		object-position: center;
 	}
 }
+
+.favoriteBtnContainer {
+	position: absolute;
+	top: 1.25rem;
+	left: 1.25rem;
+
+	button:hover {
+		.heartFavoriteBtn path {
+			stroke: $color-ref-orange-20;
+		}
+	}
+}
+
+.heartFavoriteBtn path {
+	transition: cubic-bezier(0.4, 0, 0.2, 1) .25s;
+	stroke: $color-primary-orange;
+}
+
 .content {
 	padding-inline: 1rem;
 	margin-bottom: 2.94rem;
 }
+
 .header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	color: #ffffff;
 }
+
 .name {
 	font-family: $secondary-font;
 	font-size: 2rem;
 	font-weight: 900;
 	line-height: normal;
 }
+
 .status {
 	display: flex;
 	flex-direction: column;
@@ -39,6 +63,7 @@
 	font-weight: 600;
 	line-height: normal;
 }
+
 .id {
 	color: #f2f2f2;
 	font-size: 1rem;
@@ -46,18 +71,25 @@
 	line-height: normal;
 	margin-bottom: 0.75rem;
 }
+
 .about {
 	color: #ffffff;
 	font-size: 1.125rem;
 	font-weight: 900;
 	line-height: normal;
 }
+
 .birthday {
 	color: #e9e9e9;
 	font-size: 1rem;
 	font-weight: 500;
 	line-height: normal;
 }
+
 .buttonContainer {
 	padding: 0 1.06rem 2.25rem;
+}
+
+.heartIconBtn path {
+	stroke: $color-system-default-0;
 }
