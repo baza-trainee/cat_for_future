@@ -5,26 +5,22 @@ import clsx from 'clsx';
 
 interface IButtonProps {
 	name?: string;
-	imgPath?: string;
 	buttonClasses?: string;
-	imgClasses?: string;
-	onClick: () => void;
+	onClick?: () => void;
 	type?: 'button' | 'submit' | 'reset';
 	disabled?: boolean;
 	styleBtn?: React.CSSProperties;
-	styleImg?: React.CSSProperties;
+	children?: React.ReactNode;
 }
 
 const Button: React.FC<IButtonProps> = ({
 	name,
-	imgPath,
 	buttonClasses,
-	imgClasses,
 	onClick,
 	type,
 	disabled,
 	styleBtn,
-	styleImg,
+	children,
 }) => {
 	const btnClasses = buttonClasses
 		? clsx(s.button, buttonClasses?.split(' ').map((item) => s[item]))
@@ -38,9 +34,7 @@ const Button: React.FC<IButtonProps> = ({
 			onClick={onClick}
 			style={styleBtn}
 		>
-			{imgPath && (
-				<img className={clsx(imgClasses && s[imgClasses])} src={imgPath} style={styleImg} />
-			)}
+			{children}
 			{name}
 		</button>
 	);
