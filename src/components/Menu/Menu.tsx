@@ -38,7 +38,7 @@ const docLinks: INavLink[] = [
 		to: '*',
 	},
 	{
-		name: 'Політика конфідеційності',
+		name: 'Політика конфіденційності',
 		to: 'src/assets/documents/privacy-policy.pdf',
 	},
 	{
@@ -53,13 +53,13 @@ const docLinks: INavLink[] = [
 ];
 
 
-const FooterNavMenu: React.FC<IMenuProps> = ({documents,unListClass, navClass, onClick }) => {
+const FooterNavMenu: React.FC<IMenuProps> = ({ documents, unListClass, navClass, onClick }) => {
 	return (
 		<nav className={[s.menu, navClass && s[navClass]].join(' ')}>
-			<ul  className={[s.list, unListClass && s[unListClass]].join(' ')}>
+			<ul className={[s.list, unListClass && s[unListClass]].join(' ')}>
 				{navLinks.map((link) => (
 					<li className={s.item} key={link.name}>
-						<Link onClick={onClick}  to={link.to}>
+						<Link onClick={onClick} to={link.to}>
 							{link.name}
 						</Link>
 					</li>
