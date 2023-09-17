@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import s from './CookieConsentBanner.module.scss';
-import close from 'src/assets/icons/close.svg';
+import close from 'src/assets/icons/close_black.svg';
 import Button from '../Button/Button';
 
 const CookieConsentBanner: React.FC = () => {
