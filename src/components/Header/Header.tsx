@@ -12,13 +12,15 @@ import { ReactComponent as BurgerMenuClose } from 'src/assets/icons/header/burge
 
 interface HeaderProps {
 	onOpenModalDonate: () => void;
+	onOpenLoginWindow: (boolean: boolean) => void;
 }
-const Header: React.FC<HeaderProps> = ({ onOpenModalDonate }) => {
+const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow }) => {
 	const [isLogin, setIsLogin] = useState<boolean>(false);
 	const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState<boolean>(false);
 
 	const handleIsLogin = () => {
 		setIsLogin((prev) => !prev);
+		!isLogin ? onOpenLoginWindow(true) : null;
 	};
 
 	const handleIsOpenBurgerMenu = () => {
