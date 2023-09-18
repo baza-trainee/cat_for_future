@@ -74,8 +74,7 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 							id="myInput"
 							className={s.donateAmount}
 							type="number"
-							step={0.01}
-							onFocus={() => setSelectedAmount('')}
+							step={0.01}							
 							onChange={handleAmountChange}
 							placeholder="Інша сума, UAH"
 						/>
