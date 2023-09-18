@@ -9,6 +9,7 @@ import s from './Header.module.scss';
 import { ReactComponent as Login } from 'src/assets/icons/header/log-in-icon.svg';
 import { ReactComponent as BurgerMenuOpen } from 'src/assets/icons/header/burger-menu-open-icon.svg';
 import { ReactComponent as BurgerMenuClose } from 'src/assets/icons/header/burger-menu-close-icon.svg';
+import BurgerMenu from 'src/components/Header/BurgerMenu/BurgerMenu';
 
 interface HeaderProps {
 	onOpenModalDonate: () => void;
@@ -28,39 +29,42 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 	};
 
 	return (
-		<header className={s.header}>
-			<div className={s.container}>
-				<Logotype />
-				<Menu />
-				<div className={s.btnWrapper}>
+		<>
+			<header className={s.header}>
+				<div className={s.container}>
+					<Logotype />
+					<Menu navClass="headerMenu" />
+					<div className={s.btnWrapper}>
+						<Button
+							buttonClasses={'primaryBtn helpHeaderBtn'}
+							type={'button'}
+							name={'Допомогти'}
+							onClick={onOpenModalDonate}
+						/>
+						<Button
+							buttonClasses={'secondaryBtn  secondaryIconLeft'}
+							type={'button'}
+							name={isLogin ? 'Кабінет' : 'Вхід'}
+							children={<Login className={s.icon} />}
+							onClick={handleIsLogin}
+						/>
+					</div>
 					<Button
-						buttonClasses={'primaryBtn helpBtn'}
+						buttonClasses={'bigIconContainer burgerMenuBtn'}
 						type={'button'}
-						name={'Допомогти'}
-						onClick={onOpenModalDonate}
-					/>
-					<Button
-						buttonClasses={'secondaryBtn  secondaryIconLeft'}
-						type={'button'}
-						name={isLogin ? 'Кабінет' : 'Вхід'}
-						children={<Login className={s.icon} />}
-						onClick={handleIsLogin}
+						children={
+							isOpenBurgerMenu ? (
+								<BurgerMenuClose className={s.icon} />
+							) : (
+								<BurgerMenuOpen className={s.icon} />
+							)
+						}
+						onClick={handleIsOpenBurgerMenu}
 					/>
 				</div>
-				<Button
-					buttonClasses={'bigIconContainer burgerMenuBtn'}
-					type={'button'}
-					children={
-						isOpenBurgerMenu ? (
-							<BurgerMenuClose className={s.icon} />
-						) : (
-							<BurgerMenuOpen className={s.icon} />
-						)
-					}
-					onClick={handleIsOpenBurgerMenu}
-				/>
-			</div>
-		</header>
+			</header>
+			<BurgerMenu onOpenModalDonate={onOpenModalDonate} />
+		</>
 	);
 };
 
