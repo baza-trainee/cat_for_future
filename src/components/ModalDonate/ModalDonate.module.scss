@@ -153,6 +153,10 @@
 	}
 	&::placeholder {
 		color: $color-system-default-60;
+		font-size: 0.75rem;
+		@include tablet {
+			font-size: 1rem;
+		}
 	}
 }
 
