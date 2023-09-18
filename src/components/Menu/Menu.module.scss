@@ -44,26 +44,29 @@
 .menu.burgerMenu {
 	.list {
 		flex-direction: column;
-		row-gap: 1.5rem;
-		@include tablet {
-			row-gap: 1.38rem;
-		}
+		gap: 1.38rem;
 	}
 
 	.item {
 		padding: 0;
+
+		a {
+			font-size: 1rem;
+			font-weight: 400;
+
+			&:hover::after {
+				content: none;
+			}
+
+			@include tablet {
+				font-size: 1.25rem;
+			}
+		}
 	}
 
 	.link {
-		font-size: 1rem;
-		font-weight: 400;
-
 		&:hover::after {
 			content: none;
-		}
-
-		@include tablet {
-			font-size: 1.25rem;
 		}
 	}
 }

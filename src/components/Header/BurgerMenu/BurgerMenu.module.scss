@@ -4,28 +4,35 @@
 .burgerMenu {
 	position: absolute;
 	width: 100%;
-	height: calc(100% - 5.75rem);
-	top: 5.75rem;
+	height: calc(100% - 5rem);
+	top: 5rem;
 	left: 0;
 	z-index: 99;
 	background-color: rgba(206, 206, 206, 0.6);
 
+	@include tablet {
+		height: calc(100% - 5.75rem);
+		top: 5.75rem;
+	}
 	@include full_desktop {
 		display: none;
 	}
 }
 .container {
 	width: 100%;
-	position: relative;
+	position: absolute;
 	top: 0;
 	right: 0;
 	display: flex;
 	flex-direction: column;
+	gap: 2.5rem;
 	padding: 16.25% 28.44% 14.69% 6.56%;
 	background-color: $color-primary-green;
 	z-index: 99;
 
 	@include tablet {
 		width: 51.3vw;
+		padding: 7.8125% 12.63% 10.81% 4.04%;
+		gap: 2.94rem;
 	}
 }
