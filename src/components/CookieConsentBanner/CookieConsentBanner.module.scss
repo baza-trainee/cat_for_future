@@ -15,23 +15,15 @@
 	gap: 1.875rem;
 	background-color: $color-system-default-0;
 	color: $color-system-default-100;
-	font-size: 1rem;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 1.2rem;
 	margin: auto;
 	z-index: 100;
 
-
 	@include tablet {
-		height: 15rem;
-		font-size: 1.25rem;
+		height: 15rem;		
 	}
 	@include full_desktop {
-		max-width: 80rem;
 		height: 11.25rem;
-		gap: 1rem;
-		font-size: 1.25rem;
+		gap: 0.5rem;
 	}
 }
 
@@ -52,12 +44,17 @@
 	justify-content: center;
 	text-align: left;
 	font-family: Open Sans;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.2rem;
+
+	@include tablet {
+		font-size: 1.25rem;
+	}
 }
 
 .link {
 	text-decoration-line: underline;
 }
 
-.btnWrapper {
-	width: 8.75rem;
-}
