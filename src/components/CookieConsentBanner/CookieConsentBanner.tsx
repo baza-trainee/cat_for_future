@@ -39,14 +39,13 @@ const CookieConsentBanner: React.FC = () => {
 						Політика конфіденційності
 					</a>
 				</div>
-				<div className={s.btnWrapper}>
-					<Button
-						buttonClasses={'primaryBtn'}
-						type={'button'}
-						name={'OK'}
-						onClick={acceptCookies}
-					/>
-				</div>
+				<Button
+					buttonClasses={'primaryBtn'}
+					type={'button'}
+					name={'OK'}
+					onClick={acceptCookies}
+					styleBtn={{ width: '8.75rem' }}
+				/>
 			</div>
 		)
 	);
