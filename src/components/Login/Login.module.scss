@@ -89,16 +89,6 @@
 		line-height: 1.5rem;
 		color: $color-primary-orange;
 	}
-	&__inputImg {
-		cursor: pointer;
-		&:hover > path {
-			stroke: $color-system-default-100;
-		}
-	}
-	&__inputImg path {
-		stroke: #939393;
-		transition: stroke 0.2s ease-in-out;
-	}
 	&__input {
 		width: 100%;
 		padding: 0.5rem 1rem;
