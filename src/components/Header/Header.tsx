@@ -63,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 					/>
 				</div>
 			</header>
-			<BurgerMenu onOpenModalDonate={onOpenModalDonate} />
+			{isOpenBurgerMenu && <BurgerMenu onOpenModalDonate={onOpenModalDonate} />}
 		</>
 	);
 };
