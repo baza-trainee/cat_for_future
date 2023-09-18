@@ -19,7 +19,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ onOpenModalDonate }) => {
 					onClick={onOpenModalDonate}
 					styleBtn={{ width: '9.8125rem', padding: '0rem' }}
 				/>
-				<Contacts />
+				<Contacts type="contactsBurgerMenu" />
 			</div>
 		</div>
 	);

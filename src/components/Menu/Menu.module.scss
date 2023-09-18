@@ -57,10 +57,6 @@
 			&:hover::after {
 				content: none;
 			}
-
-			@include tablet {
-				font-size: 1.25rem;
-			}
 		}
 	}
 
