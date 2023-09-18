@@ -11,10 +11,11 @@ interface DonateAmount {
 }
 
 interface ModalProps {
+	status: boolean;
 	onClose: () => void;
 }
 
-const ModalDonate: React.FC<ModalProps> = ({ onClose }) => {
+const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 	const donate: DonateAmount[] = [
 		{ id: 1, amount: '100' },
 		{ id: 2, amount: '200' },
@@ -39,7 +40,6 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose }) => {
 	}, [status, onClose]);
 
 	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		console.log(selectedAmount);
 		setSelectedAmount(event.target.value);
 	};
 
@@ -50,8 +50,8 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose }) => {
 	};
 
 	return (
-		<div className={s.backdrop}>
-			<div className={s.modalWrapper} onClick={handleModalClick}>
+		<div className={s.backdrop} onClick={handleModalClick}>
+			<div className={s.modalWrapper}>
 				<div className={s.modalBanner}>
 					<img className={s.close} onClick={onClose} src={close} alt="Close" />
 				</div>
