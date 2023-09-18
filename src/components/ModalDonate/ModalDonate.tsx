@@ -77,7 +77,7 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 							step={0.01}
 							onFocus={() => setSelectedAmount('')}
 							onChange={handleAmountChange}
-							placeholder="введи UAH"
+							placeholder="Інша сума, UAH"
 						/>
 					</div>
 					<div className={s.btnWrapper}>
