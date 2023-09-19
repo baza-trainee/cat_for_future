@@ -1,20 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { combineReducers, Middleware } from "redux";
+import { combineReducers } from "redux";
+import logger from "./logger";
 
 const rootReduser = combineReducers({
-
+// reduser
 });
 
 export type RootState = ReturnType<typeof rootReduser>;
-
-const logger: Middleware<{}, RootState> = (state) => (next) => (action) => {
-    console.group(action.type);
-    console.info("dispatching", action);
-    const result = next(action);
-    console.log("next state", store.getState());
-    console.groupEnd();
-    return result;
-};
 
 const store = configureStore({
     reducer: rootReduser,
