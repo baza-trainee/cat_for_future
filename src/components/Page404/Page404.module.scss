@@ -8,7 +8,15 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	padding: 1rem;
+	padding: 10.5rem 1rem 10.06rem;
+
+	@include tablet {
+		padding: 14.09rem 1rem 12.41rem;
+	}
+
+	@include full_desktop {
+		padding: 7.19rem 1rem 9.63rem;
+	}
 
 	.title {
 		color: $color-system-default-100;
