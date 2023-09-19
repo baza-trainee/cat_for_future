@@ -54,15 +54,13 @@
 			font-size: 1rem;
 			font-weight: 400;
 
+			@include tablet {
+				font-size: 1.125rem;
+			}
+
 			&:hover::after {
 				content: none;
 			}
-		}
-	}
-
-	.link {
-		&:hover::after {
-			content: none;
 		}
 	}
 }
