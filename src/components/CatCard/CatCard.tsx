@@ -20,6 +20,8 @@ const favoriteBtnStyle = {
 	cursor: 'pointer'
 };
 
+const a = 0;
+
 const CatCard: React.FC = () => {
 	return (
 		<div className={s.wrapper}>
