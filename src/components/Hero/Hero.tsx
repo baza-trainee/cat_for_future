@@ -6,9 +6,9 @@ const Hero: React.FC = () => {
 	return (
 		<div className={s.hero}>
 			<div className={s.content}>
-				<h2 className={s.content__title}>Подаруй дім для маленьких хвостиків</h2>
+				<h2 className={s.contentTitle}>Подаруй дім для маленьких хвостиків</h2>
 
-				<span className={s.content__text}>Вони чекають на тебе</span>
+				<span className={s.contentText}>Вони чекають на тебе</span>
 
 				<Button
 					onClick={() => ''}
@@ -19,9 +19,9 @@ const Hero: React.FC = () => {
 			</div>
 
 			<div className={s.slogan}>
-				<img className={s.slogan__img} src={paw} alt="paw" />
-				<span className={s.slogan__title}>Наша місія проста, але могутня</span>
-				<span className={s.slogan__text}>
+				<img className={s.sloganImg} src={paw} alt="paw" />
+				<span className={s.sloganTitle}>Наша місія проста, але могутня</span>
+				<span className={s.sloganText}>
 					Рятуємо та забезпечуємо котиків всім необхідним - харчуванням та медикаментами.
 					Прилаштовуємо у добрі руки
 				</span>

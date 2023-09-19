@@ -30,35 +30,37 @@
 	flex-direction: column;
 	align-items: center;
 	max-width: 17.25rem;
-	&__title {
-		margin: 10% 0 3% 0;
-		font-family: $secondary-font;
-		font-weight: 900;
-		font-size: 1.377rem;
-		line-height: 1.75rem;
-		@include tablet {
-			font-size: 3rem;
-			line-height: 3.875rem;
-			margin-top: 16%;
-		}
-		@include full_desktop {
-			font-size: 3.5rem;
-			margin-top: 5%;
-		}
-	}
-	&__text {
-		font-weight: 600;
-		margin-bottom: 1.5625rem;
-		@include tablet {
-			font-size: 1.125rem;
-			margin-bottom: 2.2rem;
-		}
-	}
 	@include tablet {
 		max-width: 37.625rem;
 	}
 	@include full_desktop {
 		max-width: 43.875rem;
+	}
+}
+
+.contentTitle {
+	margin: 10% 0 3% 0;
+	font-family: $secondary-font;
+	font-weight: 900;
+	font-size: 1.377rem;
+	line-height: 1.75rem;
+	@include tablet {
+		font-size: 3rem;
+		line-height: 3.875rem;
+		margin-top: 16%;
+	}
+	@include full_desktop {
+		font-size: 3.5rem;
+		margin-top: 5%;
+	}
+}
+
+.contentText {
+	font-weight: 600;
+	margin-bottom: 1.5625rem;
+	@include tablet {
+		font-size: 1.125rem;
+		margin-bottom: 2.2rem;
 	}
 }
 
@@ -82,58 +84,61 @@
 		width: 70%;
 		margin-bottom: 1.9375rem;
 	}
-	&__title {
-		width: 35%;
-		padding: 11% 0 11% 0.5rem;
-		font-weight: 700;
-		@include tablet {
-			min-width: 187px;
-			font-size: 1.125rem;
-			padding: 5% 0.3125rem 5% 2.8125rem;
-			margin-right: -1.5625rem;
-			line-height: 1.8rem;
-			letter-spacing: 0.0095rem;
-		}
-		@include full_desktop {
-			padding: 3% 0.3125rem 3% 2.3125rem;
-			width: 25%;
-			border: none;
-		}
+}
+
+.sloganTitle {
+	width: 35%;
+	padding: 11% 0 11% 0.5rem;
+	font-weight: 700;
+	@include tablet {
+		min-width: 187px;
+		font-size: 1.125rem;
+		padding: 5% 0.3125rem 5% 2.8125rem;
+		margin-right: -1.5625rem;
+		line-height: 1.8rem;
+		letter-spacing: 0.0095rem;
 	}
-	&__text {
-		width: 65%;
-		font-weight: 400;
-		font-size: 0.875rem;
-		line-height: 1.25rem;
+	@include full_desktop {
+		padding: 3% 0.3125rem 3% 2.3125rem;
+		width: 25%;
+		border: none;
+	}
+}
+
+.sloganText {
+	width: 65%;
+	font-weight: 400;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	border-left: 0.125rem solid $color-system-default-0;
+	padding-left: 0.9375rem;
+	margin: 0.9375rem 0 0.9375rem 0.3125rem;
+	@include tablet {
+		font-weight: 300;
+		font-size: 1.1875rem;
+		min-width: 388px;
+		line-height: 1.8rem;
+		padding: 0.6875rem 0 0.6875rem 1.875rem;
+		margin: 0.9375rem 0 0.9375rem 2.1875rem;
+		letter-spacing: 0.009rem;
+	}
+	@include full_desktop {
 		border-left: 0.125rem solid $color-system-default-0;
-		padding-left: 0.9375rem;
-		margin: 0.9375rem 0 0.9375rem 0.3125rem;
-		@include tablet {
-			font-weight: 300;
-			font-size: 1.1875rem;
-			min-width: 388px;
-			line-height: 1.8rem;
-			padding: 0.6875rem 0 0.6875rem 1.875rem;
-			margin: 0.9375rem 0 0.9375rem 2.1875rem;
-			letter-spacing: 0.009rem;
-		}
-		@include full_desktop {
-			border-left: 0.125rem solid $color-system-default-0;
-		}
 	}
-	&__img {
-		position: absolute;
-		top: -2.1875rem;
-		left: -1.3125rem;
-		width: 4.6875rem;
-		@include tablet {
-			top: -2.5rem;
-			left: -1.875rem;
-			width: 6.6875rem;
-		}
-		@include full_desktop {
-			top: -2.625rem;
-			left: -1.25rem;
-		}
+}
+
+.sloganImg {
+	position: absolute;
+	top: -2.1875rem;
+	left: -1.3125rem;
+	width: 4.6875rem;
+	@include tablet {
+		top: -2.5rem;
+		left: -1.875rem;
+		width: 6.6875rem;
+	}
+	@include full_desktop {
+		top: -2.625rem;
+		left: -1.25rem;
 	}
 }
