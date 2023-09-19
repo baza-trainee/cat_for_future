@@ -1,9 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import actions
+import { addTodo } from './slice/exampleSlices';
+
 export const useActions = () => {
-	const dispatch = useDispatch();
-	return bindActionCreators({
-        // actions
-    }, dispatch);
+    const dispatch = useDispatch();
+    return bindActionCreators(
+        {
+            addTodo,
+        },
+        dispatch
+    );
 };

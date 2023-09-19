@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import logger from "./logger";
+import todosReducer from './slice/exampleSlices';
 
 const rootReduser = combineReducers({
-// reduser
+    todos: todosReducer,
 });
 
 export type RootState = ReturnType<typeof rootReduser>;

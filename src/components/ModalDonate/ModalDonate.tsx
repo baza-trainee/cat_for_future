@@ -4,6 +4,7 @@ import s from './ModalDonate.module.scss';
 
 import close from 'src/assets/icons/close_white.svg';
 import Button from 'src/components/Button/Button';
+import { useActions } from 'src/store/useActions';
 
 interface DonateAmount {
 	id: number;
@@ -16,6 +17,7 @@ interface ModalProps {
 }
 
 const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
+	const { addTodo } = useActions();
 	const donate: DonateAmount[] = [
 		{ id: 1, amount: '100' },
 		{ id: 2, amount: '200' },
@@ -58,7 +60,7 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 				<div className={s.textWrapper}>
 					<p>Зібрані кошти йдуть на харчування та медичну допомогу</p>
 				</div>
-				<form action="#" className={s.formDonate}>
+				<form  className={s.formDonate}>
 					<div className={s.donatesAmountWrapper}>
 						{donate.map(({ id, amount }) => (
 							<button
@@ -74,7 +76,7 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 							id="myInput"
 							className={s.donateAmount}
 							type="number"
-							step={0.01}							
+							step={0.01}
 							onChange={handleAmountChange}
 							placeholder="Інша сума, UAH"
 						/>
@@ -84,7 +86,10 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 							buttonClasses={'primaryBtn'}
 							type={'submit'}
 							name={'Оплатити'}
-							onClick={() => console.log(`go to Wayforpay amount ${selectedAmount}`)}
+							onClick={() => {
+								addTodo({ id: 1, text: selectedAmount });
+								console.log(`go to Wayforpay amount ${selectedAmount}`);
+							}}
 							styleBtn={{ width: '100%' }}
 						/>
 					</div>
