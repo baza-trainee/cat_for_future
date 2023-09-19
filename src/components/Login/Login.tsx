@@ -49,9 +49,9 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 			loginPassword: Yup.string()
 				.required("Обов'язкове поле"),
 		}),
-		onSubmit: (values, actions) => {
-			setAuthEmailError(true);
-			setAuthPasswordError(true);
+		onSubmit: (_, actions) => {
+			setAuthEmailError(false);
+			setAuthPasswordError(false);
 			console.log('Sing IN');
 			actions.resetForm();
 		}
