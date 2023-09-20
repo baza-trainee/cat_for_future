@@ -16,7 +16,10 @@ import clsx from 'clsx';
 
 const btnStyle = {
 	width: '100%',
+
+
 	gap: '.37rem',
+	
 };
 
 const favoriteBtnStyle = {
