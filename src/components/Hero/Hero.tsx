@@ -7,9 +7,7 @@ const Hero: React.FC = () => {
 		<div className={s.hero}>
 			<div className={s.content}>
 				<h2 className={s.contentTitle}>Подаруй дім для маленьких хвостиків</h2>
-
 				<span className={s.contentText}>Вони чекають на тебе</span>
-
 				<Button
 					onClick={() => ''}
 					name={'Знайти друга'}
@@ -17,7 +15,6 @@ const Hero: React.FC = () => {
 					type={'submit'}
 				/>
 			</div>
-
 			<div className={s.slogan}>
 				<img className={s.sloganImg} src={paw} alt="paw" />
 				<span className={s.sloganTitle}>Наша місія проста, але могутня</span>
