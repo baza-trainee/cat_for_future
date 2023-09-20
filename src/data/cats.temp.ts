@@ -5,7 +5,7 @@ export interface ICat {
 	sex: string;
 	birthday: string;
 	booking_status: boolean;
-	photo: string;
+	photos: string[];
 }
 
 export const cats: ICat[] = [
@@ -16,7 +16,12 @@ export const cats: ICat[] = [
 		sex: 'male',
 		birthday: '28.08.2023',
 		booking_status: true,
-		photo: 'src/assets/images/cats/cat_1.jpg',
+		photos: [
+			'src/assets/images/cats/cat_1.jpg',
+			'src/assets/images/cats/cat_2.jpg',
+			'src/assets/images/cats/cat_5.jpg',
+			'src/assets/images/cats/cat_3.jpg',
+		],
 	},
 	{
 		id: 2,
@@ -25,7 +30,12 @@ export const cats: ICat[] = [
 		sex: 'male',
 		birthday: '28.08.2023',
 		booking_status: false,
-		photo: 'src/assets/images/cats/cat_2.jpg',
+		photos: [
+			'src/assets/images/cats/cat_2.jpg',
+			'src/assets/images/cats/cat_3.jpg',
+			'src/assets/images/cats/cat_5.jpg',
+			'src/assets/images/cats/cat_4.jpg',
+		],
 	},
 	{
 		id: 3,
@@ -34,7 +44,12 @@ export const cats: ICat[] = [
 		sex: 'male',
 		birthday: '20.06.2023',
 		booking_status: true,
-		photo: 'src/assets/images/cats/cat_3.jpg',
+		photos: [
+			'src/assets/images/cats/cat_3.jpg',
+			'src/assets/images/cats/cat_2.jpg',
+			'src/assets/images/cats/cat_5.jpg',
+			'src/assets/images/cats/cat_4.jpg',
+		],
 	},
 	{
 		id: 4,
@@ -43,7 +58,12 @@ export const cats: ICat[] = [
 		sex: 'male',
 		birthday: '28.10.2023',
 		booking_status: false,
-		photo: 'src/assets/images/cats/cat_4.jpg',
+		photos: [
+			'src/assets/images/cats/cat_4.jpg',
+			'src/assets/images/cats/cat_2.jpg',
+			'src/assets/images/cats/cat_5.jpg',
+			'src/assets/images/cats/cat_3.jpg',
+		],
 	},
 	{
 		id: 5,
@@ -52,7 +72,12 @@ export const cats: ICat[] = [
 		sex: 'male',
 		birthday: '28.08.2023',
 		booking_status: false,
-		photo: 'src/assets/images/cats/cat_5.jpg',
+		photos: [
+			'src/assets/images/cats/cat_5.jpg',
+			'src/assets/images/cats/cat_2.jpg',
+			'src/assets/images/cats/cat_1.jpg',
+			'src/assets/images/cats/cat_2.jpg',
+		],
 	},
 	{
 		id: 6,
@@ -61,6 +86,11 @@ export const cats: ICat[] = [
 		sex: 'male',
 		birthday: '08.11.2023',
 		booking_status: true,
-		photo: 'src/assets/images/cats/cat_6.jpg',
+		photos: [
+			'src/assets/images/cats/cat_6.jpg',
+			'src/assets/images/cats/cat_3.jpg',
+			'src/assets/images/cats/cat_5.jpg',
+			'src/assets/images/cats/cat_2.jpg',
+		],
 	},
 ];

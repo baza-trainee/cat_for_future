@@ -1,0 +1,49 @@
+@use "src/styles/variables" as *;
+
+.swiper {
+	:global {
+		.swiper-pagination-bullets {
+			display: flex;
+			justify-content: center;
+			gap: 1.25rem;
+		}
+		.swiper-pagination-bullet {
+			width: 0.625rem;
+			height: 0.625rem;
+			background-color: $color-system-default-20;
+			opacity: 1;
+		}
+		.swiper-pagination-bullet-active {
+			background-color: $color-primary-orange;
+		}
+		.prevBtn,
+		.nextBtn {
+			z-index: 99;
+			position: absolute;
+			top: 0;
+			padding: 0.75rem;
+			background-color: transparent;
+		}
+		.nextBtn {
+			right: 0;
+		}
+		.prevBtn {
+			right: 2.5rem;
+		}
+	}
+}
+.leftArrow,
+.rightArrow {
+	display: block;
+	width: 1rem;
+	height: 1rem;
+	path {
+		stroke: $color-primary-orange;
+	}
+}
+:global(.swiper-button-disabled) {
+	.rightArrow path,
+	.leftArrow path {
+		stroke: $color-system-default-30;
+	}
+}
