@@ -19,8 +19,7 @@ const Hero: React.FC = () => {
 				<img className={s.sloganImg} src={paw} alt="paw" />
 				<span className={s.sloganTitle}>Наша місія проста, але могутня</span>
 				<span className={s.sloganText}>
-					Рятуємо та забезпечуємо котиків всім необхідним - харчуванням та медикаментами.
-					Прилаштовуємо у добрі руки
+					Опікуємось котами, які поруч з нами переживають буремні часи. Прилаштовуємо у добрі руки.
 				</span>
 			</div>
 		</div>
