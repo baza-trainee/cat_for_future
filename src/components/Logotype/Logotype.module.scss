@@ -14,7 +14,7 @@
 		height: 3.75rem;
 	}
 	@include full_desktop {
-		width: 8.5rem;
+		min-width: 8.5rem;
 		height: 5.125rem;
 	}
 }

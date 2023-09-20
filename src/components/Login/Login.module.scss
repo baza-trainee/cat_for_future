@@ -1,0 +1,233 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.login {
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
+	&_active {
+		opacity: 1;
+		visibility: visible;
+	}
+	&_overlay {
+		position: fixed;
+		z-index: 1100;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba(206, 206, 206, 0.6);
+		@include tablet {
+			padding: 11.69rem 0 11.75rem 0;
+		}
+		@include full_desktop {
+			padding: 6.88rem 0 8.56rem 0;
+		}
+	}
+	&__content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		width: 20rem;
+		padding: 1rem 1rem 1.44rem 1rem;
+		background: #fff;
+		@include tablet {
+			width: 23.75rem;
+			padding: 1rem 1.5rem 2.25rem 1.5rem;
+		}
+		@include full_desktop {
+			padding: 1rem 1.5rem 2.06rem 1.5rem;
+		}
+	}
+	&__closeBtn {
+		align-self: self-end;
+		background: none;
+	}
+	&__closeImg {
+		display: block;
+		align-self: self-end;
+		margin-right: 0.25rem;
+		width: 1.5rem;
+		height: 1.5rem;
+		cursor: pointer;
+	}
+	&__title {
+		text-align: center;
+		font-size: 1.125rem;
+		font-weight: 700;
+		line-height: 1.5rem;
+		color: $color-system-default-100;
+	}
+	&__form {
+		margin-top: 1rem;
+		display: flex;
+		flex-direction: column;
+		@include tablet {
+			margin-top: 1.5rem;
+		}
+		@include large_desktop {
+			margin-top: 1rem;
+		}
+	}
+	&__inputWrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	&__inputBox {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+	&__label {
+		font-size: 1.25rem;
+		font-weight: 400;
+		line-height: 1.5rem;
+		color: $color-primary-orange;
+	}
+	&__inputImg {
+		cursor: pointer;
+		&:hover > path {
+			stroke: $color-system-default-100;
+		}
+	}
+	&__inputImg path {
+		stroke: #939393;
+		transition: stroke 0.2s ease-in-out;
+	}
+	&__input {
+		width: 100%;
+		padding: 0.5rem 1rem;
+		border: 1px solid $color-system-default-50;
+		font-size: 1.25rem;
+		font-weight: 400;
+		line-height: 1.5rem;
+		color: $color-system-default-100;
+		transition:
+			border 0.2s ease-in-out,
+			color 0.2s ease-in-out;
+		&_paddingR {
+			padding-right: 3.25rem;
+		}
+		&:hover {
+			border: 1px solid $color-system-default-100;
+		}
+		&:hover + div svg path {
+			stroke: $color-system-default-100;
+		}
+		&:focus {
+			outline: 2px solid $color-system-default-100;
+		}
+		&:focus + div svg path {
+			stroke: $color-system-default-100;
+		}
+		&:disabled {
+			color: $color-system-default-30;
+			border: 1px solid $color-system-default-30;
+		}
+		&:disabled + div svg path {
+			stroke: $color-system-default-100;
+		}
+		&:disabled + div svg path {
+			stroke: $color-system-default-100;
+		}
+	}
+	&__forgetPass {
+		margin-top: 0.5rem;
+		align-self: self-end;
+		color: #000;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.32rem;
+		text-decoration: underline;
+		transition: font-weight 0.1s ease-in-out;
+	}
+	&__inputManipulPass {
+		position: relative;
+	}
+	&__hiddenPass {
+		position: absolute;
+		top: 50%;
+		right: 1rem;
+		transform: translateY(-50%);
+	}
+	&__alternative {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 1rem;
+		text-align: center;
+		font-size: 1.125rem;
+		font-weight: 400;
+		line-height: 1.35rem;
+		color: $color-system-default-40;
+	}
+	&__alernatLine {
+		width: 100%;
+		height: 0.0625rem;
+		background-color: #E0E0E0;
+	}
+	&__boxBtn {
+		margin-top: 1.13rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		@include tablet {
+			margin-top: 1rem;
+		}
+	}
+	&__alternatBtnBox {
+		margin-top: 0.94rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.44rem;
+		@include tablet {
+			margin-top: 1rem;
+			gap: 1.25rem;
+		}
+		@include full_desktop {
+			gap: 1rem;
+		}
+	}
+	&__button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 1rem 0;
+		background-color: #FFF;
+		border: 1px solid $color-system-default-20;
+		font-size: 0.875rem;
+		font-weight: 600;
+		line-height: 1.155rem; 
+		color: #1D1C2B;
+		@include tablet {
+			font-size: 1.125rem;
+			font-weight: 700;
+			line-height: 1.485rem;
+		}
+	}
+	&__authGoogleIcon {
+		display: block;
+		width: 1.125rem;
+		height: 1.125rem;
+		@include full_desktop {
+			width: 1.44444rem;
+			height: 1.4375rem;
+		}
+	}
+	&__authFacebookIcon {
+		display: block;
+		width: 1rem;
+		height: 1rem;
+		@include full_desktop {
+			width: 1.4375rem;
+			height: 1.4375rem;
+		}
+	}
+}
