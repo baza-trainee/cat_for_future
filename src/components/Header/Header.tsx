@@ -20,6 +20,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 	const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState<boolean>(false);
 
 	//TODO: insert state isLogin from context or redux
+
 	const isLogin: boolean = false;
 
 	const navigate = useNavigate();
