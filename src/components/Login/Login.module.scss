@@ -168,7 +168,7 @@
 	&__alernatLine {
 		width: 100%;
 		height: 0.0625rem;
-		background-color: #E0E0E0;
+		background-color: #e0e0e0;
 	}
 	&__boxBtn {
 		margin-top: 1.13rem;
@@ -198,12 +198,12 @@
 		justify-content: center;
 		gap: 0.5rem;
 		padding: 1rem 0;
-		background-color: #FFF;
+		background-color: #fff;
 		border: 1px solid $color-system-default-20;
 		font-size: 0.875rem;
 		font-weight: 600;
-		line-height: 1.155rem; 
-		color: #1D1C2B;
+		line-height: 1.155rem;
+		color: #1d1c2b;
 		@include tablet {
 			font-size: 1.125rem;
 			font-weight: 700;
