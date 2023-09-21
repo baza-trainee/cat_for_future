@@ -38,7 +38,7 @@ const photo = cats[0].photos[0];
 const photos = cats[0].photos;
 
 const CatCard: React.FC<CatCardProps> = () => {
-	const { isMobile } = useMediaQuery();
+	const { isTablet } = useMediaQuery();
 
 	//temporary for testing
 	const [isBooked, setIsBooked] = useState(true);
@@ -53,10 +53,10 @@ const CatCard: React.FC<CatCardProps> = () => {
 	return (
 		<div className={s.wrapper}>
 			<div className={s.images}>
-				{isMobile ? (
-					<ImageSlider slides={photos} slideStyle={slideStyle} />
-				) : (
+				{isTablet ? (
 					<ImageCatCard photo={photo} />
+				) : (
+					<ImageSlider slides={photos} slideStyle={slideStyle} />
 				)}
 				<div className={s.favoriteBtnContainer}>
 					<Button
