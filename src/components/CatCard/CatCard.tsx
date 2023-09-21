@@ -8,8 +8,6 @@ import lockIcon from 'src/assets/icons/cat_card/lock.svg';
 import homeIcon from 'src/assets/icons/cat_card/home.svg';
 import { ReactComponent as HeartIcon } from 'src/assets/icons/cat_card/heart.svg';
 
-import { cats } from 'src/data/cats.temp';
-
 import { ICat } from 'src/data/cats.temp';
 import s from './CatCard.module.scss';
 import clsx from 'clsx';
@@ -34,10 +32,16 @@ const slideStyle = {
 } as React.CSSProperties;
 
 interface CatCardProps extends ICat {}
-const photo = cats[0].photos[0];
-const photos = cats[0].photos;
 
-const CatCard: React.FC<CatCardProps> = () => {
+const CatCard: React.FC<CatCardProps> = ({
+	id,
+	name,
+	age,
+	sex,
+	birthday,
+	booking_status,
+	photos,
+}) => {
 	const { isTablet } = useMediaQuery();
 
 	//temporary for testing
@@ -54,7 +58,7 @@ const CatCard: React.FC<CatCardProps> = () => {
 		<div className={s.wrapper}>
 			<div className={s.images}>
 				{isTablet ? (
-					<ImageCatCard photo={photo} />
+					<ImageCatCard photo={photos[0]} />
 				) : (
 					<ImageSlider slides={photos} slideStyle={slideStyle} />
 				)}
@@ -71,15 +75,21 @@ const CatCard: React.FC<CatCardProps> = () => {
 			</div>
 			<div className={s.content}>
 				<div className={s.header}>
-					<h2 className={s.name}>Кокос</h2>
+					<h2 className={s.name}>{name}</h2>
 					<div className={s.status}>
-						<img className={s.statusIcon} src={isBooked ? lockIcon : homeIcon} alt="" />
+						<img
+							className={s.statusIcon}
+							src={booking_status ? lockIcon : homeIcon}
+							alt="booking_status"
+						/>
 						<span className={s.statusText}>{isBooked ? 'Заброньований' : 'Шукаю дім'}</span>
 					</div>
 				</div>
-				<span className={s.id}>ID: 287</span>
-				<div className={s.about}>хлопчик, 2 місяці</div>
-				<span className={s.birthday}>День народження: 28.08.2023 </span>
+				<span className={s.id}>ID: {id}</span>
+				<div className={s.about}>
+					{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} місяці
+				</div>
+				<span className={s.birthday}>День народження: {birthday} </span>
 			</div>
 			<div className={s.buttonContainer}>
 				<Button
@@ -88,6 +98,7 @@ const CatCard: React.FC<CatCardProps> = () => {
 					onClick={handleBookedClick}
 					styleBtn={btnStyle}
 					children={<HeartIcon className={s.heartIconBtn} />}
+					disabled={booking_status}
 				/>
 			</div>
 		</div>
