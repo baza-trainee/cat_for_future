@@ -39,8 +39,8 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ slides, className, slideStyle
 				speed={300}
 				style={{ width: '100%', height: '100%' }}
 			>
-				{slides?.map((item) => (
-					<SwiperSlide key={item} style={slideStyle}>
+				{slides?.map((item, index) => (
+					<SwiperSlide key={index} style={slideStyle}>
 						<ImageCatCard photo={item} />
 					</SwiperSlide>
 				))}
