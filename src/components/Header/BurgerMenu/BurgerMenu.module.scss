@@ -2,12 +2,12 @@
 @use 'src/styles/mixins' as *;
 
 .burgerMenu {
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	height: calc(100% - 5rem);
 	top: 5rem;
 	left: 0;
-	z-index: 99;
+	z-index: 98;
 	background-color: rgba(206, 206, 206, 0.6);
 
 	@include tablet {
@@ -29,7 +29,7 @@
 	gap: 2.5rem;
 	padding: 16.25% 28.44% 14.69% 6.56%;
 	background-color: $color-primary-green;
-	z-index: 99;
+	z-index: 98;
 
 	@include tablet {
 		width: 51.3vw;
