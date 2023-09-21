@@ -26,6 +26,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 
 	const handleIsLogin = () => {
 		!isLogin ? onOpenLoginWindow(true) : null;
+		handleIsOpenBurgerMenu();
 	};
 
 	const handleIsOpenBurgerMenu = () => {
