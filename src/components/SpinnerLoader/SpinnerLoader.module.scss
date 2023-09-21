@@ -1,0 +1,82 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.modal {
+  width: 306px;
+  height: 337px;
+  border: 1px solid black;
+
+  @include tablet {
+    width: 526px;
+    height: 607px;
+
+  }
+
+  @include full_desktop {
+
+    width: 733px;
+    height: 687px;
+
+  }
+}
+
+.loaderContainer {
+  height: 100%;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+
+.text {
+  margin: 1.87rem 0 1.88rem;
+  color: $color-system-default-100;
+  text-align: center;
+  font-family: Open Sans;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+
+  @include tablet {
+    margin: 1.87rem 0 1.25rem;
+    font-size: 1.5rem;
+  }
+
+  @include full_desktop {
+    margin: 2.69rem 0 2.19rem;
+    font-size: 2rem;
+  }
+}
+
+.customSpinner {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 4px solid $color-ref-orange-0;
+  border-right-color: $color-primary-orange;
+  animation: s2 1s infinite linear;
+
+  @include tablet {
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 8px solid $color-ref-orange-0;
+    border-right-color: $color-primary-orange;
+  }
+
+  @include full_desktop {
+    width: 7rem;
+    height: 7rem;
+    border: 16px solid $color-ref-orange-0;
+    border-right-color: $color-primary-orange;
+  }
+  @keyframes s2 {
+    to {
+      transform: rotate(1turn)
+    }
+  }
+}
+
