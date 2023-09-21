@@ -26,11 +26,15 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 
 	const handleIsLogin = () => {
 		!isLogin ? onOpenLoginWindow(true) : null;
-		handleIsOpenBurgerMenu();
+		closeBurgerMenu();
 	};
 
 	const handleIsOpenBurgerMenu = () => {
 		setIsOpenBurgerMenu((prev) => !prev);
+	};
+
+	const closeBurgerMenu = () => {
+		setIsOpenBurgerMenu(false);
 	};
 
 	const handleNavigateToCabinet = () => {
@@ -41,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 		<>
 			<header className={s.header}>
 				<div className={s.container}>
-					<Logotype />
+					<Logotype onClick={closeBurgerMenu} />
 					<Menu navClass="headerMenu" />
 					<div className={s.btnWrapper}>
 						<Button
@@ -73,10 +77,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 				</div>
 			</header>
 			{isOpenBurgerMenu && (
-				<BurgerMenu
-					onOpenModalDonate={onOpenModalDonate}
-					handleOpenBurgerMenu={handleIsOpenBurgerMenu}
-				/>
+				<BurgerMenu onOpenModalDonate={onOpenModalDonate} closeBurgerMenu={closeBurgerMenu} />
 			)}
 		</>
 	);
