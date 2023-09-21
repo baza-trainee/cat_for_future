@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
 import Button from '../Button/Button';
 import ImageCatCard from './ImageCatCard/ImageCatCard';
-import SwiperCatCard from './Swiper/SwiperCatCard';
+import ImageSlider from './ImageSlider/ImageSlider';
 
 import lockIcon from 'src/assets/icons/cat_card/lock.svg';
-//import homeIcon from 'src/assets/icons/cat_card/home.svg';
+import homeIcon from 'src/assets/icons/cat_card/home.svg';
 import { ReactComponent as HeartIcon } from 'src/assets/icons/cat_card/heart.svg';
 
 import { cats } from 'src/data/cats.temp';
@@ -16,10 +16,7 @@ import clsx from 'clsx';
 
 const btnStyle = {
 	width: '100%',
-
-
 	gap: '.37rem',
-	
 };
 
 const favoriteBtnStyle = {
@@ -28,7 +25,6 @@ const favoriteBtnStyle = {
 	height: '2.875rem',
 	borderRadius: '50%',
 	padding: '.75rem',
-	cursor: 'pointer',
 };
 const slideStyle = {
 	width: '100%',
@@ -42,22 +38,34 @@ const photo = cats[0].photos[0];
 const photos = cats[0].photos;
 
 const CatCard: React.FC<CatCardProps> = () => {
-	const { isMobile, isTablet } = useMediaQuery();
+	const { isMobile } = useMediaQuery();
+
+	//temporary for testing
+	const [isBooked, setIsBooked] = useState(true);
+	const [inFavorite, setInFavorite] = useState(false);
+	const handleBookedClick = () => {
+		setIsBooked((prev) => !prev);
+	};
+	const handleAddToFavoriteClick = () => {
+		setInFavorite((prev) => !prev);
+	};
 
 	return (
 		<div className={s.wrapper}>
 			<div className={s.images}>
 				{isMobile ? (
-					<SwiperCatCard slides={photos} slideStyle={slideStyle} />
+					<ImageSlider slides={photos} slideStyle={slideStyle} />
 				) : (
 					<ImageCatCard photo={photo} />
 				)}
-				<div className={clsx(s.favoriteBtnContainer, isTablet && s.favoriteBtnTablet)}>
+				<div className={s.favoriteBtnContainer}>
 					<Button
 						buttonClasses={'primaryBtn'}
-						onClick={() => console.log('add to favorite')}
+						onClick={handleAddToFavoriteClick}
 						styleBtn={favoriteBtnStyle}
-						children={<HeartIcon className={s.heartFavoriteBtn} />}
+						children={
+							<HeartIcon className={clsx(s.heartFavoriteBtn, inFavorite && s.inFavorite)} />
+						}
 					/>
 				</div>
 			</div>
@@ -65,8 +73,8 @@ const CatCard: React.FC<CatCardProps> = () => {
 				<div className={s.header}>
 					<h2 className={s.name}>Кокос</h2>
 					<div className={s.status}>
-						<img className={s.statusIcon} src={lockIcon} alt="" />
-						<span className={s.statusText}>Заброньований</span>
+						<img className={s.statusIcon} src={isBooked ? lockIcon : homeIcon} alt="" />
+						<span className={s.statusText}>{isBooked ? 'Заброньований' : 'Шукаю дім'}</span>
 					</div>
 				</div>
 				<span className={s.id}>ID: 287</span>
@@ -77,7 +85,7 @@ const CatCard: React.FC<CatCardProps> = () => {
 				<Button
 					buttonClasses={'primaryBtn'}
 					name="Забронювати"
-					onClick={() => console.log('Клік Забронювати')}
+					onClick={handleBookedClick}
 					styleBtn={btnStyle}
 					children={<HeartIcon className={s.heartIconBtn} />}
 				/>

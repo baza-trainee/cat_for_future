@@ -1,6 +1,6 @@
-@use "src/styles/variables" as *;
+@use 'src/styles/variables' as *;
 
-.swiper {
+.wrapper {
 	:global {
 		.swiper-pagination-bullets {
 			display: flex;

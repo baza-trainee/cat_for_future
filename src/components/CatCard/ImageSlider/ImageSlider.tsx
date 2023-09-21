@@ -9,20 +9,20 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
-import s from './SwiperCatCard.module.scss';
+import s from './ImageSlider.module.scss';
 
 import { ReactComponent as Prev_arrow } from 'src/assets/icons/cat_card/arrow-left.svg';
 import { ReactComponent as Next_arrow } from 'src/assets/icons/cat_card/arrow-right.svg';
 
-interface SwiperCatCardProps {
+interface ImageSliderProps {
 	slides: string[];
 	className?: string;
 	slideStyle?: React.CSSProperties;
 }
 
-const SwiperCatCard: React.FC<SwiperCatCardProps> = ({ slides, className, slideStyle }) => {
+const ImageSlider: React.FC<ImageSliderProps> = ({ slides, className, slideStyle }) => {
 	return (
-		<div className={clsx(s.swiper, className && s[className])}>
+		<div className={clsx(s.wrapper, className && s[className])}>
 			<Swiper
 				navigation={{
 					prevEl: '.prevBtn',
@@ -55,4 +55,4 @@ const SwiperCatCard: React.FC<SwiperCatCardProps> = ({ slides, className, slideS
 	);
 };
 
-export default SwiperCatCard;
+export default ImageSlider;
