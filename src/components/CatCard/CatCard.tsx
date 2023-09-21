@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
+
 import Button from '../Button/Button';
 import ImageCatCard from './ImageCatCard/ImageCatCard';
 import ImageSlider from './ImageSlider/ImageSlider';
 
+import clsx from 'clsx';
+
+import { ICat } from 'src/types/ICat';
+
+import { ReactComponent as HeartIcon } from 'src/assets/icons/cat_card/heart.svg';
 import lockIcon from 'src/assets/icons/cat_card/lock.svg';
 import homeIcon from 'src/assets/icons/cat_card/home.svg';
-import { ReactComponent as HeartIcon } from 'src/assets/icons/cat_card/heart.svg';
 
-import { ICat } from 'src/data/cats.temp';
 import s from './CatCard.module.scss';
-import clsx from 'clsx';
 
 const btnStyle = {
 	width: '100%',

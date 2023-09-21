@@ -1,10 +1,11 @@
 import React from 'react';
-import Button from '../Button/Button';
 import useMediaQuery from 'src/hooks/useMediaQuery';
+
+import Button from '../Button/Button';
+import CatCard from '../CatCard/CatCard';
 
 import { cats } from 'src/data/cats.temp';
 import s from './OurCats.module.scss';
-import CatCard from '../CatCard/CatCard';
 
 const OurCats = () => {
 	const { isTablet } = useMediaQuery();

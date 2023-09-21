@@ -1,12 +1,4 @@
-export interface ICat {
-	id: number;
-	name: string;
-	age: number;
-	sex: string;
-	birthday: string;
-	booking_status: boolean;
-	photos: string[];
-}
+import { ICat } from 'src/types/ICat';
 
 export const cats: ICat[] = [
 	{
