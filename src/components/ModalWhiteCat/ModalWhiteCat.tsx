@@ -24,7 +24,7 @@ const ModalWhiteCat: React.FC<ModalWhiteCatProps> = ({ image, message, name, onC
 			<div className={s.backdrop}>
 				<div className={s.modalWrapper}>
 					<div className={s.modalCloser}>
-						<img className={s.close} onClick={closeModal} src={close} alt="Close" />
+						<img className={s.close} onClick={closeModal} src={close} alt="Close " />
 					</div>
 
 					<div className={s.textWrapper}>
