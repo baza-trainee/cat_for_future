@@ -9,6 +9,7 @@
 	left: 0;
 	z-index: 98;
 	background-color: rgba(206, 206, 206, 0.6);
+	overflow-y: auto;
 
 	@include tablet {
 		height: calc(100% - 5.75rem);
