@@ -3,6 +3,10 @@ import Button from '../Button/Button';
 import paws from 'src/assets/icons/adopt-kitten-instruct-paw.svg';
 import s from './AdoptKittenInstruction.module.scss';
 
+const btn = {
+	marginTop: '1.28rem',
+};
+
 const AdoptKittenInstruction: FC = () => {
 	return (
 		<section className={s.wrapper}>
@@ -43,7 +47,7 @@ const AdoptKittenInstruction: FC = () => {
 				</div>
 			</div>
 
-			<Button name={'Обрати кошеня'} buttonClasses={'primaryBtn'} type={'button'} />
+			<Button name={'Обрати кошеня'} buttonClasses={'primaryBtn'} type={'button'} styleBtn={btn} />
 		</section>
 	);
 };
