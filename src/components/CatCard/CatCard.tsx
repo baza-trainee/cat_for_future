@@ -3,7 +3,7 @@ import { useMediaQuery } from 'src/hooks/useMediaQuery';
 
 import Button from '../Button/Button';
 import ImageCatCard from './ImageCatCard/ImageCatCard';
-import ImageSlider from './ImageSlider/ImageSlider';
+import Slider from '../Slider/Slider';
 
 import clsx from 'clsx';
 
@@ -15,6 +15,7 @@ import homeIcon from 'src/assets/icons/cat_card/home.svg';
 
 import s from './CatCard.module.scss';
 import { pluralize } from 'src/utils/pluralize';
+import { SwiperSlide } from 'swiper/react';
 
 const btnStyle = {
 	width: '100%',
@@ -50,7 +51,13 @@ const CatCard: React.FC<CatCardProps> = ({ id, name, age, sex, birthday, photos 
 				{isTablet ? (
 					<ImageCatCard photo={photos[0]} />
 				) : (
-					<ImageSlider slides={photos} slidesPerView={1} spaceBetween={4} slidesPerGroup={1} />
+					<Slider slidesPerView={1} spaceBetween={4} slidesPerGroup={1}>
+						{photos?.slice(0, 3).map((item, index) => (
+							<SwiperSlide key={index}>
+								<ImageCatCard photo={item} />
+							</SwiperSlide>
+						))}
+					</Slider>
 				)}
 				<div className={s.favoriteBtnContainer}>
 					<Button
