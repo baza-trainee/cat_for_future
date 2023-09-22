@@ -10,7 +10,7 @@ interface ImageCatCardProps {
 const ImageCatCard: React.FC<ImageCatCardProps> = ({ photo, className }) => {
 	return (
 		<>
-			<img className={clsx(s.photo, s[className])} src={photo} alt="cat_name" />
+			<img className={clsx(s.photo, className && s[className])} src={photo} alt="cat_name" />
 		</>
 	);
 };
