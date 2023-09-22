@@ -1,14 +1,16 @@
 import React from 'react';
 import s from './ImageCatCard.module.scss';
+import clsx from 'clsx';
 
 interface ImageCatCardProps {
 	photo: string;
+	className: string;
 }
 
-const ImageCatCard: React.FC<ImageCatCardProps> = ({ photo }) => {
+const ImageCatCard: React.FC<ImageCatCardProps> = ({ photo, className }) => {
 	return (
 		<>
-			<img className={s.photo} src={photo} alt="cat_name" />
+			<img className={clsx(s.photo, s[className])} src={photo} alt="cat_name" />
 		</>
 	);
 };
