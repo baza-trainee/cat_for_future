@@ -8,6 +8,11 @@ const btn = {
 };
 
 const AdoptKittenInstruction: FC = () => {
+	const onReturnToOurCatsSection = () => {
+		const section = document.querySelector('#ourCats');
+		section ? section.scrollIntoView({ behavior: 'smooth' }) : null;
+	};
+
 	return (
 		<section className={s.wrapper}>
 			<h2 className={s.title}>Як прихистити кошеня на виріст?</h2>
@@ -47,7 +52,13 @@ const AdoptKittenInstruction: FC = () => {
 				</div>
 			</div>
 
-			<Button name={'Обрати кошеня'} buttonClasses={'primaryBtn'} type={'button'} styleBtn={btn} />
+			<Button
+				name={'Обрати кошеня'}
+				buttonClasses={'primaryBtn'}
+				type={'button'}
+				styleBtn={btn}
+				onClick={onReturnToOurCatsSection}
+			/>
 		</section>
 	);
 };

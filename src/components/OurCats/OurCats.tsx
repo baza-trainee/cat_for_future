@@ -21,7 +21,7 @@ const OurCats: React.FC = () => {
 	};
 
 	return (
-		<section className={s.wrapper}>
+		<section id="ourCats" className={s.wrapper}>
 			<h2 className={s.title}>Наші кошенята</h2>
 			<div className={s.cats}>
 				{catsData.map((cat) => (
