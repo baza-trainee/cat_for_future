@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import s from './PersonalAccountModal.module.scss';
+import s from './AccountModal.module.scss';
 
 import close from 'src/assets/icons/close_black.svg';
 import Button from 'src/components/Button/Button';
@@ -12,7 +12,7 @@ interface ModalProps {
 	status: boolean;
 }
 
-const PersonalAccountModal: React.FC<ModalProps> = ({ text, title, status }) => {
+const AccountModal: React.FC<ModalProps> = ({ text, title, status }) => {
 	const navigate = useNavigate();
 	const buttonRef = React.useRef<HTMLButtonElement>(null);
 	const onDismiss = () => {
@@ -72,4 +72,4 @@ const PersonalAccountModal: React.FC<ModalProps> = ({ text, title, status }) => 
 	);
 };
 
-export default PersonalAccountModal;
+export default AccountModal;

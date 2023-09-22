@@ -158,7 +158,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 							buttonClasses={'primaryBtn'}
 							type={'submit'}
 							styleBtn={primaryBtnStyle}
-							onClick={() => navigate('/account')}
+							onClick={() => navigate('account')}
 						/>
 						<Button
 							name={'Зареєструватись'}
