@@ -18,9 +18,19 @@ interface ImageSliderProps {
 	slides: string[];
 	className?: string;
 	slideStyle?: React.CSSProperties;
+	slidesPerView: number;
+	spaceBetween: number;
+	slidesPerGroup: number;
 }
 
-const ImageSlider: React.FC<ImageSliderProps> = ({ slides, className, slideStyle }) => {
+const ImageSlider: React.FC<ImageSliderProps> = ({
+	slides,
+	className,
+	slideStyle,
+	slidesPerView,
+	spaceBetween,
+	slidesPerGroup,
+}) => {
 	return (
 		<div className={clsx(s.wrapper, className && s[className])}>
 			<Swiper
@@ -28,11 +38,11 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ slides, className, slideStyle
 					prevEl: '.prevBtn',
 					nextEl: '.nextBtn',
 				}}
-				slidesPerView={1}
-				spaceBetween={4}
+				slidesPerView={slidesPerView}
+				spaceBetween={spaceBetween}
 				centeredSlides
 				centeredSlidesBounds
-				slidesPerGroup={1}
+				slidesPerGroup={slidesPerGroup}
 				modules={[Navigation, Pagination]}
 				pagination={true}
 				grabCursor

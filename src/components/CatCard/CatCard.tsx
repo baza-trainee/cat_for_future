@@ -27,28 +27,14 @@ const favoriteBtnStyle = {
 	borderRadius: '50%',
 	padding: '.75rem',
 };
-const slideStyle = {
-	width: '100%',
-	height: '22.875rem',
-	position: 'relative',
-	paddingTop: '2.5rem',
-} as React.CSSProperties;
 
 interface CatCardProps extends ICat {}
 
-const CatCard: React.FC<CatCardProps> = ({
-	id,
-	name,
-	age,
-	sex,
-	birthday,
-	booking_status,
-	photos,
-}) => {
+const CatCard: React.FC<CatCardProps> = ({ id, name, age, sex, birthday, photos }) => {
 	const { isTablet } = useMediaQuery();
 
 	//temporary for testing
-	const [isBooked, setIsBooked] = useState(true);
+	const [isBooked, setIsBooked] = useState(false);
 	const [inFavorite, setInFavorite] = useState(false);
 	const handleBookedClick = () => {
 		setIsBooked((prev) => !prev);
@@ -63,7 +49,7 @@ const CatCard: React.FC<CatCardProps> = ({
 				{isTablet ? (
 					<ImageCatCard photo={photos[0]} />
 				) : (
-					<ImageSlider slides={photos} slideStyle={slideStyle} />
+					<ImageSlider slides={photos} slidesPerView={1} spaceBetween={4} slidesPerGroup={1} />
 				)}
 				<div className={s.favoriteBtnContainer}>
 					<Button
@@ -82,7 +68,7 @@ const CatCard: React.FC<CatCardProps> = ({
 					<div className={s.status}>
 						<img
 							className={s.statusIcon}
-							src={booking_status ? lockIcon : homeIcon}
+							src={isBooked ? lockIcon : homeIcon}
 							alt="booking_status"
 						/>
 						<span className={s.statusText}>{isBooked ? 'Заброньований' : 'Шукаю дім'}</span>
@@ -101,7 +87,7 @@ const CatCard: React.FC<CatCardProps> = ({
 					onClick={handleBookedClick}
 					styleBtn={btnStyle}
 					children={<HeartIcon className={s.heartIconBtn} />}
-					disabled={booking_status}
+					disabled={isBooked}
 				/>
 			</div>
 		</div>
