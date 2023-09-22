@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 interface ImageCatCardProps {
 	photo: string;
-	className: string;
+	className?: string;
 }
 
 const ImageCatCard: React.FC<ImageCatCardProps> = ({ photo, className }) => {
