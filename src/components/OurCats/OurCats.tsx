@@ -7,7 +7,7 @@ import CatCard from '../CatCard/CatCard';
 import { cats } from 'src/data/cats.temp';
 import s from './OurCats.module.scss';
 
-const OurCats = () => {
+const OurCats: React.FC = () => {
 	const { isTablet } = useMediaQuery();
 	const [catsData, setCatsData] = useState(cats);
 	const [isShowMore, setIsShowMore] = useState(false);

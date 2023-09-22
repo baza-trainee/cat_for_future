@@ -14,6 +14,7 @@ import lockIcon from 'src/assets/icons/cat_card/lock.svg';
 import homeIcon from 'src/assets/icons/cat_card/home.svg';
 
 import s from './CatCard.module.scss';
+import { pluralize } from 'src/utils/pluralize';
 
 const btnStyle = {
 	width: '100%',
@@ -76,7 +77,7 @@ const CatCard: React.FC<CatCardProps> = ({ id, name, age, sex, birthday, photos 
 				</div>
 				<span className={s.id}>ID: {id}</span>
 				<div className={s.about}>
-					{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} місяці
+					{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralize(age, 'місяц')}
 				</div>
 				<span className={s.birthday}>День народження: {birthday} </span>
 			</div>
