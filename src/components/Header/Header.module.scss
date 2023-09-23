@@ -2,8 +2,9 @@
 @use 'src/styles/mixins' as *;
 
 .header {
-	position: sticky;
+	position: fixed;
 	width: 100%;
+	top: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -14,24 +15,21 @@
 .container {
 	min-width: 20rem;
 	width: 100%;
+	max-width: 73.25rem;
 	height: 5rem;
 	padding: 1rem 1.25rem;
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: space-between;
 
 	@include tablet {
-		width: 48rem;
 		height: 5.75rem;
 		padding: 1rem 3.375rem;
-		justify-content: space-between;
 	}
 
 	@include full_desktop {
-		width: 73.25rem;
 		height: 7.625rem;
 		padding: 0.75rem 1rem;
-		gap: 2.19rem;
 	}
 }
 .btnWrapper {
@@ -40,14 +38,20 @@
 
 	.icon path {
 		fill: none;
-		stroke: #fff;
+		stroke: $color-neutral-colors-white;
 		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
 	}
 
-	button:hover .icon path {
+	button:hover .icon path,
+	button:active .icon path {
 		stroke: $color-primary-dark-green;
-		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
 	}
+	@include tablet {
+		button:active .icon path {
+			stroke: $color-system-default-10;
+		}
+	}
+
 	@include full_desktop {
 		gap: 1.25rem;
 	}

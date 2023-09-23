@@ -12,13 +12,13 @@ import s from './Login.module.scss';
 const primaryBtnStyle = {
 	width: '100%',
 	padding: '0.81rem 0',
-}
+};
 
 const secondaryBtnStyle = {
 	width: '100%',
 	padding: '0.75rem 0',
-	backgroundColor: 'transparent'
-}
+	backgroundColor: 'transparent',
+};
 
 interface LoginProps {
 	onCloseLoginWindow: (boolean: boolean) => void;
@@ -36,39 +36,55 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 		}
 	};
 
-	// validation login form 
-	const { handleSubmit, handleBlur, handleChange, values, errors, touched, isSubmitting } = useFormik({
-		initialValues: {
-			loginEmail: '',
-			loginPassword: '',
-		},
-		validationSchema: Yup.object().shape({
-			loginEmail: Yup.string()
-				.email('Будь-ласка, введіть коректну email адресу')
-				.required("Обов'язкове поле"),
-			loginPassword: Yup.string()
-				.required("Обов'язкове поле"),
-		}),
-		onSubmit: (_, actions) => {
-			setAuthEmailError(false);
-			setAuthPasswordError(false);
-			console.log('Sing IN');
-			actions.resetForm();
-		}
-	});
+	// validation login form
+	const { handleSubmit, handleBlur, handleChange, values, errors, touched, isSubmitting } =
+		useFormik({
+			initialValues: {
+				loginEmail: '',
+				loginPassword: '',
+			},
+			validationSchema: Yup.object().shape({
+				loginEmail: Yup.string()
+					.email('Будь-ласка, введіть коректну email адресу')
+					.required("Обов'язкове поле"),
+				loginPassword: Yup.string().required("Обов'язкове поле"),
+			}),
+			onSubmit: (_, actions) => {
+				setAuthEmailError(false);
+				setAuthPasswordError(false);
+				console.log('Sing IN');
+				actions.resetForm();
+			},
+		});
 
 	useEffect(() => {
-		values.loginEmail && authEmailError ? setAuthEmailError(false)
-			: values.loginPassword && authPasswordError ? setAuthPasswordError(false)
-				: touched.loginEmail && authEmailError ? setAuthEmailError(false)
-					: touched.loginPassword && authPasswordError ? setAuthPasswordError(false)
-						: null
-	}, [values, touched, authEmailError, authPasswordError])
+		values.loginEmail && authEmailError
+			? setAuthEmailError(false)
+			: values.loginPassword && authPasswordError
+			? setAuthPasswordError(false)
+			: touched.loginEmail && authEmailError
+			? setAuthEmailError(false)
+			: touched.loginPassword && authPasswordError
+			? setAuthPasswordError(false)
+			: null;
+	}, [values, touched, authEmailError, authPasswordError]);
 
 	return (
-		<div className={isLoginWindOpen ? clsx(s.login_overlay, s.login, s.login_active) : clsx(s.login_overlay, s.login)} onClick={handleCloseLoginWind}>
+		<div
+			className={
+				isLoginWindOpen
+					? clsx(s.login_overlay, s.login, s.login_active)
+					: clsx(s.login_overlay, s.login)
+			}
+			onClick={handleCloseLoginWind}
+		>
 			<div className={s.login__content}>
-				<img className={s.login__closeImg} onClick={() => onCloseLoginWindow(false)} src={closeBtn} alt="Close button" />
+				<img
+					className={s.login__closeImg}
+					onClick={() => onCloseLoginWindow(false)}
+					src={closeBtn}
+					alt="Close button"
+				/>
 
 				<h2 className={s.login__title}>Вхід</h2>
 
@@ -80,8 +96,9 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 								className={
 									errors.loginEmail && touched.loginEmail
 										? clsx(s.login__label, s.login__label_error)
-										: authEmailError ? clsx(s.login__label, s.login__label_error)
-											: s.login__label
+										: authEmailError
+										? clsx(s.login__label, s.login__label_error)
+										: s.login__label
 								}
 							>
 								Логін
@@ -95,23 +112,19 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 									className={
 										errors.loginEmail && touched.loginEmail
 											? clsx(s.login__input, s.login__input_error)
-											: authEmailError ? clsx(s.login__input, s.login__input_error)
-												: s.login__input
+											: authEmailError
+											? clsx(s.login__input, s.login__input_error)
+											: s.login__input
 									}
 									placeholder="Введіть e-mail"
 									value={values.loginEmail}
 									onChange={handleChange}
 									onBlur={handleBlur}
 								/>
-								{
-									errors.loginEmail && touched.loginEmail
-										? <div className={s.login__errorMessage}>
-											{errors.loginEmail}
-										</div> : null
-								}
-								{
-									authEmailError && <div className={s.login__errorMessage}>Невірний логін</div>
-								}
+								{errors.loginEmail && touched.loginEmail ? (
+									<div className={s.login__errorMessage}>{errors.loginEmail}</div>
+								) : null}
+								{authEmailError && <div className={s.login__errorMessage}>Невірний логін</div>}
 							</div>
 						</div>
 
@@ -119,10 +132,11 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 							<label
 								htmlFor="loginPassword"
 								className={
-									(errors.loginPassword && touched.loginPassword)
+									errors.loginPassword && touched.loginPassword
 										? clsx(s.login__label, s.login__label_error)
-										: authPasswordError ? clsx(s.login__label, s.login__label_error)
-											: s.login__label
+										: authPasswordError
+										? clsx(s.login__label, s.login__label_error)
+										: s.login__label
 								}
 							>
 								Пароль
@@ -132,12 +146,13 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 									id="loginPassword"
 									name="loginPassword"
 									autoComplete="password"
-									type={onShowPass ? "text" : "password"}
+									type={onShowPass ? 'text' : 'password'}
 									className={
-										(errors.loginPassword && touched.loginPassword)
+										errors.loginPassword && touched.loginPassword
 											? clsx(s.login__input, s.login__input_paddingR, s.login__input_error)
-											: authPasswordError ? clsx(s.login__input, s.login__input_error)
-												: clsx(s.login__input, s.login__input_paddingR)
+											: authPasswordError
+											? clsx(s.login__input, s.login__input_error)
+											: clsx(s.login__input, s.login__input_paddingR)
 									}
 									placeholder="Введіть пароль"
 									value={values.loginPassword}
@@ -152,12 +167,9 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 										onShowPass={onShowPass}
 									/>
 								</div>
-								{
-									errors.loginPassword && touched.loginPassword
-										? <div className={s.login__errorMessage}>
-											{errors.loginPassword}
-										</div> : null
-								}
+								{errors.loginPassword && touched.loginPassword ? (
+									<div className={s.login__errorMessage}>{errors.loginPassword}</div>
+								) : null}
 								{authPasswordError && <div className={s.login__errorMessage}>Невірний пароль</div>}
 							</div>
 						</div>
