@@ -1,5 +1,5 @@
 import React from 'react';
-import { Swiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import clsx from 'clsx';
 
@@ -17,6 +17,7 @@ interface ImageSliderProps {
 	slidesPerView: number;
 	spaceBetween: number;
 	slidesPerGroup: number;
+	slideStyle?: React.CSSProperties;
 	children: React.ReactNode[];
 }
 
@@ -26,6 +27,7 @@ const Slider: React.FC<ImageSliderProps> = ({
 	spaceBetween,
 	slidesPerGroup,
 	children,
+	slideStyle,
 }) => {
 	return (
 		<div className={clsx(s.wrapper, className && s[className])}>
@@ -45,7 +47,12 @@ const Slider: React.FC<ImageSliderProps> = ({
 				speed={300}
 				style={{ width: '100%', height: '100%' }}
 			>
-				{children}
+				{children.map((slide, index) => (
+					<SwiperSlide key={index} style={slideStyle}>
+						{slide}
+					</SwiperSlide>
+				))}
+
 				<button style={{ cursor: 'pointer' }} className={'prevBtn'}>
 					<Prev_arrow className={s.leftArrow} />
 				</button>
