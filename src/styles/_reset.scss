@@ -29,7 +29,9 @@ a {
 	outline: none;
 }
 button {
-	cursor: url('src/assets/icons/cursor.svg'), auto;
+	cursor:
+		url('src/assets/icons/cursor.svg') 15 15,
+		auto;
 	border: none;
 	outline: none;
 	color: inherit;

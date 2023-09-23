@@ -1,0 +1,126 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.wrapper {
+	background-color: $color-primary-green;
+}
+
+.images {
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 0.88rem;
+}
+
+.favoriteBtnContainer {
+	z-index: 9;
+	position: absolute;
+	top: 3.75rem;
+	left: 1.25rem;
+
+	button:hover {
+		.heartFavoriteBtn path {
+			stroke: $color-ref-orange-20;
+		}
+	}
+	@include tablet {
+		top: 1.25rem;
+	}
+}
+
+.heartFavoriteBtn {
+	path {
+		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+		stroke: $color-primary-orange;
+	}
+	&.inFavorite path {
+		fill: $color-primary-orange;
+	}
+}
+
+.content {
+	padding-inline: 1rem;
+	margin-bottom: 3.31rem;
+	@include tablet {
+		margin-bottom: 3.12rem;
+	}
+	@include full_desktop {
+		margin-bottom: 3.25rem;
+	}
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: #ffffff;
+}
+
+.name {
+	font-family: $secondary-font;
+	font-size: 2rem;
+	font-weight: 900;
+	line-height: normal;
+	@include tablet {
+		font-size: 2.25rem;
+	}
+	@include full_desktop {
+		font-size: 2.5rem;
+	}
+}
+
+.status {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0.5rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: normal;
+	@include tablet {
+		font-size: 1.125rem;
+		line-height: 132%;
+	}
+	@include full_desktop {
+		line-height: normal;
+	}
+}
+
+.id {
+	display: block;
+	color: #f2f2f2;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: normal;
+	margin-bottom: 0.9rem;
+}
+
+.about {
+	color: #ffffff;
+	font-size: 1.125rem;
+	font-weight: 800;
+	line-height: normal;
+	@include tablet {
+		font-size: 1.25rem;
+	}
+}
+
+.birthday {
+	color: #e9e9e9;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.buttonContainer {
+	margin: 0 1rem 2.5rem;
+	@include tablet {
+		margin-bottom: 2.25rem;
+	}
+	@include full_desktop {
+		margin-bottom: 2.12rem;
+	}
+}
+
+.heartIconBtn path {
+	stroke: $color-system-default-0;
+}
