@@ -79,25 +79,20 @@
 		gap: 1rem;
 	}
 	&__inputBox {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
 	}
 	&__label {
+		margin: 0.25rem 0;
 		font-size: 1.25rem;
 		font-weight: 400;
 		line-height: 1.5rem;
 		color: $color-primary-orange;
-	}
-	&__inputImg {
-		cursor: pointer;
-		&:hover > path {
-			stroke: $color-system-default-100;
+		&_error {
+			color: $color-secondary-error;
 		}
-	}
-	&__inputImg path {
-		stroke: #939393;
-		transition: stroke 0.2s ease-in-out;
 	}
 	&__input {
 		width: 100%;
@@ -114,7 +109,7 @@
 			padding-right: 3.25rem;
 		}
 		&:hover {
-			border: 1px solid $color-system-default-100;
+			outline: 1px solid $color-system-default-100;
 		}
 		&:hover + div svg path {
 			stroke: $color-system-default-100;
@@ -127,13 +122,16 @@
 		}
 		&:disabled {
 			color: $color-system-default-30;
-			border: 1px solid $color-system-default-30;
+			outline: 1px solid $color-system-default-30;
 		}
 		&:disabled + div svg path {
 			stroke: $color-system-default-100;
 		}
 		&:disabled + div svg path {
 			stroke: $color-system-default-100;
+		}
+		&_error {
+			outline: 2px solid $color-secondary-error;
 		}
 	}
 	&__forgetPass {
@@ -170,7 +168,7 @@
 	&__alernatLine {
 		width: 100%;
 		height: 0.0625rem;
-		background-color: #E0E0E0;
+		background-color: #e0e0e0;
 	}
 	&__boxBtn {
 		margin-top: 1.13rem;
@@ -200,12 +198,12 @@
 		justify-content: center;
 		gap: 0.5rem;
 		padding: 1rem 0;
-		background-color: #FFF;
+		background-color: #fff;
 		border: 1px solid $color-system-default-20;
 		font-size: 0.875rem;
 		font-weight: 600;
-		line-height: 1.155rem; 
-		color: #1D1C2B;
+		line-height: 1.155rem;
+		color: #1d1c2b;
 		@include tablet {
 			font-size: 1.125rem;
 			font-weight: 700;
@@ -229,5 +227,14 @@
 			width: 1.4375rem;
 			height: 1.4375rem;
 		}
+	}
+	&__errorMessage {
+		position: absolute;
+		margin-top: 0.25rem;
+		font-size: 0.75rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 0.9rem;
+		color: $color-secondary-error;
 	}
 }

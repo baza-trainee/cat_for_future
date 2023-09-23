@@ -1,5 +1,4 @@
-@import 'src/styles/variables';
-@import 'src/styles/mixins';
+@import '../../styles/mixins';
 
 @keyframes fadeIn {
 	from {
@@ -24,156 +23,282 @@
 }
 
 .backdrop {
-	background: rgba(206, 206, 206, 0.6);
 	display: flex;
 	height: 100vh;
 	width: 100%;
 	position: fixed;
+	left: 10;
 	z-index: 100;
 	overflow-y: auto;
-	justify-content: center;
+	top: 0px;
+	margin: auto;
 }
 
 .modalWrapper {
+	animation: fadeIn 0.3s ease-in-out;
+	background-color: rgba(0, 0, 0, 0.4);
+	justify-content: center;
+	min-height: 100vh;
 	display: flex;
-	flex-direction: column;
-	background-color: $color-system-default-0;
-	width: 100%;
-	height: 32rem;
-
-	@include small_tablet {
-		width: 44.31rem;
-		height: 41rem;
-	}
-
-	@include full_desktop {
-		width: 53.81rem;
-		height: 42rem;
-		margin-top: 1.63rem;
-	}
 }
 
-.modalBanner {
-	display: flex;
-	justify-content: end;
-	height: 9.13rem;
-	padding-top: 1rem;
-	padding-right: 1.25rem;
-	background: url('../../assets/images/modal/cat_photo_modal.png');
-	background-size: 37.67rem 9.13rem;
+.modalBody {
+	background:
+		url('../../assets/modal/cat_photo_mobile.png'),
+		lightgray -30.777px -207.454px / 107.782% 334.728%;
 	background-repeat: no-repeat;
-	background-position: right -4rem top;
-
-	@include small_tablet {
-		height: 13rem;
-		background-size: 53.81rem 13rem;
-		background-position: center;
-	}
+	width: 320px;
+	height: 507px;
+	position: relative;
+	background-color: white;
 
 	@include tablet {
-		height: 13rem;
-		background-size: 53.81rem 13rem;
+		background:
+			url('../../assets/modal/cat_photo_tablet.png'),
+			lightgray -30.777px -207.454px / 107.782% 334.728%;
+		background-repeat: no-repeat;
+
+		width: 709px;
+		height: 662px;
+
+		background-color: white;
 	}
 	@include full_desktop {
-		background-position: center;
+		background:
+			url('../../assets/modal/cat_photo_desktop.png'),
+			lightgray -30.777px -207.454px / 107.782% 334.728%;
+		background-repeat: no-repeat;
+
+		width: 861px;
+		height: 674px;
+
+		margin-top: 26px;
+
+		background-color: white;
+	}
+
+	.card-wrapper {
+		margin: 0 !important;
 	}
 }
 
-.close {
+.modalBodyFull {
+	max-width: 1200px;
+}
+
+body.modal-custom--block {
+	padding-right: 14px;
+	height: 100%;
+	overflow: hidden;
+}
+
+.modalCloseBtn {
 	cursor: pointer;
-	width: 1.5rem;
-	height: 1.5rem;
+
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	padding: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	background: transparent;
+	border: none;
+	outline: 0;
+	scale: 0.75;
+
+	@include tablet {
+		top: 20px;
+		right: 20px;
+		scale: 1;
+	}
+	@include full_desktop {
+		top: 28px;
+		right: 24px;
+		scale: 1;
+	}
+}
+
+.contentWrapper {
+	width: 288px;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex-direction: column;
+
+	margin: 157px auto 66px auto;
+	gap: 34px;
+
+	@include tablet {
+		width: 626px;
+		margin: 249px auto 62px auto;
+		gap: 56px;
+	}
+
+	@include full_desktop {
+		width: 685px;
+		margin: 244px auto 91px auto;
+	}
+}
+
+.text {
+	color: #131313;
+	font-family: Open Sans;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 120%;
+	text-align: center;
+
+	@include tablet {
+		font-size: 18px;
+		margin-top: 12px;
+	}
+
+	@include full_desktop {
+		font-size: 20px;
+		margin-top: 12px;
+	}
 }
 
 .textWrapper {
-	display: flex;
 	width: 100%;
-	font-family: Open Sans;
-	color: $color-system-default-100;
-	font-size: 1rem;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 1.2rem;
-	justify-content: center;
-	text-align: center;
-	padding-top: 0.69rem;
-	padding-bottom: 2.12rem;
-
-	@include small_tablet {
-		padding-top: 2.25rem;
-		padding-bottom: 3.5rem;
-	}
-	@include tablet {
-		font-size: 1.125rem;
-	}
-	@include full_desktop {
-		font-size: 1.25rem;
-	}
-}
-.formDonate {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-.donatesAmountWrapper {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	width: 100%;
-	padding: 0 1rem;
-	margin-bottom: 2.62rem;
-	@include tablet {
-		padding: 0 2.6rem;
-	}
-	@include full_desktop {
-		padding: 0 5.5rem;
-	}
 }
 
-.donateAmount {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: 1px solid $color-system-default-100;
-	width: calc(50% - 1rem);
-	margin-bottom: 0.62rem;
+.radioWrapper {
+	width: 100%;
+	height: 122px;
+	display: block;
+}
+
+label {
+	margin: auto;
+
 	font-family: Open Sans;
-	font-size: 1rem;
+	font-size: 16px;
 	font-style: normal;
 	font-weight: 700;
-	line-height: 1.32rem;
-	padding: 1rem 0;
+	line-height: 132%;
 	text-align: center;
+	width: 134px;
+	height: 56px;
+	display: inline-block;
+	padding-top: 17px;
+	padding-bottom: 17px;
+	background: none;
+	border: 1px solid #131313;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+
 	@include tablet {
-		margin-bottom: 1.56rem;
+		width: 307px;
+		font-size: 18px;
+		padding-top: 16px;
+		padding-bottom: 16px;
 	}
+
 	@include full_desktop {
-		margin-bottom: 2rem;
-	}
-	&::placeholder {
-		color: $color-system-default-60;
-		font-size: 0.75rem;
-		@include tablet {
-			font-size: 1rem;
-		}
+		width: 320px;
 	}
 }
 
-.selected {
-	background-color: $color-primary-orange;
-	color: $color-system-default-0;
+label.selected {
+	background-color: #fe702c;
+	color: #fff;
 	border: none;
+}
+
+.optionIndicatorSum {
+	display: none;
+}
+
+.optionsWrapperUp {
+	display: flex;
+	gap: 20px;
+	margin-bottom: 10px;
+
+	@include tablet {
+		gap: 12px;
+		margin-bottom: 25px;
+	}
+
+	@include full_desktop {
+		gap: 45px;
+		margin-bottom: 32px;
+	}
+}
+
+.optionsWrapperDown {
+	display: flex;
+	gap: 20px;
+
+	@include tablet {
+		gap: 12px;
+	}
+
+	@include full_desktop {
+		gap: 45px;
+	}
+}
+
+.otherSum {
+	padding: 0px 16px;
+	align-items: center;
+}
+
+.otherValue {
+	width: 100%;
+	height: 100%;
+	outline: none;
+	border: none;
+
+	font-family: Open Sans;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 120%;
+
+	@include tablet {
+		font-size: 20px;
+	}
+}
+::placeholder {
+	font-family: Open Sans;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 120%;
+	color: #c7c7c7;
+
+	@include tablet {
+		font-size: 20px;
+	}
 }
 
 .btnWrapper {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	width: 16.75rem;
+	margin-top: 42px;
 
 	@include tablet {
-		width: 20.4375rem;
-		height: 3.25rem;
+		margin-top: 59px;
+		display: flex;
+	}
+
+	@include full_desktop {
+		display: flex;
+	}
+}
+
+
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	@media (max-width: $tablet-size) {
+		-webkit-appearance: none;
+		appearance: none;
+		margin: 0;
 	}
 }
