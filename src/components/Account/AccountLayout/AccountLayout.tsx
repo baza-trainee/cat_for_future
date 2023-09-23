@@ -3,8 +3,8 @@ import React from 'react';
 import s from './AccountLayout.module.scss';
 
 import { Outlet } from 'react-router';
-import ButtonBack from './ButtonBack/ButtonBack';
-import AccountMenu from './AccountMenu/AccountMenu';
+import ButtonBack from '../ButtonBack/ButtonBack';
+import AccountMenu from '../AccountMenu/AccountMenu';
 
 const AccountLayout: React.FC = () => {
 	return (
@@ -12,12 +12,12 @@ const AccountLayout: React.FC = () => {
 			<div className={s.backBtn}>
 				<ButtonBack />
 			</div>
-			<p className={s.title}>Особистий кабінет</p>
-			<div className={s.containerPanel}>
-				<div className={s.navMenu}>
+			<h2 className={s.title}>Особистий кабінет</h2>
+			<div className={s.accountPanel}>
+				<nav>
 					<AccountMenu />
-				</div>
-				<div className={s.acccountBlock}>
+				</nav>
+				<div className={s.accountContent}>
 					<Outlet />
 				</div>
 			</div>

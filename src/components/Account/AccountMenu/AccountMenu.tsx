@@ -7,13 +7,11 @@ import menu from './ConstAccountMenu';
 
 const AccountMenu: React.FC = () => {
 	return (
-		<nav>
-			<ul className={s.wrapper}>
-				{menu.map((item) => (
-					<AccountMenuItem key={item.id} {...item} />
-				))}
-			</ul>
-		</nav>
+		<ul className={s.wrapper}>
+			{menu.map((item) => (
+				<AccountMenuItem key={item.id} {...item} />
+			))}
+		</ul>
 	);
 };
 

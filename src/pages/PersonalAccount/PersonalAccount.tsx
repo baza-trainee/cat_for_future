@@ -2,12 +2,12 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router';
 
-import PersonalAccountLayout from 'src/components/AccountLayout/AccountLayout';
-import AccountLogout from 'src/components/AccountLayout/AccountModals/AcoountLogout';
-import AccountDelete from 'src/components/AccountLayout/AccountModals/AccountDelete';
-import MyData from 'src/components/AccountLayout/AccountBlocks/MyData/MyData';
-import ChangePassword from 'src/components/AccountLayout/AccountBlocks/ChangePassword/ChangePassword';
-import MyKitten from 'src/components/AccountLayout/AccountBlocks/MyKitten/MyKitten';
+import PersonalAccountLayout from 'src/components/Account/AccountLayout/AccountLayout';
+import AccountLogout from 'src/components/Account/AccountModals/AcoountLogout';
+import AccountDelete from 'src/components/Account/AccountModals/AccountDelete';
+import MyData from 'src/components/Account/AccountBlocks/MyData/MyData';
+import ChangePassword from 'src/components/Account/AccountBlocks/ChangePassword/ChangePassword';
+import MyKitten from 'src/components/Account/AccountBlocks/MyKitten/MyKitten';
 
 const PersonalAccount: React.FC = () => (
 	<Routes>

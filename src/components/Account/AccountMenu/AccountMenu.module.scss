@@ -9,9 +9,11 @@
 	width: 100%;
 
 	@include tablet {
+		width: 15.9rem;
+		border-right: 1px solid $color-system-default-30;
 	}
 
 	@include full_desktop {
-		font-size: 1.25rem;
+		width: 16.9rem;
 	}
 }
