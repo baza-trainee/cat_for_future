@@ -20,6 +20,7 @@
 	z-index: 100;
 
 	@include small_tablet {
+
 		height: 15rem;
 		padding: 0.62rem 2.75rem 1.25rem 2.75rem;
 	}
@@ -64,19 +65,4 @@
 
 .btnWrapper {
 	width: 8.75rem;
-}
-
-.btn {
-	display: flex;
-	height: 3rem;
-	padding: 1rem 3rem;
-	justify-content: center;
-	align-items: center;
-	gap: 0.5rem;
-	flex-shrink: 0;
-	background-color: $color-primary-orange;
-	font-size: 1.125rem;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 1.485rem;
 }

@@ -1,100 +1,96 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './ModalDonate.module.scss';
-import closeIcon from '../../assets/modal/Close.svg';
+import close from 'src/assets/icons/close_white.svg';
 import Button from 'src/components/Button/Button';
-// import axios from "axios";
+
+interface DonateAmount {
+	id: number;
+	amount: string;
+}
 
 interface ModalProps {
-
+	status: boolean;
 	onClose: () => void;
 }
 
-const ModalDonate = ({onClose }: ModalProps) => {
-	const [selectedSumOption, setSelectedSumOption] = useState<string>('');
+const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
+	const initialDonationOptions: DonateAmount[] = [
+		{ id: 1, amount: '100' },
+		{ id: 2, amount: '200' },
+		{ id: 3, amount: '500' },
+	];
 
-	const handleSumChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		console.log(selectedSumOption);
-		setSelectedSumOption(event.target.value);
+	const [selectedAmount, setSelectedAmount] = useState<string>('');
+
+	useEffect(() => {
+		const escFunction = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') {
+				onClose();
+			}
+		};
+
+		if (status) {
+			document.addEventListener('keyup', escFunction, false);
+			return () => {
+				document.removeEventListener('keyup', escFunction, false);
+			};
+		}
+	}, [status, onClose]);
+
+	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSelectedAmount(event.target.value);
 	};
 
+	const handleModalClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		if (e.target === e.currentTarget) {
+			onClose();
+		}
+	};
 
+	const renderDonationButtons = () => {
+		return initialDonationOptions.map(({ id, amount }) => (
+			<button
+				key={id}
+				className={`${s.donateAmount} ${selectedAmount === amount ? s.selected : ''}`}
+				type="button"
+				onClick={() => setSelectedAmount(amount)}
+			>
+				{amount} UAH
+			</button>
+		));
+	};
 
-  const handleModalClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
 	return (
-		<div className={s.backdrop} onClick={handleModalClick }>
-			<div id={`js-bhx-modal-custom__wrapper-donate`} className={`modalClose ${s.modalWrapper}`}>
-				<div className={`aniModalOpening ${s.modalBody} ${'modalBodyFull'}`}>
-					<button className={s.modalCloseBtn} type="button" onClick={onClose}>
-						<img src={closeIcon} alt="close modal" />
-					</button>
-					<section className={s.contentWrapper}>
-						<div className={s.textWrapper}>
-							<p className={s.text}>Зібрані кошти йдуть на харчування та медичну допомогу</p>
-						</div>
-						<form action="#">
-							<div className={s.radioWrapper}>
-								<div className={s.optionsWrapperUp}>
-									<label className={selectedSumOption === 'option1' ? s.selected : ''}>
-										<input
-											className={s.optionIndicatorSum}
-											type="radio"
-											value="option1"
-											checked={selectedSumOption === 'option1'}
-											onChange={handleSumChange}
-										/>
-										100 UAH
-									</label>
-
-									<label className={selectedSumOption === 'option2' ? s.selected : ''}>
-										<input
-											className={s.optionIndicatorSum}
-											type="radio"
-											value="option2"
-											checked={selectedSumOption === 'option2'}
-											onChange={handleSumChange}
-										/>
-										200 UAH
-									</label>
-								</div>
-
-								<div className={s.optionsWrapperDown}>
-									<label className={selectedSumOption === 'option3' ? s.selected : ''}>
-										<input
-											className={s.optionIndicatorSum}
-											type="radio"
-											value="option3"
-											checked={selectedSumOption === 'option3'}
-											onChange={handleSumChange}
-										/>
-										500 UAH
-									</label>
-
-									<label className={s.otherSum}>
-										<input
-											className={s.otherValue}
-											type="number"
-											onFocus={() => setSelectedSumOption('')}
-											onChange={handleSumChange}
-											placeholder="Інша сума, UAH "
-										/>
-									</label>
-								</div>
-							</div>
-							<div className={s.btnWrapper}>
-								<Button
-									buttonClasses={'primaryBtn helpBtn'}
-									type={'submit'}
-									name={'Оплатити'}
-									onClick={() => console.log('go to Wayforpay')}
-								/>
-							</div>
-						</form>
-					</section>
+		<div className={s.backdrop} onClick={handleModalClick}>
+			<div className={s.modalWrapper}>
+				<div className={s.modalBanner}>
+					<img className={s.close} onClick={onClose} src={close} alt="Close" />
 				</div>
+				<div className={s.textWrapper}>
+					<p>Зібрані кошти йдуть на харчування та медичну допомогу</p>
+				</div>
+				<form action="#" className={s.formDonate}>
+					<div className={s.donatesAmountWrapper}>
+						{renderDonationButtons()}
+						<input
+							id="myInput"
+							className={s.donateAmount}
+							type="number"
+							step={0.01}
+							onChange={handleAmountChange}
+							placeholder="Інша сума, UAH"
+						/>
+					</div>
+					<div className={s.btnWrapper}>
+						<Button
+							buttonClasses={'primaryBtn'}
+							type={'submit'}
+							name={'Оплатити'}
+							onClick={() => console.log(`go to Wayforpay amount ${selectedAmount}`)}
+							styleBtn={{ width: '100%' }}
+						/>
+					</div>
+				</form>
 			</div>
 		</div>
 	);
