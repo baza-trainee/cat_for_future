@@ -13,9 +13,11 @@
 	background-size: cover;
 	background-position: center center;
 	font-family: $primary-font;
+
 	@include tablet {
 		height: 52.5rem;
 	}
+
 	@include full_desktop {
 		height: 47.56rem;
 	}
@@ -26,9 +28,11 @@
 	flex-direction: column;
 	align-items: center;
 	max-width: 17.25rem;
+
 	@include tablet {
 		max-width: 37.625rem;
 	}
+
 	@include full_desktop {
 		max-width: 43.875rem;
 	}
@@ -40,11 +44,13 @@
 	font-weight: 900;
 	font-size: 1.377rem;
 	line-height: 1.75rem;
+
 	@include tablet {
 		font-size: 3rem;
 		line-height: 3.875rem;
 		margin-top: 16%;
 	}
+
 	@include full_desktop {
 		font-size: 3.5rem;
 		margin-top: 5%;
@@ -54,6 +60,7 @@
 .contentText {
 	font-weight: 600;
 	margin-bottom: 1.5625rem;
+
 	@include tablet {
 		font-size: 1.125rem;
 		margin-bottom: 2.2rem;
@@ -73,9 +80,11 @@
 	text-align: left;
 	font-family: $primary-font;
 	letter-spacing: 0.0063rem;
+
 	@include tablet {
 		margin-bottom: 6.55rem;
 	}
+
 	@include full_desktop {
 		width: 70%;
 		margin-bottom: 1.9375rem;
@@ -86,6 +95,7 @@
 	width: 35%;
 	padding: 11% 0 11% 0.5rem;
 	font-weight: 700;
+
 	@include tablet {
 		min-width: 187px;
 		font-size: 1.125rem;
@@ -94,6 +104,7 @@
 		line-height: 1.8rem;
 		letter-spacing: 0.0095rem;
 	}
+
 	@include full_desktop {
 		padding: 3% 0.3125rem 3% 2.3125rem;
 		width: 25%;
@@ -109,6 +120,7 @@
 	border-left: 0.125rem solid $color-system-default-0;
 	padding-left: 0.9375rem;
 	margin: 0.9375rem 0 0.9375rem 0.3125rem;
+
 	@include tablet {
 		font-weight: 300;
 		font-size: 1.1875rem;
@@ -118,6 +130,7 @@
 		margin: 0.9375rem 0 0.9375rem 2.1875rem;
 		letter-spacing: 0.009rem;
 	}
+
 	@include full_desktop {
 		border-left: 0.125rem solid $color-system-default-0;
 	}
@@ -128,11 +141,13 @@
 	top: -2.1875rem;
 	left: -1.3125rem;
 	width: 4.6875rem;
+
 	@include tablet {
 		top: -2.5rem;
 		left: -1.875rem;
 		width: 6.6875rem;
 	}
+
 	@include full_desktop {
 		top: -2.625rem;
 		left: -1.25rem;
