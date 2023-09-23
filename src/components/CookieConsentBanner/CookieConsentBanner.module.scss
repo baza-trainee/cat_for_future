@@ -1,5 +1,5 @@
-@import "src/styles/variables";
-@import "src/styles/mixins";
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
 
 .cookie {
 	position: fixed;
@@ -22,11 +22,11 @@
 	margin: auto;
 	z-index: 100;
 
-
 	@include tablet {
 		height: 15rem;
 		font-size: 1.25rem;
 	}
+
 	@include full_desktop {
 		max-width: 80rem;
 		height: 11.25rem;

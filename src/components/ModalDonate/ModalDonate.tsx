@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
 import s from './ModalDonate.module.scss';
-
 import close from 'src/assets/icons/close_white.svg';
 import Button from 'src/components/Button/Button';
 
@@ -16,7 +14,7 @@ interface ModalProps {
 }
 
 const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
-	const donate: DonateAmount[] = [
+	const initialDonationOptions: DonateAmount[] = [
 		{ id: 1, amount: '100' },
 		{ id: 2, amount: '200' },
 		{ id: 3, amount: '500' },
@@ -49,6 +47,19 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 		}
 	};
 
+	const renderDonationButtons = () => {
+		return initialDonationOptions.map(({ id, amount }) => (
+			<button
+				key={id}
+				className={`${s.donateAmount} ${selectedAmount === amount ? s.selected : ''}`}
+				type="button"
+				onClick={() => setSelectedAmount(amount)}
+			>
+				{amount} UAH
+			</button>
+		));
+	};
+
 	return (
 		<div className={s.backdrop} onClick={handleModalClick}>
 			<div className={s.modalWrapper}>
@@ -60,21 +71,12 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 				</div>
 				<form action="#" className={s.formDonate}>
 					<div className={s.donatesAmountWrapper}>
-						{donate.map(({ id, amount }) => (
-							<button
-								key={id}
-								className={`${s.donateAmount} ${selectedAmount === amount ? s.selected : ''}`}
-								type="button"
-								onClick={() => setSelectedAmount(amount)}
-							>
-								{amount} UAH
-							</button>
-						))}
+						{renderDonationButtons()}
 						<input
 							id="myInput"
 							className={s.donateAmount}
 							type="number"
-							step={0.01}							
+							step={0.01}
 							onChange={handleAmountChange}
 							placeholder="Інша сума, UAH"
 						/>
