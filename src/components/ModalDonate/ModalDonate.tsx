@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import s from './ModalDonate.module.scss';
-import closeIcon from '../../assets/modal/Close.svg';
+import closeIcon from 'src/assets/images/modal/Close.svg';
 import Button from 'src/components/Button/Button';
 // import axios from "axios";
 
 interface ModalProps {
-
 	onClose: () => void;
 }
 
-const ModalDonate = ({onClose }: ModalProps) => {
+const ModalDonate = ({ onClose }: ModalProps) => {
 	const [selectedSumOption, setSelectedSumOption] = useState<string>('');
 
 	const handleSumChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,15 +16,13 @@ const ModalDonate = ({onClose }: ModalProps) => {
 		setSelectedSumOption(event.target.value);
 	};
 
-
-
-  const handleModalClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
+	const handleModalClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		if (e.target === e.currentTarget) {
+			onClose();
+		}
+	};
 	return (
-		<div className={s.backdrop} onClick={handleModalClick }>
+		<div className={s.backdrop} onClick={handleModalClick}>
 			<div id={`js-bhx-modal-custom__wrapper-donate`} className={`modalClose ${s.modalWrapper}`}>
 				<div className={`aniModalOpening ${s.modalBody} ${'modalBodyFull'}`}>
 					<button className={s.modalCloseBtn} type="button" onClick={onClose}>
