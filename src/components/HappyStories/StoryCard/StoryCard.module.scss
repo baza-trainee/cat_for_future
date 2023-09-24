@@ -4,13 +4,39 @@
 .card {
 	display: flex;
 	justify-content: space-between;
+	gap: 1.25rem;
 }
 
 .img {
+	width: 22.9375rem;
+	height: 18.0625rem;
 	align-self: start;
 }
 
+.title {
+	color: $color-primary-green;
+	font-family: Open Sans;
+	font-size: 2rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 120%;
+}
+
+.description {
+	margin-top: 0.75rem;
+	overflow: hidden;
+	color: #000;
+	// text-overflow: ellipsis;
+	// white-space: nowrap;
+	font-family: Open Sans;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 120%;
+}
 .btnWrap {
+	display: flex;
+	justify-content: space-between;
 	.icon path {
 		fill: none;
 		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
@@ -22,4 +48,18 @@
 	button:active .icon path {
 		stroke: $color-ref-orange-20;
 	}
+}
+
+.btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: $color-primary-dark-green;
+	font-family: Open Sans;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 120%;
+	text-decoration-line: underline;
+	background-color: transparent;
 }

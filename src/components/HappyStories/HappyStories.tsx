@@ -10,7 +10,7 @@ const HappyStories = () => {
 		<section className={s.happyStories}>
 			<div className={s.container}>
 				<h2 className={s.title}>Щасливі історіі</h2>
-				<div className="storiesWrap">
+				<div className={s.storiesWrap}>
 					{happyStories.map((story: IStory) => (
 						<StoryCard key={story.id} {...story} />
 					))}
