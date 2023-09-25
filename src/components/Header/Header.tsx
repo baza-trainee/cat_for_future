@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 
 	return (
 		<>
-			<header className={s.header}>
+			<header id="header" className={s.header}>
 				<div className={s.container}>
 					<Logotype onClick={closeBurgerMenu} />
 					<Menu navClass="headerMenu" />

@@ -65,18 +65,3 @@
 .btnWrapper {
 	width: 8.75rem;
 }
-
-.btn {
-	display: flex;
-	height: 3rem;
-	padding: 1rem 3rem;
-	justify-content: center;
-	align-items: center;
-	gap: 0.5rem;
-	flex-shrink: 0;
-	background-color: $color-primary-orange;
-	font-size: 1.125rem;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 1.485rem;
-}
