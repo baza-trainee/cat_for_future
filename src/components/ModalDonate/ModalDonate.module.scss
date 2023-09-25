@@ -1,12 +1,11 @@
-@use 'src/styles/variables' as *;
-@use 'src/styles/mixins' as *;
+@import '../../styles/variables';
+@import '../../styles/mixins';
 
 @keyframes fadeIn {
 	from {
 		opacity: 0;
 		transform: translateY(-20px);
 	}
-
 	to {
 		opacity: 1;
 		transform: translateY(0);
@@ -18,7 +17,6 @@
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 	to {
 		opacity: 0;
 		transform: translateY(-20px);
@@ -26,6 +24,7 @@
 }
 
 .backdrop {
+	animation: fadeIn 0.2s ease-in-out;
 	background: rgba(206, 206, 206, 0.6);
 	display: flex;
 	height: 100vh;
@@ -37,6 +36,7 @@
 }
 
 .modalWrapper {
+	animation: fadeIn 0.5s ease-in-out;
 	display: flex;
 	flex-direction: column;
 	background-color: $color-system-default-0;
@@ -61,7 +61,7 @@
 	height: 9.13rem;
 	padding-top: 1rem;
 	padding-right: 1.25rem;
-	background: url('../../assets/modal/cat_photo_modal.png');
+	background: url('../../assets/images/modal/cat_photo_modal.png');
 	background-size: 37.67rem 9.13rem;
 	background-repeat: no-repeat;
 	background-position: right -4rem top;
@@ -76,7 +76,6 @@
 		height: 13rem;
 		background-size: 53.81rem 13rem;
 	}
-
 	@include full_desktop {
 		background-position: center;
 	}
@@ -106,23 +105,19 @@
 		padding-top: 2.25rem;
 		padding-bottom: 3.5rem;
 	}
-
 	@include tablet {
 		font-size: 1.125rem;
 	}
-
 	@include full_desktop {
 		font-size: 1.25rem;
 	}
 }
-
 .formDonate {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-
 .donatesAmountWrapper {
 	display: flex;
 	flex-wrap: wrap;
@@ -130,11 +125,9 @@
 	width: 100%;
 	padding: 0 1rem;
 	margin-bottom: 2.62rem;
-
 	@include tablet {
 		padding: 0 2.6rem;
 	}
-
 	@include full_desktop {
 		padding: 0 5.5rem;
 	}
@@ -145,6 +138,7 @@
 	justify-content: center;
 	align-items: center;
 	border: 1px solid $color-system-default-100;
+	background: none;
 	width: calc(50% - 1rem);
 	margin-bottom: 0.62rem;
 	font-family: Open Sans;
@@ -154,25 +148,13 @@
 	line-height: 1.32rem;
 	padding: 1rem 0;
 	text-align: center;
-
 	@include tablet {
 		margin-bottom: 1.56rem;
 	}
-
 	@include full_desktop {
 		margin-bottom: 2rem;
 	}
-
-	&::placeholder {
-		color: $color-system-default-60;
-		font-size: 0.75rem;
-
-		@include tablet {
-			font-size: 1rem;
-		}
-	}
 }
-
 .selected {
 	background-color: $color-primary-orange;
 	color: $color-system-default-0;
@@ -189,4 +171,14 @@
 		width: 20.4375rem;
 		height: 3.25rem;
 	}
+}
+
+::placeholder {
+	color: $color-system-default-30;
+	font-size: 1.25rem;
+	font-weight: 400;
+}
+
+.hiddenInput {
+	display: none;
 }
