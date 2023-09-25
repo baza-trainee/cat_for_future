@@ -1,5 +1,6 @@
 import paw from '../../assets/icons/hero/paw.svg';
 import Button from '../Button/Button';
+import { scrollToSection } from 'src/utils/scrollToSection';
 import s from './Hero.module.scss';
 
 const Hero: React.FC = () => {
@@ -9,7 +10,7 @@ const Hero: React.FC = () => {
 				<h2 className={s.contentTitle}>Подаруй дім для маленьких хвостиків</h2>
 				<span className={s.contentText}>Вони чекають на тебе</span>
 				<Button
-					onClick={() => ''}
+					onClick={() => scrollToSection('ourCats')}
 					name={'Знайти друга'}
 					buttonClasses={'primaryBtn'}
 					type={'submit'}
