@@ -10,7 +10,13 @@ const btn = {
 const AdoptKittenInstruction: FC = () => {
 	const onReturnToOurCatsSection = () => {
 		const section = document.querySelector('#ourCats');
-		section ? section.scrollIntoView({ behavior: 'smooth' }) : null;
+		const headerElement = document.getElementById('header');
+		const headerHeight = headerElement?.offsetHeight;
+
+		if (section && headerHeight) {
+			const scrollPosition = section.getBoundingClientRect().top + window.scrollY - headerHeight;
+			window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+		}
 	};
 
 	return (
