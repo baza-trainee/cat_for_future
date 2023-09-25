@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Button from '../Button/Button';
+import { scrollToSection } from 'src/utils/scrollToSection';
 import paws from 'src/assets/icons/adopt-kitten-instruct-paw.svg';
 import s from './AdoptKittenInstruction.module.scss';
 
@@ -8,17 +9,6 @@ const btn = {
 };
 
 const AdoptKittenInstruction: FC = () => {
-	const onReturnToOurCatsSection = () => {
-		const section = document.querySelector('#ourCats');
-		const headerElement = document.getElementById('header');
-		const headerHeight = headerElement?.offsetHeight;
-
-		if (section && headerHeight) {
-			const scrollPosition = section.getBoundingClientRect().top + window.scrollY - headerHeight;
-			window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
-		}
-	};
-
 	return (
 		<section className={s.wrapper}>
 			<h2 className={s.title}>Як прихистити кошеня на виріст?</h2>
@@ -63,7 +53,7 @@ const AdoptKittenInstruction: FC = () => {
 				buttonClasses={'primaryBtn'}
 				type={'button'}
 				styleBtn={btn}
-				onClick={onReturnToOurCatsSection}
+				onClick={() => scrollToSection('ourCats')}
 			/>
 		</section>
 	);
