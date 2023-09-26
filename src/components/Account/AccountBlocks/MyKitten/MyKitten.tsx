@@ -2,6 +2,10 @@ import React from 'react';
 import Button from 'src/components/Button/Button';
 import s from './MyKitten.module.scss';
 
+const primaryBtnStyle = {
+	width: '100%',
+};
+
 const MyKitten: React.FC = () => {
 	return (
 		<div className={s.wrapper}>
@@ -41,7 +45,12 @@ const MyKitten: React.FC = () => {
 					<div className={s.sliderBlock}>Slider</div>
 
 					<div className={s.btnWrapper}>
-						<Button name="Скасувати бронь" buttonClasses={'primaryBtn'} type={'button'} />
+						<Button
+							name="Скасувати бронь"
+							buttonClasses={'primaryBtn'}
+							type={'button'}
+							styleBtn={primaryBtnStyle}
+						/>
 					</div>
 				</div>
 			</div>
