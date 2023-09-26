@@ -3,6 +3,7 @@ import { useMediaQuery } from 'src/hooks/useMediaQuery';
 
 import Button from '../Button/Button';
 import ImageCatCard from './ImageCatCard/ImageCatCard';
+import Carousel from './Carousel/Carousel';
 import Slider from '../Slider/Slider';
 
 import { pluralize } from 'src/utils/pluralize';
@@ -15,7 +16,6 @@ import lockIcon from 'src/assets/icons/cat_card/lock.svg';
 import homeIcon from 'src/assets/icons/cat_card/home.svg';
 
 import s from './CatCard.module.scss';
-import Carousel from './Carousel/Carousel';
 
 const btnStyle = {
 	width: '100%',
