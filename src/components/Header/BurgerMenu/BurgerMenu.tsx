@@ -1,7 +1,7 @@
 import Menu from 'src/components/Menu/Menu';
 import s from './BurgerMenu.module.scss';
 import Button from 'src/components/Button/Button';
-import Contacts from 'src/components/Contacts/Contacts';
+import ContactsInfo from 'src/components/ContactsInfo/ContactsInfo';
 
 interface BurgerMenuProps {
 	onOpenModalDonate: () => void;
@@ -31,7 +31,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ onOpenModalDonate, closeBurgerM
 					onClick={handleOpenWindow}
 					styleBtn={{ width: '9.8125rem', padding: '0rem' }}
 				/>
-				<Contacts type="contactsBurgerMenu" />
+				<ContactsInfo type="contactsBurgerMenu" />
 			</div>
 		</div>
 	);
