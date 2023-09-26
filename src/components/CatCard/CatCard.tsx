@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
 
-import Button from '../Button/Button';
 import ImageCatCard from './ImageCatCard/ImageCatCard';
+import Button from '../Button/Button';
 import Carousel from './Carousel/Carousel';
 import Slider from '../Slider/Slider';
 
