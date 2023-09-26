@@ -1,3 +1,5 @@
+@use "/src/styles/mixins" as *;
+
 .backdrop {
 	z-index: 9;
 	position: fixed;
@@ -10,6 +12,9 @@
 	min-height: 100vh;
 	height: 100%;
 	overflow-y: auto;
+	@include full_desktop{
+		align-items: center;
+	}
 }
 .wrapper {
 	position: relative;

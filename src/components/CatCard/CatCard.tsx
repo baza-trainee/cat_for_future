@@ -15,6 +15,7 @@ import lockIcon from 'src/assets/icons/cat_card/lock.svg';
 import homeIcon from 'src/assets/icons/cat_card/home.svg';
 
 import s from './CatCard.module.scss';
+import Carousel from './Carousel/Carousel';
 
 const btnStyle = {
 	width: '100%',
@@ -47,58 +48,62 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 			>
 				{isTablet && !variant ? (
 					<ImageCatCard photo={photos[0]} />
-				) : (
+				) : !isTablet || (isTablet && tabletModal) ? (
 					<Slider
 						slidesPerView={tabletModal ? 1.148 : 1}
 						spaceBetween={tabletModal ? 12 : 4}
 						slidesPerGroup={1}
-						loop={tabletModal}
 						slideStyle={slideStyle}
-						className={tabletModal ? 'inTabletModal' : desktopModal ? 'inDesktopModal' : ''}
+						loop={tabletModal}
+						className={tabletModal ? 'inTabletModal' : ''}
 					>
 						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
 					</Slider>
+				) : (
+					<Carousel photos={photos} />
 				)}
 				<div className={s.heartIconContainer}>
 					<HeartIcon className={clsx(s.heartIcon, isBooked && s.isBooked)} />
 				</div>
 			</div>
-			<div
-				className={s.content}
-				onClick={isTablet && onCatCardClick ? () => onCatCardClick(id) : undefined}
-			>
-				<div className={s.header}>
-					<h2 className={s.name}>{name}</h2>
-					<div className={s.status}>
-						<img
-							className={s.statusIcon}
-							src={isBooked ? lockIcon : homeIcon}
-							alt="booking_status"
-						/>
-						<span className={s.statusText}>{isBooked ? 'Заброньований' : 'Шукаю дім'}</span>
+			<div className={s.modWrapper}>
+				<div
+					className={s.content}
+					onClick={isTablet && onCatCardClick ? () => onCatCardClick(id) : undefined}
+				>
+					<div className={s.header}>
+						<h2 className={s.name}>{name}</h2>
+						<div className={s.status}>
+							<img
+								className={s.statusIcon}
+								src={isBooked ? lockIcon : homeIcon}
+								alt="booking_status"
+							/>
+							<span className={s.statusText}>{isBooked ? 'Заброньований' : 'Шукаю дім'}</span>
+						</div>
 					</div>
+					<span className={s.id}>ID: {id}</span>
+					<div className={s.about}>
+						{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralize(age, 'місяц')}
+					</div>
+					<span className={s.birthday}>День народження: {birthday} </span>
+					{variant && (
+						<p className={s.desc}>
+							Грайливе та миле кошеня знаходиться у пошуку люблячого хазяїна якому подарує море
+							радості та щастя.
+						</p>
+					)}
 				</div>
-				<span className={s.id}>ID: {id}</span>
-				<div className={s.about}>
-					{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralize(age, 'місяц')}
+				<div className={s.buttonContainer}>
+					<Button
+						buttonClasses={'primaryBtn'}
+						name="Забронювати"
+						onClick={handleBookedClick}
+						styleBtn={btnStyle}
+						children={<HeartIcon className={s.heartIconBtn} />}
+						disabled={isBooked}
+					/>
 				</div>
-				<span className={s.birthday}>День народження: {birthday} </span>
-				{variant && (
-					<p className={s.desc}>
-						Грайливе та миле кошеня знаходиться у пошуку люблячого хазяїна якому подарує море
-						радості та щастя.
-					</p>
-				)}
-			</div>
-			<div className={s.buttonContainer}>
-				<Button
-					buttonClasses={'primaryBtn'}
-					name="Забронювати"
-					onClick={handleBookedClick}
-					styleBtn={btnStyle}
-					children={<HeartIcon className={s.heartIconBtn} />}
-					disabled={isBooked}
-				/>
 			</div>
 		</div>
 	);

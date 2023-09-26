@@ -3,7 +3,7 @@ import useMediaQuery from 'src/hooks/useMediaQuery';
 
 import Button from '../Button/Button';
 import CatCard from '../CatCard/CatCard';
-import ModalShowCat from '../CatCard/ShowCatModal/ShowCatModal';
+import ModalShowCat from '../CatCard/ModalShowCat/ModalShowCat';
 
 import { cats } from 'src/data/cats.temp';
 import s from './OurCats.module.scss';

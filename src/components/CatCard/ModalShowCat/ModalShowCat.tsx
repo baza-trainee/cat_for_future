@@ -1,14 +1,14 @@
 import React from 'react';
-import s from './ShowCatModal.module.scss';
+import s from './ModalShowCat.module.scss';
 
 import { ReactComponent as Close } from 'src/assets/icons/login-close-btn.svg';
 
-interface ShowCatModalProps {
+interface ModalShowCatProps {
 	children: React.ReactNode;
 	closeModal: () => void;
 }
 
-const ShowCatModal: React.FC<ShowCatModalProps> = ({ children, closeModal }) => {
+const ModalShowCat: React.FC<ModalShowCatProps> = ({ children, closeModal }) => {
 	const handleBackdropClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
 		if (e.target === e.currentTarget) {
 			closeModal();
@@ -25,4 +25,4 @@ const ShowCatModal: React.FC<ShowCatModalProps> = ({ children, closeModal }) => 
 	);
 };
 
-export default ShowCatModal;
+export default ModalShowCat;
