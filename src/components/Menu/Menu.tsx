@@ -16,11 +16,11 @@ interface IMenuProps {
 const navLinks: INavLink[] = [
 	{
 		name: 'Перегляд кошенят',
-		to: '/kittens',
+		to: '/#ourCats',
 	},
 	{
 		name: 'Щасливі історії',
-		to: '/happy-stories',
+		to: '/#happyStories',
 	},
 	{
 		name: 'Контакти',
