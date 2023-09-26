@@ -7,7 +7,7 @@ const MyKitten: React.FC = () => {
 		<div className={s.wrapper}>
 			<div className={s.kittensList}>
 				<div className={s.kittenItem}>
-					<h2>Привіт, я твоє кошеня Кокос </h2>
+					<h2 className={s.kittenTitle}>Привіт, я твоє кошеня Кокос </h2>
 
 					<div className={s.kittenDescrBody}>
 						<div className={s.kittenId}>ID: 28</div>

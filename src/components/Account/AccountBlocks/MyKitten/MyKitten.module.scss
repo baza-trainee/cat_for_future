@@ -1,2 +1,36 @@
 @use 'src/styles/variables' as *;
 @use 'src/styles/mixins' as *;
+
+.wrapper {
+	width: 100%;
+}
+
+.kittensList {
+	display: flex;
+	flex-direction: column;
+}
+
+.kittenItem {
+	display: flex;
+	flex-direction: column;
+}
+
+.kittenTitle {
+	color: $color-primary-orange;
+	font-family: Montserrat Alternates;
+	font-size: 1.375rem;
+	font-weight: 900;
+	line-height: 110%;
+	text-align: start;
+	width: 17.8125rem;
+
+	@include tablet {
+		width: 26.375rem;
+	}
+}
+
+.kittenDescrBody {
+	display: flex;
+	flex-direction: column;
+	margin-top: 0.75rem;
+}
