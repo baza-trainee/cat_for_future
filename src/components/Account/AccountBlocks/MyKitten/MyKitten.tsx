@@ -16,24 +16,24 @@ const MyKitten: React.FC = () => {
 					</div>
 
 					<div className={s.timerBlock}>
-						<h3>Я поїду додому через</h3>
+						<h3 className={s.timerTitle}>Я поїду додому через</h3>
 						<div className={s.timerWrapper}>
 							<div className={s.timerUnit}>
-								<div className={s.timerNum}></div>
-								<div className={s.timerNum}></div>
-								<div>днів</div>
+								<div className={s.timerNum}>0</div>
+								<div className={s.timerNum}>0</div>
+								<div className={s.timerNoun}>днів</div>
 							</div>
 
 							<div className={s.timerUnit}>
-								<div className={s.timerNum}></div>
-								<div className={s.timerNum}></div>
-								<div>годин</div>
+								<div className={s.timerNum}>0</div>
+								<div className={s.timerNum}>0</div>
+								<div className={s.timerNoun}>годин</div>
 							</div>
 
 							<div className={s.timerUnit}>
-								<div className={s.timerNum}></div>
-								<div className={s.timerNum}></div>
-								<div>хвилин</div>
+								<div className={s.timerNum}>0</div>
+								<div className={s.timerNum}>0</div>
+								<div className={s.timerNoun}>хвилин</div>
 							</div>
 						</div>
 					</div>
