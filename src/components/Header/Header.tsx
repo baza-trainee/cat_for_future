@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 	};
 
 	const handleNavigateToCabinet = () => {
-		navigate('/cabinet');
+		navigate('/account');
 	};
 
 	return (
