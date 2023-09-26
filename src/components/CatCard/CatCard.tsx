@@ -21,11 +21,17 @@ const btnStyle = {
 	gap: '.37rem',
 };
 
+interface CatCardProps extends ICat {
+	onCatCardClick?: (id: number) => void;
+	variant?: 'tabletModal' | 'desktopModal';
+	slideStyle?: React.CSSProperties;
+}
 
-interface CatCardProps extends ICat {}
-
-const CatCard: React.FC<CatCardProps> = ({ id, name, age, sex, birthday, photos }) => {
+const CatCard: React.FC<CatCardProps> = (props) => {
+	const { id, name, age, sex, birthday, photos, onCatCardClick, variant, slideStyle } = props;
 	const { isTablet } = useMediaQuery();
+	const tabletModal = variant === 'tabletModal';
+	const desktopModal = variant === 'desktopModal';
 
 	//temporary for testing
 	const [isBooked, setIsBooked] = useState(false);
@@ -34,12 +40,22 @@ const CatCard: React.FC<CatCardProps> = ({ id, name, age, sex, birthday, photos 
 	};
 
 	return (
-		<div className={s.wrapper}>
-			<div className={s.images}>
-				{isTablet ? (
+		<div className={clsx(s.wrapper, tabletModal && s.tabletModal, desktopModal && s.desktopModal)}>
+			<div
+				className={s.images}
+				onClick={isTablet && onCatCardClick ? () => onCatCardClick(id) : undefined}
+			>
+				{isTablet && !variant ? (
 					<ImageCatCard photo={photos[0]} />
 				) : (
-					<Slider slidesPerView={1} spaceBetween={4} slidesPerGroup={1}>
+					<Slider
+						slidesPerView={tabletModal ? 1.148 : 1}
+						spaceBetween={tabletModal ? 12 : 4}
+						slidesPerGroup={1}
+						loop={tabletModal}
+						slideStyle={slideStyle}
+						className={tabletModal ? 'inTabletModal' : desktopModal ? 'inDesktopModal' : ''}
+					>
 						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
 					</Slider>
 				)}
@@ -47,7 +63,10 @@ const CatCard: React.FC<CatCardProps> = ({ id, name, age, sex, birthday, photos 
 					<HeartIcon className={clsx(s.heartIcon, isBooked && s.isBooked)} />
 				</div>
 			</div>
-			<div className={s.content}>
+			<div
+				className={s.content}
+				onClick={isTablet && onCatCardClick ? () => onCatCardClick(id) : undefined}
+			>
 				<div className={s.header}>
 					<h2 className={s.name}>{name}</h2>
 					<div className={s.status}>
@@ -64,6 +83,12 @@ const CatCard: React.FC<CatCardProps> = ({ id, name, age, sex, birthday, photos 
 					{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralize(age, 'місяц')}
 				</div>
 				<span className={s.birthday}>День народження: {birthday} </span>
+				{variant && (
+					<p className={s.desc}>
+						Грайливе та миле кошеня знаходиться у пошуку люблячого хазяїна якому подарує море
+						радості та щастя.
+					</p>
+				)}
 			</div>
 			<div className={s.buttonContainer}>
 				<Button

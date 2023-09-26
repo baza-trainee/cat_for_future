@@ -1,4 +1,4 @@
-@use 'src/styles/variables' as *;
+@use "src/styles/variables" as *;
 
 .wrapper {
 	:global {
@@ -51,5 +51,28 @@
 	.rightArrow path,
 	.leftArrow path {
 		stroke: $color-system-default-30;
+	}
+}
+
+//Tablet Cats Slider in Modal
+.wrapper.inTabletModal {
+	:global {
+		.swiper-slide {
+			height: 100%;
+			//width: 41.69rem;
+			padding-bottom: 3.625rem;
+		}
+		.swiper-pagination-bullets {
+			bottom: 1.5rem;
+		}
+		.nextBtn {
+			left: 2.5rem + 2.2rem;
+			right: auto;
+		}
+		.prevBtn {
+			left: 2.2rem;
+			right: auto;
+			margin-right: 0.5rem;
+		}
 	}
 }

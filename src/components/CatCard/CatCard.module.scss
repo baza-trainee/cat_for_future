@@ -3,12 +3,16 @@
 
 .wrapper {
 	background-color: $color-primary-green;
+	
 }
 
 .images {
 	position: relative;
 	overflow: hidden;
 	margin-bottom: 0.88rem;
+	@include tablet {
+		cursor: pointer;
+	}
 }
 
 .heartIconContainer {
@@ -46,6 +50,7 @@
 	margin-bottom: 3.31rem;
 	@include tablet {
 		margin-bottom: 3.12rem;
+		cursor: pointer;
 	}
 	@include full_desktop {
 		margin-bottom: 3.25rem;
@@ -109,22 +114,66 @@
 }
 
 .birthday {
+	display: block;
 	color: #e9e9e9;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: normal;
 }
+.birthday:not(:last-child) {
+	margin-bottom: 1.5rem;
+}
+
+.desc {
+	font-size: 1.125rem;
+	line-height: 140%;
+	color: #ffffff;
+}
 
 .buttonContainer {
-	margin: 0 1rem 2.5rem;
+	padding: 0 1rem 2.5rem;
 	@include tablet {
-		margin-bottom: 2.25rem;
+		padding-bottom: 2.25rem;
 	}
 	@include full_desktop {
-		margin-bottom: 2.12rem;
+		padding-bottom: 2.12rem;
 	}
 }
 
 .heartIconBtn path {
 	stroke: $color-system-default-0;
+}
+
+
+//Tablet Cat Modal
+.wrapper.tabletModal {
+	width: 48rem;
+	padding-top: 1.25rem;
+	.name {
+		font-size: 2.5rem;
+	}
+	.status {
+		line-height: normal;
+	}
+	.images {
+		margin-bottom: 0;
+	}
+	.id {
+		font-weight: 500;
+		margin-bottom: 0.75rem;
+	}
+	.birthday {
+		font-weight: 500;
+	}
+	.content {
+		padding-inline: 3.62rem;
+		margin-bottom: 4.38rem;
+	}
+	.buttonContainer {
+		padding: 0 14.62rem 5.94rem;
+	}
+	.heartIconContainer {
+		top: 3.81rem;
+		left: 4.38rem;
+	}
 }

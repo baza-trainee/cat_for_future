@@ -17,6 +17,7 @@ interface ImageSliderProps {
 	slidesPerView: number;
 	spaceBetween: number;
 	slidesPerGroup: number;
+	loop: boolean;
 	slideStyle?: React.CSSProperties;
 	children: React.ReactNode[];
 }
@@ -26,6 +27,7 @@ const Slider: React.FC<ImageSliderProps> = ({
 	slidesPerView,
 	spaceBetween,
 	slidesPerGroup,
+	loop = false,
 	children,
 	slideStyle,
 }) => {
@@ -46,6 +48,7 @@ const Slider: React.FC<ImageSliderProps> = ({
 				grabCursor
 				speed={300}
 				style={{ width: '100%', height: '100%' }}
+				loop={loop}
 			>
 				{children.map((slide, index) => (
 					<SwiperSlide key={index} style={slideStyle}>
