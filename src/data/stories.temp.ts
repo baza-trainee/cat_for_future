@@ -1,13 +1,7 @@
 import cat1 from 'src/assets/images/happy-stories/stories-cat1.jpg';
 import cat2 from 'src/assets/images/happy-stories/stories-cat2.jpg';
 import cat3 from 'src/assets/images/happy-stories/stories-cat3.jpg';
-
-export interface IStory {
-	id: number;
-	title: string;
-	text: string;
-	imgSrc: string;
-}
+import { IStory } from 'src/types/IStory';
 
 export const happyStories: IStory[] = [
 	{

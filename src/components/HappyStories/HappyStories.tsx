@@ -1,5 +1,5 @@
 import { happyStories } from 'src/data/stories.temp';
-import { IStory } from 'src/data/stories.temp';
+import { IStory } from 'src/types/IStory';
 import { scrollToSection } from 'src/utils/scrollToSection';
 
 import s from './HappyStories.module.scss';

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import s from './StoryCard.module.scss';
 
-import { IStory } from 'src/data/stories.temp';
+import { IStory } from 'src/types/IStory';
 import Button from 'src/components/Button/Button';
 import { ReactComponent as ArrayRight } from 'src/assets/icons/arrow-right.svg';
 import { scrollToSection } from 'src/utils/scrollToSection';
