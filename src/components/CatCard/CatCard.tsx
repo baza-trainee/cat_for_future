@@ -21,13 +21,6 @@ const btnStyle = {
 	gap: '.37rem',
 };
 
-const favoriteBtnStyle = {
-	backgroundColor: 'rgba(255, 255, 255, 0.9)',
-	width: '2.875rem',
-	height: '2.875rem',
-	borderRadius: '50%',
-	padding: '.75rem',
-};
 
 interface CatCardProps extends ICat {}
 
@@ -36,12 +29,8 @@ const CatCard: React.FC<CatCardProps> = ({ id, name, age, sex, birthday, photos 
 
 	//temporary for testing
 	const [isBooked, setIsBooked] = useState(false);
-	const [inFavorite, setInFavorite] = useState(false);
 	const handleBookedClick = () => {
 		setIsBooked((prev) => !prev);
-	};
-	const handleAddToFavoriteClick = () => {
-		setInFavorite((prev) => !prev);
 	};
 
 	return (
@@ -51,18 +40,11 @@ const CatCard: React.FC<CatCardProps> = ({ id, name, age, sex, birthday, photos 
 					<ImageCatCard photo={photos[0]} />
 				) : (
 					<Slider slidesPerView={1} spaceBetween={4} slidesPerGroup={1}>
-						{photos?.slice(0, 3).map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
+						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
 					</Slider>
 				)}
-				<div className={s.favoriteBtnContainer}>
-					<Button
-						buttonClasses={'primaryBtn'}
-						onClick={handleAddToFavoriteClick}
-						styleBtn={favoriteBtnStyle}
-						children={
-							<HeartIcon className={clsx(s.heartFavoriteBtn, inFavorite && s.inFavorite)} />
-						}
-					/>
+				<div className={s.heartIconContainer}>
+					<HeartIcon className={clsx(s.heartIcon, isBooked && s.isBooked)} />
 				</div>
 			</div>
 			<div className={s.content}>

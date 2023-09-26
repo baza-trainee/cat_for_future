@@ -1,5 +1,5 @@
-@use 'src/styles/variables' as *;
-@use 'src/styles/mixins' as *;
+@use "src/styles/variables" as *;
+@use "src/styles/mixins" as *;
 
 .wrapper {
 	background-color: $color-primary-green;
@@ -11,28 +11,32 @@
 	margin-bottom: 0.88rem;
 }
 
-.favoriteBtnContainer {
+.heartIconContainer {
 	z-index: 9;
 	position: absolute;
-	top: 3.75rem;
 	left: 1.25rem;
+	top: 3.75rem;
+	width: 2.875rem;
+	height: 2.875rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 50%;
+	padding: 0.75rem;
+	overflow: hidden;
 
-	button:hover {
-		.heartFavoriteBtn path {
-			stroke: $color-ref-orange-20;
-		}
-	}
 	@include tablet {
 		top: 1.25rem;
 	}
 }
 
-.heartFavoriteBtn {
+.heartIcon {
 	path {
 		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
 		stroke: $color-primary-orange;
 	}
-	&.inFavorite path {
+	&.isBooked path {
 		fill: $color-primary-orange;
 	}
 }

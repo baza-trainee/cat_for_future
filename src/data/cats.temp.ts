@@ -16,7 +16,7 @@ export const cats: ICat[] = [
 	},
 	{
 		id: 2,
-		name: ' Кокос',
+		name: 'Кокос',
 		age: 3,
 		sex: 'male',
 		birthday: '28.08.2023',
