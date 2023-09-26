@@ -58,7 +58,7 @@
 	width: 100%;
 	flex-direction: column;
 	padding: 0 1rem;
-	gap: 1.75rem;
+	gap: 2.75rem;
 
 	@include small_tablet {
 		flex-direction: row;
@@ -69,17 +69,12 @@
 	}
 
 	@include full_desktop {
-		gap: 6.75rem;
+		gap: 7.25rem;
 	}
 }
 
 .accountContent {
-	padding-top: 1.75rem;
 	width: 100%;
 	height: 100vh;
 	background-color: chartreuse;
-
-	@include full_desktop {
-		padding-left: 6.75rem;
-	}
 }
