@@ -7,9 +7,11 @@ const MyKitten: React.FC = () => {
 	return (
 		<div className={s.wrapper}>
 			<div className={s.kittensList}>
-				{cats.map((cat) => (
-					<CatInfoItem key={cat.id} {...cat} />
-				))}
+				{cats
+					.filter((cat) => cat.booking_status)
+					.map((cat) => (
+						<CatInfoItem key={cat.id} {...cat} />
+					))}
 			</div>
 		</div>
 	);

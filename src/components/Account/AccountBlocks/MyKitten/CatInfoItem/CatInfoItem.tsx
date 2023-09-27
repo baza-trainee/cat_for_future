@@ -1,21 +1,33 @@
 import { FC } from 'react';
 import Button from 'src/components/Button/Button';
-// import useMediaQuery from 'src/hooks/useMediaQuery';
+import ImageCatCard from 'src/components/CatCard/ImageCatCard/ImageCatCard';
+import CatPhotosItem from '../CatPhotosItem/CatPhotosItem';
+import Slider from 'src/components/Slider/Slider';
+import useMediaQuery from 'src/hooks/useMediaQuery';
+import { ICat } from 'src/types/ICat';
+import { pluralize } from 'src/utils/pluralize';
 import s from './CatInfoItem.module.scss';
+
+interface CatInfoItemProps extends ICat {}
 
 const primaryBtnStyle = {
 	width: '100%',
 };
 
-const CatInfoItem: FC = () => {
+const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, age, birthday, photos }) => {
+	const { isTablet } = useMediaQuery();
+	const { isDesktop } = useMediaQuery();
+
 	return (
 		<div className={s.kittenItem}>
-			<h2 className={s.kittenTitle}>Привіт, я твоє кошеня Кокос </h2>
+			<h2 className={s.kittenTitle}>Привіт, я твоє кошеня {name} </h2>
 
 			<div className={s.kittenDescrBody}>
-				<div className={s.kittenId}>ID: 28</div>
-				<div className={s.kittenAge}>Кіт, 2 місяці</div>
-				<div className={s.kittenBirthday}>Дата народження: 28.08.2023</div>
+				<div className={s.kittenId}>ID: {id}</div>
+				<div className={s.kittenAge}>
+					{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralize(age, 'місяц')}
+				</div>
+				<div className={s.kittenBirthday}>Дата народження: {birthday}</div>
 			</div>
 
 			<div className={s.timerBlock}>
@@ -41,7 +53,19 @@ const CatInfoItem: FC = () => {
 				</div>
 			</div>
 
-			<div className={s.sliderBlock}>Slider</div>
+			<div className={s.sliderBlock}>
+				{isDesktop ? (
+					<Slider slidesPerView={2} spaceBetween={4} slidesPerGroup={1}>
+						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
+					</Slider>
+				) : isTablet ? (
+					<CatPhotosItem photos={photos} />
+				) : (
+					<Slider slidesPerView={1} spaceBetween={4} slidesPerGroup={1}>
+						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
+					</Slider>
+				)}
+			</div>
 
 			<div className={s.btnWrapper}>
 				<Button
