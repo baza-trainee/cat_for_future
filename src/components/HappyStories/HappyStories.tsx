@@ -36,6 +36,7 @@ const HappyStories = () => {
 							spaceBetween={20}
 							slidesPerGroup={1}
 							onSlideChange={onCollapseText}
+							loop={true}
 						>
 							{happyStories.map((story: IStory, i) => (
 								<StoryCard
