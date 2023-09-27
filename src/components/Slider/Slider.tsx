@@ -22,6 +22,7 @@ interface ImageSliderProps {
 	centeredSlidesBounds?: boolean;
 	slideStyle?: React.CSSProperties;
 	children: React.ReactNode[];
+	onSlideChange?: () => void;
 }
 
 const Slider: React.FC<ImageSliderProps> = ({
@@ -34,6 +35,7 @@ const Slider: React.FC<ImageSliderProps> = ({
 	loop,
 	children,
 	slideStyle,
+	onSlideChange,
 }) => {
 	return (
 		<div className={clsx(s.wrapper, className && s[className])}>
@@ -52,6 +54,7 @@ const Slider: React.FC<ImageSliderProps> = ({
 				grabCursor
 				speed={300}
 				style={{ width: '100%', height: '100%' }}
+				onSlideChange={onSlideChange}
 				loop={loop}
 			>
 				{children.map((slide, index) => (

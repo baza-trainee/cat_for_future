@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import useMediaQuery from 'src/hooks/useMediaQuery';
 import clsx from 'clsx';
 
@@ -9,13 +9,26 @@ import Button from 'src/components/Button/Button';
 import { ReactComponent as ArrayRight } from 'src/assets/icons/arrow-right.svg';
 import { scrollToSection } from 'src/utils/scrollToSection';
 
-const StoryCard = ({ imgSrc, title, text }: IStory) => {
-	const [isCollapsedText, setIsCollapsedText] = useState(true);
+interface StoryCardProps extends IStory {
+	i: number;
+	handleChangeTextState: (i: number) => void;
+	isCollapsedText?: boolean;
+}
+const StoryCard = ({
+	i,
+	imgSrc,
+	title,
+	text,
+	handleChangeTextState,
+	isCollapsedText,
+}: StoryCardProps) => {
 	const { isDesktop } = useMediaQuery();
 
-	const handleExpandText = () => {
-		setIsCollapsedText((prev) => !prev);
-	};
+	useEffect(() => {
+		if (isCollapsedText && !isDesktop) {
+			scrollToSection('happyStories');
+		}
+	}, [isCollapsedText, isDesktop]);
 
 	return (
 		<div className={s.card}>
@@ -24,7 +37,7 @@ const StoryCard = ({ imgSrc, title, text }: IStory) => {
 				<h3 className={s.title}>{title}</h3>
 				<p className={clsx(s.description, isCollapsedText && s.textCollapsed)}>{text}</p>
 				<div className={s.btnWrap}>
-					<button type="button" className={s.btn} onClick={handleExpandText}>
+					<button type="button" className={s.btn} onClick={() => handleChangeTextState(i)}>
 						{isCollapsedText ? 'Читати далі' : 'Згорнути'}
 					</button>
 					{isDesktop && (
