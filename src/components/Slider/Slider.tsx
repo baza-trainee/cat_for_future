@@ -19,6 +19,7 @@ interface ImageSliderProps {
 	slidesPerGroup: number;
 	slideStyle?: React.CSSProperties;
 	children: React.ReactNode[];
+	onSlideChange?: () => void;
 }
 
 const Slider: React.FC<ImageSliderProps> = ({
@@ -28,6 +29,7 @@ const Slider: React.FC<ImageSliderProps> = ({
 	slidesPerGroup,
 	children,
 	slideStyle,
+	onSlideChange,
 }) => {
 	return (
 		<div className={clsx(s.wrapper, className && s[className])}>
@@ -46,6 +48,7 @@ const Slider: React.FC<ImageSliderProps> = ({
 				grabCursor
 				speed={300}
 				style={{ width: '100%', height: '100%' }}
+				onSlideChange={onSlideChange}
 			>
 				{children.map((slide, index) => (
 					<SwiperSlide key={index} style={slideStyle}>
