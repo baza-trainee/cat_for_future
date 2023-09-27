@@ -17,6 +17,7 @@ import homeIcon from 'src/assets/icons/cat_card/home.svg';
 
 import s from './CatCard.module.scss';
 import ModalWhiteCat from '../ModalWhiteCat/ModalWhiteCat';
+import { useNavigate } from 'react-router';
 
 const btnStyle = {
 	width: '100%',
@@ -25,22 +26,42 @@ const btnStyle = {
 
 interface CatCardProps extends ICat {
 	onCatCardClick?: (id: number) => void;
+	setIsCatModalOpen: (boolean: boolean) => void;
 	variant?: 'tabletModal' | 'desktopModal';
 	slideStyle?: React.CSSProperties;
 }
 
 const CatCard: React.FC<CatCardProps> = (props) => {
-	const { id, name, age, sex, birthday, photos, onCatCardClick, variant, slideStyle } = props;
+	const {
+		id,
+		name,
+		age,
+		sex,
+		birthday,
+		photos,
+		onCatCardClick,
+		variant,
+		slideStyle,
+		setIsCatModalOpen,
+	} = props;
 	const { isTablet } = useMediaQuery();
 	const tabletModal = variant === 'tabletModal';
 	const desktopModal = variant === 'desktopModal';
 	const [showThanksModal, setShowThanksModal] = useState(false);
+
+	const navigate = useNavigate();
 
 	//temporary for testing
 	const [isBooked, setIsBooked] = useState(false);
 	const handleBookedClick = () => {
 		setIsBooked((prev) => !prev);
 		setShowThanksModal(true);
+	};
+
+	const navigateToHome = () => {
+		navigate('/');
+		setShowThanksModal(false);
+		setIsCatModalOpen(false);
 	};
 
 	return (
@@ -114,7 +135,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 						image={photos[0]}
 						message="Дякуємо! Кошеня успішно заброньоване"
 						name="На Головну"
-						onClick={() => console.log('go home')}
+						onClick={navigateToHome}
 					/>
 				</div>
 			)}

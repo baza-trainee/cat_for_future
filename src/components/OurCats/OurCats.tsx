@@ -13,7 +13,7 @@ const OurCats: React.FC = () => {
 	const [catsData, setCatsData] = useState(cats);
 	const [isShowMore, setIsShowMore] = useState(false);
 	const [isModalCatID, setIsModalCatID] = useState<number>();
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isCatModalOpen, setIsCatModalOpen] = useState(false);
 
 	useEffect(() => {
 		!isTablet && !isShowMore ? setCatsData(cats?.slice(0, 3)) : setCatsData(cats);
@@ -52,14 +52,20 @@ const OurCats: React.FC = () => {
 					/>
 				</div>
 			)}
-			{isModalOpen &&
+			{isCatModalOpen &&
 				catsData
 					.filter((item) => item.id === isModalCatID)
 					.map((cat) => (
 						<ModalShowCat
 							key={cat.id}
 							closeModal={closeModal}
-							children={<CatCard variant={isDesktop ? 'desktopModal' : 'tabletModal'} {...cat} />}
+							children={
+								<CatCard
+									setIsModalOpen={setIsCatModalOpen}
+									variant={isDesktop ? 'desktopModal' : 'tabletModal'}
+									{...cat}
+								/>
+							}
 							variant={isDesktop ? 'desktopModal' : 'tabletModal'}
 						/>
 					))}

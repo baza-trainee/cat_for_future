@@ -207,4 +207,10 @@
 	position: fixed;
 	top: 5rem;
 	left: 0;
+	@include tablet {
+		top: 5.75rem;
+	}
+	@include full_desktop {
+		top: 7.625rem;
+	}
 }
