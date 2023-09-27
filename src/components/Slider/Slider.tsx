@@ -17,8 +17,12 @@ interface ImageSliderProps {
 	slidesPerView: number;
 	spaceBetween: number;
 	slidesPerGroup: number;
+	loop?: boolean;
+	centeredSlides?: boolean;
+	centeredSlidesBounds?: boolean;
 	slideStyle?: React.CSSProperties;
 	children: React.ReactNode[];
+	onSlideChange?: () => void;
 }
 
 const Slider: React.FC<ImageSliderProps> = ({
@@ -26,8 +30,12 @@ const Slider: React.FC<ImageSliderProps> = ({
 	slidesPerView,
 	spaceBetween,
 	slidesPerGroup,
+	centeredSlides = true,
+	centeredSlidesBounds = true,
+	loop,
 	children,
 	slideStyle,
+	onSlideChange,
 }) => {
 	return (
 		<div className={clsx(s.wrapper, className && s[className])}>
@@ -38,14 +46,16 @@ const Slider: React.FC<ImageSliderProps> = ({
 				}}
 				slidesPerView={slidesPerView}
 				spaceBetween={spaceBetween}
-				centeredSlides
-				centeredSlidesBounds
+				centeredSlides={centeredSlides}
+				centeredSlidesBounds={centeredSlidesBounds}
 				slidesPerGroup={slidesPerGroup}
 				modules={[Navigation, Pagination]}
 				pagination={true}
 				grabCursor
 				speed={300}
 				style={{ width: '100%', height: '100%' }}
+				onSlideChange={onSlideChange}
+				loop={loop}
 			>
 				{children.map((slide, index) => (
 					<SwiperSlide key={index} style={slideStyle}>
