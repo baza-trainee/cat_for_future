@@ -1,0 +1,30 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.wrapper {
+	width: 100%;
+	background-color: #fff;
+	padding-bottom: 5.88rem;
+
+	@include tablet {
+		gap: 7rem;
+	}
+
+	@include full_desktop {
+		gap: 16.56rem;
+	}
+}
+
+.kittensList {
+	display: flex;
+	flex-direction: column;
+	gap: 4.19rem;
+
+	@include tablet {
+		gap: 5.25rem;
+	}
+
+	@include full_desktop {
+		gap: 6.12rem;
+	}
+}
