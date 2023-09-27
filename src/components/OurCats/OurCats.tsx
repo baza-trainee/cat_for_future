@@ -12,7 +12,7 @@ const OurCats: React.FC = () => {
 	const { isTablet, isDesktop } = useMediaQuery();
 	const [catsData, setCatsData] = useState(cats);
 	const [isShowMore, setIsShowMore] = useState(false);
-	const [isModalCatID, setIsModalCatID] = useState(1);
+	const [isModalCatID, setIsModalCatID] = useState<number>();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
@@ -30,8 +30,8 @@ const OurCats: React.FC = () => {
 		setIsModalOpen(true);
 	};
 	const onCatCardClick = (id: number) => {
-			setIsModalCatID(id);
-			openModal();
+		setIsModalCatID(id);
+		openModal();
 	};
 
 	return (
@@ -60,6 +60,7 @@ const OurCats: React.FC = () => {
 							key={cat.id}
 							closeModal={closeModal}
 							children={<CatCard variant={isDesktop ? 'desktopModal' : 'tabletModal'} {...cat} />}
+							variant={isDesktop ? 'desktopModal' : 'tabletModal'}
 						/>
 					))}
 		</section>

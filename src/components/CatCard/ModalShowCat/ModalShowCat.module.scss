@@ -1,4 +1,4 @@
-@use "/src/styles/mixins" as *;
+@use '/src/styles/mixins' as *;
 
 .backdrop {
 	z-index: 9;
@@ -12,7 +12,7 @@
 	min-height: 100vh;
 	height: 100%;
 	overflow-y: auto;
-	@include full_desktop{
+	@include full_desktop {
 		align-items: center;
 	}
 }
@@ -32,5 +32,9 @@
 	cursor: pointer;
 	path {
 		stroke: #ffffff;
+	}
+	&.desktopModal {
+		top: 1.25rem;
+		right: 1.25rem;
 	}
 }

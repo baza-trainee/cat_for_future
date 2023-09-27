@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import s from './Carousel.module.scss';
-import ImageCatCard from '../ImageCatCard/ImageCatCard';
 import clsx from 'clsx';
 
 interface CarouselProps {
@@ -11,7 +10,6 @@ const Carousel: React.FC<CarouselProps> = ({ photos }) => {
 	const [sliderData, setSliderData] = useState<string>(photos[0]);
 
 	const handleImageClick = (index: number) => {
-		console.log(index);
 		const slider = photos[index];
 		setSliderData(slider);
 	};
@@ -23,7 +21,7 @@ const Carousel: React.FC<CarouselProps> = ({ photos }) => {
 			</div>
 			<div className={s.imagesRow}>
 				{photos.map((photo, index) => (
-					<div key={index} className={clsx(s.image, photo === sliderData && s.selected )}>
+					<div key={index} className={clsx(s.image, photo === sliderData && s.selected)}>
 						<img src={photo} onClick={() => handleImageClick(index)} />
 					</div>
 				))}

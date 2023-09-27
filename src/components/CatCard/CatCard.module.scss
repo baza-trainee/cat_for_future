@@ -1,5 +1,5 @@
-@use "src/styles/variables" as *;
-@use "src/styles/mixins" as *;
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
 
 .wrapper {
 	background-color: $color-primary-green;
@@ -166,6 +166,7 @@
 	.content {
 		padding-inline: 3.62rem;
 		margin-bottom: 4.38rem;
+		pointer-events: none;
 	}
 	.buttonContainer {
 		padding: 0 14.62rem 5.94rem;
@@ -181,7 +182,29 @@
 .wrapper.desktopModal {
 	max-width: 59rem;
 	display: flex;
-	.modWrapper {
-		width: 50%;
+	padding: 2.56rem 2.4rem 1.12rem;
+	.images {
+		min-width: 27.125rem;
 	}
+	.content {
+		padding-inline: 0.75rem;
+		margin-bottom: 5.31rem;
+		pointer-events: none;
+	}
+	.id {
+		font-weight: 500;
+		margin-bottom: 0.75em;
+	}
+	.birthday {
+		font-weight: 500;
+	}
+	.buttonContainer {
+		padding: 0 3rem 1.56rem 4.63rem;
+	}
+}
+.thanksModalWrap {
+	z-index: 100;
+	position: fixed;
+	top: 5rem;
+	left: 0;
 }

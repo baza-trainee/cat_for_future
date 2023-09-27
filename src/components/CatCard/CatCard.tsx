@@ -16,6 +16,7 @@ import lockIcon from 'src/assets/icons/cat_card/lock.svg';
 import homeIcon from 'src/assets/icons/cat_card/home.svg';
 
 import s from './CatCard.module.scss';
+import ModalWhiteCat from '../ModalWhiteCat/ModalWhiteCat';
 
 const btnStyle = {
 	width: '100%',
@@ -33,11 +34,13 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 	const { isTablet } = useMediaQuery();
 	const tabletModal = variant === 'tabletModal';
 	const desktopModal = variant === 'desktopModal';
+	const [showThanksModal, setShowThanksModal] = useState(false);
 
 	//temporary for testing
 	const [isBooked, setIsBooked] = useState(false);
 	const handleBookedClick = () => {
 		setIsBooked((prev) => !prev);
+		setShowThanksModal(true);
 	};
 
 	return (
@@ -105,6 +108,16 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 					/>
 				</div>
 			</div>
+			{showThanksModal && (
+				<div className={s.thanksModalWrap}>
+					<ModalWhiteCat
+						image={photos[0]}
+						message="Дякуємо! Кошеня успішно заброньоване"
+						name="На Головну"
+						onClick={() => console.log('go home')}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };
