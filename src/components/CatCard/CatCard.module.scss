@@ -9,9 +9,6 @@
 	position: relative;
 	overflow: hidden;
 	margin-bottom: 0.88rem;
-	@include tablet {
-		cursor: pointer;
-	}
 }
 
 .heartIconContainer {
@@ -47,9 +44,9 @@
 .content {
 	padding-inline: 1rem;
 	margin-bottom: 3.31rem;
+
 	@include tablet {
 		margin-bottom: 3.12rem;
-		cursor: pointer;
 	}
 	@include full_desktop {
 		margin-bottom: 3.25rem;
@@ -68,6 +65,7 @@
 	font-size: 2rem;
 	font-weight: 900;
 	line-height: normal;
+
 	@include tablet {
 		font-size: 2.25rem;
 	}
@@ -84,6 +82,7 @@
 	font-size: 1rem;
 	font-weight: 600;
 	line-height: normal;
+
 	@include tablet {
 		font-size: 1.125rem;
 		line-height: 132%;
@@ -107,6 +106,7 @@
 	font-size: 1.125rem;
 	font-weight: 800;
 	line-height: normal;
+
 	@include tablet {
 		font-size: 1.25rem;
 	}
@@ -131,6 +131,7 @@
 
 .buttonContainer {
 	padding: 0 1rem 2.5rem;
+
 	@include tablet {
 		padding-bottom: 2.25rem;
 	}
@@ -166,7 +167,6 @@
 	.content {
 		padding-inline: 3.62rem;
 		margin-bottom: 4.38rem;
-		pointer-events: none;
 	}
 	.buttonContainer {
 		padding: 0 14.62rem 5.94rem;
@@ -178,7 +178,6 @@
 }
 
 //Desktop Cat Modal
-
 .wrapper.desktopModal {
 	max-width: 59rem;
 	display: flex;
@@ -189,7 +188,6 @@
 	.content {
 		padding-inline: 0.75rem;
 		margin-bottom: 5.31rem;
-		pointer-events: none;
 	}
 	.id {
 		font-weight: 500;
@@ -207,6 +205,7 @@
 	position: fixed;
 	top: 5rem;
 	left: 0;
+
 	@include tablet {
 		top: 5.75rem;
 	}

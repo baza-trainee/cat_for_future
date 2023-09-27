@@ -26,7 +26,7 @@ const btnStyle = {
 
 interface CatCardProps extends ICat {
 	onCatCardClick?: (id: number) => void;
-	setIsCatModalOpen: (boolean: boolean) => void;
+	setIsCatModalOpen?: (boolean: boolean) => void;
 	variant?: 'tabletModal' | 'desktopModal';
 	slideStyle?: React.CSSProperties;
 }
@@ -51,6 +51,12 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 
 	const navigate = useNavigate();
 
+	const navigateToHome = () => {
+		navigate('/');
+		setShowThanksModal(false);
+		setIsCatModalOpen && setIsCatModalOpen(false);
+	};
+
 	//temporary for testing
 	const [isBooked, setIsBooked] = useState(false);
 	const handleBookedClick = () => {
@@ -58,79 +64,74 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 		setShowThanksModal(true);
 	};
 
-	const navigateToHome = () => {
-		navigate('/');
-		setShowThanksModal(false);
-		setIsCatModalOpen(false);
-	};
-
 	return (
-		<div className={clsx(s.wrapper, tabletModal && s.tabletModal, desktopModal && s.desktopModal)}>
+		<>
 			<div
-				className={s.images}
+				style={!variant ? { cursor: 'pointer' } : undefined}
 				onClick={isTablet && onCatCardClick ? () => onCatCardClick(id) : undefined}
+				className={clsx(s.wrapper, tabletModal && s.tabletModal, desktopModal && s.desktopModal)}
 			>
-				{isTablet && !variant ? (
-					<ImageCatCard photo={photos[0]} />
-				) : !isTablet || (isTablet && tabletModal) ? (
-					<Slider
-						slidesPerView={tabletModal ? 1.148 : 1}
-						spaceBetween={tabletModal ? 12 : 4}
-						slidesPerGroup={1}
-						slideStyle={slideStyle}
-						loop={tabletModal}
-						className={tabletModal ? 'inTabletModal' : ''}
-					>
-						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
-					</Slider>
-				) : (
-					<Carousel photos={photos} />
-				)}
-				<div className={s.heartIconContainer}>
-					<HeartIcon className={clsx(s.heartIcon, isBooked && s.isBooked)} />
-				</div>
-			</div>
-			<div className={s.modWrapper}>
-				<div
-					className={s.content}
-					onClick={isTablet && onCatCardClick ? () => onCatCardClick(id) : undefined}
-				>
-					<div className={s.header}>
-						<h2 className={s.name}>{name}</h2>
-						<div className={s.status}>
-							<img
-								className={s.statusIcon}
-								src={isBooked ? lockIcon : homeIcon}
-								alt="booking_status"
-							/>
-							<span className={s.statusText}>{isBooked ? 'Заброньований' : 'Шукаю дім'}</span>
-						</div>
-					</div>
-					<span className={s.id}>ID: {id}</span>
-					<div className={s.about}>
-						{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralize(age, 'місяц')}
-					</div>
-					<span className={s.birthday}>День народження: {birthday} </span>
-					{variant && (
-						<p className={s.desc}>
-							Грайливе та миле кошеня знаходиться у пошуку люблячого хазяїна якому подарує море
-							радості та щастя.
-						</p>
+				<div className={s.images}>
+					{isTablet && !variant ? (
+						<ImageCatCard photo={photos[0]} />
+					) : !isTablet || (isTablet && tabletModal) ? (
+						<Slider
+							slidesPerView={tabletModal ? 1.148 : 1}
+							spaceBetween={tabletModal ? 12 : 4}
+							slidesPerGroup={1}
+							slideStyle={slideStyle}
+							loop={tabletModal}
+							className={tabletModal ? 'inTabletModal' : ''}
+						>
+							{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
+						</Slider>
+					) : (
+						<Carousel photos={photos} />
 					)}
+					<div className={s.heartIconContainer}>
+						<HeartIcon className={clsx(s.heartIcon, isBooked && s.isBooked)} />
+					</div>
 				</div>
-				<div className={s.buttonContainer}>
-					<Button
-						buttonClasses={'primaryBtn'}
-						name="Забронювати"
-						onClick={handleBookedClick}
-						styleBtn={btnStyle}
-						children={<HeartIcon className={s.heartIconBtn} />}
-						disabled={isBooked}
-					/>
+				<div className={s.modWrapper}>
+					<div className={s.content}>
+						<div className={s.header}>
+							<h2 className={s.name}>{name}</h2>
+							<div className={s.status}>
+								<img
+									className={s.statusIcon}
+									src={isBooked ? lockIcon : homeIcon}
+									alt="booking_status"
+								/>
+								<span className={s.statusText}>{isBooked ? 'Заброньований' : 'Шукаю дім'}</span>
+							</div>
+						</div>
+						<span className={s.id}>ID: {id}</span>
+						<div className={s.about}>
+							{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralize(age, 'місяц')}
+						</div>
+						<span className={s.birthday}>День народження: {birthday} </span>
+						{variant && (
+							<p className={s.desc}>
+								Грайливе та миле кошеня знаходиться у пошуку люблячого хазяїна якому подарує море
+								радості та щастя.
+							</p>
+						)}
+					</div>
+
+					<div onClick={(e) => e.stopPropagation()} className={s.buttonContainer}>
+						<Button
+							buttonClasses={'primaryBtn'}
+							name="Забронювати"
+							onClick={handleBookedClick}
+							styleBtn={btnStyle}
+							children={<HeartIcon className={s.heartIconBtn} />}
+							disabled={isBooked}
+						/>
+					</div>
 				</div>
 			</div>
 			{showThanksModal && (
-				<div className={s.thanksModalWrap}>
+				<div onClick={(e) => e.stopPropagation()} className={s.thanksModalWrap}>
 					<ModalWhiteCat
 						image={photos[0]}
 						message="Дякуємо! Кошеня успішно заброньоване"
@@ -139,7 +140,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 					/>
 				</div>
 			)}
-		</div>
+		</>
 	);
 };
 

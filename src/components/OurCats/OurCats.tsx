@@ -24,10 +24,10 @@ const OurCats: React.FC = () => {
 	};
 
 	const closeModal = () => {
-		setIsModalOpen(false);
+		setIsCatModalOpen(false);
 	};
 	const openModal = () => {
-		setIsModalOpen(true);
+		setIsCatModalOpen(true);
 	};
 	const onCatCardClick = (id: number) => {
 		setIsModalCatID(id);
@@ -61,7 +61,7 @@ const OurCats: React.FC = () => {
 							closeModal={closeModal}
 							children={
 								<CatCard
-									setIsModalOpen={setIsCatModalOpen}
+									setIsCatModalOpen={setIsCatModalOpen}
 									variant={isDesktop ? 'desktopModal' : 'tabletModal'}
 									{...cat}
 								/>

@@ -17,7 +17,9 @@ interface ImageSliderProps {
 	slidesPerView: number;
 	spaceBetween: number;
 	slidesPerGroup: number;
-	loop: boolean;
+	loop?: boolean;
+	centeredSlides?: boolean;
+	centeredSlidesBounds?: boolean;
 	slideStyle?: React.CSSProperties;
 	children: React.ReactNode[];
 }
@@ -27,6 +29,8 @@ const Slider: React.FC<ImageSliderProps> = ({
 	slidesPerView,
 	spaceBetween,
 	slidesPerGroup,
+	centeredSlides = true,
+	centeredSlidesBounds = true,
 	loop = false,
 	children,
 	slideStyle,
@@ -40,8 +44,8 @@ const Slider: React.FC<ImageSliderProps> = ({
 				}}
 				slidesPerView={slidesPerView}
 				spaceBetween={spaceBetween}
-				centeredSlides
-				centeredSlidesBounds
+				centeredSlides={centeredSlides}
+				centeredSlidesBounds={centeredSlidesBounds}
 				slidesPerGroup={slidesPerGroup}
 				modules={[Navigation, Pagination]}
 				pagination={true}

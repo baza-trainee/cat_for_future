@@ -1,4 +1,4 @@
-@use "src/styles/variables" as *;
+@use 'src/styles/variables' as *;
 
 .wrapper {
 	:global {
@@ -59,7 +59,6 @@
 	:global {
 		.swiper-slide {
 			height: 100%;
-			//width: 41.69rem;
 			padding-bottom: 3.625rem;
 		}
 		.swiper-pagination-bullets {
