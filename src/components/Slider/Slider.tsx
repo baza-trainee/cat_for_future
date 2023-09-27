@@ -31,7 +31,7 @@ const Slider: React.FC<ImageSliderProps> = ({
 	slidesPerGroup,
 	centeredSlides = true,
 	centeredSlidesBounds = true,
-	loop = false,
+	loop,
 	children,
 	slideStyle,
 }) => {
