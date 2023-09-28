@@ -10,6 +10,7 @@ import s from './OurCats.module.scss';
 
 const OurCats: React.FC = () => {
 	const { isTablet, isDesktop } = useMediaQuery();
+
 	const [catsData, setCatsData] = useState(cats);
 	const [isShowMore, setIsShowMore] = useState(false);
 	const [isModalCatID, setIsModalCatID] = useState<number>();
@@ -22,8 +23,7 @@ const OurCats: React.FC = () => {
 	const handleShowMoreClick = () => {
 		setIsShowMore(true);
 	};
-
-	const closeModal = () => {
+	const closeCatModal = () => {
 		setIsCatModalOpen(false);
 	};
 	const openModal = () => {
@@ -34,12 +34,21 @@ const OurCats: React.FC = () => {
 		openModal();
 	};
 
+	const onBookedClick = (id: number) => {
+		setCatsData(catsData.map((cat) => (cat.id === id ? { ...cat, booking_status: true } : cat)));
+	};
+
 	return (
 		<section id="ourCats" className={s.wrapper}>
 			<h2 className={s.title}>Наші кошенята</h2>
 			<div className={s.cats}>
 				{catsData.map((cat) => (
-					<CatCard key={cat.id} {...cat} onCatCardClick={onCatCardClick} />
+					<CatCard
+						key={cat.id}
+						{...cat}
+						onCatCardClick={onCatCardClick}
+						onBookedClick={onBookedClick}
+					/>
 				))}
 			</div>
 			{!isTablet && catsData.length <= 3 && (
@@ -58,10 +67,11 @@ const OurCats: React.FC = () => {
 					.map((cat) => (
 						<ModalShowCat
 							key={cat.id}
-							closeModal={closeModal}
+							closeModal={closeCatModal}
 							children={
 								<CatCard
 									setIsCatModalOpen={setIsCatModalOpen}
+									onBookedClick={onBookedClick}
 									variant={isDesktop ? 'desktopModal' : 'tabletModal'}
 									{...cat}
 								/>
