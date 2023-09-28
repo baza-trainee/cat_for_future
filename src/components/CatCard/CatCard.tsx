@@ -29,6 +29,7 @@ interface CatCardProps extends ICat {
 	setIsCatModalOpen?: (boolean: boolean) => void;
 	variant?: 'tabletModal' | 'desktopModal';
 	slideStyle?: React.CSSProperties;
+	onBookedClick: (id: number) => void;
 }
 
 const CatCard: React.FC<CatCardProps> = (props) => {
@@ -43,6 +44,8 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 		variant,
 		slideStyle,
 		setIsCatModalOpen,
+		onBookedClick,
+		booking_status,
 	} = props;
 	const { isTablet } = useMediaQuery();
 	const tabletModal = variant === 'tabletModal';
@@ -58,10 +61,9 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 	};
 
 	//temporary for testing
-	const [isBooked, setIsBooked] = useState(false);
-	const handleBookedClick = () => {
-		setIsBooked((prev) => !prev);
+	const handleBookedClick = (id: number) => {
 		setShowThanksModal(true);
+		onBookedClick(id);
 	};
 
 	return (
@@ -89,7 +91,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 						<Carousel photos={photos} />
 					)}
 					<div className={s.heartIconContainer}>
-						<HeartIcon className={clsx(s.heartIcon, isBooked && s.isBooked)} />
+						<HeartIcon className={clsx(s.heartIcon, booking_status && s.isBooked)} />
 					</div>
 				</div>
 				<div className={s.modWrapper}>
@@ -99,10 +101,12 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 							<div className={s.status}>
 								<img
 									className={s.statusIcon}
-									src={isBooked ? lockIcon : homeIcon}
+									src={booking_status ? lockIcon : homeIcon}
 									alt="booking_status"
 								/>
-								<span className={s.statusText}>{isBooked ? 'Заброньований' : 'Шукаю дім'}</span>
+								<span className={s.statusText}>
+									{booking_status ? 'Заброньований' : 'Шукаю дім'}
+								</span>
 							</div>
 						</div>
 						<span className={s.id}>ID: {id}</span>
@@ -122,10 +126,10 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 						<Button
 							buttonClasses={'primaryBtn'}
 							name="Забронювати"
-							onClick={handleBookedClick}
+							onClick={() => handleBookedClick(id)}
 							styleBtn={btnStyle}
 							children={<HeartIcon className={s.heartIconBtn} />}
-							disabled={isBooked}
+							disabled={booking_status}
 						/>
 					</div>
 				</div>
