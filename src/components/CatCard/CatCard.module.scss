@@ -11,28 +11,32 @@
 	margin-bottom: 0.88rem;
 }
 
-.favoriteBtnContainer {
+.heartIconContainer {
 	z-index: 9;
 	position: absolute;
-	top: 3.75rem;
 	left: 1.25rem;
+	top: 3.75rem;
+	width: 2.875rem;
+	height: 2.875rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 50%;
+	padding: 0.75rem;
+	overflow: hidden;
 
-	button:hover {
-		.heartFavoriteBtn path {
-			stroke: $color-ref-orange-20;
-		}
-	}
 	@include tablet {
 		top: 1.25rem;
 	}
 }
 
-.heartFavoriteBtn {
+.heartIcon {
 	path {
 		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
 		stroke: $color-primary-orange;
 	}
-	&.inFavorite path {
+	&.isBooked path {
 		fill: $color-primary-orange;
 	}
 }
@@ -40,6 +44,7 @@
 .content {
 	padding-inline: 1rem;
 	margin-bottom: 3.31rem;
+
 	@include tablet {
 		margin-bottom: 3.12rem;
 	}
@@ -60,6 +65,7 @@
 	font-size: 2rem;
 	font-weight: 900;
 	line-height: normal;
+
 	@include tablet {
 		font-size: 2.25rem;
 	}
@@ -76,6 +82,7 @@
 	font-size: 1rem;
 	font-weight: 600;
 	line-height: normal;
+
 	@include tablet {
 		font-size: 1.125rem;
 		line-height: 132%;
@@ -99,28 +106,110 @@
 	font-size: 1.125rem;
 	font-weight: 800;
 	line-height: normal;
+
 	@include tablet {
 		font-size: 1.25rem;
 	}
 }
 
 .birthday {
+	display: block;
 	color: #e9e9e9;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: normal;
 }
+.birthday:not(:last-child) {
+	margin-bottom: 1.5rem;
+}
+
+.desc {
+	font-size: 1.125rem;
+	line-height: 140%;
+	color: #ffffff;
+}
 
 .buttonContainer {
-	margin: 0 1rem 2.5rem;
+	padding: 0 1rem 2.5rem;
+
 	@include tablet {
-		margin-bottom: 2.25rem;
+		padding-bottom: 2.25rem;
 	}
 	@include full_desktop {
-		margin-bottom: 2.12rem;
+		padding-bottom: 2.12rem;
 	}
 }
 
 .heartIconBtn path {
 	stroke: $color-system-default-0;
+}
+
+//Tablet Cat Modal
+.wrapper.tabletModal {
+	width: 48rem;
+	padding-top: 1.25rem;
+	.name {
+		font-size: 2.5rem;
+	}
+	.status {
+		line-height: normal;
+	}
+	.images {
+		margin-bottom: 0;
+	}
+	.id {
+		font-weight: 500;
+		margin-bottom: 0.75rem;
+	}
+	.birthday {
+		font-weight: 500;
+	}
+	.content {
+		padding-inline: 3.62rem;
+		margin-bottom: 4.38rem;
+	}
+	.buttonContainer {
+		padding: 0 14.62rem 5.94rem;
+	}
+	.heartIconContainer {
+		top: 3.81rem;
+		left: 4.38rem;
+	}
+}
+
+//Desktop Cat Modal
+.wrapper.desktopModal {
+	max-width: 59rem;
+	display: flex;
+	padding: 2.56rem 2.4rem 1.12rem;
+	.images {
+		min-width: 27.125rem;
+	}
+	.content {
+		padding-inline: 0.75rem;
+		margin-bottom: 5.31rem;
+	}
+	.id {
+		font-weight: 500;
+		margin-bottom: 0.75em;
+	}
+	.birthday {
+		font-weight: 500;
+	}
+	.buttonContainer {
+		padding: 0 3rem 1.56rem 4.63rem;
+	}
+}
+.thanksModalWrap {
+	z-index: 100;
+	position: fixed;
+	top: 5rem;
+	left: 0;
+
+	@include tablet {
+		top: 5.75rem;
+	}
+	@include full_desktop {
+		top: 7.625rem;
+	}
 }

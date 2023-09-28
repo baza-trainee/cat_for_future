@@ -1,5 +1,5 @@
-@use "src/styles/variables" as *;
-@use "src/styles/mixins" as *;
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
 
 .backdrop {
 	background: rgba(206, 206, 206, 0.6);

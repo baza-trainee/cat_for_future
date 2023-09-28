@@ -6,7 +6,7 @@ export const pluralize = (
 	suffix3 = 'і'
 ) => {
 	if (count >= 10 && count <= 20) return `${noun}${suffix}`;
-	const n = count.toString().slice(-1); // Get the last digit
+	const n = count.toString().slice(-1);
 	return `${noun}${
 		['0', '5', '6', '7', '8', '9'].includes(n)
 			? suffix
