@@ -14,12 +14,8 @@ const AccountLayout: React.FC = () => {
 			</div>
 			<h2 className={s.title}>Особистий кабінет</h2>
 			<div className={s.accountPanel}>
-				<nav>
-					<AccountMenu />
-				</nav>
-				<div className={s.accountContent}>
-					<Outlet />
-				</div>
+				<AccountMenu />
+				<Outlet />
 			</div>
 		</div>
 	);
