@@ -130,13 +130,13 @@
 }
 
 .buttonContainer {
-	padding: 0 1rem 2.5rem;
+	margin: 0 1rem 2.5rem;
 
 	@include tablet {
-		padding-bottom: 2.25rem;
+		margin-bottom: 2.25rem;
 	}
 	@include full_desktop {
-		padding-bottom: 2.12rem;
+		margin-bottom: 2.12rem;
 	}
 }
 
