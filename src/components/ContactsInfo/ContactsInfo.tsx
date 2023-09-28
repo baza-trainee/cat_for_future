@@ -24,7 +24,6 @@ const ContactsInfo: React.FC<ContactsInfoProps> = ({ type, styleContacts, compon
 					<p className={clsx(s.contactContainer, componentType === 'contactPage' && s.contactPage)}>
 						<Phone
 							className={clsx(s.contactIcn, componentType === 'contactPage' && s.contactPage)}
-							alt="Phone icon"
 						/>
 						+38 063 628 66 30
 					</p>
@@ -32,7 +31,6 @@ const ContactsInfo: React.FC<ContactsInfoProps> = ({ type, styleContacts, compon
 					<p className={clsx(s.contactContainer, componentType === 'contactPage' && s.contactPage)}>
 						<Email
 							className={clsx(s.contactIcn, componentType === 'contactPage' && s.contactPage)}
-							alt="Email icon"
 						/>
 						catforfuture@gmail.com
 					</p>
