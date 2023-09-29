@@ -46,13 +46,27 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, age, birthday, photo
 
 			<div className={s.sliderBlock}>
 				{isDesktop ? (
-					<Slider slidesPerView={2} spaceBetween={4} slidesPerGroup={1}>
+					<Slider
+						slidesPerView={2}
+						spaceBetween={4}
+						slidesPerGroup={1}
+						centeredSlides={false}
+						centeredSlidesBounds={false}
+						className={'inDesktopMyKitten'}
+					>
 						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
 					</Slider>
 				) : isTablet ? (
 					<CatPhotosItem photos={photos} />
 				) : (
-					<Slider slidesPerView={1} spaceBetween={4} slidesPerGroup={1}>
+					<Slider
+						slidesPerView={1}
+						spaceBetween={4}
+						slidesPerGroup={1}
+						centeredSlides={false}
+						centeredSlidesBounds={false}
+						className={'inMobileMyKitten'}
+					>
 						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
 					</Slider>
 				)}

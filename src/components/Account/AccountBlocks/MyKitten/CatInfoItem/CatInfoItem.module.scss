@@ -80,11 +80,13 @@
 }
 
 .sliderBlock {
+	margin: 0 auto;
 	margin-top: 1.31rem;
 	width: 100%;
 	position: relative;
 
 	@include small_tablet {
+		max-width: 36rem;
 		margin-top: 0.5rem;
 	}
 
