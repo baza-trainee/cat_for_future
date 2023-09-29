@@ -84,10 +84,11 @@
 		object-fit: contain;
 		fill: white;
 	}
-
-	&:hover path {
-		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
-		fill: $color-ref-orange-10;
+	@include hover {
+		&:hover path {
+			transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+			fill: $color-ref-orange-10;
+		}
 	}
 }
 

@@ -107,11 +107,13 @@
 		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
 	}
 
-	button:hover .icon path {
-		stroke: $color-ref-orange-10;
-	}
-	button:active .icon path {
-		stroke: $color-ref-orange-20;
+	@include hover {
+		button:hover .icon path {
+			stroke: $color-ref-orange-10;
+		}
+		button:active .icon path {
+			stroke: $color-ref-orange-20;
+		}
 	}
 }
 
@@ -131,8 +133,9 @@
 		font-size: 1.125rem;
 	}
 }
-
-.btn:hover {
-	font-weight: 600;
-	transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+@include hover {
+	.btn:hover {
+		font-weight: 600;
+		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+	}
 }
