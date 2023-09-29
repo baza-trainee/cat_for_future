@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { scrollToSection } from 'src/utils/scrollToSection';
-
+import { scrollToSection, scrollOnTop } from 'src/utils/scrollToSection';
 import Hero from 'src/components/Hero/Hero';
 import OurCats from 'src/components/OurCats/OurCats';
 import AdoptKittenInstruction from 'src/components/AdoptKittenInstruction/AdoptKittenInstruction';
@@ -14,6 +13,7 @@ const Home: React.FC = () => {
 
 	useEffect(() => {
 		location.hash && scrollToSection(location.hash.slice(1));
+		location.pathname === '/' && !location.hash ? scrollOnTop() : null;
 	}, [location]);
 
 	return (

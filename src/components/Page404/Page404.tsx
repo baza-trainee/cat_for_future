@@ -2,15 +2,13 @@ import Button from 'src/components/Button/Button';
 import s from './Page404.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { scrollOnTop } from 'src/utils/scrollToSection';
 
 const Page404 = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		});
+		scrollOnTop();
 	}, []);
 
 	const handleClick = () => {
