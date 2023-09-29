@@ -38,12 +38,12 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 	};
 
 	const handleNavigateToCabinet = () => {
-		navigate('/cabinet');
+		navigate('/account');
 	};
 
 	return (
 		<>
-			<header className={s.header}>
+			<header id="header" className={s.header}>
 				<div className={s.container}>
 					<Logotype onClick={closeBurgerMenu} />
 					<Menu navClass="headerMenu" />
