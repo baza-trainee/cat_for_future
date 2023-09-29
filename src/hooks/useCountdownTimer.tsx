@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react';
-
-const SECOND = 1_000;
-const MINUTE = SECOND * 60;
-const HOUR = MINUTE * 60;
-const DAY = HOUR * 24;
+import { SECOND, MINUTE, HOUR, DAY } from 'src/constants';
 
 export default function useCountdownTimer(deadline: string, interval = SECOND) {
 	const [timestamp, setTimestamp] = useState(new Date(deadline).getTime() - Date.now());
