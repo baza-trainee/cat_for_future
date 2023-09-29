@@ -137,10 +137,11 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 			{showThanksModal && (
 				<div onClick={(e) => e.stopPropagation()} className={s.thanksModalWrap}>
 					<ModalWhiteCat
+						handleCloseModal={() => setShowThanksModal(false)}
 						image={photos[0]}
 						message="Дякуємо! Кошеня успішно заброньоване"
 						name="На Головну"
-						onClick={navigateToHome}
+						handleNavBtn={navigateToHome}
 					/>
 				</div>
 			)}
