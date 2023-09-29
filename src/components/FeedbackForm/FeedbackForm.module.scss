@@ -122,6 +122,7 @@
 
 	textarea {
 		height: 10.8125rem;
+		resize: none;
 
 		@include tablet {
 			height: 11.5625rem;

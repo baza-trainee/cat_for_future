@@ -128,7 +128,6 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 							<textarea
 								id="message"
 								name="message"
-								type="text"
 								className={
 									errors.message && touched.message ? clsx(s.input, s.inputError) : clsx(s.input)
 								}
