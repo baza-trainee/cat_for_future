@@ -8,3 +8,10 @@ export const scrollToSection = (id: string) => {
 		window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
 	}
 };
+
+export const scrollOnTop = () => {
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth',
+	});
+};

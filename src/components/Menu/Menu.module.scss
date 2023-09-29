@@ -26,9 +26,10 @@
 			background-color: $color-system-default-10;
 			height: 1px;
 		}
-
-		&:hover::after {
-			opacity: 1;
+		@include hover {
+			&:hover::after {
+				opacity: 1;
+			}
 		}
 	}
 }
@@ -93,9 +94,11 @@
 			font-size: 1rem;
 			font-weight: 400;
 
-			&:hover {
-				text-decoration: underline;
-				text-decoration-color: $color-system-default-10;
+			@include hover {
+				&:hover {
+					text-decoration: underline;
+					text-decoration-color: $color-system-default-10;
+				}
 			}
 
 			&:hover::after {
