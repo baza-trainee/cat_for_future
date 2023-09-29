@@ -22,14 +22,22 @@
 }
 
 .img {
+	flex: none;
 	display: block;
 	width: 100%;
+	max-width: 18rem;
 	height: 16.25rem;
 	align-self: start;
 	object-fit: cover;
 
 	@include tablet {
 		height: 15.8125rem;
+		max-width: 20.25rem;
+	}
+
+	@include full_desktop {
+		height: 18.1875rem;
+		max-width: 22.9375rem;
 	}
 }
 
