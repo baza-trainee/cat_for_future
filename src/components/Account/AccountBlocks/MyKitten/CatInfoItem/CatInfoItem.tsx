@@ -57,7 +57,7 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, age, birthday, photo
 						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
 					</Slider>
 				) : isTablet ? (
-					<CatPhotosItem photos={photos} />
+					<CatPhotosItem photos={photos} id={id} />
 				) : (
 					<Slider
 						slidesPerView={1}
