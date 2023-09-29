@@ -8,6 +8,7 @@ import { ICat } from 'src/types/ICat';
 import { pluralize } from 'src/utils/pluralize';
 import useCountdownTimer from 'src/hooks/useCountdownTimer';
 import { getDeadlineDate } from 'src/utils/getDeadlineDate';
+import Timer from 'src/components/Timer/Timer';
 import s from './CatInfoItem.module.scss';
 
 interface CatInfoItemProps extends ICat {}
@@ -21,14 +22,11 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, age, birthday, photo
 	const { isTablet } = useMediaQuery();
 	const { isDesktop } = useMediaQuery();
 
-	// birthday example 20.08.2023
-	// date example "2023-12-31T23:59:59"
-	const { days, hours, minutes } = useCountdownTimer(getDeadlineDate(birthday, currentDate));
+	const { days, hours, minutes } = useCountdownTimer(getDeadlineDate(birthday, currentDate).date);
 
 	const arrCorrectDate = [days, hours, minutes].map((item) =>
 		item < 10 ? `0${item}` : item.toString()
 	);
-	const [correctDays, correctHours, correctMinutes] = arrCorrectDate;
 
 	return (
 		<div className={s.kittenItem}>
@@ -42,28 +40,9 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, age, birthday, photo
 				<div className={s.kittenBirthday}>Дата народження: {birthday} </div>
 			</div>
 
-			<div className={s.timerBlock}>
-				<h3 className={s.timerTitle}>Я поїду додому через</h3>
-				<div className={s.timerWrapper}>
-					<div className={s.timerUnit}>
-						<div className={s.timerNum}>{correctDays[0]}</div>
-						<div className={s.timerNum}>{correctDays[1]}</div>
-						<div className={s.timerNoun}>{pluralize(Number(correctDays), 'дн')}</div>
-					</div>
-
-					<div className={s.timerUnit}>
-						<div className={s.timerNum}>{correctHours[0]}</div>
-						<div className={s.timerNum}>{correctHours[1]}</div>
-						<div className={s.timerNoun}>годин</div>
-					</div>
-
-					<div className={s.timerUnit}>
-						<div className={s.timerNum}>{correctMinutes[0]}</div>
-						<div className={s.timerNum}>{correctMinutes[1]}</div>
-						<div className={s.timerNoun}>хвилин</div>
-					</div>
-				</div>
-			</div>
+			{getDeadlineDate(birthday, currentDate).lessFourMonths ? (
+				<Timer arrCorrectDate={arrCorrectDate} />
+			) : null}
 
 			<div className={s.sliderBlock}>
 				{isDesktop ? (

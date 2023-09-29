@@ -16,12 +16,16 @@ export const getDeadlineDate = (birthdayDate: string, currentDate: number) => {
 	const correctAgeInDay = Math.floor(ageInTimestamp / (1000 * 3600 * 24));
 
 	// count of days for waiting
-	const differenceForWaiting = (120 - correctAgeInDay) * 24 * 60 * 60 * 1000;
+	if (correctAgeInDay < 120) {
+		const differenceForWaiting = (120 - correctAgeInDay) * 24 * 60 * 60 * 1000;
 
-	const deadline = differenceForWaiting + currentDate;
+		const deadline = differenceForWaiting + currentDate;
 
-	// make date in format "year-month-dayT00:00:00"
-	const date = new Date(deadline).toISOString().slice(0, 19);
+		// make date in format "year-month-dayT00:00:00"
+		const date = new Date(deadline).toISOString().slice(0, 19);
 
-	return date;
+		return { date, lessFourMonths: true };
+	} else {
+		return { date: new Date(currentDate).toISOString().slice(0, 19), lessFourMonths: false };
+	}
 };
