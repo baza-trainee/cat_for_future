@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './Carousel.module.scss';
 import clsx from 'clsx';
 
@@ -6,23 +6,34 @@ interface CarouselProps {
 	photos: string[];
 }
 
-const Carousel: React.FC<CarouselProps> = ({ photos }) => {
-	const [sliderData, setSliderData] = useState<string>(photos[0]);
+const swapArrayElements = function (arr: string[], indexA: number, indexB: number) {
+	const temp = arr[indexA];
+	arr[indexA] = arr[indexB];
+	arr[indexB] = temp;
+};
 
-	const handleImageClick = (index: number) => {
-		const slider = photos[index];
-		setSliderData(slider);
-	};
+const Carousel: React.FC<CarouselProps> = ({ photos }) => {
+	const [sliderData, setSliderData] = useState<string[]>(photos);
+	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+	useEffect(() => {
+		const swapArray = [...sliderData];
+		if (selectedIndex !== null) {
+			swapArrayElements(swapArray, selectedIndex, 0);
+		}
+		setSliderData(swapArray);
+		setSelectedIndex(null);
+	}, [selectedIndex]);
 
 	return (
 		<div className={s.wrapper}>
 			<div className={s.selectedImage}>
-				<img src={sliderData} alt="slider image" />
+				<img src={sliderData[0]} alt="slider image" />
 			</div>
 			<div className={s.imagesRow}>
-				{photos.map((photo, index) => (
-					<div key={index} className={clsx(s.image, photo === sliderData && s.selected)}>
-						<img src={photo} onClick={() => handleImageClick(index)} />
+				{sliderData.map((photo, index) => (
+					<div key={index} className={clsx(s.image, photo === sliderData[0] && s.selected)}>
+						<img src={photo} onClick={() => setSelectedIndex(index)} />
 					</div>
 				))}
 			</div>
