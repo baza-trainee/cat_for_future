@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
 
 import ImageCatCard from './ImageCatCard/ImageCatCard';
+import ModalWhiteCat from '../ModalWhiteCat/ModalWhiteCat';
 import Button from '../Button/Button';
 import Carousel from './Carousel/Carousel';
 import Slider from '../Slider/Slider';
@@ -16,8 +18,6 @@ import lockIcon from 'src/assets/icons/cat_card/lock.svg';
 import homeIcon from 'src/assets/icons/cat_card/home.svg';
 
 import s from './CatCard.module.scss';
-import ModalWhiteCat from '../ModalWhiteCat/ModalWhiteCat';
-import { useNavigate } from 'react-router';
 
 const btnStyle = {
 	width: '100%',
@@ -51,8 +51,13 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 	const tabletModal = variant === 'tabletModal';
 	const desktopModal = variant === 'desktopModal';
 	const [showThanksModal, setShowThanksModal] = useState(false);
+	const [pluralizedAge, setPluralizedAge] = useState<string>();
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		setPluralizedAge(pluralize(age, 'місяц'));
+	}, []);
 
 	const navigateToHome = () => {
 		navigate('/');
@@ -111,7 +116,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 						</div>
 						<span className={s.id}>ID: {id}</span>
 						<div className={s.about}>
-							{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralize(age, 'місяц')}
+							{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralizedAge}
 						</div>
 						<span className={s.birthday}>День народження: {birthday} </span>
 						{variant && (
