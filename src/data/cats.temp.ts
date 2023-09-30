@@ -13,7 +13,7 @@ export const cats: ICat[] = [
 		age: 1,
 		sex: 'female',
 		birthday: '28.08.2023',
-		booking_status: true,
+		booking_status: false,
 		photos: [cat_1, cat_2, cat_3, cat_4],
 	},
 	{
@@ -31,7 +31,7 @@ export const cats: ICat[] = [
 		age: 2,
 		sex: 'female',
 		birthday: '20.06.2023',
-		booking_status: true,
+		booking_status: false,
 		photos: [cat_3, cat_1, cat_2, cat_4],
 	},
 	{
@@ -58,7 +58,7 @@ export const cats: ICat[] = [
 		age: 2,
 		sex: 'male',
 		birthday: '08.11.2023',
-		booking_status: true,
+		booking_status: false,
 		photos: [cat_6, cat_1, cat_2, cat_4],
 	},
 ];
