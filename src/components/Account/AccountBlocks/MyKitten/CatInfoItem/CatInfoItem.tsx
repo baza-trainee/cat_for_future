@@ -48,7 +48,7 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, age, birthday, photo
 				{isDesktop ? (
 					<Slider
 						slidesPerView={2}
-						spaceBetween={4}
+						spaceBetween={20}
 						slidesPerGroup={1}
 						centeredSlides={false}
 						centeredSlidesBounds={false}
