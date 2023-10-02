@@ -11,7 +11,9 @@
 	}
 
 	@include full_desktop {
+		max-width: 47.1rem;
 		gap: 16.56rem;
+		overflow: hidden;
 	}
 }
 
