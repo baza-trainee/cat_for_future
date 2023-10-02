@@ -13,7 +13,7 @@ export const cats: ICat[] = [
 		age: 1,
 		sex: 'female',
 		birthday: '28.08.2023',
-		booking_status: false,
+		booking_status: true,
 		photos: [cat_1, cat_2, cat_3, cat_4],
 	},
 	{
