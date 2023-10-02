@@ -43,27 +43,21 @@
 	background-color: $color-system-default-0;
 	width: 19.125rem;
 	height: 21.0625rem;
-	margin-top: 7.62rem;
-	padding: 3.13rem 0;
-
-	@include small_tablet {
-		width: 26.875rem;
-		height: 29.9375rem;
-		padding: 4.25rem 0 6.25rem;
-	}
+	margin-top: 3.88rem;
+	padding: 3.12rem 0;
 
 	@include tablet {
 		width: 32.875rem;
 		height: 37.9375rem;
-		margin-top: 6.44rem;
+		margin-top: 1.94rem;
 		padding: 6.25rem 0 8.25rem;
 	}
 
 	@include full_desktop {
-		width: 45.8125rem;
-		height: 42.9375rem;
-		margin-top: 2rem;
-		padding: 6.12rem 0 11.06rem;
+		width: 37.5rem;
+		height: 34.0625rem;
+		margin-top: 3.5rem;
+		padding: 4.12rem 0 4.19rem;
 	}
 }
 
@@ -77,10 +71,6 @@
 	font-size: 1.125rem;
 	line-height: 1.35rem;
 	text-align: center;
-
-	@include small_tablet {
-		font-size: 1.5rem;
-	}
 
 	@include tablet {
 		font-size: 2rem;
@@ -98,11 +88,6 @@
 .imgWrapper {
 	height: 7.8125rem;
 	width: 15.625rem;
-
-	@include small_tablet {
-		height: 12.6875rem;
-		width: 20.625rem;
-	}
 
 	@include tablet {
 		height: 14.6875rem;
