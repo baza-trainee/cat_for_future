@@ -1,4 +1,5 @@
 import { FC, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import clsx from 'clsx';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -68,6 +69,8 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 			? setAuthPasswordError(false)
 			: null;
 	}, [values, touched, authEmailError, authPasswordError]);
+
+	const navigate = useNavigate();
 
 	return (
 		<div
@@ -192,6 +195,11 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 							buttonClasses={'secondaryBtn'}
 							type={'button'}
 							styleBtn={secondaryBtnStyle}
+							// onClick={() => navigate('/registration')}
+							onClick={() => {
+								onCloseLoginWindow(false);
+								navigate('/registration');
+							}}
 						/>
 					</div>
 
