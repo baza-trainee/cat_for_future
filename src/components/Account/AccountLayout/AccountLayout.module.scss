@@ -25,7 +25,9 @@
 
 	@include tablet {
 		display: flex;
+		min-width: 20rem;
 		width: 100%;
+		max-width: 92rem;
 		justify-content: flex-start;
 		align-items: center;
 		padding-bottom: 1.5rem;

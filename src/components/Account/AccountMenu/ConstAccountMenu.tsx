@@ -9,6 +9,7 @@ export interface AccountMenuItemProps {
 	name: string;
 	to: string;
 	icon: React.ReactNode;
+	color?: string;
 }
 
 const menu: AccountMenuItemProps[] = [
@@ -16,7 +17,13 @@ const menu: AccountMenuItemProps[] = [
 	{ id: 2, name: 'Моє кошеня', to: '/account/my-kitten', icon: <Cat /> },
 	{ id: 3, name: 'Змінити пароль', to: '/account/change-password', icon: <Setting /> },
 	{ id: 4, name: 'Вихід', to: '/account/logout', icon: <Logout /> },
-	{ id: 5, name: 'Видалити аккаунт', to: '/account/delete-account', icon: <Trash /> },
+	{
+		id: 5,
+		name: 'Видалити аккаунт',
+		to: '/account/delete-account',
+		icon: <Trash />,
+		color: '#939393',
+	},
 ];
 
 export default menu;
