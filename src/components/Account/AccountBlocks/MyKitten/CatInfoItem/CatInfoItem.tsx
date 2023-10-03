@@ -7,7 +7,7 @@ import useMediaQuery from 'src/hooks/useMediaQuery';
 import { ICat } from 'src/types/ICat';
 import { pluralize } from 'src/utils/pluralize';
 import useCountdownTimer from 'src/hooks/useCountdownTimer';
-import { getDeadlineDate } from 'src/utils/getDeadlineDate';
+import { getDeadlineAndBirthDate } from 'src/utils/getDeadlineAndBirthDate';
 import Timer from 'src/components/Timer/Timer';
 import s from './CatInfoItem.module.scss';
 
@@ -17,12 +17,18 @@ const primaryBtnStyle = {
 	width: '100%',
 };
 
-const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, age, birthday, photos }) => {
+const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, birthday, photos }) => {
 	const [currentDate] = useState(Date.now());
 	const { isTablet } = useMediaQuery();
 	const { isDesktop } = useMediaQuery();
+	const deadlineDate = getDeadlineAndBirthDate(birthday, currentDate).date;
+	const catAge = getDeadlineAndBirthDate(birthday, currentDate).getCatAge();
 
-	const { days, hours, minutes } = useCountdownTimer(getDeadlineDate(birthday, currentDate).date);
+	const correctCatAgeInMonth = (ageNumber: number) => {
+		return ageNumber < 1 ? 'менше 1 місяця' : `${ageNumber} ${pluralize(ageNumber, 'місяц')}`;
+	};
+
+	const { days, hours, minutes } = useCountdownTimer(deadlineDate);
 
 	const arrCorrectDate = [days, hours, minutes].map((item) =>
 		item < 10 ? `0${item}` : item.toString()
@@ -35,12 +41,12 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, age, birthday, photo
 			<div className={s.kittenDescrBody}>
 				<div className={s.kittenId}>ID: {id}</div>
 				<div className={s.kittenAge}>
-					{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralize(age, 'місяц')}
+					{sex === 'male' ? 'Кіт' : 'Кішка'}, {correctCatAgeInMonth(catAge)}
 				</div>
 				<div className={s.kittenBirthday}>Дата народження: {birthday} </div>
 			</div>
 
-			{getDeadlineDate(birthday, currentDate).lessFourMonths ? (
+			{getDeadlineAndBirthDate(birthday, currentDate).lessFourMonths ? (
 				<Timer arrCorrectDate={arrCorrectDate} />
 			) : null}
 
@@ -48,7 +54,7 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, age, birthday, photo
 				{isDesktop ? (
 					<Slider
 						slidesPerView={2}
-						spaceBetween={4}
+						spaceBetween={25}
 						slidesPerGroup={1}
 						centeredSlides={false}
 						centeredSlidesBounds={false}
