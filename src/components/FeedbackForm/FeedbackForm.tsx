@@ -22,34 +22,25 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 			validationSchema: Yup.object().shape({
 				name: Yup.string()
 					.notRequired()
-					.test(
-						'len',
-						`Введіть ім'я від 2 до 15 символів`,
-						(val) => !val || (val.length >= 2 && val.length <= 15)
-					)
+					.min(2, `Ім'я повинно містити щонайменше 2 літери`)
+					.max(15, `Ім'я не повинно містити більше 15 символів`)
 					//name starts with one letter, then could be symbols and/or at least 1 another letter
 					//name could be either with latin or cyrillic letters
 					.matches(
-						/^((?:([a-zA-Z]+[\s'.-]*[a-zA-Z][\s'.-]*)+|([\u0400-\u04FF]+[\s'.-]*[\u0400-\u04FF][\s'.-]*)+))$/,
-						`Дозволена латиниця або кирилиця, дефіс, апостроф, крапка`
+						/^((?:([a-zA-Z]+[\s'.-]*)+|([\u0400-\u04FF]+[\s'.-]*)+))$/,
+						`Дозволена латиниця або кирилиця, пробіл, дефіс, апостроф, крапка`
 					),
 				email: Yup.string()
+					.min(3, `E-mail повинен містити щонайменше 3 символи`)
+					.max(320, `E-mail не повинен містити більше 320 символів`)
 					.matches(
-						/^[0-9a-zA-Z!#$%&'*+/=?`^_{|}~-]+(?:\.[0-9a-z!#$%&'*+/=?`^_{|}~-]+)*@[a-zA-Z]+[0-9a-zA-Z]*(?:\.[a-zA-Z]{2,}[0-9a-zA-Z]*)*$/,
-						`Введіть коректну email адресу`
-					)
-					.test(
-						'len',
-						`Введіть від 3 до 320 символів`,
-						(val) => !val || (val.length >= 3 && val.length <= 320)
+						/^[0-9a-zA-Z!#$%&'*+/=?`^_{|}~-]+(?:\.[0-9a-z!#$%&'*+/=?`^_{|}~-]+)*@[a-zA-Z]+[0-9a-zA-Z]*(?:\.[a-zA-Z]{2,}[0-9a-zA-Z]*)+$/,
+						`Введіть коректний e-mail латиницею`
 					)
 					.required(`Обов'язкове поле`),
 				message: Yup.string()
-					.test(
-						'len',
-						`Введіть повідомлення від 8 до 255 символів`,
-						(val) => val !== undefined && val.length >= 8 && val.length <= 255
-					)
+					.min(8, `Введіть повідомлення від 8 символів`)
+					.max(255, `Повідомлення повинно містити до 255 символів`)
 					.required(`Обов'язкове поле`),
 			}),
 			// need _ when we don't use values
