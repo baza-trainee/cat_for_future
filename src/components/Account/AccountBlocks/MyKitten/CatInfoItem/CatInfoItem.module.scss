@@ -82,7 +82,7 @@
 .sliderBlock {
 	margin: 0 auto;
 	margin-top: 1.31rem;
-	min-width: 100%;
+	width: 100%;
 	position: relative;
 
 	@include small_tablet {
@@ -91,10 +91,14 @@
 	}
 
 	@include tablet {
+		max-width: 100%;
 		margin-top: 1.25rem;
 	}
 
 	@include full_desktop {
+		margin: 0 auto;
+		justify-self: center;
+		max-width: 47rem;
 		grid-column: 1 / 3;
 		margin-top: 0.81rem;
 	}
