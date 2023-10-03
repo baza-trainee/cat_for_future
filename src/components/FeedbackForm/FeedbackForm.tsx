@@ -27,12 +27,23 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 						`Введіть ім'я від 2 до 15 символів`,
 						(val) => !val || (val.length >= 2 && val.length <= 15)
 					)
+					//name starts with one letter, then could be symbols and/or at least 1 another letter
+					//name could be either with latin or cyrillic letters
 					.matches(
-						/^((?:[\pa-zA-Z\s'.-]+|[\p\u0400-\u04FF\s'.-]+))$/,
-						// /^([a-zA-Z\u0400-\u04FF][a-zA-Z\u0400-\u04FF-'./ ]*)$/,
-						`Введіть ім'я латиницею або кирилицею`
+						/^((?:([a-zA-Z]+[\s'.-]*[a-zA-Z][\s'.-]*)+|([\u0400-\u04FF]+[\s'.-]*[\u0400-\u04FF][\s'.-]*)+))$/,
+						`Дозволена латиниця або кирилиця, дефіс, апостроф, крапка`
 					),
-				email: Yup.string().email(`Введіть коректну email адресу`).required(`Обов'язкове поле`),
+				email: Yup.string()
+					.matches(
+						/^[0-9a-zA-Z!#$%&'*+/=?`^_{|}~-]+(?:\.[0-9a-z!#$%&'*+/=?`^_{|}~-]+)*@[a-zA-Z]+[0-9a-zA-Z]*(?:\.[a-zA-Z]{2,}[0-9a-zA-Z]*)*$/,
+						`Введіть коректну email адресу`
+					)
+					.test(
+						'len',
+						`Введіть від 3 до 320 символів`,
+						(val) => !val || (val.length >= 3 && val.length <= 320)
+					)
+					.required(`Обов'язкове поле`),
 				message: Yup.string()
 					.test(
 						'len',
