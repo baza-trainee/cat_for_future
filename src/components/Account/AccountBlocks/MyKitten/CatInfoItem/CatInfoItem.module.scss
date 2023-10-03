@@ -98,7 +98,8 @@
 	@include full_desktop {
 		margin: 0 auto;
 		justify-self: center;
-		max-width: 47rem;
+		min-width: 47rem;
+		max-width: 51rem;
 		grid-column: 1 / 3;
 		margin-top: 0.81rem;
 	}

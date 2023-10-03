@@ -7,12 +7,13 @@
 	padding-bottom: 5.88rem;
 
 	@include tablet {
-		min-width: 27.125rem;
+		min-width: 26.125rem;
 	}
 
 	@include full_desktop {
 		display: grid;
-		grid-template-columns: minmax(42.06rem, auto);
+		grid-template-columns: minmax(42.06rem, 51);
+		justify-content: center;
 	}
 }
 
