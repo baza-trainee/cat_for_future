@@ -28,7 +28,8 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 						(val) => !val || (val.length >= 2 && val.length <= 15)
 					)
 					.matches(
-						/^([a-zA-Z\u0400-\u04FF][a-zA-Z\u0400-\u04FF-'./ ]*)$/,
+						/^((?:[\pa-zA-Z\s'.-]+|[\p\u0400-\u04FF\s'.-]+))$/,
+						// /^([a-zA-Z\u0400-\u04FF][a-zA-Z\u0400-\u04FF-'./ ]*)$/,
 						`Введіть ім'я латиницею або кирилицею`
 					),
 				email: Yup.string().email(`Введіть коректну email адресу`).required(`Обов'язкове поле`),
@@ -52,8 +53,8 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 	return (
 		<div className={s.container}>
 			<div className={s.textContainer}>
-				<h2>Зворотній зв’язок</h2>
-				<p>Якщо у Вас є запитання або пропозиції , напишіть нам</p>
+				<h2>Зворотний зв’язок</h2>
+				<p>Якщо у Вас є запитання або пропозиції, напишіть нам</p>
 			</div>
 
 			<form className={clsx(s.form)} onSubmit={handleSubmit}>
@@ -93,7 +94,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 								errors.email && touched.email ? clsx(s.label, s.labelError) : clsx(s.label)
 							}
 						>
-							E-mail
+							E-mail*
 						</label>
 						<div>
 							<input
@@ -104,7 +105,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 								className={
 									errors.email && touched.email ? clsx(s.input, s.inputError) : clsx(s.input)
 								}
-								placeholder="Ваш email"
+								placeholder="Ваш e-mail"
 								value={values.email}
 								onChange={handleChange}
 								onBlur={handleBlur}
@@ -122,7 +123,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 								errors.message && touched.message ? clsx(s.label, s.labelError) : clsx(s.label)
 							}
 						>
-							Повідомлення
+							Повідомлення*
 						</label>
 						<div>
 							<textarea
