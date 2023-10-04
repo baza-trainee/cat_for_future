@@ -113,3 +113,11 @@
 		line-height: 1.5rem;
 	}
 }
+
+.btn {
+	width: 18rem;
+
+	@include small_tablet {
+		width: 18.75rem;
+	}
+}

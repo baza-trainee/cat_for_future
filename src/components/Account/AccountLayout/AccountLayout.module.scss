@@ -3,7 +3,9 @@
 
 .wrapper {
 	display: flex;
+	min-width: 20rem;
 	width: 100%;
+	max-width: 92rem;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
