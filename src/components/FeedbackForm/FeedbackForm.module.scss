@@ -107,7 +107,7 @@
 .inputWrapper {
 	display: flex;
 	flex-direction: column;
-	gap: 0.6875rem;
+	gap: 1.6875rem;
 
 	@include tablet {
 		gap: 3.125rem;
@@ -153,6 +153,9 @@
 	transition:
 		border 0.2s ease-in-out,
 		color 0.2s ease-in-out;
+	&::placeholder {
+		color: $color-system-default-30;
+	}
 
 	&:hover {
 		outline: 1px solid $color-system-default-100;

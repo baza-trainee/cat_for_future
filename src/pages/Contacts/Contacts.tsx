@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import catPhoto from 'src/assets/images/modal/cat-donate.png';
 import FeedbackForm from 'src/components/FeedbackForm/FeedbackForm';
 import ContactsInfo from 'src/components/ContactsInfo/ContactsInfo';
 import ModalWhiteCat from 'src/components/ModalWhiteCat/ModalWhiteCat';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { scrollOnTop } from 'src/utils/scrollToSection';
 
 import s from './Contacts.module.scss';
-import { useNavigate } from 'react-router-dom';
 
 const Contacts: React.FC = () => {
 	const [showModal, setShowModal] = useState<boolean>(false);
+
+	const location = useLocation();
+
+	useEffect(() => {
+		location.pathname === '/contacts' ? scrollOnTop() : null;
+	}, []);
 
 	const navigate = useNavigate();
 
@@ -35,11 +42,9 @@ const Contacts: React.FC = () => {
 							styleContacts={{ flexDirection: 'column' }}
 						/>
 						<p>
-							Наше відділення нової пошти для посилок
-							<br />
-							№ 280 м. Київ вул. Софії Русової 5
-							<br />
-							+380984500609
+							Наше відділення Нової пошти для посилок
+							<br />№ 280 м.Київ, вул. Софії Русової, 5<br />
+							+38 098 450 06 09
 						</p>
 					</div>
 				</div>

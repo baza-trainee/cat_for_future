@@ -12,7 +12,7 @@ interface FeedbackFormProps {
 
 const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 	// validation login form
-	const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting } =
+	const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, isValid } =
 		useFormik({
 			initialValues: {
 				name: '',
@@ -22,22 +22,25 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 			validationSchema: Yup.object().shape({
 				name: Yup.string()
 					.notRequired()
-					.test(
-						'len',
-						`Введіть ім'я від 2 до 15 символів`,
-						(val) => !val || (val.length >= 2 && val.length <= 15)
-					)
+					.min(2, `Ім'я повинно містити щонайменше 2 літери`)
+					.max(15, `Ім'я не повинно містити більше 15 символів`)
+					//name starts with one letter, then could be symbols and/or at least 1 another letter
+					//name could be either with latin or cyrillic letters
 					.matches(
-						/^([a-zA-Z\u0400-\u04FF][a-zA-Z\u0400-\u04FF-'./ ]*)$/,
-						`Введіть ім'я латиницею або кирилицею`
+						/^((?:([a-zA-Z]+[\s'.-]*)+|([\u0400-\u04FF]+[\s'.-]*)+))$/,
+						`Дозволена латиниця або кирилиця, пробіл, дефіс, апостроф, крапка`
 					),
-				email: Yup.string().email(`Введіть коректну email адресу`).required(`Обов'язкове поле`),
-				message: Yup.string()
-					.test(
-						'len',
-						`Введіть повідомлення від 8 до 255 символів`,
-						(val) => val !== undefined && val.length >= 8 && val.length <= 255
+				email: Yup.string()
+					.min(3, `E-mail повинен містити щонайменше 3 символи`)
+					.max(320, `E-mail не повинен містити більше 320 символів`)
+					.matches(
+						/^[0-9a-zA-Z!#$%&'*+/=?`^_{|}~-]+(?:\.[0-9a-z!#$%&'*+/=?`^_{|}~-]+)*@[a-zA-Z]+[0-9a-zA-Z]*(?:\.[a-zA-Z]{2,}[0-9a-zA-Z]*)+$/,
+						`Введіть коректний e-mail латиницею`
 					)
+					.required(`Обов'язкове поле`),
+				message: Yup.string()
+					.min(8, `Введіть повідомлення від 8 символів`)
+					.max(255, `Повідомлення повинно містити до 255 символів`)
 					.required(`Обов'язкове поле`),
 			}),
 			// need _ when we don't use values
@@ -52,8 +55,8 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 	return (
 		<div className={s.container}>
 			<div className={s.textContainer}>
-				<h2>Зворотній зв’язок</h2>
-				<p>Якщо у Вас є запитання або пропозиції , напишіть нам</p>
+				<h2>Зворотний зв’язок</h2>
+				<p>Якщо у Вас є запитання або пропозиції, напишіть нам</p>
 			</div>
 
 			<form className={clsx(s.form)} onSubmit={handleSubmit}>
@@ -93,7 +96,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 								errors.email && touched.email ? clsx(s.label, s.labelError) : clsx(s.label)
 							}
 						>
-							E-mail
+							E-mail*
 						</label>
 						<div>
 							<input
@@ -104,7 +107,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 								className={
 									errors.email && touched.email ? clsx(s.input, s.inputError) : clsx(s.input)
 								}
-								placeholder="Ваш email"
+								placeholder="Ваш e-mail"
 								value={values.email}
 								onChange={handleChange}
 								onBlur={handleBlur}
@@ -122,7 +125,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 								errors.message && touched.message ? clsx(s.label, s.labelError) : clsx(s.label)
 							}
 						>
-							Повідомлення
+							Повідомлення*
 						</label>
 						<div>
 							<textarea
@@ -147,7 +150,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 						buttonClasses="primaryBtn"
 						type="submit"
 						name="Надіслати"
-						disabled={isSubmitting}
+						disabled={isSubmitting || !isValid}
 					/>
 				</div>
 			</form>
