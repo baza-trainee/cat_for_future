@@ -1,0 +1,96 @@
+@use '/src/styles/variables' as *;
+@use '/src/styles/mixins' as *;
+
+.details {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0px 0 5.0625rem 0;
+}
+
+.detailsForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0px 0 2.5rem 0;
+}
+
+.detailsFormWrapper {
+	@include full_desktop {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		place-items: center;
+		gap: 1.5625rem 2.1875rem;
+	}
+}
+
+.detailsInput {
+	width: 18rem;
+	height: 3rem;
+	font-size: 1.125rem;
+	padding: 0 0.75rem 0 0.75rem;
+	color: $color-system-default-100;
+	letter-spacing: 0.0375rem;
+	border: 0.0625rem solid $color-system-default-30;
+	margin-top: 0.25rem;
+	@include tablet {
+		width: 22.5rem;
+	}
+}
+
+.inputError {
+	border: 0.0625rem solid $color-secondary-error;
+}
+
+.detailsLabel {
+	text-align: start;
+	color: $color-primary-orange;
+	font-family: $primary-font;
+	font-weight: 400;
+	@include tablet {
+		font-size: 1.25rem;
+	}
+}
+
+.errorLabel {
+	color: $color-secondary-error;
+}
+
+.detailsBlock {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1.25rem;
+	height: 5.625rem;
+	&:nth-child(1) {
+		margin-top: 0;
+	}
+	&:nth-child(4) {
+		@include full_desktop {
+			margin-bottom: 0;
+		}
+	}
+	@include full_desktop {
+		margin-top: 0;
+	}
+}
+
+.errorMessage {
+	color: $color-secondary-error;
+	font-size: 0.875rem;
+	@include tablet {
+		font-size: 1rem;
+	}
+}
+
+.btnWrapper {
+	width: 18rem;
+	height: 3.25rem;
+	margin-top: 3.4375rem;
+	@include tablet {
+		width: 16.875rem;
+	}
+	@include full_desktop {
+		width: 24.125rem;
+		height: 3.5rem;
+	}
+}
