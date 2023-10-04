@@ -7,11 +7,13 @@
 	padding-bottom: 5.88rem;
 
 	@include tablet {
-		gap: 7rem;
+		min-width: 26.125rem;
 	}
 
 	@include full_desktop {
-		gap: 16.56rem;
+		display: grid;
+		grid-template-columns: minmax(42.06rem, 51);
+		justify-content: center;
 	}
 }
 

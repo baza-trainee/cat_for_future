@@ -6,6 +6,7 @@ import s from './AdoptKittenInstruction.module.scss';
 
 const btn = {
 	marginTop: '1.28rem',
+	width: '100%',
 };
 
 const AdoptKittenInstruction: FC = () => {
@@ -48,13 +49,15 @@ const AdoptKittenInstruction: FC = () => {
 				</div>
 			</div>
 
-			<Button
-				name={'Обрати кошеня'}
-				buttonClasses={'primaryBtn'}
-				type={'button'}
-				styleBtn={btn}
-				onClick={() => scrollToSection('ourCats')}
-			/>
+			<div className={s.btn}>
+				<Button
+					name={'Обрати кошеня'}
+					buttonClasses={'primaryBtn'}
+					type={'button'}
+					styleBtn={btn}
+					onClick={() => scrollToSection('ourCats')}
+				/>
+			</div>
 		</section>
 	);
 };

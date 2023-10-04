@@ -75,3 +75,22 @@
 		}
 	}
 }
+
+.wrapper.inMobileMyKitten {
+	:global {
+		.swiper-slide {
+			margin-bottom: 1rem;
+		}
+		.prevBtn {
+			margin-right: 0.5rem;
+		}
+	}
+}
+
+.wrapper.inDesktopMyKitten {
+	:global {
+		.swiper-slide {
+			margin-bottom: 0.75rem;
+		}
+	}
+}
