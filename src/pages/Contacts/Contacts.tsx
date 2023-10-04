@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import catPhoto from 'src/assets/images/modal/cat-donate.png';
 import FeedbackForm from 'src/components/FeedbackForm/FeedbackForm';
 import ContactsInfo from 'src/components/ContactsInfo/ContactsInfo';
 import ModalWhiteCat from 'src/components/ModalWhiteCat/ModalWhiteCat';
 
 import s from './Contacts.module.scss';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { scrollOnTop } from 'src/utils/scrollToSection';
 
 const Contacts: React.FC = () => {
 	const [showModal, setShowModal] = useState<boolean>(false);
+
+	const location = useLocation();
+
+	useEffect(() => {
+		location.pathname === '/contacts' && !location.hash ? scrollOnTop() : null;
+	}, [location]);
 
 	const navigate = useNavigate();
 

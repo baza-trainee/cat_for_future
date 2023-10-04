@@ -12,7 +12,7 @@ interface FeedbackFormProps {
 
 const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 	// validation login form
-	const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting } =
+	const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, isValid } =
 		useFormik({
 			initialValues: {
 				name: '',
@@ -150,7 +150,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 						buttonClasses="primaryBtn"
 						type="submit"
 						name="Надіслати"
-						disabled={isSubmitting}
+						disabled={isSubmitting || !isValid}
 					/>
 				</div>
 			</form>
