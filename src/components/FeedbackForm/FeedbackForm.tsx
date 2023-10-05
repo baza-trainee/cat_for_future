@@ -33,9 +33,10 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 				email: Yup.string()
 					.min(3, `E-mail повинен містити щонайменше 3 символи`)
 					.max(320, `E-mail не повинен містити більше 320 символів`)
+					.email(`Введіть валідний e-mail`)
 					.matches(
-						/^[0-9a-zA-Z!#$%&'*+/=?`^_{|}~-]+(?:\.[0-9a-z!#$%&'*+/=?`^_{|}~-]+)*@[a-zA-Z]+[0-9a-zA-Z]*(?:\.[a-zA-Z]{2,}[0-9a-zA-Z]*)+$/,
-						`Введіть коректний e-mail латиницею`
+						/[A-Z0-9_%+-]+(?:\.[0-9a-zA-Z]+)*@[A-Z0-9-]+.+.[A-Z]{2,4}/gim,
+						`Введіть валідний e-mail`
 					)
 					.required(`Обов'язкове поле`),
 				message: Yup.string()

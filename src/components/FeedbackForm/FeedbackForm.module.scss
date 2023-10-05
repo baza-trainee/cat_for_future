@@ -185,8 +185,10 @@
 	&:disabled + div svg path {
 		stroke: $color-system-default-100;
 	}
-
-	.inputError {
+}
+.inputError {
+	outline: 2px solid $color-secondary-error;
+	&:focus {
 		outline: 2px solid $color-secondary-error;
 	}
 }

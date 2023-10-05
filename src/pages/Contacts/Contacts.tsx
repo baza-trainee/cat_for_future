@@ -15,7 +15,7 @@ const Contacts: React.FC = () => {
 
 	useEffect(() => {
 		location.pathname === '/contacts' ? scrollOnTop() : null;
-	}, []);
+	}, [location]);
 
 	const navigate = useNavigate();
 
