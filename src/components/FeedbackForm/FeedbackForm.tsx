@@ -40,7 +40,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 					)
 					.required(`Обов'язкове поле`),
 				message: Yup.string()
-					.min(8, `Введіть повідомлення від 8 символів`)
+					.min(8, `Повідомлення повинно містити від 8 символів`)
 					.max(255, `Повідомлення повинно містити до 255 символів`)
 					.required(`Обов'язкове поле`),
 			}),
