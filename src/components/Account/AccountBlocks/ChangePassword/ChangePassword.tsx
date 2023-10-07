@@ -1,65 +1,69 @@
-import React from 'react';
+import { FC } from 'react';
+import { Formik, FormikHelpers } from 'formik';
+
 import s from './ChangePassword.module.scss';
-import { ReactComponent as Eye } from 'src/assets/icons/open-eye.svg';
-import { ReactComponent as CloseEye } from 'src/assets/icons/close-eye.svg';
+
 import Button from 'src/components/Button/Button';
-// import clsx from 'clsx';
+import InputPassword from 'src/components/Account/AccountBlocks/ChangePassword/InputPassword/InputPassword';
+import { changePasswSchema } from 'src/components/Account/AccountBlocks/ChangePassword/changePassword.schema';
 
-const btnStyle = { width: '24.125rem' };
+interface InitValues {
+	oldPassw: string;
+	newPassw: string;
+	confirmPassw: string;
+}
 
-const ChangePassword: React.FC = () => (
-	<section className={s.changePassw}>
-		<div className={s.textWrap}>
-			<h2 className={s.title}>Зміна паролю</h2>
-			<p className={s.subtitle}>
-				Якщо ви бажаєте змінити свій пароль, то будь ласка підтвердіть спочатку старий пароль, а
-				потім введіть та підтвердіть ваш новий пароль
-			</p>
-		</div>
-		<form className={s.form}>
-			<div className={s.inputWrap}>
-				<label className={s.label} htmlFor="oldPassw">
-					Поточний пароль
-				</label>
-				<div className={s.inputContainer}>
-					<input type="password" className={s.input} placeholder="**********" id="oldPassw" />
-					{/* <Eye className={s.eyeIcon} /> */}
-					<CloseEye className={s.eyeIcon} />
-				</div>
-				<p className={s.errorMsg}>Обов'язкове поле</p>
+const btnStyle = { width: '24.125rem', marginTop: '2rem' };
+
+const initialValues: InitValues = {
+	oldPassw: '',
+	newPassw: '',
+	confirmPassw: '',
+};
+const ChangePassword: FC = () => {
+	const onSubmitForm = (values: InitValues, actions: FormikHelpers<InitValues>) => {
+		console.log(values);
+		actions.resetForm();
+	};
+
+	return (
+		<section className={s.changePassw}>
+			<div className={s.textWrap}>
+				<h2 className={s.title}>Зміна паролю</h2>
+				<p className={s.subtitle}>
+					Якщо ви бажаєте змінити свій пароль, то будь ласка підтвердіть спочатку старий пароль, а
+					потім введіть та підтвердіть ваш новий пароль
+				</p>
 			</div>
-			<div className={s.inputWrap}>
-				<label className={s.label} htmlFor="newPassw">
-					Новий пароль
-				</label>
-				<div className={s.inputContainer}>
-					<input type="password" className={s.input} placeholder="**********" id="newPassw" />
-					<Eye className={s.eyeIcon} />
-					<CloseEye className={s.eyeIcon} />
-				</div>
-				<p className={s.errorMsg}></p>
-			</div>
-			<div className={s.inputWrap}>
-				<label className={s.label} htmlFor="confirmPassw">
-					Підтвердити новий пароль
-				</label>
-				<div className={s.inputContainer}>
-					<input type="password" className={s.input} placeholder="**********" id="confirmPassw" />
-					<Eye className={s.eyeIcon} />
-					<CloseEye className={s.eyeIcon} />
-				</div>
-				<p className={s.errorMsg}></p>
-			</div>
-			<Button
-				styleBtn={btnStyle}
-				buttonClasses={'primaryBtn'}
-				type={'button'}
-				name={'Зберегти'}
-				onClick={() => console.log('click')}
-				disabled
-			/>
-		</form>
-	</section>
-);
+			<Formik
+				initialValues={initialValues}
+				validationSchema={changePasswSchema}
+				onSubmit={onSubmitForm}
+			>
+				{({ handleSubmit, isValid }) => (
+					<form className={s.form} onSubmit={handleSubmit}>
+						<InputPassword name="oldPassw" label="Поточний пароль" />
+						<InputPassword
+							name="newPassw"
+							label="Новий пароль"
+							title={
+								'Пароль має містити від 8 до 15 символів (латинські літери нижнього, верхнього регістру, цифри, спецсимволи)'
+							}
+						/>
+						<InputPassword name="confirmPassw" label="Підтвердити новий пароль" />
+
+						<Button
+							styleBtn={btnStyle}
+							buttonClasses={'primaryBtn'}
+							name={'Зберегти'}
+							type={'submit'}
+							disabled={!isValid}
+						/>
+					</form>
+				)}
+			</Formik>
+		</section>
+	);
+};
 
 export default ChangePassword;
