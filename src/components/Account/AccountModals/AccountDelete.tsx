@@ -1,14 +1,9 @@
 import React from 'react';
 import AccountModal from './AccountModal/AccountModal';
+import textData from './textData.json';
 
 const AccountDelete: React.FC = () => (
-	<AccountModal
-		status={true}
-		title={'Видалення акаунта'}
-		text={
-			'Ви впевнені що бажаєте видалити акаунт? Видалення акаунту призведе до втрати всіх даних профілю'
-		}
-	/>
+	<AccountModal status={true} title={textData[0]} text={textData[1]} />
 );
 
 export default AccountDelete;
