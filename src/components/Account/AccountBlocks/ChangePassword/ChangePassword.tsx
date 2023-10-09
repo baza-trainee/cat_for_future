@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Formik, FormikHelpers } from 'formik';
 
 import s from './ChangePassword.module.scss';
@@ -6,6 +6,7 @@ import s from './ChangePassword.module.scss';
 import Button from 'src/components/Button/Button';
 import InputPassword from 'src/components/Account/AccountBlocks/ChangePassword/InputPassword/InputPassword';
 import { changePasswSchema } from 'src/components/Account/AccountBlocks/ChangePassword/changePassword.schema';
+import ModalMsg from 'src/components/ModalMsg/ModalMsg';
 
 interface InitValues {
 	oldPassw: string;
@@ -21,8 +22,13 @@ const initialValues: InitValues = {
 	confirmPassw: '',
 };
 const ChangePassword: FC = () => {
+	const [isSuccessResponse, setIsSuccessResponse] = useState<boolean>(false);
+	const handleCloseModal = () => {
+		setIsSuccessResponse(false);
+	};
 	const onSubmitForm = (values: InitValues, actions: FormikHelpers<InitValues>) => {
 		console.log(values);
+		setIsSuccessResponse(true);
 		actions.resetForm();
 	};
 
@@ -62,6 +68,9 @@ const ChangePassword: FC = () => {
 					</form>
 				)}
 			</Formik>
+			{isSuccessResponse && (
+				<ModalMsg handleCloseModal={handleCloseModal} name="Ок" handleBtnClick={handleCloseModal} />
+			)}
 		</section>
 	);
 };
