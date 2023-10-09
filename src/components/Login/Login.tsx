@@ -46,7 +46,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 			},
 			validationSchema: Yup.object().shape({
 				loginEmail: Yup.string()
-					.email('Будь-ласка, введіть коректну email адресу')
+					.email('Введіть коректну e-mail адресу')
 					.required("Обов'язкове поле"),
 				loginPassword: Yup.string().required("Обов'язкове поле"),
 			}),
