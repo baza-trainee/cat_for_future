@@ -13,7 +13,7 @@ interface InitValues {
 	confirmPassw: string;
 }
 
-const btnStyle = { width: '24.125rem', marginTop: '2rem' };
+const btnStyle = { width: '100%', marginTop: '1.25rem', minWidth: '17rem' };
 
 const initialValues: InitValues = {
 	oldPassw: '',
@@ -40,7 +40,7 @@ const ChangePassword: FC = () => {
 				validationSchema={changePasswSchema}
 				onSubmit={onSubmitForm}
 			>
-				{({ handleSubmit, isValid }) => (
+				{({ handleSubmit, isValid, values }) => (
 					<form className={s.form} onSubmit={handleSubmit}>
 						<InputPassword name="oldPassw" label="Поточний пароль" />
 						<InputPassword
@@ -57,7 +57,7 @@ const ChangePassword: FC = () => {
 							buttonClasses={'primaryBtn'}
 							name={'Зберегти'}
 							type={'submit'}
-							disabled={!isValid}
+							disabled={!isValid || !(values.oldPassw && values.newPassw && values.confirmPassw)}
 						/>
 					</form>
 				)}

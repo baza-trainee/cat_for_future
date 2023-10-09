@@ -1,10 +1,11 @@
 import { ReactElement, useState } from 'react';
+import { useField } from 'formik';
+import clsx from 'clsx';
 
 import s from './InputPassword.module.scss';
 
 import { ReactComponent as Eye } from 'src/assets/icons/open-eye.svg';
 import { ReactComponent as CloseEye } from 'src/assets/icons/close-eye.svg';
-import { useField } from 'formik';
 
 interface InputPasswordProps {
 	label: string;
@@ -27,13 +28,13 @@ const InputPassword = ({ label, placeholder = '**********', name, title }: Input
 
 	return (
 		<div className={s.inputWrap}>
-			<label className={s.label} htmlFor={name}>
+			<label className={clsx(s.label, meta.error && s.errorColor)} htmlFor={name}>
 				{label}
 			</label>
 			<div className={s.inputContainer}>
 				<input
 					type={isShownPassword ? 'text' : 'password'}
-					className={s.input}
+					className={clsx(s.input, fields.value && s.active, meta.error && s.error)}
 					placeholder={placeholder}
 					title={title}
 					id={name}
