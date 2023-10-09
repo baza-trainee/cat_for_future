@@ -1,0 +1,57 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.backdrop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	align-items: center;
+	background: rgba(206, 206, 206, 0.6);
+	z-index: 100;
+}
+
+.modalWrapper {
+	min-width: 19.125rem;
+	width: 95.625%;
+	max-width: 32rem;
+	height: 26.625rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: $color-system-default-0;
+	margin-top: 19.2vh;
+	padding: 1rem 0.75rem;
+
+	@include tablet {
+		width: 32.8125rem;
+		height: 37.9375rem;
+		margin-top: 12.02vh;
+		padding: 1.25rem;
+	}
+
+	@include full_desktop {
+		width: 37.5rem;
+		height: 34.0625rem;
+		margin-top: 19.77vh;
+	}
+}
+
+.closeIcon {
+	align-self: end;
+	width: 1.5rem;
+	height: 1.5rem;
+	cursor: pointer;
+}
+
+.insideWrapper {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

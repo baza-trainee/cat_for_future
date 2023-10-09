@@ -1,0 +1,30 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.img {
+	width: 5.9375rem;
+	height: 5.9375rem;
+	margin-top: 2.75rem;
+	align-self: center;
+
+	@include tablet {
+		margin-top: 6.31rem;
+	}
+	@include full_desktop {
+		margin-top: 3.75rem;
+	}
+}
+
+.title {
+	margin: 3.31rem 0 2.81rem;
+	color: $color-system-default-100;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 120%;
+
+	@include tablet {
+		font-size: 2rem;
+		margin-top: 4.56rem 0 3.69rem;
+	}
+}
