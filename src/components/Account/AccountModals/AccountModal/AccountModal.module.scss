@@ -1,30 +1,6 @@
 @use 'src/styles/variables' as *;
 @use 'src/styles/mixins' as *;
 
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-		transform: translateY(-20px);
-	}
-
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@keyframes fadeOut {
-	from {
-		opacity: 1;
-		transform: translateY(0);
-	}
-
-	to {
-		opacity: 0;
-		transform: translateY(-20px);
-	}
-}
-
 .backdrop {
 	background: rgba(206, 206, 206, 0.6);
 	display: flex;
@@ -40,42 +16,69 @@
 }
 
 .modalWrapper {
+	width: 19.125rem;
+	height: 26.3125rem;
+	padding: 1rem 1.25rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
 	background-color: $color-system-default-0;
+
+	@include tablet {
+		width: 32.8125rem;
+		height: 37.9375rem;
+		padding: 1.25rem;
+	}
+
+	@include full_desktop {
+		width: 45.8125rem;
+		height: 42.9375rem;
+	}
+}
+
+.contentWrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
 }
 
 .btnCloseWrapper {
+	cursor: pointer;
 	display: flex;
 	justify-content: end;
 	align-items: center;
 	width: 100%;
-	height: 3.38rem;
-	padding: 1rem 1.25rem 0 0;
+	height: 1.5rem;
+	margin-bottom: 0.87rem;
+
+	@include tablet {
+		margin-bottom: 7.69rem;
+	}
+
+	@include full_desktop {
+		margin-bottom: 9.69rem;
+	}
 }
 
-.close {
-	cursor: pointer;
-	width: 1.5rem;
-	height: 1.5rem;
+.closeBtn {
+	background: transparent;
 }
 
 .title {
 	text-align: center;
 	font-family: $primary-font;
 	font-size: 1.5rem;
-	font-style: normal;
 	font-weight: 700;
 	line-height: 1.8rem;
+	color: $color-system-default-100;
 }
 
-.textWrapper {
-	display: flex;
-	margin-top: 1.25rem;
+.text {
+	display: block;
 	width: 100%;
-	padding: 0.62rem 1.25rem;
+	margin-top: 1.25rem;
+	margin-bottom: 2.44rem;
 	font-family: $primary-font;
 	color: $color-system-default-100;
 
@@ -85,55 +88,42 @@
 	line-height: 140%;
 	text-align: center;
 
-	@include small_tablet {
-		padding-top: 2.25rem;
-		padding-bottom: 3.5rem;
-	}
-
 	@include tablet {
-		font-size: 1.125rem;
-	}
-
-	@include full_desktop {
-		font-size: 1.25rem;
-	}
-}
-
-.formDonate {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.donatesAmountWrapper {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	width: 100%;
-	padding: 0 1rem;
-	margin-bottom: 2.62rem;
-
-	@include tablet {
-		padding: 0 2.6rem;
-	}
-
-	@include full_desktop {
-		padding: 0 5.5rem;
+		margin-top: 1.06rem;
+		margin-bottom: 2.37rem;
 	}
 }
 
 .btnWrapper {
 	display: flex;
 	flex-direction: column;
-	height: 13rem;
-	gap: 1.25rem;
 	justify-content: center;
 	align-items: center;
-	width: 16.75rem;
+	gap: 1.25rem;
+	width: 100%;
 
 	@include tablet {
-		width: 20.4375rem;
-		height: 3.25rem;
+		flex-direction: row;
+		width: 100%;
+	}
+}
+
+.backBtn {
+	display: flex;
+	width: 12.5rem;
+	height: 3.5rem;
+	padding: 1rem 4.3125rem;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid $color-system-default-100;
+	background: none;
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 132%;
+
+	&:hover,
+	&:focus {
+		box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+		transition: box-shadow 0.3s ease;
 	}
 }
