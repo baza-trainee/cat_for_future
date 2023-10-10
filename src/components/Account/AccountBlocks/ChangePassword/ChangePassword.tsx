@@ -4,7 +4,7 @@ import { Formik, FormikHelpers } from 'formik';
 import s from './ChangePassword.module.scss';
 
 import Button from 'src/components/Button/Button';
-import InputPassword from 'src/components/Account/AccountBlocks/ChangePassword/InputPassword/InputPassword';
+import InputPassword from 'src/components/InputPassword/InputPassword';
 import { changePasswSchema } from 'src/components/Account/AccountBlocks/ChangePassword/changePassword.schema';
 import ModalMsg from 'src/components/ModalMsg/ModalMsg';
 
