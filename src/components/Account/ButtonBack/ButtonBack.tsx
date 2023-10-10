@@ -1,21 +1,15 @@
 import React from 'react';
+
 import s from './ButtonBack.module.scss';
+
 import BackIcon from 'src/assets/icons/account/arrow-left.svg';
-import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
-const ButtonBack: React.FC = () => {
-	const navigate = useNavigate();
-
-	const handleGoBack = () => {
-		navigate(-1);
-	};
-
-	return (
-		<button className={s.back} onClick={handleGoBack}>
-			<img src={BackIcon} alt="Back" />
-			<p>Повернутись</p>
-		</button>
-	);
-};
+const ButtonBack: React.FC = () => (
+	<Link to="/" className={s.back}>
+		<img src={BackIcon} alt="Back" />
+		<p>Повернутись</p>
+	</Link>
+);
 
 export default ButtonBack;

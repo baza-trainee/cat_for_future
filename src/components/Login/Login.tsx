@@ -46,9 +46,20 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 			},
 			validationSchema: Yup.object().shape({
 				loginEmail: Yup.string()
-					.email('Будь-ласка, введіть коректну email адресу')
+					.email('Введіть коректну e-mail адресу')
+					.matches(
+						/^[A-Z0-9_%+-]+(\.[A-Z0-9_%+-]+)*@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+						'Введіть коректну e-mail адресу'
+					)
 					.required("Обов'язкове поле"),
-				loginPassword: Yup.string().required("Обов'язкове поле"),
+				loginPassword: Yup.string()
+					.min(8, 'Введіть коректний пароль')
+					.max(15, 'Введіть коректний пароль')
+					.matches(
+						/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,15}$/,
+						'Введіть коректний пароль'
+					)
+					.required("Обов'язкове поле"),
 			}),
 			onSubmit: (_, actions) => {
 				setAuthEmailError(false);
@@ -127,7 +138,9 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 								{errors.loginEmail && touched.loginEmail ? (
 									<div className={s.login__errorMessage}>{errors.loginEmail}</div>
 								) : null}
-								{authEmailError && <div className={s.login__errorMessage}>Невірний логін</div>}
+								{authEmailError && (
+									<div className={s.login__errorMessage}>Введіть валідний e-mail</div>
+								)}
 							</div>
 						</div>
 
@@ -173,7 +186,9 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 								{errors.loginPassword && touched.loginPassword ? (
 									<div className={s.login__errorMessage}>{errors.loginPassword}</div>
 								) : null}
-								{authPasswordError && <div className={s.login__errorMessage}>Невірний пароль</div>}
+								{authPasswordError && (
+									<div className={s.login__errorMessage}>Введіть коректний пароль</div>
+								)}
 							</div>
 						</div>
 					</div>
@@ -195,7 +210,6 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 							buttonClasses={'secondaryBtn'}
 							type={'button'}
 							styleBtn={secondaryBtnStyle}
-							// onClick={() => navigate('/registration')}
 							onClick={() => {
 								onCloseLoginWindow(false);
 								navigate('/registration');
