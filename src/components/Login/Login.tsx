@@ -138,7 +138,9 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 								{errors.loginEmail && touched.loginEmail ? (
 									<div className={s.login__errorMessage}>{errors.loginEmail}</div>
 								) : null}
-								{authEmailError && <div className={s.login__errorMessage}>Невірний логін</div>}
+								{authEmailError && (
+									<div className={s.login__errorMessage}>Введіть валідний e-mail</div>
+								)}
 							</div>
 						</div>
 
@@ -184,7 +186,9 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 								{errors.loginPassword && touched.loginPassword ? (
 									<div className={s.login__errorMessage}>{errors.loginPassword}</div>
 								) : null}
-								{authPasswordError && <div className={s.login__errorMessage}>Невірний пароль</div>}
+								{authPasswordError && (
+									<div className={s.login__errorMessage}>Введіть коректний пароль</div>
+								)}
 							</div>
 						</div>
 					</div>
