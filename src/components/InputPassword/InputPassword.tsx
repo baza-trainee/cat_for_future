@@ -28,13 +28,13 @@ const InputPassword = ({ label, placeholder = '**********', name, title }: Input
 
 	return (
 		<div className={s.inputWrap}>
-			<label className={clsx(s.label, meta.error && s.errorColor)} htmlFor={name}>
+			<label className={clsx(s.label, meta.error && meta.touched && s.errorColor)} htmlFor={name}>
 				{label}
 			</label>
 			<div className={s.inputContainer}>
 				<input
 					type={isShownPassword ? 'text' : 'password'}
-					className={clsx(s.input, fields.value && s.active, meta.error && s.error)}
+					className={clsx(s.input, fields.value && s.active, meta.error && meta.touched && s.error)}
 					placeholder={placeholder}
 					title={title}
 					id={name}
