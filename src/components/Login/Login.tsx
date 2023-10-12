@@ -37,7 +37,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 		}
 	};
 
-	// validation login form
+	// validation login form.
 	const { handleSubmit, handleBlur, handleChange, values, errors, touched, isSubmitting } =
 		useFormik({
 			initialValues: {
