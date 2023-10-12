@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, Dispatch, SetStateAction } from 'react';
-import { pluralize } from 'src/utils/pluralize';
+import { pluralize, pluralizeForTimer } from 'src/utils/pluralize';
 import clsx from 'clsx';
 import s from './Timer.module.scss';
 
@@ -15,7 +15,6 @@ interface TimeState {
 
 const Timer: FC<TimerProps> = ({ arrCorrectDate, className }) => {
 	const [days, hours, minutes] = arrCorrectDate;
-	// console.log(seconds); - for watching seconds you need to take it from arrCorrectDate
 	const [dayOne, setDayOne] = useState({ value: hours[0], name: 'dayOne' });
 	const [dayTwo, setDayTwo] = useState({ value: hours[1], name: 'dayTwo' });
 	const [hourOne, setHourOne] = useState({ value: hours[0], name: 'hourOne' });
@@ -87,7 +86,7 @@ const Timer: FC<TimerProps> = ({ arrCorrectDate, className }) => {
 							{hourTwo.value}
 						</span>
 					</div>
-					<div className={s.timerNoun}>годин</div>
+					<div className={s.timerNoun}>{pluralizeForTimer(Number(hours), 'год')}</div>
 				</div>
 
 				<div className={s.timerUnit}>
@@ -107,7 +106,7 @@ const Timer: FC<TimerProps> = ({ arrCorrectDate, className }) => {
 							{minuteTwo.value}
 						</span>
 					</div>
-					<div className={s.timerNoun}>хвилин</div>
+					<div className={s.timerNoun}>{pluralizeForTimer(Number(minutes), 'хвил')}</div>
 				</div>
 			</div>
 		</div>
