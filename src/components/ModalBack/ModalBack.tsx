@@ -4,16 +4,22 @@ import s from './ModalBack.module.scss';
 
 import { ReactComponent as Close } from 'src/assets/icons/login-close-btn.svg';
 
-interface ModalWhiteCatProps {
+interface ModalBackProps {
 	children: React.ReactNode;
 	handleCloseModal: () => void;
+	handleClickModalBack?: () => void;
 	wrapStyle?: CSSProperties;
 }
 
-const ModalWhiteCat: FC<ModalWhiteCatProps> = ({ children, handleCloseModal, wrapStyle }) => {
+const ModalBack: FC<ModalBackProps> = ({
+	children,
+	handleCloseModal,
+	handleClickModalBack,
+	wrapStyle,
+}) => {
 	const handleModalClick = (e: MouseEvent<HTMLDivElement>) => {
-		if (e.target === e.currentTarget) {
-			handleCloseModal();
+		if (handleClickModalBack && e.target === e.currentTarget) {
+			handleClickModalBack();
 		}
 	};
 
@@ -29,4 +35,4 @@ const ModalWhiteCat: FC<ModalWhiteCatProps> = ({ children, handleCloseModal, wra
 	);
 };
 
-export default ModalWhiteCat;
+export default ModalBack;
