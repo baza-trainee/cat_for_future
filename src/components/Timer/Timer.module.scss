@@ -1,6 +1,21 @@
 @use 'src/styles/variables' as *;
 @use 'src/styles/mixins' as *;
 
+@keyframes turnOver {
+	0% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.timerNumAnimating {
+	animation: turnOver 300ms ease-in-out;
+}
+
 .timerBlock {
 	display: flex;
 	flex-direction: column;
@@ -49,8 +64,14 @@
 }
 
 .timerNum {
-	padding: 0.5rem 0.625rem;
+	text-align: center;
+	padding: 0.5rem 0;
+	width: 1.94rem;
 	background: $color-primary-green;
+}
+
+.timerDigit {
+	display: block;
 	color: $color-system-default-0;
 	font-family: $tertiary-font;
 	font-size: 1.5rem;

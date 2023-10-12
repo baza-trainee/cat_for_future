@@ -28,9 +28,9 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, birthday, photos }) 
 		return ageNumber < 1 ? 'менше 1 місяця' : `${ageNumber} ${pluralize(ageNumber, 'місяц')}`;
 	};
 
-	const { days, hours, minutes } = useCountdownTimer(deadlineDate);
+	const { days, hours, minutes, seconds } = useCountdownTimer(deadlineDate);
 
-	const arrCorrectDate = [days, hours, minutes].map((item) =>
+	const arrCorrectDate = [days, hours, minutes, seconds].map((item) =>
 		item < 10 ? `0${item}` : item.toString()
 	);
 
