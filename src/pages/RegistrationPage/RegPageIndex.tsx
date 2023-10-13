@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import s from './RegPageIndex.module.scss';
 import Header from 'src/components/Header/Header';
 import Login from 'src/components/Login/Login';
+import ModalDonate from 'src/components/ModalDonate/ModalDonate';
 
 import image from 'src/assets/images/modal/thanks-reg.png';
 
@@ -11,6 +12,7 @@ import ModalWhiteCat from 'src/components/ModalWhiteCat/ModalWhiteCat';
 
 const RegPage: React.FC = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const [isModalWhiteCatOpen, setIsModalWhiteCatOpen] = useState<boolean>(false);
 	const [isLoginWindOpen, setIsLoginWindOpen] = useState<boolean>(false);
 
 	const openModal = () => {
@@ -19,10 +21,11 @@ const RegPage: React.FC = () => {
 
 	const closeModal = () => {
 		setIsModalOpen(false);
+		setIsModalWhiteCatOpen(false);
 	};
 
 	const onOpenModalWhiteCat = () => {
-		setIsModalOpen(true);
+		setIsModalWhiteCatOpen(true);
 	};
 
 	const navigate = useNavigate();
@@ -33,9 +36,10 @@ const RegPage: React.FC = () => {
 
 	return (
 		<div className={s.wrapper}>
+			{isModalOpen && <ModalDonate status={isModalOpen} onClose={closeModal} />}
 			<Login onCloseLoginWindow={setIsLoginWindOpen} isLoginWindOpen={isLoginWindOpen} />
 			<Header onOpenModalDonate={openModal} onOpenLoginWindow={setIsLoginWindOpen} />
-			{isModalOpen && (
+			{isModalWhiteCatOpen && (
 				<ModalWhiteCat
 					image={image}
 					message={'Реєстрація успішна!'}
