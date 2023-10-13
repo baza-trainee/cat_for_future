@@ -115,7 +115,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 										: s.login__label
 								}
 							>
-								Логін
+								Логін*
 							</label>
 							<div>
 								<input
@@ -155,7 +155,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 										: s.login__label
 								}
 							>
-								Пароль
+								Пароль*
 							</label>
 							<div className={s.login__inputManipulPass}>
 								<input
