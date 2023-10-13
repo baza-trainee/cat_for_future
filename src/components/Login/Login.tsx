@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router';
 import clsx from 'clsx';
 import { useFormik } from 'formik';
@@ -31,43 +31,58 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 	const [authEmailError, setAuthEmailError] = useState<boolean>(false);
 	const [authPasswordError, setAuthPasswordError] = useState<boolean>(false);
 
+	const initialValue = useMemo(
+		() => ({
+			loginEmail: '',
+			loginPassword: '',
+		}),
+		[]
+	);
+
+	// validation login form
+	const {
+		handleSubmit,
+		handleBlur,
+		handleChange,
+		values,
+		errors,
+		touched,
+		isSubmitting,
+		setValues,
+	} = useFormik({
+		enableReinitialize: true,
+		initialValues: initialValue,
+		validationSchema: Yup.object().shape({
+			loginEmail: Yup.string()
+				.email('Введіть коректну e-mail адресу')
+				.matches(
+					/^[A-Z0-9_%+-]+(\.[A-Z0-9_%+-]+)*@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+					'Введіть коректну e-mail адресу'
+				)
+				.required("Обов'язкове поле"),
+			loginPassword: Yup.string()
+				.min(8, 'Введіть коректний пароль')
+				.max(15, 'Введіть коректний пароль')
+				.matches(
+					/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,15}$/,
+					'Введіть коректний пароль'
+				)
+				.required("Обов'язкове поле"),
+		}),
+		onSubmit: (_, actions) => {
+			setAuthEmailError(false);
+			setAuthPasswordError(false);
+			console.log('Sing IN');
+			actions.resetForm();
+		},
+	});
+
 	const handleCloseLoginWind = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		if (e.target === e.currentTarget) {
 			onCloseLoginWindow(false);
+			setValues(initialValue);
 		}
 	};
-
-	// validation login form.
-	const { handleSubmit, handleBlur, handleChange, values, errors, touched, isSubmitting } =
-		useFormik({
-			initialValues: {
-				loginEmail: '',
-				loginPassword: '',
-			},
-			validationSchema: Yup.object().shape({
-				loginEmail: Yup.string()
-					.email('Введіть коректну e-mail адресу')
-					.matches(
-						/^[A-Z0-9_%+-]+(\.[A-Z0-9_%+-]+)*@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-						'Введіть коректну e-mail адресу'
-					)
-					.required("Обов'язкове поле"),
-				loginPassword: Yup.string()
-					.min(8, 'Введіть коректний пароль')
-					.max(15, 'Введіть коректний пароль')
-					.matches(
-						/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,15}$/,
-						'Введіть коректний пароль'
-					)
-					.required("Обов'язкове поле"),
-			}),
-			onSubmit: (_, actions) => {
-				setAuthEmailError(false);
-				setAuthPasswordError(false);
-				console.log('Sing IN');
-				actions.resetForm();
-			},
-		});
 
 	useEffect(() => {
 		values.loginEmail && authEmailError
@@ -95,7 +110,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 			<div className={s.login__content}>
 				<img
 					className={s.login__closeImg}
-					onClick={() => onCloseLoginWindow(false)}
+					onClick={handleCloseLoginWind}
 					src={closeBtn}
 					alt="Close button"
 				/>
