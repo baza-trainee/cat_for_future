@@ -138,9 +138,12 @@
 		color: #000;
 		font-size: 1rem;
 		font-weight: 400;
-		line-height: 1.32rem;
+		line-height: 132%;
 		text-decoration: underline;
 		transition: font-weight 0.1s ease-in-out;
+		&:hover {
+			font-weight: 600;
+		}
 	}
 	&__inputManipulPass {
 		position: relative;
