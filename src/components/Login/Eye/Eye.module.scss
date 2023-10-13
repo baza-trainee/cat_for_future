@@ -1,0 +1,18 @@
+@use 'src/styles/variables' as *;
+
+.login {
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
+
+	&__inputImg {
+		cursor: pointer;
+		&:hover > path {
+			stroke: $color-system-default-100;
+		}
+	}
+	&__inputImg path {
+		stroke: #939393;
+		transition: stroke 0.2s ease-in-out;
+	}
+}

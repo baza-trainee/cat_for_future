@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { scrollToSection, scrollOnTop } from 'src/utils/scrollToSection';
+import Hero from 'src/components/Hero/Hero';
+import OurCats from 'src/components/OurCats/OurCats';
+import AdoptKittenInstruction from 'src/components/AdoptKittenInstruction/AdoptKittenInstruction';
+import HappyStories from 'src/components/HappyStories/HappyStories';
+
+import s from './Home.module.scss';
 
 const Home: React.FC = () => {
-	return <div>Home</div>;
+	const location = useLocation();
+
+	useEffect(() => {
+		location.hash && scrollToSection(location.hash.slice(1));
+		location.pathname === '/' && !location.hash ? scrollOnTop() : null;
+	}, [location]);
+
+	return (
+		<div className={s.wrapper}>
+			<Hero />
+			<OurCats />
+			<AdoptKittenInstruction />
+			<HappyStories />
+		</div>
+	);
 };
 
 export default Home;

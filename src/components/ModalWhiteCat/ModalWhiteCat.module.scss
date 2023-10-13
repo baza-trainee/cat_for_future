@@ -1,0 +1,122 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.backdrop {
+	background: rgba(206, 206, 206, 0.6);
+	display: flex;
+	height: 100vh;
+	width: 100%;
+	position: fixed;
+	z-index: 100;
+	overflow-y: auto;
+	justify-content: center;
+}
+
+.modalCloser {
+	position: absolute;
+	top: 1.25rem;
+	right: 1rem;
+
+	@include tablet {
+		top: 1.25rem;
+		right: 2.88rem;
+	}
+
+	@include full_desktop {
+		top: 1.94rem;
+		right: 2.88rem;
+	}
+}
+
+.close {
+	cursor: pointer;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.modalWrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background-color: $color-system-default-0;
+	width: 19.125rem;
+	height: 21.0625rem;
+	margin-top: 3.88rem;
+	padding: 3.12rem 0;
+
+	@include tablet {
+		width: 32.875rem;
+		height: 37.9375rem;
+		margin-top: 1.94rem;
+		padding: 6.25rem 0 8.25rem;
+	}
+
+	@include full_desktop {
+		width: 37.5rem;
+		height: 34.0625rem;
+		margin-top: 3.5rem;
+		padding: 4.12rem 0 4.19rem;
+	}
+}
+
+.textWrapper {
+	display: flex;
+	justify-content: center;
+	font-family: Open Sans;
+	color: $color-system-default-100;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 1.125rem;
+	line-height: 1.35rem;
+	text-align: center;
+
+	@include tablet {
+		font-size: 2rem;
+		line-height: 2.4rem;
+		width: 30.9375rem;
+	}
+
+	@include full_desktop {
+		font-size: 2rem;
+		line-height: 2.4rem;
+		width: 100%;
+	}
+}
+
+.imgWrapper {
+	height: 7.8125rem;
+	width: 15.625rem;
+
+	@include tablet {
+		height: 14.6875rem;
+		width: 27.125rem;
+	}
+
+	@include full_desktop {
+		height: 15.3125rem;
+		width: 30.625rem;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.btnWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 14.125rem;
+
+	@include tablet {
+		width: 19.3125rem;
+	}
+
+	@include full_desktop {
+		width: 17.75rem;
+	}
+}

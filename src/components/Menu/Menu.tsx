@@ -16,22 +16,19 @@ interface IMenuProps {
 const navLinks: INavLink[] = [
 	{
 		name: 'Перегляд кошенят',
-		to: '/kittens',
+		to: '/#ourCats',
 	},
 	{
 		name: 'Щасливі історії',
-		to: '/happy-stories',
+		to: '/#happyStories',
 	},
 	{
 		name: 'Контакти',
 		to: '/contacts',
 	},
-
 ];
 
 const docLinks: INavLink[] = [
-
-
 	{
 		name: 'Рекомендації по утриманню тварин',
 		//no link yet
@@ -52,8 +49,7 @@ const docLinks: INavLink[] = [
 	},
 ];
 
-
-const FooterNavMenu: React.FC<IMenuProps> = ({ documents, unListClass, navClass, onClick }) => {
+const Menu: React.FC<IMenuProps> = ({ documents, unListClass, navClass, onClick }) => {
 	return (
 		<nav className={[s.menu, navClass && s[navClass]].join(' ')}>
 			<ul className={[s.list, unListClass && s[unListClass]].join(' ')}>
@@ -65,16 +61,17 @@ const FooterNavMenu: React.FC<IMenuProps> = ({ documents, unListClass, navClass,
 					</li>
 				))}
 
-				{documents && docLinks.map((link) => (
-					<li className={s.item} key={link.name}>
-						<Link target='_blank' onClick={onClick} className={s.docLink} to={link.to}>
-							{link.name}
-						</Link>
-					</li>
-				))}
+				{documents &&
+					docLinks.map((link) => (
+						<li className={s.item} key={link.name}>
+							<Link target="_blank" onClick={onClick} className={s.docLink} to={link.to}>
+								{link.name}
+							</Link>
+						</li>
+					))}
 			</ul>
 		</nav>
 	);
 };
 
-export default FooterNavMenu;
+export default Menu;

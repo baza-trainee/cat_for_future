@@ -1,6 +1,6 @@
 import React from 'react';
 import Logotype from 'src/components/Logotype/Logotype';
-import Contacts from 'src/components/Contacts/Contacts';
+import ContactsInfo from 'src/components/ContactsInfo/ContactsInfo';
 
 import s from 'src/components/Footer/Footer.module.scss';
 import Menu from 'src/components/Menu/Menu';
@@ -14,9 +14,8 @@ const Footer: React.FC = () => {
 
 					<div className={s.navContactsContainer}>
 						<Menu documents={true} navClass={'footerMenu'} />
-						<Contacts />
+						<ContactsInfo />
 					</div>
-
 				</div>
 
 				<div className={s.rights}>Розробка Baza Trainee Ukraine 2023 © Усі права захищені</div>

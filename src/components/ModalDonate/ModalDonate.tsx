@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-
 import s from './ModalDonate.module.scss';
-
 import close from 'src/assets/icons/close_white.svg';
 import Button from 'src/components/Button/Button';
-import { useActions } from 'src/store/useActions';
 
 interface DonateAmount {
 	id: number;
@@ -17,8 +14,7 @@ interface ModalProps {
 }
 
 const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
-	const { addTodo } = useActions();
-	const donate: DonateAmount[] = [
+	const initialDonationOptions: DonateAmount[] = [
 		{ id: 1, amount: '100' },
 		{ id: 2, amount: '200' },
 		{ id: 3, amount: '500' },
@@ -51,6 +47,19 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 		}
 	};
 
+	const renderDonationButtons = () => {
+		return initialDonationOptions.map(({ id, amount }) => (
+			<button
+				key={id}
+				className={`${s.donateAmount} ${selectedAmount === amount ? s.selected : ''}`}
+				type="button"
+				onClick={() => setSelectedAmount(amount)}
+			>
+				{amount} UAH
+			</button>
+		));
+	};
+
 	return (
 		<div className={s.backdrop} onClick={handleModalClick}>
 			<div className={s.modalWrapper}>
@@ -60,18 +69,9 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 				<div className={s.textWrapper}>
 					<p>Зібрані кошти йдуть на харчування та медичну допомогу</p>
 				</div>
-				<form  className={s.formDonate}>
+				<form action="#" className={s.formDonate}>
 					<div className={s.donatesAmountWrapper}>
-						{donate.map(({ id, amount }) => (
-							<button
-								key={id}
-								className={`${s.donateAmount} ${selectedAmount === amount ? s.selected : ''}`}
-								type="button"
-								onClick={() => setSelectedAmount(amount)}
-							>
-								{amount} UAH
-							</button>
-						))}
+						{renderDonationButtons()}
 						<input
 							id="myInput"
 							className={s.donateAmount}
@@ -86,10 +86,7 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 							buttonClasses={'primaryBtn'}
 							type={'submit'}
 							name={'Оплатити'}
-							onClick={() => {
-								addTodo({ id: 1, text: selectedAmount });
-								console.log(`go to Wayforpay amount ${selectedAmount}`);
-							}}
+							onClick={() => console.log(`go to Wayforpay amount ${selectedAmount}`)}
 							styleBtn={{ width: '100%' }}
 						/>
 					</div>
