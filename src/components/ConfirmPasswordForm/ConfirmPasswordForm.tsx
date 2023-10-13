@@ -15,7 +15,7 @@ interface InitValuesConfirmPassw {
 	confirmPassw: string;
 }
 
-const btnStyle = { width: '100%' };
+const btnStyle = { width: '100%', marginTop: '0.5rem' };
 
 const initialValues: InitValuesConfirmPassw = {
 	newPassw: '',
@@ -33,6 +33,9 @@ const ConfirmPasswordForm = () => {
 	const handleCloseForm = () => {
 		navigate('/');
 	};
+	// const handleNavigateToLogin = () => {
+	// 	navigate('/');
+	// };
 	const onSubmitForm = (
 		values: InitValuesConfirmPassw,
 		actions: FormikHelpers<InitValuesConfirmPassw>
@@ -45,7 +48,7 @@ const ConfirmPasswordForm = () => {
 	return (
 		<ModalBack handleCloseModal={handleCloseForm}>
 			<div className={s.formWrap}>
-				<h2>Завершення відновлення пароля</h2>
+				<h2 className={s.title}>Завершення відновлення пароля</h2>
 				<Formik
 					initialValues={initialValues}
 					validationSchema={confirmPasswSchema}
