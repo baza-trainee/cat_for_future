@@ -20,6 +20,7 @@ interface ImageSliderProps {
 	loop?: boolean;
 	centeredSlides?: boolean;
 	centeredSlidesBounds?: boolean;
+	pagination?: { clickable: boolean };
 	slideStyle?: React.CSSProperties;
 	children: React.ReactNode[];
 	onSlideChange?: () => void;
@@ -32,6 +33,7 @@ const Slider: React.FC<ImageSliderProps> = ({
 	slidesPerGroup,
 	centeredSlides = true,
 	centeredSlidesBounds = true,
+	pagination = true,
 	loop,
 	children,
 	slideStyle,
@@ -50,7 +52,7 @@ const Slider: React.FC<ImageSliderProps> = ({
 				centeredSlidesBounds={centeredSlidesBounds}
 				slidesPerGroup={slidesPerGroup}
 				modules={[Navigation, Pagination]}
-				pagination={true}
+				pagination={pagination}
 				grabCursor
 				speed={300}
 				style={{ width: '100%', height: '100%' }}
