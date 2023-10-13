@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface Todo {
     id: number;
     text: string;
-
 }
 
 const initialState: Todo[] = [];

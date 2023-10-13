@@ -1,6 +1,7 @@
 import { Middleware } from "redux"
 import { RootState } from "./store"
 
+
 const logger: Middleware<object, RootState> = store => next => action => {
     console.group(action.type)
     console.info('dispatching', action)
