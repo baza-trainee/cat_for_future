@@ -72,6 +72,7 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, birthday, photos }) 
 						centeredSlides={false}
 						centeredSlidesBounds={false}
 						className={'inMobileMyKitten'}
+						pagination={{ clickable: true }}
 					>
 						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
 					</Slider>
