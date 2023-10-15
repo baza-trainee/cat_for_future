@@ -27,7 +27,6 @@ function App() {
 				/>
 				<Route path="*" element={<Page404 />} />
 				<Route path="contacts" element={<Contacts />} />
-				{/* <Route path="confirm-password" element={<ConfirmPasswordForm />} /> */}
 			</Route>
 			<Route path="registration" element={<RegPage />} />
 		</Routes>

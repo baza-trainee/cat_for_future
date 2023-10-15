@@ -6,9 +6,10 @@ import s from './ConfirmPasswordForm.module.scss';
 
 import ModalBack from 'src/components/ModalBack/ModalBack';
 import InputPassword from 'src/components/InputPassword/InputPassword';
-import { confirmPasswSchema } from 'src/components/ConfirmPasswordForm/confirmPassword.schema';
+import { confirmPasswSchema } from 'src/schemas/confirmPassword.schema';
 import ModalMsg from 'src/components/ModalMsg/ModalMsg';
 import Button from 'src/components/Button/Button';
+import { useActions } from 'src/hooks/useActions';
 
 interface InitValuesConfirmPassw {
 	newPassw: string;
@@ -25,7 +26,7 @@ const initialValues: InitValuesConfirmPassw = {
 const ConfirmPasswordForm = () => {
 	const [isSuccessResponse, setIsSuccessResponse] = useState<boolean>(false);
 	const navigate = useNavigate();
-
+	const { showLogin } = useActions();
 	const handleCloseModalMsg = () => {
 		setIsSuccessResponse(false);
 	};
@@ -33,9 +34,14 @@ const ConfirmPasswordForm = () => {
 	const handleCloseForm = () => {
 		navigate('/');
 	};
-	// const handleNavigateToLogin = () => {
-	// 	navigate('/');
-	// };
+
+	const handleNavigateToLogin = () => {
+		navigate('/');
+
+		setTimeout(() => {
+			showLogin(true);
+		}, 50);
+	};
 	const onSubmitForm = (
 		values: InitValuesConfirmPassw,
 		actions: FormikHelpers<InitValuesConfirmPassw>
@@ -79,7 +85,7 @@ const ConfirmPasswordForm = () => {
 					<ModalMsg
 						handleCloseModal={handleCloseModalMsg}
 						name="Увійти в Особистий кабінет"
-						handleBtnClick={handleCloseModalMsg}
+						handleBtnClick={handleNavigateToLogin}
 					/>
 				)}
 			</div>
