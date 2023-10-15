@@ -11,13 +11,14 @@ import s from './Header.module.scss';
 import { ReactComponent as Login } from 'src/assets/icons/header/log-in-icon.svg';
 import { ReactComponent as BurgerMenuOpen } from 'src/assets/icons/header/burger-menu-open-icon.svg';
 import { ReactComponent as BurgerMenuClose } from 'src/assets/icons/header/burger-menu-close-icon.svg';
+import { useActions } from 'src/hooks/useActions';
 
 interface HeaderProps {
 	onOpenModalDonate: () => void;
-	onOpenLoginWindow: (boolean: boolean) => void;
 }
-const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow }) => {
+const Header: React.FC<HeaderProps> = ({ onOpenModalDonate }) => {
 	const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState<boolean>(false);
+	const { showLogin } = useActions();
 
 	//TODO: insert state isLogin from context or redux
 	const isLogin: boolean = false;
@@ -25,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate, onOpenLoginWindow })
 	const navigate = useNavigate();
 
 	const handleIsLogin = () => {
-		!isLogin ? onOpenLoginWindow(true) : null;
+		!isLogin ? showLogin(true) : null;
 		closeBurgerMenu();
 	};
 
