@@ -19,7 +19,7 @@ const menu: AccountMenuItemProps[] = [
 	{ id: 4, name: 'Вихід', to: '/account/logout', icon: <Logout /> },
 	{
 		id: 5,
-		name: 'Видалити аккаунт',
+		name: 'Видалити акаунт',
 		to: '/account/delete-account',
 		icon: <Trash />,
 		color: '#939393',
