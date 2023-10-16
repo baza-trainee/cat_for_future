@@ -5,11 +5,7 @@ import s from './ChangePassword.module.scss';
 
 import Button from 'src/components/Button/Button';
 import InputPassword from 'src/components/InputPassword/InputPassword';
-<<<<<<< HEAD
 import { changePasswSchema } from 'src/schemas/changePassword.schema';
-=======
-import { changePasswSchema } from 'src/components/Account/AccountBlocks/ChangePassword/changePassword.schema';
->>>>>>> ccdf1e7 (feat/32-exit-remove-bugs-35-36-fix)
 import ModalMsg from 'src/components/ModalMsg/ModalMsg';
 
 interface InitValues {
@@ -52,26 +48,15 @@ const ChangePassword: FC = () => {
 			>
 				{({ handleSubmit, isValid, values }) => (
 					<form className={s.form} onSubmit={handleSubmit}>
-<<<<<<< HEAD
 						<InputPassword name="oldPassw" label="Поточний пароль*" />
 						<InputPassword
 							name="newPassw"
 							label="Новий пароль*"
-=======
-						<InputPassword name="oldPassw" label="Поточний пароль" />
-						<InputPassword
-							name="newPassw"
-							label="Новий пароль"
->>>>>>> ccdf1e7 (feat/32-exit-remove-bugs-35-36-fix)
 							title={
 								'Пароль має містити від 8 до 15 символів (латинські літери нижнього, верхнього регістру, цифри, спецсимволи)'
 							}
 						/>
-<<<<<<< HEAD
 						<InputPassword name="confirmPassw" label="Підтвердити новий пароль*" />
-=======
-						<InputPassword name="confirmPassw" label="Підтвердити новий пароль" />
->>>>>>> ccdf1e7 (feat/32-exit-remove-bugs-35-36-fix)
 
 						<Button
 							styleBtn={btnStyle}

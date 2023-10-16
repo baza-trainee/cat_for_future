@@ -40,7 +40,6 @@ const Login: FC = () => {
 		showLogin(false);
 	};
 
-<<<<<<< HEAD
 	const initialValue = useMemo(
 		() => ({
 			loginEmail: '',
@@ -93,39 +92,6 @@ const Login: FC = () => {
 			setValues(initialValue);
 		}
 	};
-=======
-	// validation login form.
-	const { handleSubmit, handleBlur, handleChange, values, errors, touched, isSubmitting } =
-		useFormik({
-			initialValues: {
-				loginEmail: '',
-				loginPassword: '',
-			},
-			validationSchema: Yup.object().shape({
-				loginEmail: Yup.string()
-					.email('Введіть коректну e-mail адресу')
-					.matches(
-						/^[A-Z0-9_%+-]+(\.[A-Z0-9_%+-]+)*@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-						'Введіть коректну e-mail адресу'
-					)
-					.required("Обов'язкове поле"),
-				loginPassword: Yup.string()
-					.min(8, 'Введіть коректний пароль')
-					.max(15, 'Введіть коректний пароль')
-					.matches(
-						/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,15}$/,
-						'Введіть коректний пароль'
-					)
-					.required("Обов'язкове поле"),
-			}),
-			onSubmit: (_, actions) => {
-				setAuthEmailError(false);
-				setAuthPasswordError(false);
-				console.log('Sing IN');
-				actions.resetForm();
-			},
-		});
->>>>>>> ccdf1e7 (feat/32-exit-remove-bugs-35-36-fix)
 
 	useEffect(() => {
 		values.loginEmail && authEmailError
