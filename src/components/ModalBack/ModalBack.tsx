@@ -4,7 +4,6 @@ import s from './ModalBack.module.scss';
 
 import { ReactComponent as Close } from 'src/assets/icons/login-close-btn.svg';
 
-<<<<<<< HEAD
 interface ModalBackProps {
 	children: React.ReactNode;
 	handleCloseModal: () => void;
@@ -21,18 +20,6 @@ const ModalBack: FC<ModalBackProps> = ({
 	const handleModalClick = (e: MouseEvent<HTMLDivElement>) => {
 		if (handleClickModalBack && e.target === e.currentTarget) {
 			handleClickModalBack();
-=======
-interface ModalWhiteCatProps {
-	children: React.ReactNode;
-	handleCloseModal: () => void;
-	wrapStyle?: CSSProperties;
-}
-
-const ModalWhiteCat: FC<ModalWhiteCatProps> = ({ children, handleCloseModal, wrapStyle }) => {
-	const handleModalClick = (e: MouseEvent<HTMLDivElement>) => {
-		if (e.target === e.currentTarget) {
-			handleCloseModal();
->>>>>>> ccdf1e7 (feat/32-exit-remove-bugs-35-36-fix)
 		}
 	};
 
@@ -48,8 +35,4 @@ const ModalWhiteCat: FC<ModalWhiteCatProps> = ({ children, handleCloseModal, wra
 	);
 };
 
-<<<<<<< HEAD
 export default ModalBack;
-=======
-export default ModalWhiteCat;
->>>>>>> ccdf1e7 (feat/32-exit-remove-bugs-35-36-fix)
