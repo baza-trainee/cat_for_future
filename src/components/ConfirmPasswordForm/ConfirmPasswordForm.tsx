@@ -40,7 +40,7 @@ const ConfirmPasswordForm = () => {
 
 		setTimeout(() => {
 			showLogin(true);
-		}, 50);
+		});
 	};
 	const onSubmitForm = (
 		values: InitValuesConfirmPassw,
