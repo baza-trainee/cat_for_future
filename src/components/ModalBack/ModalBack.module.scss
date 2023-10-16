@@ -16,9 +16,9 @@
 }
 
 .modalWrapper {
-	min-width: 19.125rem;
+	min-width: 17rem;
 	width: 95.625%;
-	max-width: 32rem;
+	max-width: 28rem;
 	height: 26.625rem;
 	display: flex;
 	flex-direction: column;
@@ -28,14 +28,16 @@
 	padding: 1rem 0.75rem;
 
 	@include tablet {
-		width: 32.8125rem;
+		width: 100%;
+		max-width: 32.8125rem;
 		height: 37.9375rem;
 		margin-top: 12.02vh;
 		padding: 1.25rem;
 	}
 
 	@include full_desktop {
-		width: 37.5rem;
+		width: 100%;
+		max-width: 37.5rem;
 		height: 34.0625rem;
 		margin-top: 19.77vh;
 	}
