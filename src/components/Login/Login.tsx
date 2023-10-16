@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, useMemo } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -213,9 +213,9 @@ const Login: FC = () => {
 						</div>
 					</div>
 
-					<a href="#" className={s.login__forgetPass}>
+					<Link to={'/request-password'} className={s.login__forgetPass}>
 						Забули пароль?
-					</a>
+					</Link>
 
 					<div className={s.login__boxBtn}>
 						<Button
