@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import clsx from 'clsx';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -9,6 +9,8 @@ import closeBtn from 'src/assets/icons/login-close-btn.svg';
 import { ReactComponent as Google } from 'src/assets/icons/google-auth-icon.svg';
 import { ReactComponent as Facebook } from 'src/assets/icons/facebook-auth-icon.svg';
 import s from './Login.module.scss';
+import { useTypedSelector } from 'src/hooks/useTypedSelectors';
+import { useActions } from 'src/hooks/useActions';
 
 const primaryBtnStyle = {
 	width: '100%',
@@ -21,15 +23,22 @@ const secondaryBtnStyle = {
 	backgroundColor: 'transparent',
 };
 
-interface LoginProps {
-	onCloseLoginWindow: (boolean: boolean) => void;
-	isLoginWindOpen: boolean;
-}
-
-const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
+const Login: FC = () => {
 	const [onShowPass, setOnShowPass] = useState<boolean>(false);
 	const [authEmailError, setAuthEmailError] = useState<boolean>(false);
 	const [authPasswordError, setAuthPasswordError] = useState<boolean>(false);
+
+	const { isOpen } = useTypedSelector((state) => state.showLogin);
+	const { showLogin } = useActions();
+	const location = useLocation();
+
+	useEffect(() => {
+		isOpen && showLogin(false);
+	}, [location]);
+
+	const onCloseLoginWindow = () => {
+		showLogin(false);
+	};
 
 	const initialValue = useMemo(
 		() => ({
@@ -79,7 +88,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 
 	const handleCloseLoginWind = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		if (e.target === e.currentTarget) {
-			onCloseLoginWindow(false);
+			onCloseLoginWindow();
 			setValues(initialValue);
 		}
 	};
@@ -100,11 +109,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 
 	return (
 		<div
-			className={
-				isLoginWindOpen
-					? clsx(s.login_overlay, s.login, s.login_active)
-					: clsx(s.login_overlay, s.login)
-			}
+			className={clsx(s.login_overlay, s.login, isOpen && s.login_active)}
 			onClick={handleCloseLoginWind}
 		>
 			<div className={s.login__content}>
@@ -226,7 +231,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 							type={'button'}
 							styleBtn={secondaryBtnStyle}
 							onClick={() => {
-								onCloseLoginWindow(false);
+								onCloseLoginWindow();
 								navigate('/registration');
 							}}
 						/>

@@ -13,7 +13,6 @@ import ModalWhiteCat from 'src/components/ModalWhiteCat/ModalWhiteCat';
 const RegPage: React.FC = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const [isModalWhiteCatOpen, setIsModalWhiteCatOpen] = useState<boolean>(false);
-	const [isLoginWindOpen, setIsLoginWindOpen] = useState<boolean>(false);
 
 	const openModal = () => {
 		setIsModalOpen(true);
@@ -37,8 +36,8 @@ const RegPage: React.FC = () => {
 	return (
 		<div className={s.wrapper}>
 			{isModalOpen && <ModalDonate status={isModalOpen} onClose={closeModal} />}
-			<Login onCloseLoginWindow={setIsLoginWindOpen} isLoginWindOpen={isLoginWindOpen} />
-			<Header onOpenModalDonate={openModal} onOpenLoginWindow={setIsLoginWindOpen} />
+			<Login />
+			<Header onOpenModalDonate={openModal} />
 			{isModalWhiteCatOpen && (
 				<ModalWhiteCat
 					image={image}

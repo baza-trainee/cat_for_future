@@ -5,7 +5,7 @@ import s from './ChangePassword.module.scss';
 
 import Button from 'src/components/Button/Button';
 import InputPassword from 'src/components/InputPassword/InputPassword';
-import { changePasswSchema } from 'src/components/Account/AccountBlocks/ChangePassword/changePassword.schema';
+import { changePasswSchema } from 'src/schemas/changePassword.schema';
 import ModalMsg from 'src/components/ModalMsg/ModalMsg';
 
 interface InitValues {
@@ -48,15 +48,15 @@ const ChangePassword: FC = () => {
 			>
 				{({ handleSubmit, isValid, values }) => (
 					<form className={s.form} onSubmit={handleSubmit}>
-						<InputPassword name="oldPassw" label="Поточний пароль" />
+						<InputPassword name="oldPassw" label="Поточний пароль*" />
 						<InputPassword
 							name="newPassw"
-							label="Новий пароль"
+							label="Новий пароль*"
 							title={
 								'Пароль має містити від 8 до 15 символів (латинські літери нижнього, верхнього регістру, цифри, спецсимволи)'
 							}
 						/>
-						<InputPassword name="confirmPassw" label="Підтвердити новий пароль" />
+						<InputPassword name="confirmPassw" label="Підтвердити новий пароль*" />
 
 						<Button
 							styleBtn={btnStyle}
