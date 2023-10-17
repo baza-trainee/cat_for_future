@@ -69,7 +69,12 @@ const ChangePassword: FC = () => {
 				)}
 			</Formik>
 			{isSuccessResponse && (
-				<ModalMsg handleCloseModal={handleCloseModal} name="Ок" handleBtnClick={handleCloseModal} />
+				<ModalMsg
+					handleCloseModal={handleCloseModal}
+					name="Ок"
+					handleBtnClick={handleCloseModal}
+					styleBtn={{ width: '8.75rem' }}
+				/>
 			)}
 		</section>
 	);
