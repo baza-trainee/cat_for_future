@@ -11,13 +11,16 @@
 	top: 0;
 	align-items: center;
 	z-index: 1000;
-	overflow-y: auto;
 	justify-content: center;
 }
 
 .modalWrapper {
 	width: 19.125rem;
 	height: 26.3125rem;
+
+	max-height: 90vh;
+	overflow-y: auto;
+
 	padding: 1rem 1.25rem;
 	display: flex;
 	flex-direction: column;
@@ -44,7 +47,6 @@
 }
 
 .btnCloseWrapper {
-	cursor: pointer;
 	display: flex;
 	justify-content: end;
 	align-items: center;
@@ -63,6 +65,7 @@
 
 .closeBtn {
 	background: transparent;
+	cursor: pointer;
 }
 
 .title {
@@ -96,7 +99,7 @@
 
 .btnWrapper {
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	justify-content: center;
 	align-items: center;
 	gap: 1.25rem;
