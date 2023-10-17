@@ -17,7 +17,7 @@ interface InitValuesConfirmPassw {
 }
 
 const btnStyle = { width: '100%', marginTop: '0.5rem' };
-
+const styleModalBtn = { maxWidth: '28.9375rem', paddingLeft: '0.5rem', paddingRight: '0.5rem' };
 const initialValues: InitValuesConfirmPassw = {
 	newPassw: '',
 	confirmPassw: '',
@@ -29,6 +29,7 @@ const ConfirmPasswordForm = () => {
 	const { showLogin } = useActions();
 	const handleCloseModalMsg = () => {
 		setIsSuccessResponse(false);
+		navigate('/');
 	};
 
 	const handleCloseForm = () => {
@@ -86,6 +87,7 @@ const ConfirmPasswordForm = () => {
 						handleCloseModal={handleCloseModalMsg}
 						name="Увійти в Особистий кабінет"
 						handleBtnClick={handleNavigateToLogin}
+						styleBtn={styleModalBtn}
 					/>
 				)}
 			</div>
