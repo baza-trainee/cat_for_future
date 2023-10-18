@@ -4,13 +4,14 @@ import clsx from 'clsx';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Button from '../Button/Button';
+import { useTypedSelector } from 'src/hooks/useTypedSelectors';
+import { useActions } from 'src/hooks/useActions';
+import useMediaQuery from 'src/hooks/useMediaQuery';
 import Eye from './Eye/Eye';
 import closeBtn from 'src/assets/icons/login-close-btn.svg';
 import { ReactComponent as Google } from 'src/assets/icons/google-auth-icon.svg';
 import { ReactComponent as Facebook } from 'src/assets/icons/facebook-auth-icon.svg';
 import s from './Login.module.scss';
-import { useTypedSelector } from 'src/hooks/useTypedSelectors';
-import { useActions } from 'src/hooks/useActions';
 
 const primaryBtnStyle = {
 	width: '100%',
@@ -27,14 +28,12 @@ const Login: FC = () => {
 	const [onShowPass, setOnShowPass] = useState<boolean>(false);
 	const [authEmailError, setAuthEmailError] = useState<boolean>(false);
 	const [authPasswordError, setAuthPasswordError] = useState<boolean>(false);
+	const [isLandscapeOrientation, setIsLandscapeOrientation] = useState<boolean>(false);
+	const { isTablet } = useMediaQuery();
 
 	const { isOpen } = useTypedSelector((state) => state.showLogin);
 	const { showLogin } = useActions();
 	const location = useLocation();
-
-	useEffect(() => {
-		isOpen && showLogin(false);
-	}, [location]);
 
 	const onCloseLoginWindow = () => {
 		showLogin(false);
@@ -109,6 +108,26 @@ const Login: FC = () => {
 			: null;
 	}, [values, touched, authEmailError, authPasswordError]);
 
+	useEffect(() => {
+		isOpen && showLogin(false);
+	}, [location]);
+
+	useEffect(() => {
+		const handleOrientationChange = () => {
+			const newOrientation = window.matchMedia('(orientation: landscape)').matches;
+			setIsLandscapeOrientation(newOrientation);
+		};
+
+		// Add an event handler when mounting a component
+		window.addEventListener('resize', handleOrientationChange);
+
+		handleOrientationChange();
+
+		return () => {
+			window.removeEventListener('resize', handleOrientationChange);
+		};
+	}, []);
+
 	const navigate = useNavigate();
 
 	return (
@@ -116,7 +135,12 @@ const Login: FC = () => {
 			className={clsx(s.login_overlay, s.login, isOpen && s.login_active)}
 			onClick={handleCloseLoginWind}
 		>
-			<div className={s.login__content}>
+			<div
+				className={clsx(
+					s.login__content,
+					isLandscapeOrientation && !isTablet ? s.login__content_layout : ''
+				)}
+			>
 				<img
 					className={s.login__closeImg}
 					onClick={handleCloseLoginWind}
