@@ -72,12 +72,13 @@ const RequestPasswordForm = () => {
 								className={clsx(
 									s.input,
 									values.email && s.active,
-									errors.email && touched.email && s.error
+									errors.email && touched.email && s.error,
+									isSuccessResponse && s.disabled
 								)}
-								placeholder={!isSuccessResponse ? 'Введіть e-mail' : values.email}
+								placeholder="Введіть e-mail"
 								name="email"
 								id="email"
-								value={!isSuccessResponse ? values.email : ''}
+								value={values.email}
 								onChange={handleChange}
 								onBlur={handleBlur}
 								disabled={isSuccessResponse}
