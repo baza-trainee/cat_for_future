@@ -58,6 +58,8 @@ const Login: FC = () => {
 		touched,
 		isSubmitting,
 		setValues,
+		setErrors,
+		setTouched,
 	} = useFormik({
 		enableReinitialize: true,
 		initialValues: initialValue,
@@ -90,6 +92,8 @@ const Login: FC = () => {
 		if (e.target === e.currentTarget) {
 			onCloseLoginWindow();
 			setValues(initialValue);
+			setErrors({});
+			setTouched({});
 		}
 	};
 
