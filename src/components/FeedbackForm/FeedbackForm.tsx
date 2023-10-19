@@ -18,7 +18,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 		actions.resetForm();
 		setShowModal(true);
 	};
-	// validation login form
+
 	const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, isValid } =
 		useFormik({
 			initialValues: {
