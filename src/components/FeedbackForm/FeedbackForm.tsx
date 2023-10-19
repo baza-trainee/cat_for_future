@@ -51,7 +51,6 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 					.max(255, `Повідомлення не повинно містити більше 255 символів`)
 					.required(`Обов'язкове поле`),
 			}),
-			// need _ when we don't use values
 			onSubmit: onSubmit,
 		});
 
