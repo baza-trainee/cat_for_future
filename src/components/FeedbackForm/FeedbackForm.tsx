@@ -11,6 +11,13 @@ interface FeedbackFormProps {
 }
 
 const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
+	const onSubmit = async (values, actions) => {
+		console.log(`Надіслати пропозиції: ${values.message}; 
+				ім'я:  ${values.name}; email: ${values.email}`);
+		await new Promise((resolve) => setTimeout(resolve, 500));
+		actions.resetForm();
+		setShowModal(true);
+	};
 	// validation login form
 	const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, isValid } =
 		useFormik({
@@ -22,8 +29,8 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 			validationSchema: Yup.object().shape({
 				name: Yup.string()
 					.notRequired()
-					.min(2, `Ім'я повинно містити щонайменше 2 літери`)
-					.max(15, `Ім'я не повинно містити більше 15 символів`)
+					.min(2, `Введіть ім'я від 2 до 15 символів`)
+					.max(15, `Введіть ім'я від 2 до 15 символів`)
 					//name starts with one letter, then could be symbols and/or at least 1 another letter
 					//name could be either with latin or cyrillic letters
 					.matches(
@@ -31,26 +38,21 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 						`Дозволена латиниця або кирилиця, пробіл, дефіс, апостроф, крапка`
 					),
 				email: Yup.string()
-					.min(3, `E-mail повинен містити щонайменше 3 символи`)
-					.max(320, `E-mail не повинен містити більше 320 символів`)
-					.email(`Введіть валідний e-mail`)
+					.min(3, `Введіть коректну e-mail адресу`)
+					.max(320, `Введіть коректну e-mail адресу`)
+					.email(`Введіть коректну e-mail адресу`)
 					.matches(
 						/[A-Z0-9_%+-]+(?:\.[0-9a-zA-Z]+)*@[A-Z0-9-]+.+.[A-Z]{2,4}/gim,
-						`Введіть валідний e-mail`
+						`Введіть коректну e-mail адресу`
 					)
 					.required(`Обов'язкове поле`),
 				message: Yup.string()
-					.min(8, `Повідомлення повинно містити від 8 символів`)
-					.max(255, `Повідомлення повинно містити до 255 символів`)
+					.min(8, `Введіть повідомлення від 8 символів`)
+					.max(255, `Повідомлення не повинно містити більше 255 символів`)
 					.required(`Обов'язкове поле`),
 			}),
 			// need _ when we don't use values
-			onSubmit: (_, actions) => {
-				console.log(`Надіслати пропозиції: ${values.message}; 
-				ім'я:  ${values.name}; email: ${values.email}`);
-				actions.resetForm();
-				setShowModal(true);
-			},
+			onSubmit: onSubmit,
 		});
 
 	return (
