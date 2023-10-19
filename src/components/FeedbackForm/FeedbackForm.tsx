@@ -10,22 +10,22 @@ interface FeedbackFormProps {
 	setShowModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
-	const onSubmit = async (values, actions) => {
-		console.log(`Надіслати пропозиції: ${values.message}; 
-				ім'я:  ${values.name}; email: ${values.email}`);
-		await new Promise((resolve) => setTimeout(resolve, 500));
-		actions.resetForm();
-		setShowModal(true);
-	};
+type FormValues = {
+	name: string;
+	email: string;
+	message: string;
+};
 
+const initialValues: FormValues = {
+	name: '',
+	email: '',
+	message: '',
+};
+
+const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 	const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, isValid } =
 		useFormik({
-			initialValues: {
-				name: '',
-				email: '',
-				message: '',
-			},
+			initialValues: initialValues,
 			validationSchema: Yup.object().shape({
 				name: Yup.string()
 					.notRequired()
@@ -51,7 +51,13 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ setShowModal }) => {
 					.max(255, `Повідомлення не повинно містити більше 255 символів`)
 					.required(`Обов'язкове поле`),
 			}),
-			onSubmit: onSubmit,
+			onSubmit: async (values, actions) => {
+				console.log(`Надіслати пропозиції: ${values.message}; 
+				ім'я:  ${values.name}; e-mail: ${values.email}`);
+				await new Promise((resolve) => setTimeout(resolve, 500));
+				actions.resetForm();
+				setShowModal(true);
+			},
 		});
 
 	return (
