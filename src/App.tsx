@@ -6,6 +6,8 @@ import Home from './pages/Home/Home';
 import Page404 from 'src/components/Page404/Page404';
 import Contacts from 'src/pages/Contacts/Contacts';
 import RegPage from 'src/pages/RegistrationPage/RegPageIndex';
+import ConfirmPasswordForm from 'src/components/ConfirmPasswordForm/ConfirmPasswordForm';
+import RequestPasswordForm from 'src/components/RequestPasswordForm/RequestPasswordForm';
 
 const PersonalAccount = React.lazy(() => import('src/pages/PersonalAccount/PersonalAccount'));
 
@@ -13,7 +15,10 @@ function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<Layout />}>
-				<Route index element={<Home />} />
+				<Route path="/" element={<Home />}>
+					<Route path="confirm-password" element={<ConfirmPasswordForm />} />
+					<Route path="request-password" element={<RequestPasswordForm />} />
+				</Route>
 				<Route
 					path="account/*"
 					element={

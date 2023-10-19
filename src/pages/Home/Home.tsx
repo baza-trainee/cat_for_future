@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { scrollToSection, scrollOnTop } from 'src/utils/scrollToSection';
 import Hero from 'src/components/Hero/Hero';
 import OurCats from 'src/components/OurCats/OurCats';
@@ -22,6 +22,7 @@ const Home: React.FC = () => {
 			<OurCats />
 			<AdoptKittenInstruction />
 			<HappyStories />
+			<Outlet />
 		</div>
 	);
 };

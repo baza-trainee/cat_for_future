@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 import s from './AccountModal.module.scss';
+import './animations.scss';
 
 import close from 'src/assets/icons/close_black.svg';
 import Button from 'src/components/Button/Button';
-import { useNavigate } from 'react-router';
 
 interface ModalProps {
 	title: string;
@@ -15,8 +16,10 @@ interface ModalProps {
 const AccountModal: React.FC<ModalProps> = ({ text, title, status }) => {
 	const navigate = useNavigate();
 	const buttonRef = React.useRef<HTMLButtonElement>(null);
+	const [isVisible, setIsVisible] = useState(status);
+
 	const onDismiss = () => {
-		navigate(-1);
+		setIsVisible(false);
 	};
 
 	useEffect(() => {
@@ -34,6 +37,12 @@ const AccountModal: React.FC<ModalProps> = ({ text, title, status }) => {
 		}
 	}, [status, onDismiss]);
 
+	const handleAnimationEnd = () => {
+		if (!isVisible) {
+			navigate(-1);
+		}
+	};
+
 	const handleModalClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		if (e.target === e.currentTarget) {
 			onDismiss();
@@ -41,32 +50,40 @@ const AccountModal: React.FC<ModalProps> = ({ text, title, status }) => {
 	};
 
 	return (
-		<div className={s.backdrop} onClick={handleModalClick}>
+		<div
+			className={`${s.backdrop} ${isVisible ? 'fadeIn' : 'fadeOut'}`}
+			onClick={handleModalClick}
+			onAnimationEnd={handleAnimationEnd}
+		>
 			<div className={s.modalWrapper}>
-				<div className={s.btnCloseWrapper}>
-					<button onClick={onDismiss} ref={buttonRef}>
-						<img className={s.close} src={close} alt="Close" />
-					</button>
-				</div>
-				<h3 className={s.title}>{title}</h3>
-				<p className={s.textWrapper}>{text}</p>
+				<section className={s.contentWrapper}>
+					<div className={s.btnCloseWrapper}>
+						<button onClick={onDismiss} ref={buttonRef} className={s.closeBtn}>
+							<img className={s.close} src={close} alt="Close" />
+						</button>
+					</div>
 
-				<div className={s.btnWrapper}>
-					<Button
-						buttonClasses={'primaryBtn'}
-						type={'submit'}
-						name={'Оплатити'}
-						onClick={() => console.log(`you want ${title} `)}
-						styleBtn={{ width: '100%' }}
-					/>
-					<Button
-						buttonClasses={'primaryBtn'}
-						type={'submit'}
-						name={'Оплатити'}
-						onClick={() => console.log(`you want ${title} `)}
-						styleBtn={{ width: '100%', backgroundColor: 'none', border: ' 1px solid black' }}
-					/>
-				</div>
+					<h3 className={s.title}>{title}</h3>
+					<p className={s.text}>{text}</p>
+
+					<div className={s.btnWrapper}>
+						<button className={s.backBtn} type="button" onClick={onDismiss}>
+							Назад
+						</button>
+						<Button
+							buttonClasses={'primaryBtn'}
+							type={'submit'}
+							name={`${title === 'Видалення акаунта' ? 'Видалити' : 'Вихід'}`}
+							onClick={() => console.log(`you want ${title} `)}
+							styleBtn={{
+								width: '12.5rem',
+								height: '3.5rem',
+								padding: '1rem 4.3125rem',
+								fontSize: '1.125rem',
+							}}
+						/>
+					</div>
+				</section>
 			</div>
 		</div>
 	);

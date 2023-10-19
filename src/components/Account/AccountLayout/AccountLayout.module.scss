@@ -53,6 +53,13 @@
 		font-size: 3rem;
 		line-height: 3.3rem;
 	}
+
+	@include full_desktop {
+		font-size: 3.5rem;
+		font-style: normal;
+		font-weight: 900;
+		line-height: 3.85rem;
+	}
 }
 
 .accountPanel {
