@@ -47,7 +47,7 @@ const MyData: FC = () => {
 								errors.name && touched.name ? clsx(s.detailsLabel, s.errorLabel) : s.detailsLabel
 							}
 						>
-							Імʼя
+							Імʼя*
 						</label>
 
 						<input
@@ -73,7 +73,7 @@ const MyData: FC = () => {
 									: s.detailsLabel
 							}
 						>
-							Номер телефону
+							Номер телефону*
 						</label>
 
 						<InputMask
@@ -100,7 +100,7 @@ const MyData: FC = () => {
 								errors.email && touched.email ? clsx(s.detailsLabel, s.errorLabel) : s.detailsLabel
 							}
 						>
-							E-mail
+							E-mail*
 						</label>
 
 						<input
@@ -124,7 +124,7 @@ const MyData: FC = () => {
 								errors.city && touched.city ? clsx(s.detailsLabel, s.errorLabel) : s.detailsLabel
 							}
 						>
-							Місто
+							Місто*
 						</label>
 
 						<select
