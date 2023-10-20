@@ -29,7 +29,7 @@ const Login: FC = () => {
 	const [authEmailError, setAuthEmailError] = useState<boolean>(false);
 	const [authPasswordError, setAuthPasswordError] = useState<boolean>(false);
 	const [isLandscapeOrientation, setIsLandscapeOrientation] = useState<boolean>(false);
-	const { isTablet } = useMediaQuery();
+	const { isDesktop } = useMediaQuery();
 
 	const { isOpen } = useTypedSelector((state) => state.showLogin);
 	const { showLogin } = useActions();
@@ -138,7 +138,7 @@ const Login: FC = () => {
 			<div
 				className={clsx(
 					s.login__content,
-					isLandscapeOrientation && !isTablet ? s.login__content_layout : ''
+					isLandscapeOrientation && !isDesktop ? s.login__content_layout : ''
 				)}
 			>
 				<img
