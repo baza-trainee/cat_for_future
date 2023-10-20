@@ -28,8 +28,8 @@ const MyData: FC = () => {
 				)
 				.min(2, "Введіть ім'я від 2 до 15 символів")
 				.max(15, "Введіть ім'я від 2 до 15 символів"),
-			number: Yup.string().required("Обов'язкове поле").min(13, 'Введіть мінімум 9 символів'),
-			email: Yup.string().email('Введіть коректну e-mail адресу').required("Обов'язкове поле"),
+			number: Yup.string().required("Обов'язкове поле"),
+			email: Yup.string().email('Введіть дійсну електронну пошту!').required("Обов'язкове поле"),
 			city: Yup.string().required("Обов'язкове поле"),
 		}),
 		onSubmit: (values) => {
@@ -85,7 +85,7 @@ const MyData: FC = () => {
 							}
 							onChange={handleChange}
 							onBlur={handleBlur}
-							value={values.number.length < 5 ? (values.number = '+380') : values.number}
+							value={values.number}
 							name="number"
 							type="tel"
 						/>
