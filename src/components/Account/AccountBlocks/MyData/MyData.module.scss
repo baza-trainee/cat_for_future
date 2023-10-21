@@ -33,6 +33,7 @@
 	letter-spacing: 0.0375rem;
 	border: 0.0625rem solid $color-system-default-30;
 	margin-top: 0.25rem;
+	background-color: $color-neutral-colors-white;
 	@include tablet {
 		width: 22.5rem;
 	}
@@ -47,6 +48,7 @@
 	color: $color-primary-orange;
 	font-family: $primary-font;
 	font-weight: 400;
+	padding-left: 0.625rem;
 	@include tablet {
 		font-size: 1.25rem;
 	}
