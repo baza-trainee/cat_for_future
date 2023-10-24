@@ -4,22 +4,19 @@ import s from './ModalBack.module.scss';
 
 import { ReactComponent as Close } from 'src/assets/icons/login-close-btn.svg';
 
+import { useEscape } from 'src/hooks/useEscape';
+
 interface ModalBackProps {
 	children: React.ReactNode;
 	handleCloseModal: () => void;
-	handleClickModalBack?: () => void;
 	wrapStyle?: CSSProperties;
 }
 
-const ModalBack: FC<ModalBackProps> = ({
-	children,
-	handleCloseModal,
-	handleClickModalBack,
-	wrapStyle,
-}) => {
+const ModalBack: FC<ModalBackProps> = ({ children, handleCloseModal, wrapStyle }) => {
+	useEscape(handleCloseModal);
 	const handleModalClick = (e: MouseEvent<HTMLDivElement>) => {
-		if (handleClickModalBack && e.target === e.currentTarget) {
-			handleClickModalBack();
+		if (e.target === e.currentTarget) {
+			handleCloseModal();
 		}
 	};
 
