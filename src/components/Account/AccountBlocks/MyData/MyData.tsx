@@ -28,7 +28,7 @@ const MyData: FC = () => {
 				)
 				.min(2, "Введіть ім'я від 2 до 15 символів")
 				.max(15, "Введіть ім'я від 2 до 15 символів"),
-			number: Yup.string().required("Обов'язкове поле").min(13, 'Введіть мінімум 9 символів'),
+			number: Yup.string().required("Обов'язкове поле"),
 			email: Yup.string().email('Введіть дійсну електронну пошту!').required("Обов'язкове поле"),
 			city: Yup.string().required("Обов'язкове поле"),
 		}),
@@ -47,7 +47,7 @@ const MyData: FC = () => {
 								errors.name && touched.name ? clsx(s.detailsLabel, s.errorLabel) : s.detailsLabel
 							}
 						>
-							Імʼя
+							Імʼя*
 						</label>
 
 						<input
@@ -73,7 +73,7 @@ const MyData: FC = () => {
 									: s.detailsLabel
 							}
 						>
-							Номер телефону
+							Номер телефону*
 						</label>
 
 						<InputMask
@@ -85,7 +85,7 @@ const MyData: FC = () => {
 							}
 							onChange={handleChange}
 							onBlur={handleBlur}
-							value={values.number.length < 5 ? (values.number = '+380') : values.number}
+							value={values.number}
 							name="number"
 							type="tel"
 						/>
@@ -100,7 +100,7 @@ const MyData: FC = () => {
 								errors.email && touched.email ? clsx(s.detailsLabel, s.errorLabel) : s.detailsLabel
 							}
 						>
-							E-mail
+							E-mail*
 						</label>
 
 						<input
@@ -124,7 +124,7 @@ const MyData: FC = () => {
 								errors.city && touched.city ? clsx(s.detailsLabel, s.errorLabel) : s.detailsLabel
 							}
 						>
-							Місто
+							Місто*
 						</label>
 
 						<select
