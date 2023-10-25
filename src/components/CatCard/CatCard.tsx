@@ -85,6 +85,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 							slidesPerGroup={1}
 							slideStyle={slideStyle}
 							loop={tabletModal}
+							pagination={{ clickable: true }}
 							className={tabletModal ? 'inTabletModal' : ''}
 						>
 							{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
