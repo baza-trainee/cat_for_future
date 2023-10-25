@@ -43,12 +43,12 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 		sex,
 		birthday,
 		photos,
-		onCatCardClick,
 		variant,
 		slideStyle,
-		setIsCatModalOpen,
 		onBookedClick,
+		onCatCardClick,
 		booking_status,
+		setIsCatModalOpen,
 	} = props;
 	const { isTablet } = useMediaQuery();
 	const tabletModal = variant === 'tabletModal';

@@ -2,7 +2,8 @@
 @use 'src/styles/variables' as *;
 
 .wrapper {
-	padding-top: 2.13rem;
+	padding: 2.13rem 0 2.5rem;
+
 	@include tablet {
 		padding: 4.63rem 2.13rem 0;
 	}
@@ -42,7 +43,7 @@
 	}
 }
 .btnContainer {
-	padding: 1.56rem 1rem 2.5rem;
+	padding: 1.56rem 1rem 0;
 	max-width: 20rem;
 	margin: 0 auto;
 }

@@ -51,7 +51,7 @@ const OurCats: React.FC = () => {
 					/>
 				))}
 			</div>
-			{!isTablet && catsData.length <= 3 && (
+			{!isTablet && catsData.length <= 3 && cats.length > 3 && (
 				<div className={s.btnContainer}>
 					<Button
 						onClick={handleShowMoreClick}
