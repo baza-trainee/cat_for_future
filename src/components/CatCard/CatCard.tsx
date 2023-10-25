@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
 
 import ImageCatCard from './ImageCatCard/ImageCatCard';
@@ -53,14 +52,15 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 	const [showThanksModal, setShowThanksModal] = useState(false);
 	const [pluralizedAge, setPluralizedAge] = useState<string>();
 
-	const navigate = useNavigate();
-
 	useEffect(() => {
 		setPluralizedAge(pluralize(age, 'місяц'));
 	}, []);
 
 	const navigateToHome = () => {
-		navigate('/');
+		setShowThanksModal(false);
+		setIsCatModalOpen && setIsCatModalOpen(false);
+	};
+	const handleThanksModalClose = () => {
 		setShowThanksModal(false);
 		setIsCatModalOpen && setIsCatModalOpen(false);
 	};
@@ -142,7 +142,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 			{showThanksModal && (
 				<div onClick={(e) => e.stopPropagation()} className={s.thanksModalWrap}>
 					<ModalWhiteCat
-						handleCloseModal={() => setShowThanksModal(false)}
+						handleCloseModal={handleThanksModalClose}
 						image={photos[0]}
 						message="Дякуємо! Кошеня успішно заброньоване"
 						name="На Головну"
