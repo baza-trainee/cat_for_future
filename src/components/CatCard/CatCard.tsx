@@ -56,10 +56,6 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 		setPluralizedAge(pluralize(age, 'місяц'));
 	}, []);
 
-	const navigateToHome = () => {
-		setShowThanksModal(false);
-		setIsCatModalOpen && setIsCatModalOpen(false);
-	};
 	const handleThanksModalClose = () => {
 		setShowThanksModal(false);
 		setIsCatModalOpen && setIsCatModalOpen(false);
@@ -146,7 +142,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 						image={photos[0]}
 						message="Дякуємо! Кошеня успішно заброньоване"
 						name="На Головну"
-						handleNavBtn={navigateToHome}
+						handleNavBtn={handleThanksModalClose}
 					/>
 				</div>
 			)}
