@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
 
 import ImageCatCard from './ImageCatCard/ImageCatCard';
@@ -17,6 +17,7 @@ import lockIcon from 'src/assets/icons/cat_card/lock.svg';
 import homeIcon from 'src/assets/icons/cat_card/home.svg';
 
 import s from './CatCard.module.scss';
+import { getDeadlineAndBirthDate } from 'src/utils/getDeadlineAndBirthDate';
 
 const btnStyle = {
 	width: '100%',
@@ -31,11 +32,14 @@ interface CatCardProps extends ICat {
 	onBookedClick: (id: number) => void;
 }
 
+const correctCatAgeInMonth = (catAge: number): string => {
+	return catAge < 1 ? 'менше 1 місяця' : `${catAge} ${pluralize(catAge, 'місяц')}`;
+};
+
 const CatCard: React.FC<CatCardProps> = (props) => {
 	const {
 		id,
 		name,
-		age,
 		sex,
 		birthday,
 		photos,
@@ -50,11 +54,8 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 	const tabletModal = variant === 'tabletModal';
 	const desktopModal = variant === 'desktopModal';
 	const [showThanksModal, setShowThanksModal] = useState(false);
-	const [pluralizedAge, setPluralizedAge] = useState<string>();
-
-	useEffect(() => {
-		setPluralizedAge(pluralize(age, 'місяц'));
-	}, []);
+	const [currentDate] = useState(Date.now());
+	const catAge = getDeadlineAndBirthDate(birthday, currentDate).getCatAge();
 
 	const handleThanksModalClose = () => {
 		setShowThanksModal(false);
@@ -112,7 +113,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 						</div>
 						<span className={s.id}>ID: {id}</span>
 						<div className={s.about}>
-							{sex === 'male' ? 'Кіт' : 'Кішка'}, {age} {pluralizedAge}
+							{sex === 'male' ? 'Кіт' : 'Кішка'}, {correctCatAgeInMonth(catAge)}
 						</div>
 						<span className={s.birthday}>День народження: {birthday} </span>
 						{variant && (
