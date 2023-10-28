@@ -1,0 +1,141 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.card {
+	width: 100%;
+	min-width: 18rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 0.75rem;
+	padding-bottom: 5rem;
+
+	@include tablet {
+		flex-direction: row;
+		padding: 0.94rem 0 2.75rem;
+		gap: 0.75rem;
+	}
+
+	@include full_desktop {
+		padding: 0;
+	}
+}
+
+.img {
+	flex: none;
+	display: block;
+	width: 100%;
+	max-width: 18rem;
+	height: 16.25rem;
+	align-self: start;
+	object-fit: cover;
+
+	@include tablet {
+		height: 15.8125rem;
+		max-width: 20.25rem;
+	}
+
+	@include full_desktop {
+		height: 18.1875rem;
+		max-width: 22.9375rem;
+	}
+}
+
+.cardBody {
+	display: flex;
+	flex-direction: column;
+	gap: 0.44rem;
+
+	@include tablet {
+		gap: 0.5rem;
+	}
+}
+
+.title {
+	color: $color-primary-green;
+	font-family: $primary-font;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 120%;
+
+	@include tablet {
+		font-size: 2rem;
+		font-weight: 700;
+	}
+}
+
+.description {
+	align-self: stretch;
+	color: #000;
+	font-family: $primary-font;
+	font-style: normal;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 120%;
+	overflow: hidden;
+
+	@include tablet {
+		font-size: 1.25rem;
+	}
+}
+
+.textCollapsed {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 10;
+	line-clamp: 10;
+	-webkit-box-orient: vertical;
+
+	@include full_desktop {
+		-webkit-line-clamp: 6;
+		line-clamp: 6;
+	}
+}
+
+.btnWrap {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	@include full_desktop {
+		justify-content: space-between;
+	}
+
+	.icon path {
+		fill: none;
+		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+	}
+
+	@include hover {
+		button:hover .icon path {
+			stroke: $color-ref-orange-10;
+		}
+		button:active .icon path {
+			stroke: $color-ref-orange-20;
+		}
+	}
+}
+
+.btn {
+	height: 1.375rem;
+	color: $color-primary-dark-green;
+	font-family: $primary-font;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 120%;
+	text-decoration-line: underline;
+	background-color: transparent;
+	cursor: pointer;
+
+	@include tablet {
+		font-size: 1.125rem;
+	}
+}
+@include hover {
+	.btn:hover {
+		font-weight: 600;
+		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+	}
+}

@@ -1,0 +1,19 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(12rem, auto));
+	grid-template-rows: 18.6875rem;
+	grid-auto-rows: 18.6875rem;
+	row-gap: 1.25rem;
+	column-gap: 1.06rem;
+	justify-content: center;
+}
+
+.img {
+	display: block;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}

@@ -70,6 +70,7 @@
 .slogan {
 	position: relative;
 	width: 90%;
+	height: 8.125rem;
 	background-color: $color-primary-green;
 	margin-bottom: 1.25rem;
 	display: flex;
@@ -80,6 +81,11 @@
 	text-align: left;
 	font-family: $primary-font;
 	letter-spacing: 0.0063rem;
+
+	@include small_tablet {
+		height: 7.5rem;
+		margin-bottom: 2.25rem;
+	}
 
 	@include tablet {
 		margin-bottom: 6.55rem;
@@ -97,7 +103,7 @@
 	font-weight: 700;
 
 	@include tablet {
-		min-width: 187px;
+		min-width: 11.6875rem;
 		font-size: 1.125rem;
 		padding: 5% 0.3125rem 5% 2.8125rem;
 		margin-right: -1.5625rem;
@@ -120,6 +126,10 @@
 	border-left: 0.125rem solid $color-system-default-0;
 	padding-left: 0.9375rem;
 	margin: 0.9375rem 0 0.9375rem 0.3125rem;
+
+	@include small_tablet {
+		padding: 1.25rem 0 1.25rem 0.9375rem;
+	}
 
 	@include tablet {
 		font-weight: 300;
@@ -152,4 +162,8 @@
 		top: -2.625rem;
 		left: -1.25rem;
 	}
+}
+
+.contentBtn {
+	width: 14.25rem;
 }

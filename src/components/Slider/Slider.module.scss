@@ -53,3 +53,44 @@
 		stroke: $color-system-default-30;
 	}
 }
+
+//Tablet Cats Slider in Modal
+.wrapper.inTabletModal {
+	:global {
+		.swiper-slide {
+			height: 100%;
+			padding-bottom: 3.625rem;
+		}
+		.swiper-pagination-bullets {
+			bottom: 1.5rem;
+		}
+		.nextBtn {
+			left: 2.5rem + 2.2rem;
+			right: auto;
+		}
+		.prevBtn {
+			left: 2.2rem;
+			right: auto;
+			margin-right: 0.5rem;
+		}
+	}
+}
+
+.wrapper.inMobileMyKitten {
+	:global {
+		.swiper-slide {
+			margin-bottom: 1rem;
+		}
+		.prevBtn {
+			margin-right: 0.5rem;
+		}
+	}
+}
+
+.wrapper.inDesktopMyKitten {
+	:global {
+		.swiper-slide {
+			margin-bottom: 0.75rem;
+		}
+	}
+}

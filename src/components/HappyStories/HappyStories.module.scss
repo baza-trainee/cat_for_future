@@ -1,0 +1,83 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.happyStories {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container {
+	min-width: 20rem;
+	width: 100%;
+	height: 100%;
+	max-width: 73.5625rem;
+	padding: 1.87rem 1rem 1.19rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	@include tablet {
+		padding: 1rem 2rem 5rem;
+	}
+
+	@include full_desktop {
+		padding: 6.4375rem 1rem 5.5rem;
+	}
+
+	.icon path {
+		fill: none;
+		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+	}
+	@include hover {
+		button:hover .icon path {
+			stroke: $color-ref-orange-10;
+		}
+		button:active .icon path {
+			stroke: $color-ref-orange-20;
+		}
+	}
+}
+
+.title {
+	color: $color-primary-dark-green;
+	text-align: center;
+	font-family: $secondary-font;
+	font-style: normal;
+	font-size: 1.375rem;
+	font-weight: 900;
+	line-height: 110%;
+
+	@include tablet {
+		font-size: 3rem;
+	}
+
+	@include full_desktop {
+		font-size: 3.5rem;
+	}
+}
+
+.storiesWrap {
+	width: 18rem;
+	display: flex;
+	flex-direction: column;
+	margin-top: 0.81rem;
+
+	:global {
+		.swiper-slide {
+			height: 100%;
+		}
+	}
+
+	@include tablet {
+		width: 43.875rem;
+		margin-top: 2.63rem;
+	}
+
+	@include full_desktop {
+		width: 100%;
+		gap: 4.25rem;
+		margin-top: 3.88rem;
+	}
+}

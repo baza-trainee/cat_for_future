@@ -41,11 +41,16 @@
 		stroke: $color-neutral-colors-white;
 		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
 	}
+	@include hover {
+		button:hover .icon path {
+			stroke: $color-primary-dark-green;
+		}
+	}
 
-	button:hover .icon path,
 	button:active .icon path {
 		stroke: $color-primary-dark-green;
 	}
+
 	@include tablet {
 		button:active .icon path {
 			stroke: $color-system-default-10;

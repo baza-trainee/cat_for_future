@@ -46,3 +46,8 @@ h5 {
 	font-weight: inherit;
 	font-size: inherit;
 }
+
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear {
+	display: none;
+}

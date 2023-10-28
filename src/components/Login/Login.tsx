@@ -1,8 +1,12 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, useMemo } from 'react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Button from '../Button/Button';
+import { useTypedSelector } from 'src/hooks/useTypedSelectors';
+import { useActions } from 'src/hooks/useActions';
+import useMediaQuery from 'src/hooks/useMediaQuery';
 import Eye from './Eye/Eye';
 import closeBtn from 'src/assets/icons/login-close-btn.svg';
 import { ReactComponent as Google } from 'src/assets/icons/google-auth-icon.svg';
@@ -20,42 +24,77 @@ const secondaryBtnStyle = {
 	backgroundColor: 'transparent',
 };
 
-interface LoginProps {
-	onCloseLoginWindow: (boolean: boolean) => void;
-	isLoginWindOpen: boolean;
-}
-
-const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
+const Login: FC = () => {
 	const [onShowPass, setOnShowPass] = useState<boolean>(false);
 	const [authEmailError, setAuthEmailError] = useState<boolean>(false);
 	const [authPasswordError, setAuthPasswordError] = useState<boolean>(false);
+	const [isLandscapeOrientation, setIsLandscapeOrientation] = useState<boolean>(false);
+	const { isDesktop } = useMediaQuery();
+
+	const { isOpen } = useTypedSelector((state) => state.showLogin);
+	const { showLogin } = useActions();
+	const location = useLocation();
+
+	const onCloseLoginWindow = () => {
+		showLogin(false);
+	};
+
+	const initialValue = useMemo(
+		() => ({
+			loginEmail: '',
+			loginPassword: '',
+		}),
+		[]
+	);
+
+	// validation login form
+	const {
+		handleSubmit,
+		handleBlur,
+		handleChange,
+		values,
+		errors,
+		touched,
+		isSubmitting,
+		setValues,
+		setErrors,
+		setTouched,
+	} = useFormik({
+		enableReinitialize: true,
+		initialValues: initialValue,
+		validationSchema: Yup.object().shape({
+			loginEmail: Yup.string()
+				.email('Введіть коректну e-mail адресу')
+				.matches(
+					/^[A-Z0-9_%+-]+(\.[A-Z0-9_%+-]+)*@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+					'Введіть коректну e-mail адресу'
+				)
+				.required("Обов'язкове поле"),
+			loginPassword: Yup.string()
+				.min(8, 'Введіть коректний пароль')
+				.max(15, 'Введіть коректний пароль')
+				.matches(
+					/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,15}$/,
+					'Введіть коректний пароль'
+				)
+				.required("Обов'язкове поле"),
+		}),
+		onSubmit: (_, actions) => {
+			setAuthEmailError(false);
+			setAuthPasswordError(false);
+			console.log('Sing IN');
+			actions.resetForm();
+		},
+	});
 
 	const handleCloseLoginWind = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		if (e.target === e.currentTarget) {
-			onCloseLoginWindow(false);
+			onCloseLoginWindow();
+			setValues(initialValue);
+			setErrors({});
+			setTouched({});
 		}
 	};
-
-	// validation login form
-	const { handleSubmit, handleBlur, handleChange, values, errors, touched, isSubmitting } =
-		useFormik({
-			initialValues: {
-				loginEmail: '',
-				loginPassword: '',
-			},
-			validationSchema: Yup.object().shape({
-				loginEmail: Yup.string()
-					.email('Будь-ласка, введіть коректну email адресу')
-					.required("Обов'язкове поле"),
-				loginPassword: Yup.string().required("Обов'язкове поле"),
-			}),
-			onSubmit: (_, actions) => {
-				setAuthEmailError(false);
-				setAuthPasswordError(false);
-				console.log('Sing IN');
-				actions.resetForm();
-			},
-		});
 
 	useEffect(() => {
 		values.loginEmail && authEmailError
@@ -69,19 +108,42 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 			: null;
 	}, [values, touched, authEmailError, authPasswordError]);
 
+	useEffect(() => {
+		isOpen && showLogin(false);
+	}, [location]);
+
+	useEffect(() => {
+		const handleOrientationChange = () => {
+			const newOrientation = window.matchMedia('(orientation: landscape)').matches;
+			setIsLandscapeOrientation(newOrientation);
+		};
+
+		// Add an event handler when mounting a component
+		window.addEventListener('resize', handleOrientationChange);
+
+		handleOrientationChange();
+
+		return () => {
+			window.removeEventListener('resize', handleOrientationChange);
+		};
+	}, []);
+
+	const navigate = useNavigate();
+
 	return (
 		<div
-			className={
-				isLoginWindOpen
-					? clsx(s.login_overlay, s.login, s.login_active)
-					: clsx(s.login_overlay, s.login)
-			}
+			className={clsx(s.login_overlay, s.login, isOpen && s.login_active)}
 			onClick={handleCloseLoginWind}
 		>
-			<div className={s.login__content}>
+			<div
+				className={clsx(
+					s.login__content,
+					isLandscapeOrientation && !isDesktop ? s.login__content_layout : ''
+				)}
+			>
 				<img
 					className={s.login__closeImg}
-					onClick={() => onCloseLoginWindow(false)}
+					onClick={handleCloseLoginWind}
 					src={closeBtn}
 					alt="Close button"
 				/>
@@ -101,7 +163,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 										: s.login__label
 								}
 							>
-								Логін
+								Логін*
 							</label>
 							<div>
 								<input
@@ -124,7 +186,9 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 								{errors.loginEmail && touched.loginEmail ? (
 									<div className={s.login__errorMessage}>{errors.loginEmail}</div>
 								) : null}
-								{authEmailError && <div className={s.login__errorMessage}>Невірний логін</div>}
+								{authEmailError && (
+									<div className={s.login__errorMessage}>Введіть валідний e-mail</div>
+								)}
 							</div>
 						</div>
 
@@ -139,7 +203,7 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 										: s.login__label
 								}
 							>
-								Пароль
+								Пароль*
 							</label>
 							<div className={s.login__inputManipulPass}>
 								<input
@@ -170,14 +234,16 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 								{errors.loginPassword && touched.loginPassword ? (
 									<div className={s.login__errorMessage}>{errors.loginPassword}</div>
 								) : null}
-								{authPasswordError && <div className={s.login__errorMessage}>Невірний пароль</div>}
+								{authPasswordError && (
+									<div className={s.login__errorMessage}>Введіть коректний пароль</div>
+								)}
 							</div>
 						</div>
 					</div>
 
-					<a href="#" className={s.login__forgetPass}>
+					<Link to={'/request-password'} className={s.login__forgetPass}>
 						Забули пароль?
-					</a>
+					</Link>
 
 					<div className={s.login__boxBtn}>
 						<Button
@@ -192,6 +258,10 @@ const Login: FC<LoginProps> = ({ onCloseLoginWindow, isLoginWindOpen }) => {
 							buttonClasses={'secondaryBtn'}
 							type={'button'}
 							styleBtn={secondaryBtnStyle}
+							onClick={() => {
+								onCloseLoginWindow();
+								navigate('/registration');
+							}}
 						/>
 					</div>
 

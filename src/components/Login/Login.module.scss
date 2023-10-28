@@ -2,6 +2,7 @@
 @use 'src/styles/mixins' as *;
 
 .login {
+	position: relative;
 	visibility: hidden;
 	opacity: 0;
 	transition: all 0.3s ease-in-out;
@@ -10,37 +11,41 @@
 		visibility: visible;
 	}
 	&_overlay {
+		display: flex;
+		height: 100vh;
+		width: 100%;
 		position: fixed;
 		z-index: 1100;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
+		overflow-y: auto;
+		justify-content: center;
 		background: rgba(206, 206, 206, 0.6);
-		@include tablet {
-			padding: 11.69rem 0 11.75rem 0;
-		}
-		@include full_desktop {
-			padding: 6.88rem 0 8.56rem 0;
-		}
 	}
 	&__content {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		height: auto;
+		width: 20rem;
+		height: 37.5rem;
 		display: flex;
 		flex-direction: column;
-		width: 20rem;
 		padding: 1rem 1rem 1.44rem 1rem;
 		background: #fff;
+
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		overflow-y: auto;
+		&_layout {
+			overflow-y: scroll;
+			position: static;
+			transform: none;
+			top: none;
+			left: none;
+		}
 		@include tablet {
-			width: 23.75rem;
-			padding: 1rem 1.5rem 2.25rem 1.5rem;
+			width: 23.8rem;
+			height: 40.57rem;
 		}
 		@include full_desktop {
-			padding: 1rem 1.5rem 2.06rem 1.5rem;
+			width: 23.75rem;
+			height: 40.25rem;
 		}
 	}
 	&__closeBtn {
@@ -82,13 +87,13 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		padding: 0.25rem 0 0 0;
 	}
 	&__label {
-		margin: 0.25rem 0;
+		margin: 0 1rem;
 		font-size: 1.25rem;
 		font-weight: 400;
-		line-height: 1.5rem;
+		line-height: 2.5rem;
 		color: $color-primary-orange;
 		&_error {
 			color: $color-secondary-error;
@@ -109,12 +114,10 @@
 			padding-right: 3.25rem;
 		}
 		&:hover {
-			outline: 1px solid $color-system-default-100;
-		}
-		&:hover + div svg path {
-			stroke: $color-system-default-100;
+			border: 1px solid $color-system-default-100;
 		}
 		&:focus {
+			border: 1px solid $color-system-default-100;
 			outline: 2px solid $color-system-default-100;
 		}
 		&:focus + div svg path {
@@ -122,7 +125,7 @@
 		}
 		&:disabled {
 			color: $color-system-default-30;
-			outline: 1px solid $color-system-default-30;
+			border: 1px solid $color-system-default-30;
 		}
 		&:disabled + div svg path {
 			stroke: $color-system-default-100;
@@ -131,7 +134,7 @@
 			stroke: $color-system-default-100;
 		}
 		&_error {
-			outline: 2px solid $color-secondary-error;
+			border: 1px solid $color-secondary-error;
 		}
 	}
 	&__forgetPass {
@@ -140,9 +143,12 @@
 		color: #000;
 		font-size: 1rem;
 		font-weight: 400;
-		line-height: 1.32rem;
+		line-height: 132%;
 		text-decoration: underline;
 		transition: font-weight 0.1s ease-in-out;
+		&:hover {
+			font-weight: 600;
+		}
 	}
 	&__inputManipulPass {
 		position: relative;
