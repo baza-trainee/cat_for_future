@@ -3,6 +3,8 @@ import s from './ModalShowCat.module.scss';
 
 import { ReactComponent as Close } from 'src/assets/icons/login-close-btn.svg';
 import clsx from 'clsx';
+import { useEscape } from 'src/hooks/useEscape';
+import { onClickModalBack } from 'src/utils/onClickModalBack';
 
 interface ModalShowCatProps {
 	children: React.ReactNode;
@@ -11,14 +13,10 @@ interface ModalShowCatProps {
 }
 
 const ModalShowCat: React.FC<ModalShowCatProps> = ({ children, closeModal, variant }) => {
-	const handleBackdropClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
-		if (e.target === e.currentTarget) {
-			closeModal();
-		}
-	};
+	useEscape(closeModal);
 
 	return (
-		<div className={s.backdrop} onClick={handleBackdropClick}>
+		<div className={s.backdrop} onClick={(e) => onClickModalBack(e, closeModal)}>
 			<div className={s.wrapper}>
 				<Close
 					className={clsx(s.closeIcon, variant === 'desktopModal' && s.desktopModal)}
