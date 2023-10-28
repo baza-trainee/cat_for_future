@@ -9,10 +9,10 @@ export const useEscape = (onEscapeFn: onEscapeFnType) => {
 				onEscapeFn();
 			}
 		};
-		document.addEventListener('keydown', handleEsc);
+		document.addEventListener('keyup', handleEsc);
 
 		return () => {
-			document.removeEventListener('keydown', handleEsc);
+			document.removeEventListener('keyup', handleEsc);
 		};
 	}, []);
 };
