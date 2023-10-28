@@ -35,8 +35,13 @@
 	justify-content: center;
 }
 
+.fadeOut {
+	animation: fadeOut 0.3s ease-in-out;
+	animation-fill-mode: forwards;
+}
+
 .modalWrapper {
-	animation: fadeIn 0.5s ease-in-out;
+	animation: fadeIn 0.4s ease-in-out;
 	display: flex;
 	flex-direction: column;
 	background-color: $color-system-default-0;

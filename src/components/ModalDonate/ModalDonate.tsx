@@ -91,7 +91,6 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 			onAnimationEnd={handleAnimationEnd}
 		>
 			<div className={s.modalWrapper}>
-				{/* <div className={`${s.modalWrapper} ${isVisible ? s.fadeIn : s.fadeOut}`}> */}
 				<div className={s.modalBanner}>
 					<img className={s.close} onClick={handleModalClick} src={close} alt="Close" />
 				</div>
