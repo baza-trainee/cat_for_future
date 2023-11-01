@@ -8,15 +8,15 @@
 	gap: 0.69rem;
 	margin: 6.5rem auto 0.5rem auto;
 
-	@include small_tablet {
+	@include tablet {
 		width: 28.9375rem;
-		margin: 11.5rem auto 0.5rem auto;
+		margin: 11.5rem auto 2.56rem auto;
 		gap: 1rem;
 	}
 
 	@include full_desktop {
 		width: 28.9375rem;
-		margin: 13.375rem auto 0.5rem auto;
+		margin: 13.375rem auto 3.25rem auto;
 	}
 }
 
@@ -26,7 +26,7 @@
 	font-size: 1.125rem;
 	font-weight: 700;
 
-	@include small_tablet {
+	@include tablet {
 		margin-bottom: 0;
 		font-size: 1.5rem;
 	}
@@ -50,6 +50,10 @@
 	padding: 0.25rem 1rem;
 	margin-bottom: 0.25rem;
 	font-size: 1.25rem;
+}
+
+.errorLabel {
+	color: $color-secondary-error;
 }
 
 .signUpField {
@@ -78,14 +82,21 @@
 	}
 }
 
+.errorField {
+	border: 1px solid $color-secondary-error;
+}
+
 .error {
+	position: absolute;
+	top: 4.8rem;
+	left: 0.75rem;
 	display: flex;
 	align-items: center;
 	flex: 1 0 0;
-	color: $color-primary-orange;
+	color: $color-secondary-error;
 	padding: 0.25rem 0rem;
 	align-self: stretch;
-	font-size: 1.125rem;
+	font-size: 0.75rem;
 	line-height: 140%;
 }
 
@@ -96,7 +107,7 @@
 
 	font-size: 0.875rem;
 
-	@include small_tablet {
+	@include tablet {
 		margin-top: 1.56rem;
 		font-size: 1.125rem;
 		line-height: 150%;
@@ -123,6 +134,13 @@ option {
 
 select:required:invalid {
 	color: $color-system-default-30;
+	-moz-color: hsl(0, 0%, 20%);
+}
+
+@-moz-document url-prefix() {
+	select:required:invalid {
+		color: #e0dede;
+	}
 }
 
 .eye {
@@ -140,7 +158,6 @@ select:required:invalid {
 	background: $color-system-default-0;
 	width: 3rem;
 	height: 2.6rem;
-	pointer-events: none;
 }
 
 .customArrow::before,
@@ -209,6 +226,7 @@ select:required:invalid {
 	font-weight: 600;
 	line-height: 1.155rem;
 	color: #1d1c2b;
+
 	@include tablet {
 		font-size: 1.125rem;
 		font-weight: 700;
@@ -220,6 +238,7 @@ select:required:invalid {
 	display: block;
 	width: 1.125rem;
 	height: 1.125rem;
+
 	@include full_desktop {
 		width: 1.44444rem;
 		height: 1.4375rem;
@@ -230,6 +249,7 @@ select:required:invalid {
 	display: block;
 	width: 1rem;
 	height: 1rem;
+
 	@include full_desktop {
 		width: 1.4375rem;
 		height: 1.4375rem;
@@ -238,8 +258,9 @@ select:required:invalid {
 
 .gobackLink {
 	display: none;
+	background: transparent;
 
-	@include small_tablet {
+	@include tablet {
 		position: absolute;
 		top: 7.35rem;
 		left: 2rem;
@@ -257,7 +278,7 @@ select:required:invalid {
 }
 
 .gobackBtn {
-	@include small_tablet {
+	@include tablet {
 		visibility: visible;
 		background: none;
 		width: 8.8125rem;
@@ -275,7 +296,7 @@ select:required:invalid {
 	box-sizing: content-box;
 	padding: 0.75rem;
 
-	@include small_tablet {
+	@include tablet {
 		visibility: visible;
 	}
 }
@@ -293,7 +314,7 @@ select:required:invalid {
 	height: 3rem;
 	padding: 0.75rem;
 
-	@include small_tablet {
+	@include tablet {
 		display: none;
 	}
 }
@@ -304,7 +325,7 @@ select:required:invalid {
 	flex-direction: column;
 	margin: 6.62rem auto 6.5rem auto;
 
-	@include small_tablet {
+	@include tablet {
 		width: 30.8125rem;
 		margin: 11.25rem auto 16.31rem auto;
 	}
@@ -329,7 +350,7 @@ select:required:invalid {
 
 	font-size: 1rem;
 
-	@include small_tablet {
+	@include tablet {
 		font-size: 1.125rem;
 		line-height: 150%;
 	}
@@ -358,11 +379,15 @@ select:required:invalid {
 }
 
 .checkInput:checked + .checkBox {
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M1.19922 5.2799L4.79922 9.5999L10.7992 2.3999' stroke='%2376A88D' stroke-width='2'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 13 13' fill='none'%3E%3Cpath d='M1.19922 5.2799L4.79922 9.5999L10.7992 2.3999' stroke='%2376A88D' stroke-width='2'/%3E%3C/svg%3E");
 	background-position: center;
 }
 
-.checkInput:hover + .checkBox,
-.checkInput:focus + .checkBox {
+.checkInput:focus + .checkBox,
+.checkInput:hover + .checkBox {
 	background-color: #d7d7d7;
+}
+
+.checkInput:checked + .checkBox {
+	background-color: transparent;
 }

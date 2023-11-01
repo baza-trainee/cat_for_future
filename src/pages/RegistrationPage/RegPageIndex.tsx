@@ -4,6 +4,7 @@ import s from './RegPageIndex.module.scss';
 import Header from 'src/components/Header/Header';
 import Login from 'src/components/Login/Login';
 import ModalDonate from 'src/components/ModalDonate/ModalDonate';
+import Footer from 'src/components/Footer/Footer';
 
 import image from 'src/assets/images/modal/thanks-reg.png';
 
@@ -50,6 +51,7 @@ const RegPage: React.FC = () => {
 			<main className={s.main}>
 				<RegistrationPage onOpenModalWhiteCat={onOpenModalWhiteCat} />
 			</main>
+			<Footer />
 		</div>
 	);
 };
