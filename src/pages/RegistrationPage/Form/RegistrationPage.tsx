@@ -97,11 +97,18 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 						<section className={`${css.inputs} slideInLeft`}>
 							<h2 className={css.titleSignup}>Реєстрація</h2>
 							<div className={css.inputWrapper}>
-								<label htmlFor="name" className={css.regLabel}>
+								<label
+									htmlFor="name"
+									className={`${formik.errors.name && formik.touched.name ? css.errorLabel : ''} ${
+										css.regLabel
+									}`}
+								>
 									Ім’я*
 								</label>
 								<Field
-									className={css.signUpField}
+									className={`${formik.errors.name && formik.touched.name ? css.errorField : ''} ${
+										css.signUpField
+									}`}
 									name="name"
 									type="text"
 									id="name"
@@ -111,22 +118,38 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 								<ErrorMessage className={css.error} name="name" component="div" />
 							</div>
 							<div className={css.inputWrapper}>
-								<label className={css.regLabel}>Номер телефону*</label>
+								<label
+									className={`${
+										formik.errors.phone && formik.touched.phone ? css.errorLabel : ''
+									} ${css.regLabel}`}
+								>
+									Номер телефону*
+								</label>
 								<Field
 									as={InputMask}
 									mask="+380 99 999 9999"
 									id="phone"
 									placeholder="Введіть номер телефону"
-									className={css.signUpField}
+									className={`${
+										formik.errors.phone && formik.touched.phone ? css.errorField : ''
+									} ${css.signUpField}`}
 									name="phone"
 									required
 								/>
 								<ErrorMessage className={css.error} name="phone" component="div" />
 							</div>
 							<div className={css.inputWrapper}>
-								<label className={css.regLabel}>E-mail*</label>
+								<label
+									className={`${
+										formik.errors.email && formik.touched.email ? css.errorLabel : ''
+									} ${css.regLabel}`}
+								>
+									E-mail*
+								</label>
 								<Field
-									className={css.signUpField}
+									className={`${
+										formik.errors.email && formik.touched.email ? css.errorField : ''
+									} ${css.signUpField}`}
 									name="email"
 									type="email"
 									id="email"
@@ -136,9 +159,17 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 								<ErrorMessage className={css.error} name="email" component="div" />
 							</div>
 							<div className={css.inputWrapper}>
-								<label className={css.regLabel}>Місто*</label>
+								<label
+									className={`${formik.errors.city && formik.touched.city ? css.errorLabel : ''} ${
+										css.regLabel
+									}`}
+								>
+									Місто*
+								</label>
 								<Field
-									className={css.signUpField}
+									className={`${formik.errors.city && formik.touched.city ? css.errorField : ''} ${
+										css.signUpField
+									}`}
 									component="select"
 									name="city"
 									id="city"
@@ -155,9 +186,18 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 								<ErrorMessage className={css.error} name="city" component="div" />
 							</div>
 							<div className={css.inputWrapper}>
-								<label className={css.regLabel}>Пароль*</label>
+								<label
+									className={`${
+										formik.errors.password && formik.touched.password ? css.errorLabel : ''
+									} ${css.regLabel}`}
+								>
+									Пароль*
+								</label>
 								<Field
-									className={css.signUpField}
+									className={`${
+										formik.errors.password && formik.touched.password ? css.errorField : ''
+									} ${css.signUpField}`}
+									title="Пароль має містити від 8 до 15 символів (латинські літери нижнього, верхнього регістру, цифри, спецсимволи)"
 									name="password"
 									type={visible ? 'text' : 'password'}
 									placeholder="Ввести пароль"
@@ -177,9 +217,17 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 								<ErrorMessage className={css.error} name="password" component="div" />
 							</div>
 							<div className={css.inputWrapper}>
-								<label className={css.regLabel}>Підтвердження паролю*</label>
+								<label
+									className={`${
+										formik.errors.confirmpass && formik.touched.confirmpass ? css.errorLabel : ''
+									} ${css.regLabel}`}
+								>
+									Підтвердження паролю*
+								</label>
 								<Field
-									className={css.signUpField}
+									className={`${
+										formik.errors.confirmpass && formik.touched.confirmpass ? css.errorField : ''
+									} ${css.signUpField}`}
 									name="confirmpass"
 									type={visibleConfirm ? 'text' : 'password'}
 									placeholder="Повторити пароль"
@@ -204,6 +252,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									name={'Продовжити'}
 									onClick={() => next()}
 									styleBtn={{ width: '100%' }}
+									disabled={!formik.isValid}
 								/>
 							</div>
 
@@ -279,7 +328,17 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 					</section>
 				)}
 
-				<div className={css.gobackLink}>
+				<button
+					className={css.gobackLink}
+					type="button"
+					onClick={() => {
+						if (current === 0) {
+							window.location.href = '/';
+						} else {
+							prev();
+						}
+					}}
+				>
 					<svg
 						className={css.linkIcon}
 						xmlns="http://www.w3.org/2000/svg"
@@ -303,20 +362,8 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 							strokeLinejoin="round"
 						/>
 					</svg>
-					<button
-						className={css.gobackBtn}
-						type="button"
-						onClick={() => {
-							if (current === 0) {
-								window.location.href = '/';
-							} else {
-								prev();
-							}
-						}}
-					>
-						Повернутись
-					</button>
-				</div>
+					<div className={css.gobackBtn}>Повернутись</div>
+				</button>
 			</Form>
 		</FormikProvider>
 	);
