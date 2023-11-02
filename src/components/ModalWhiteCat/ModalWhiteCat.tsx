@@ -1,9 +1,10 @@
 import React from 'react';
-
+import Button from 'src/components/Button/Button';
+import { useEscape } from 'src/hooks/useEscape';
+import { onClickModalBack } from 'src/utils/onClickModalBack';
 import s from 'src/components/ModalWhiteCat/ModalWhiteCat.module.scss';
 
 import close from 'src/assets/icons/login-close-btn.svg';
-import Button from 'src/components/Button/Button';
 
 interface ModalWhiteCatProps {
 	image: string;
@@ -20,8 +21,10 @@ const ModalWhiteCat: React.FC<ModalWhiteCatProps> = ({
 	handleNavBtn,
 	handleCloseModal,
 }) => {
+	useEscape(handleCloseModal);
+
 	return (
-		<div className={s.backdrop}>
+		<div className={s.backdrop} onClick={(e) => onClickModalBack(e, handleCloseModal)}>
 			<div className={s.modalWrapper}>
 				<div className={s.modalCloser}>
 					<img className={s.close} onClick={handleCloseModal} src={close} alt="Close " />
