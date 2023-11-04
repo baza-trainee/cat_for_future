@@ -1,13 +1,18 @@
 import * as yup from 'yup';
 
-const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
+const passwordRules =
+	/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*;:?'"`~()_=+[\]{}\-.,<>|/\\])[a-zA-Z0-9!@#$%^&*;:?'"`~()_=+[\]{}\-.,|<>/\\]{8,15}$/;
 const emailRules = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+const nameRules = /^([a-zA-Z\u0400-\u04FF][a-zA-Z\u0400-\u04FF-'./ ]*)$/;
 
 export const signupSchema = () => {
 	return yup.object().shape({
 		name: yup
 			.string()
 			.label('Обов`язкове поле')
+			.matches(nameRules, {
+				message: 'Введіть ім`я латиницею або кирилицею!',
+			})
 			.required('Обов`язкове поле')
 			.min(2, 'Введіть ім`я від 2 до 15 символів')
 			.max(15, 'Введіть ім`я від 2 до 15 символів'),
