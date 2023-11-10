@@ -34,12 +34,41 @@ const RegPage: React.FC = () => {
 		navigate('/account/');
 	};
 
+	// const handleClickOutside = (e: MouseEvent) => {
+	// 	const modal = document.querySelector('.modal-whitecat');
+	// 	if (modal && e.target instanceof Node && !modal.contains(e.target)) {
+	// 		closeModal();
+	// 	}
+	// };
+
+	// const handleEscapeKey = (e: KeyboardEvent) => {
+	// 	if (e.key === 'Escape') {
+	// 		closeModal();
+	// 	}
+	// };
+
+	// useEffect(() => {
+	// 	if (isModalWhiteCatOpen) {
+	// 		document.addEventListener('click', handleClickOutside);
+	// 		document.addEventListener('keydown', handleEscapeKey);
+	// 	} else {
+	// 		document.removeEventListener('click', handleClickOutside);
+	// 		document.removeEventListener('keydown', handleEscapeKey);
+	// 	}
+
+	// 	return () => {
+	// 		document.removeEventListener('click', handleClickOutside);
+	// 		document.removeEventListener('keydown', handleEscapeKey);
+	// 	};
+	// }, [isModalWhiteCatOpen]);
+
 	return (
 		<div className={s.wrapper}>
 			{isModalOpen && <ModalDonate status={isModalOpen} onClose={closeModal} />}
 			<Login />
 			<Header onOpenModalDonate={openModal} />
 			{isModalWhiteCatOpen && (
+				// <div className={s.modalWhitecat}>
 				<ModalWhiteCat
 					image={image}
 					message={'Реєстрація успішна!'}
@@ -47,6 +76,7 @@ const RegPage: React.FC = () => {
 					handleCloseModal={closeModal}
 					handleNavBtn={handleNavBtn}
 				/>
+				// </div>
 			)}
 			<main className={s.main}>
 				<RegistrationPage onOpenModalWhiteCat={onOpenModalWhiteCat} />
