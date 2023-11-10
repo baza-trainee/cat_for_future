@@ -15,6 +15,14 @@ interface ModalProps {
 	onClose: () => void;
 }
 
+// interface IButtonProps {
+// 	id?: string;
+// 	buttonClasses: string;
+// 	type: 'button' | 'submit' | 'reset';
+// 	name: string;
+// 	styleBtn: { width: string };
+// }
+
 const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 	const [isVisible, setIsVisible] = useState(status);
 	const [price, setPrice] = useState('');
@@ -152,8 +160,12 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 							placeholder="Інша сума"
 							type="number"
 							min={1}
-							max={10000}
+							// max={10000}
 							required
+							autoFocus
+							onFocus={() => {
+								setSelectedId(null);
+							}}
 						/>
 					</div>
 
