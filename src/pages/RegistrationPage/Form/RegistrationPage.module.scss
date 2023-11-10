@@ -5,13 +5,13 @@
 	width: 18rem;
 	display: flex;
 	flex-direction: column;
-	gap: 0.69rem;
+	gap: 1.06rem;
 	margin: 6.5rem auto 0.5rem auto;
 
 	@include tablet {
 		width: 28.9375rem;
 		margin: 11.5rem auto 2.56rem auto;
-		gap: 1rem;
+		gap: 1.38rem;
 	}
 
 	@include full_desktop {
@@ -105,7 +105,7 @@
 	margin-top: 1.44rem;
 	color: #000;
 
-	font-size: 0.875rem;
+	font-size: 1rem;
 
 	@include tablet {
 		margin-top: 1.56rem;
@@ -148,6 +148,14 @@ select:required:invalid {
 	top: 2.7rem;
 	right: 1rem;
 	display: block;
+}
+
+.nextBtnWrapper {
+	margin-top: 0.94rem;
+
+	@include tablet {
+		margin-top: 1.12rem;
+	}
 }
 
 .customArrow {
@@ -214,25 +222,25 @@ select:required:invalid {
 	}
 }
 
-.loginButton {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.5rem;
-	padding: 1rem 0;
-	background-color: #fff;
-	border: 1px solid $color-system-default-20;
-	font-size: 0.875rem;
-	font-weight: 600;
-	line-height: 1.155rem;
-	color: #1d1c2b;
+// .loginButton {
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: center;
+// 	gap: 0.5rem;
+// 	padding: 1rem 0;
+// 	background-color: #fff;
+// 	border: 1px solid $color-system-default-20;
+// 	font-size: 0.875rem;
+// 	font-weight: 600;
+// 	line-height: 1.155rem;
+// 	color: #1d1c2b;
 
-	@include tablet {
-		font-size: 1.125rem;
-		font-weight: 700;
-		line-height: 1.485rem;
-	}
-}
+// 	@include tablet {
+// 		font-size: 1.125rem;
+// 		font-weight: 700;
+// 		line-height: 1.485rem;
+// 	}
+// }
 
 .loginAuthGoogleIcon {
 	display: block;
@@ -376,6 +384,10 @@ select:required:invalid {
 	height: 1em;
 	border: 1px solid $color-system-default-100;
 	background: none;
+}
+
+.docsRef {
+	text-decoration: underline;
 }
 
 .checkInput:checked + .checkBox {

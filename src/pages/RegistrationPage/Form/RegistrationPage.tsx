@@ -245,16 +245,24 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 								<ErrorMessage className={css.error} name="confirmpass" component="div" />
 							</div>
 
-							<div className={css.btnWrapper}>
+							<div className={css.nextBtnWrapper}>
 								<Button
 									buttonClasses={'primaryBtn'}
 									type={'button'}
 									name={'Продовжити'}
 									onClick={() => next()}
 									styleBtn={{ width: '100%' }}
-									disabled={!formik.isValid}
+									disabled={!formik.isValid || !formik.dirty}
 								/>
 							</div>
+
+							<button
+								className={css.linkMob}
+								type="button"
+								onClick={() => {
+									window.location.href = '/';
+								}}
+							></button>
 
 							<div className={css.loginAlternative}>
 								<span className={css.loginAlernatLine}></span>
@@ -264,13 +272,13 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 
 							<div className={css.loginAlternatBtnBox}>
 								<Button
-									name={'Увійти через Google'}
+									name={'Зареєструватися через Google'}
 									buttonClasses={'authBtn'}
 									type={'button'}
 									children={<Google className={css.loginAuthGoogleIcon} />}
 								/>
 								<Button
-									name={'Увійти через Facebook'}
+									name={'Зареєструватися через Facebook'}
 									buttonClasses={'authBtn'}
 									type={'button'}
 									children={<Facebook className={css.loginAuthFacebookIcon} />}
@@ -285,8 +293,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 						<div className={css.checkboxContainer}>
 							<h2 className={css.titleSignup}>Реєстрація</h2>
 							<p className={css.inputText}>
-								Залишилося зробити лише кілька позначок в обов'язкових полях, і ви можете обирати
-								котика.
+								Для завершення реєстрації вам необхідно зробити позначки в обов’язкових полях
 							</p>
 
 							<div className={css.checkboxes}>
@@ -302,7 +309,65 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 											onChange={() => handleCheckboxChange(index)}
 										/>
 										<span className={css.checkBox}></span>
-										{text}
+
+										{text === checkboxData[0] && <span>мій вік старше 18 років</span>}
+
+										{text === checkboxData[1] && (
+											<span>я проживаю у власному неорендованому житлі</span>
+										)}
+
+										{text === checkboxData[2] && (
+											<span>
+												у мене є фінансова можливість утримувати тварину (годувати та лікувати за
+												необхідності)
+											</span>
+										)}
+
+										{text === checkboxData[3] && (
+											<span>
+												я ознайомлений з{' '}
+												<a
+													// href="/src/assets/documents/recomendations.pdf"
+													href="/*"
+													target="_blank"
+													rel="noopener noreferrer"
+													className={css.docsRef}
+												>
+													Рекомендаціями по утриманню тварин
+												</a>
+											</span>
+										)}
+
+										{text === checkboxData[4] && (
+											<span>
+												я ознайомлений з{' '}
+												<a
+													// href="/documents/privacy-policy.pdf"
+													href="/*"
+													target="_blank"
+													rel="noopener noreferrer"
+													className={css.docsRef}
+												>
+													Політикою конфіденційності
+												</a>{' '}
+												і даю згоду на обробку персональних даних
+											</span>
+										)}
+
+										{text === checkboxData[5] && (
+											<span>
+												я ознайомлений з{' '}
+												<a
+													// href="/documents/rules-of-website.pdf"
+													href="/*"
+													target="_blank"
+													rel="noopener noreferrer"
+													className={css.docsRef}
+												>
+													Правилами користування сайтом
+												</a>
+											</span>
+										)}
 									</label>
 								))}
 							</div>
