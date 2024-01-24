@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { Formik, FormikHelpers } from 'formik';
 
 import s from './ChangePassword.module.scss';
@@ -21,7 +21,8 @@ const initialValues: InitValues = {
 	newPassw: '',
 	confirmPassw: '',
 };
-const ChangePassword: FC = () => {
+
+const ChangePassword = () => {
 	const [isSuccessResponse, setIsSuccessResponse] = useState<boolean>(false);
 	const handleCloseModal = () => {
 		setIsSuccessResponse(false);
