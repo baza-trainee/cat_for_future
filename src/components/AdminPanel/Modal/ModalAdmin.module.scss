@@ -1,0 +1,33 @@
+@import 'src/styles/variables';
+
+.modal {
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(77, 77, 77, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
+
+	.modalContent {
+		background: $color-system-default-0;
+		position: relative;
+		padding: 3.44rem 4.25rem 3.23rem 4.31rem;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+
+		.closeBtn {
+			position: absolute;
+			width: 1.5rem;
+			height: 1.5rem;
+			flex-shrink: 0;
+			top: 1.25rem;
+			right: 1.25rem;
+			cursor: pointer;
+		}
+	}
+}

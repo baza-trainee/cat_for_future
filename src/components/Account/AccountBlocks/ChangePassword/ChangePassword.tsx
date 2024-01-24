@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { Formik, FormikHelpers } from 'formik';
 
 import s from './ChangePassword.module.scss';
@@ -21,7 +21,8 @@ const initialValues: InitValues = {
 	newPassw: '',
 	confirmPassw: '',
 };
-const ChangePassword: FC = () => {
+
+const ChangePassword = ({ isAdmin }: { isAdmin?: boolean }) => {
 	const [isSuccessResponse, setIsSuccessResponse] = useState<boolean>(false);
 	const handleCloseModal = () => {
 		setIsSuccessResponse(false);
@@ -36,10 +37,12 @@ const ChangePassword: FC = () => {
 		<section className={s.changePassw}>
 			<div className={s.textWrap}>
 				<h2 className={s.title}>Зміна паролю</h2>
-				<p className={s.subtitle}>
-					Якщо ви бажаєте змінити свій пароль, то будь ласка підтвердіть спочатку старий пароль, а
-					потім введіть та підтвердіть ваш новий пароль
-				</p>
+				{!isAdmin && (
+					<p className={s.subtitle}>
+						Якщо ви бажаєте змінити свій пароль, то будь ласка підтвердіть спочатку старий пароль, а
+						потім введіть та підтвердіть ваш новий пароль
+					</p>
+				)}
 			</div>
 			<Formik
 				initialValues={initialValues}
