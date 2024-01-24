@@ -5,29 +5,29 @@
 	overflow: hidden;
 
 	.sidebar {
-		width: 300px;
+		width: 18.75rem;
 		display: flex;
 		flex-direction: column;
 		position: sticky;
 
 		.navWrapper {
-			min-width: 252px;
-			margin: 178px 24px 0;
+			min-width: 15.75rem;
+			margin: 11.125rem 1.5rem 0;
 			border-right: 1px solid $color-system-default-30;
 
 			.nav {
 				display: flex;
 				flex-direction: column;
-				gap: 12px;
+				gap: 0.75rem;
 
 				.nav-link {
 					display: flex;
 					align-items: center;
-					gap: 12px;
-					height: 52px;
-					padding: 12px 16px;
+					gap: 0.75rem;
+					height: 3.25rem;
+					padding: 0.75rem 1rem;
 					align-self: stretch;
-					font-size: 20px;
+					font-size: 1.25rem;
 					font-style: normal;
 					font-weight: 400;
 					line-height: 120%;
@@ -39,7 +39,7 @@
 						background: $color-primary-green;
 						color: $color-system-default-0;
 						font-weight: 700;
-						font-size: 18px;
+						font-size: 1.125rem;
 					}
 				}
 			}
@@ -50,19 +50,19 @@
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
-		gap: 55px;
+		gap: 3.44rem;
 
 		.header {
-			width: 1140px;
-			padding: 0 56px;
-			height: 82px;
+			width: 71.25rem;
+			padding: 0 3.5rem;
+			height: 5.125rem;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 
 			& h1 {
 				font-family: $primary-font;
-				font-size: 32px;
+				font-size: 2rem;
 				font-weight: 700;
 				line-height: 120%;
 				color: $text-color;
@@ -71,13 +71,12 @@
 			.account-info {
 				display: flex;
 				align-items: center;
-				gap: 23px;
-				height: 82px;
+				gap: 1.44rem;
 
 				.account-admin {
 					display: flex;
 					align-items: center;
-					gap: 11px;
+					gap: 0.69rem;
 					cursor: pointer;
 					position: relative;
 
@@ -91,14 +90,14 @@
 						right: 0;
 						bottom: -74px;
 						color: $color-system-default-100;
-						padding: 16px 0 16px 16px;
-						width: 194px;
-						height: 54px;
+						padding: 1rem 0 1rem 1rem;
+						width: 12.125rem;
+						height: 3.375rem;
 						border: 1px solid $color-system-default-30;
 						background: transparent;
 						text-align: left;
 						font-family: $primary-font;
-						font-size: 18px;
+						font-size: 1.125rem;
 						font-weight: 400;
 						line-height: 120%;
 					}
@@ -107,8 +106,8 @@
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						width: 50px;
-						height: 50px;
+						width: 3.125rem;
+						height: 3.125rem;
 						flex-shrink: 0;
 						border-radius: 50%;
 						background: $color-system-default-20;
@@ -117,18 +116,18 @@
 					.admin-dropdown {
 						display: flex;
 						align-items: center;
-						gap: 4px;
+						gap: 0.25rem;
 						color: $color-system-default-60;
 						font-family: $primary-font;
-						font-size: 20px;
+						font-size: 1.25rem;
 						font-weight: 400;
 						line-height: 120%;
 					}
 				}
 
 				.divider {
-					width: 1px;
-					height: 52.086px;
+					width: 0.0625rem;
+					height: 3.25538rem;
 					background: $color-system-default-40;
 				}
 			}
