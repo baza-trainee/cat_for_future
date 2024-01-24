@@ -1,0 +1,136 @@
+@import 'src/styles/variables';
+
+.container {
+	display: flex;
+	overflow: hidden;
+
+	.sidebar {
+		width: 18.75rem;
+		display: flex;
+		flex-direction: column;
+		position: sticky;
+
+		.navWrapper {
+			min-width: 15.75rem;
+			margin: 11.125rem 1.5rem 0;
+			border-right: 1px solid $color-system-default-30;
+
+			.nav {
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+
+				.nav-link {
+					display: flex;
+					align-items: center;
+					gap: 0.75rem;
+					height: 3.25rem;
+					padding: 0.75rem 1rem;
+					align-self: stretch;
+					font-size: 1.25rem;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 120%;
+					color: $color-system-default-100;
+					font-family: $primary-font;
+
+					&.active {
+						border-right: 4px solid $color-primary-orange;
+						background: $color-primary-green;
+						color: $color-system-default-0;
+						font-weight: 700;
+						font-size: 1.125rem;
+					}
+				}
+			}
+		}
+	}
+
+	.main {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 3.44rem;
+
+		.header {
+			width: 71.25rem;
+			padding: 0 3.5rem;
+			height: 5.125rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			& h1 {
+				font-family: $primary-font;
+				font-size: 2rem;
+				font-weight: 700;
+				line-height: 120%;
+				color: $text-color;
+			}
+
+			.account-info {
+				display: flex;
+				align-items: center;
+				gap: 1.44rem;
+
+				.account-admin {
+					display: flex;
+					align-items: center;
+					gap: 0.69rem;
+					cursor: pointer;
+					position: relative;
+
+					&:hover > div,
+					&.active > div {
+						color: $color-ref-orange-20;
+					}
+
+					.dropdown-item {
+						position: absolute;
+						right: 0;
+						bottom: -74px;
+						color: $color-system-default-100;
+						padding: 1rem 0 1rem 1rem;
+						width: 12.125rem;
+						height: 3.375rem;
+						border: 1px solid $color-system-default-30;
+						background: transparent;
+						text-align: left;
+						font-family: $primary-font;
+						font-size: 1.125rem;
+						font-weight: 400;
+						line-height: 120%;
+					}
+
+					.admin-logo {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						width: 3.125rem;
+						height: 3.125rem;
+						flex-shrink: 0;
+						border-radius: 50%;
+						background: $color-system-default-20;
+					}
+
+					.admin-dropdown {
+						display: flex;
+						align-items: center;
+						gap: 0.25rem;
+						color: $color-system-default-60;
+						font-family: $primary-font;
+						font-size: 1.25rem;
+						font-weight: 400;
+						line-height: 120%;
+					}
+				}
+
+				.divider {
+					width: 0.0625rem;
+					height: 3.25538rem;
+					background: $color-system-default-40;
+				}
+			}
+		}
+	}
+}
