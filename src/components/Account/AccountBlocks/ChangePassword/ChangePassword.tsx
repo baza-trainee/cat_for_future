@@ -22,7 +22,7 @@ const initialValues: InitValues = {
 	confirmPassw: '',
 };
 
-const ChangePassword = ({ isAdmin }: { isAdmin?: boolean }) => {
+const ChangePassword = () => {
 	const [isSuccessResponse, setIsSuccessResponse] = useState<boolean>(false);
 	const handleCloseModal = () => {
 		setIsSuccessResponse(false);
@@ -37,12 +37,10 @@ const ChangePassword = ({ isAdmin }: { isAdmin?: boolean }) => {
 		<section className={s.changePassw}>
 			<div className={s.textWrap}>
 				<h2 className={s.title}>Зміна паролю</h2>
-				{!isAdmin && (
-					<p className={s.subtitle}>
-						Якщо ви бажаєте змінити свій пароль, то будь ласка підтвердіть спочатку старий пароль, а
-						потім введіть та підтвердіть ваш новий пароль
-					</p>
-				)}
+				<p className={s.subtitle}>
+					Якщо ви бажаєте змінити свій пароль, то будь ласка підтвердіть спочатку старий пароль, а
+					потім введіть та підтвердіть ваш новий пароль
+				</p>
 			</div>
 			<Formik
 				initialValues={initialValues}

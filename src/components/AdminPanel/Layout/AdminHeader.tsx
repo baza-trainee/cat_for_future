@@ -6,7 +6,7 @@ import ChangePassForm from 'src/components/AdminPanel/ChangePassword/ChangePassF
 
 const AdminHeader = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [isModalOpen, setModalIsOpen] = useState(true);
+	const [isModalOpen, setModalIsOpen] = useState(false);
 
 	const dropDownHandler = () => {
 		setIsOpen(!isOpen);
