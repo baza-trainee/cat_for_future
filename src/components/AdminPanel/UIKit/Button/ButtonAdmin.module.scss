@@ -1,0 +1,20 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.button {
+	display: flex;
+	width: 21.75rem;
+	height: 3.5rem;
+	padding: 1rem 3rem;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	flex-shrink: 0;
+	background: $color-primary-orange;
+	color: $color-system-default-0;
+	font-family: $primary-font;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 132%;
+}
