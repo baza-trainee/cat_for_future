@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useFormik, FormikProvider, Field, ErrorMessage, Form } from 'formik';
 import { InputMask } from 'primereact/inputmask';
 import Button from 'src/components/Button/Button';
 import Eye from 'src/components/Login/Eye/Eye';
-import { ReactComponent as Google } from 'src/assets/icons/google-auth-icon.svg';
-import { ReactComponent as Facebook } from 'src/assets/icons/facebook-auth-icon.svg';
 import css from './RegistrationPage.module.scss';
 import { signupSchema } from '../schema';
-import checkboxData from '../checkboxData.json';
 import './animations.scss';
+import CheckBoxes from 'src/pages/RegistrationPage/Form/CheckBoxes.tsx';
+import { ArrowLeft } from 'lucide-react';
+import { useRegistrationMutation } from 'src/store/slice/authApiSlice.ts';
 
 interface RegistrationPageProps {
 	onOpenModalWhiteCat: () => void;
@@ -18,7 +18,6 @@ type FormValues = {
 	name: string;
 	phone: string;
 	email: string;
-	city: string;
 	password: string;
 	confirmpass: string;
 	checkbox: string;
@@ -28,44 +27,33 @@ const initialValues: FormValues = {
 	name: '',
 	phone: '',
 	email: '',
-	city: '',
 	password: '',
 	confirmpass: '',
 	checkbox: '',
 };
 
 const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat }) => {
-	const [checkboxes, setCheckboxes] = useState<Array<boolean>>(
-		Array(checkboxData.length).fill(false)
-	);
-
-	const [allChecked, setAllChecked] = useState<boolean>(false);
-
-	useEffect(() => {
-		const areAllCheckboxesChecked = checkboxes.every((checkbox) => checkbox === true);
-
-		setAllChecked(areAllCheckboxesChecked);
-	}, [checkboxes]);
-
-	const handleCheckboxChange = (index: number) => {
-		const updatedCheckboxes = [...checkboxes];
-		updatedCheckboxes[index] = !updatedCheckboxes[index];
-		setCheckboxes(updatedCheckboxes);
-	};
-
 	const [visible, setVisible] = useState(false);
 	const [visibleConfirm, setVisibleConfirm] = useState(false);
-
 	const [current, setCurrent] = useState(0);
+	const [registration] = useRegistrationMutation();
 
 	const formik = useFormik<FormValues>({
 		initialValues: initialValues,
 		validationSchema: signupSchema,
-		onSubmit: (values) => {
-			console.log('open modal', values);
+		onSubmit: async (values) => {
+			const { name, password, email, phone } = values;
+			const cleanedNumber = phone.replace(/[^0-9+]/g, '');
+
+			try {
+				await registration({ name, password, email, phone: cleanedNumber }).unwrap();
+
+				onOpenModalWhiteCat();
+			} catch (e) {
+				console.log('e', e);
+			}
 		},
 	});
-
 	const initialValidation = async (): Promise<void> => {
 		const isValid = await formik.validateForm();
 
@@ -103,6 +91,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 										css.regLabel
 									}`}
 								>
+									{' '}
 									Ім’я*
 								</label>
 								<Field
@@ -157,33 +146,6 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									required
 								/>
 								<ErrorMessage className={css.error} name="email" component="div" />
-							</div>
-							<div className={css.inputWrapper}>
-								<label
-									className={`${formik.errors.city && formik.touched.city ? css.errorLabel : ''} ${
-										css.regLabel
-									}`}
-								>
-									Місто*
-								</label>
-								<Field
-									className={`${formik.errors.city && formik.touched.city ? css.errorField : ''} ${
-										css.signUpField
-									}`}
-									component="select"
-									name="city"
-									id="city"
-									placeholder="Оберіть місто"
-									required
-								>
-									<option value="" disabled>
-										Оберіть місто
-									</option>
-									<option value="місто Київ">місто Київ</option>
-									<option value="Київська область">Київська область</option>
-								</Field>
-								<span className={css.customArrow}></span>
-								<ErrorMessage className={css.error} name="city" component="div" />
 							</div>
 							<div className={css.inputWrapper}>
 								<label
@@ -263,134 +225,17 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									window.location.href = '/';
 								}}
 							></button>
-
-							<div className={css.loginAlternative}>
-								<span className={css.loginAlernatLine}></span>
-								<span>або</span>
-								<span className={css.loginAlernatLine}></span>
-							</div>
-
-							<div className={css.loginAlternatBtnBox}>
-								<Button
-									name={'Зареєструватися через Google'}
-									buttonClasses={'authBtn'}
-									type={'button'}
-									children={<Google className={css.loginAuthGoogleIcon} />}
-								/>
-								<Button
-									name={'Зареєструватися через Facebook'}
-									buttonClasses={'authBtn'}
-									type={'button'}
-									children={<Facebook className={css.loginAuthFacebookIcon} />}
-								/>
-							</div>
 						</section>
 					</>
 				)}
 
 				{current === 1 && (
-					<section className={`${css.checkboxSection} slideInLeft`}>
-						<div className={css.checkboxContainer}>
-							<h2 className={css.titleSignup}>Реєстрація</h2>
-							<p className={css.inputText}>
-								Для завершення реєстрації вам необхідно зробити позначки в обов’язкових полях
-							</p>
-
-							<div className={css.checkboxes}>
-								{checkboxData.map((text, index) => (
-									<label key={index} className={`${css.check} ${css.option}`}>
-										<Field
-											className={css.checkInput}
-											control="checkbox"
-											type="checkbox"
-											name={`checkbox[${index}]`}
-											id={`checkbox${index}`}
-											checked={checkboxes[index]}
-											onChange={() => handleCheckboxChange(index)}
-										/>
-										<span className={css.checkBox}></span>
-
-										{text === checkboxData[0] && <span>мій вік старше 18 років</span>}
-
-										{text === checkboxData[1] && (
-											<span>я проживаю у власному неорендованому житлі</span>
-										)}
-
-										{text === checkboxData[2] && (
-											<span>
-												у мене є фінансова можливість утримувати тварину (годувати та лікувати за
-												необхідності)
-											</span>
-										)}
-
-										{text === checkboxData[3] && (
-											<span>
-												я ознайомлений з{' '}
-												<a
-													// href="/src/assets/documents/recomendations.pdf"
-													href="/*"
-													target="_blank"
-													rel="noopener noreferrer"
-													className={css.docsRef}
-												>
-													Рекомендаціями по утриманню тварин
-												</a>
-											</span>
-										)}
-
-										{text === checkboxData[4] && (
-											<span>
-												я ознайомлений з{' '}
-												<a
-													// href="/documents/privacy-policy.pdf"
-													href="/*"
-													target="_blank"
-													rel="noopener noreferrer"
-													className={css.docsRef}
-												>
-													Політикою конфіденційності
-												</a>{' '}
-												і даю згоду на обробку персональних даних
-											</span>
-										)}
-
-										{text === checkboxData[5] && (
-											<span>
-												я ознайомлений з{' '}
-												<a
-													// href="/documents/rules-of-website.pdf"
-													href="/*"
-													target="_blank"
-													rel="noopener noreferrer"
-													className={css.docsRef}
-												>
-													Правилами користування сайтом
-												</a>
-											</span>
-										)}
-									</label>
-								))}
-							</div>
-							<ErrorMessage className={css.error} name="checkbox" component="div" />
-							<div className={css.btnWrapper}>
-								<Button
-									buttonClasses={'primaryBtn'}
-									type={'submit'}
-									name={'Зареєструватися'}
-									onClick={onOpenModalWhiteCat}
-									disabled={!formik.isValid || !allChecked}
-									styleBtn={{ width: '100%' }}
-								/>
-							</div>
-							<button
-								className={css.linkMob}
-								type="button"
-								onClick={() => {
-									prev();
-								}}
-							></button>
-						</div>
-					</section>
+					<CheckBoxes
+						isValid={!formik.isValid}
+						prev={() => {
+							prev();
+						}}
+					/>
 				)}
 
 				<button
@@ -404,29 +249,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 						}
 					}}
 				>
-					<svg
-						className={css.linkIcon}
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-					>
-						<path
-							d="M12 19L5 12L12 5"
-							stroke="#FE702C"
-							strokeWidth="2"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						/>
-						<path
-							d="M19 12H5"
-							stroke="#FE702C"
-							strokeWidth="2"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						/>
-					</svg>
+					<ArrowLeft color="#FE702C" />
 					<div className={css.gobackBtn}>Повернутись</div>
 				</button>
 			</Form>

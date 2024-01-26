@@ -9,6 +9,8 @@ import RegPage from 'src/pages/RegistrationPage/RegPageIndex';
 import ConfirmPasswordForm from 'src/components/ConfirmPasswordForm/ConfirmPasswordForm';
 import RequestPasswordForm from 'src/components/RequestPasswordForm/RequestPasswordForm';
 import AdminLayout from 'src/components/Layout/AdminLayout/AdminLayout.tsx';
+import ProtectedRoute from 'src/routes/ProtectedRouteAdmin.tsx';
+import LoginAdmin from 'src/pages/AdminPanel/LoginAdmin/LoginAdmin.tsx';
 
 const PersonalAccount = React.lazy(() => import('src/pages/PersonalAccount/PersonalAccount'));
 
@@ -31,7 +33,10 @@ function App() {
 				<Route path="*" element={<Page404 />} />
 				<Route path="contacts" element={<Contacts />} />
 			</Route>
-			<Route path="admin" element={<AdminLayout />}></Route>
+			<Route element={<ProtectedRoute page="admin" />}>
+				<Route path="admin" element={<AdminLayout />} />
+			</Route>
+			<Route path="log-in" element={<LoginAdmin />} />
 			<Route path="registration" element={<RegPage />} />
 		</Routes>
 	);
