@@ -3,10 +3,12 @@ import styles from 'src/components/Layout/AdminLayout/AdminLayout.module.scss';
 import { ChevronDown, ChevronUp, LogOut, UserRound } from 'lucide-react';
 import ModalAdmin from 'src/components/AdminPanel/Modal/ModalAdmin.tsx';
 import ChangePassForm from 'src/components/AdminPanel/ChangePassword/ChangePassForm.tsx';
+import { useLogOutMutation } from 'src/store/slice/authApiSlice.ts';
 
 const AdminHeader = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isModalOpen, setModalIsOpen] = useState(false);
+	const [logOut] = useLogOutMutation();
 
 	const dropDownHandler = () => {
 		setIsOpen(!isOpen);
@@ -14,6 +16,12 @@ const AdminHeader = () => {
 
 	const openPassModalHandler = () => {
 		setModalIsOpen(!isModalOpen);
+	};
+
+	const logOutHandler = () => {
+		logOut(undefined);
+		localStorage.removeItem('token');
+		window.location.href = '/admin';
 	};
 
 	return (
@@ -38,7 +46,7 @@ const AdminHeader = () => {
 						)}
 					</div>
 					<div className={styles.divider} />
-					<LogOut cursor="pointer" />
+					<LogOut cursor="pointer" onClick={logOutHandler} />
 				</div>
 			</div>
 			{isModalOpen && (

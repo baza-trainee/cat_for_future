@@ -24,7 +24,6 @@ export const signupSchema = () => {
 			.matches(emailRules, {
 				message: 'Введіть коректну e-mail адресу',
 			}),
-		city: yup.string().label('Оберіть місто').required('Оберіть місто'),
 		password: yup
 			.string()
 			.label('Введіть коректний пароль')

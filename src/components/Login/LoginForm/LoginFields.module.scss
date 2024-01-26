@@ -1,0 +1,102 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.inputWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	.inputBox {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		padding: 0.25rem 0 0 0;
+
+		.inputManipulPass {
+			position: relative;
+
+			.hiddenPass {
+				position: absolute;
+				top: 50%;
+				right: 1rem;
+				transform: translateY(-50%);
+			}
+		}
+
+		.label {
+			margin: 0 1rem;
+			font-size: 1.25rem;
+			font-weight: 400;
+			line-height: 2.5rem;
+			color: $color-primary-orange;
+
+			&_error {
+				color: $color-secondary-error;
+			}
+		}
+
+		.input {
+			width: 100%;
+			padding: 0.5rem 1rem;
+			border: 1px solid $color-system-default-50;
+			font-size: 1.25rem;
+			font-weight: 400;
+			line-height: 1.5rem;
+			color: $color-system-default-100;
+			transition:
+				border 0.2s ease-in-out,
+				color 0.2s ease-in-out;
+
+			&_paddingR {
+				padding-right: 3.25rem;
+			}
+
+			&:hover {
+				border: 1px solid $color-system-default-100;
+			}
+
+			&:focus {
+				border: 1px solid $color-system-default-100;
+				outline: 2px solid $color-system-default-100;
+			}
+
+			&:focus + div svg path {
+				stroke: $color-system-default-100;
+			}
+
+			&:disabled {
+				color: $color-system-default-30;
+				border: 1px solid $color-system-default-30;
+			}
+
+			&:disabled + div svg path {
+				stroke: $color-system-default-100;
+			}
+
+			&:disabled + div svg path {
+				stroke: $color-system-default-100;
+			}
+
+			&_error {
+				border: 1px solid $color-secondary-error;
+			}
+		}
+	}
+}
+.errorMessage {
+	position: absolute;
+	margin-top: 0.25rem;
+	font-size: 0.75rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 0.9rem;
+	color: $color-secondary-error;
+}
+.errorLogin {
+	margin-top: 0.25rem;
+	font-size: 0.75rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 0.9rem;
+	color: $color-secondary-error;
+}
