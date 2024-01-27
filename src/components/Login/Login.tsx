@@ -88,41 +88,44 @@ const Login = () => {
 					validationSchema={loginSchema}
 					onSubmit={handleSubmit}
 					validateOnChange={true}
+					enableReinitialize={true}
 				>
-					{({ isSubmitting, isValid }) => (
-						<Form className={s.login__form}>
-							<LoginFields
-								labelEmail="E-mail"
-								labelPass="Пароль"
-								loginError={loginError}
-								setLoginError={setLoginError}
-							/>
-
-							<Link to={'/request-password'} className={s.login__forgetPass}>
-								Забули пароль?
-							</Link>
-
-							<div className={s.login__boxBtn}>
-								<Button
-									name={'Увійти'}
-									buttonClasses={'primaryBtn'}
-									type={'submit'}
-									styleBtn={primaryBtnStyle}
-									disabled={isSubmitting || !isValid}
+					{({ isSubmitting, isValid }) => {
+						return (
+							<Form className={s.login__form}>
+								<LoginFields
+									labelEmail="E-mail"
+									labelPass="Пароль"
+									loginError={loginError}
+									setLoginError={setLoginError}
 								/>
-								<Button
-									name={'Зареєструватись'}
-									buttonClasses={'secondaryBtn'}
-									type={'button'}
-									styleBtn={secondaryBtnStyle}
-									onClick={() => {
-										onCloseLoginWindow();
-										navigate('/registration');
-									}}
-								/>
-							</div>
-						</Form>
-					)}
+
+								<Link to={'/request-password'} className={s.login__forgetPass}>
+									Забули пароль?
+								</Link>
+
+								<div className={s.login__boxBtn}>
+									<Button
+										name={'Увійти'}
+										buttonClasses={'primaryBtn'}
+										type={'submit'}
+										styleBtn={primaryBtnStyle}
+										disabled={isSubmitting || !isValid}
+									/>
+									<Button
+										name={'Зареєструватись'}
+										buttonClasses={'secondaryBtn'}
+										type={'button'}
+										styleBtn={secondaryBtnStyle}
+										onClick={() => {
+											onCloseLoginWindow();
+											navigate('/registration');
+										}}
+									/>
+								</div>
+							</Form>
+						);
+					}}
 				</Formik>
 			</div>
 		</div>

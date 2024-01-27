@@ -100,6 +100,23 @@
 	line-height: 140%;
 }
 
+.btnWrapper {
+	position: relative;
+}
+.regError {
+	position: absolute;
+	top: -3rem;
+	left: 0.75rem;
+	display: flex;
+	align-items: center;
+	flex: 1 0 0;
+	color: $color-secondary-error;
+	padding: 0.25rem 0rem;
+	align-self: stretch;
+	font-size: 0.75rem;
+	line-height: 140%;
+}
+
 .inputText {
 	display: inline-block;
 	margin-top: 1.44rem;

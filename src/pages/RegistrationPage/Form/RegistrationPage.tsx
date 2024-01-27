@@ -9,6 +9,8 @@ import './animations.scss';
 import CheckBoxes from 'src/pages/RegistrationPage/Form/CheckBoxes.tsx';
 import { ArrowLeft } from 'lucide-react';
 import { useRegistrationMutation } from 'src/store/slice/authApiSlice.ts';
+import { useNavigate } from 'react-router-dom';
+import { checkboxData } from 'src/pages/RegistrationPage/checkboxData.tsx';
 
 interface RegistrationPageProps {
 	onOpenModalWhiteCat: () => void;
@@ -37,6 +39,11 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 	const [visibleConfirm, setVisibleConfirm] = useState(false);
 	const [current, setCurrent] = useState(0);
 	const [registration] = useRegistrationMutation();
+	const navigate = useNavigate();
+	const [checkboxesState, setCheckboxesState] = useState<Array<boolean>>(
+		Array(checkboxData.length).fill(false)
+	);
+	const [error, setError] = useState('');
 
 	const formik = useFormik<FormValues>({
 		initialValues: initialValues,
@@ -47,10 +54,14 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 
 			try {
 				await registration({ name, password, email, phone: cleanedNumber }).unwrap();
-
 				onOpenModalWhiteCat();
-			} catch (e) {
-				console.log('e', e);
+			} catch (error: any) {
+				// Якщо помилка містить відповідь від сервера
+				if (error?.data?.detail) {
+					setError(error.data.detail);
+				} else {
+					setError('An unexpected error occurred.');
+				}
 			}
 		},
 	});
@@ -75,6 +86,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 
 	const prev = (): void => {
 		setCurrent(current - 1);
+		setError('');
 	};
 
 	return (
@@ -231,6 +243,9 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 
 				{current === 1 && (
 					<CheckBoxes
+						error={error}
+						checkboxesState={checkboxesState}
+						setCheckboxesState={setCheckboxesState}
 						isValid={!formik.isValid}
 						prev={() => {
 							prev();
@@ -243,7 +258,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 					type="button"
 					onClick={() => {
 						if (current === 0) {
-							window.location.href = '/';
+							navigate('/');
 						} else {
 							prev();
 						}

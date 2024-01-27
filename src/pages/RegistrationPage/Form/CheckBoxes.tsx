@@ -4,22 +4,31 @@ import { checkboxData } from 'src/pages/RegistrationPage/checkboxData.tsx';
 import { ErrorMessage, Field } from 'formik';
 import Button from 'src/components/Button/Button.tsx';
 
-const CheckBoxes = ({ isValid, prev }: { isValid: boolean; prev: () => void }) => {
-	const [checkboxes, setCheckboxes] = useState<Array<boolean>>(
-		Array(checkboxData.length).fill(false)
-	);
-
+const CheckBoxes = ({
+	checkboxesState,
+	setCheckboxesState,
+	isValid,
+	error,
+	prev,
+}: {
+	checkboxesState: Array<boolean>;
+	setCheckboxesState: (checkboxes: Array<boolean>) => void;
+	isValid: boolean;
+	prev: () => void;
+	error: string;
+}) => {
 	const [allChecked, setAllChecked] = useState<boolean>(false);
 
 	useEffect(() => {
-		const areAllCheckboxesChecked = checkboxes.every((checkbox) => checkbox === true);
+		const areAllCheckboxesChecked = checkboxesState.every((checkbox) => checkbox === true);
 
 		setAllChecked(areAllCheckboxesChecked);
-	}, [checkboxes]);
+	}, [checkboxesState]);
+
 	const handleCheckboxChange = (index: number) => {
-		const updatedCheckboxes = [...checkboxes];
+		const updatedCheckboxes = [...checkboxesState];
 		updatedCheckboxes[index] = !updatedCheckboxes[index];
-		setCheckboxes(updatedCheckboxes);
+		setCheckboxesState(updatedCheckboxes);
 	};
 
 	return (
@@ -39,7 +48,7 @@ const CheckBoxes = ({ isValid, prev }: { isValid: boolean; prev: () => void }) =
 								type="checkbox"
 								name={`checkbox[${index}]`}
 								id={`checkbox${index}`}
-								checked={checkboxes[index]}
+								checked={checkboxesState[index]}
 								onChange={() => handleCheckboxChange(index)}
 							/>
 							<span className={css.checkBox}></span>
@@ -65,12 +74,14 @@ const CheckBoxes = ({ isValid, prev }: { isValid: boolean; prev: () => void }) =
 					))}
 				</div>
 				<ErrorMessage className={css.error} name="checkbox" component="div" />
+
 				<div className={css.btnWrapper}>
+					{error && <div className={css.regError}>{error}</div>}
 					<Button
 						buttonClasses={'primaryBtn'}
 						type={'submit'}
 						name={'Зареєструватися'}
-						disabled={isValid || !allChecked}
+						disabled={isValid || !allChecked || !!error}
 						styleBtn={{ width: '100%' }}
 					/>
 				</div>
