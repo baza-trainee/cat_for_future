@@ -17,4 +17,9 @@
 	font-style: normal;
 	font-weight: 700;
 	line-height: 132%;
+
+	&:disabled {
+		pointer-events: none;
+		background: $color-ref-orange-0;
+	}
 }

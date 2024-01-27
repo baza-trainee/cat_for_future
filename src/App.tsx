@@ -17,6 +17,7 @@ import StoriesAdmin from 'src/pages/AdminPanel/Stories/StoriesAdmin.tsx';
 import DocumentsAdmin from 'src/pages/AdminPanel/Documents/DocumentsAdmin.tsx';
 import Instruction from 'src/pages/AdminPanel/Instruction/Instruction.tsx';
 import ContactsAdmin from 'src/pages/AdminPanel/Contacts/ContactsAdmin.tsx';
+import EditDocument from 'src/pages/AdminPanel/Documents/EditDocument.tsx';
 
 const PersonalAccount = React.lazy(() => import('src/pages/PersonalAccount/PersonalAccount'));
 
@@ -45,6 +46,8 @@ function App() {
 					<Route path="admin/cats" element={<CatsAdmin />} />
 					<Route path="admin/stories" element={<StoriesAdmin />} />
 					<Route path="admin/documents" element={<DocumentsAdmin />} />
+					<Route path="admin/documents/:id" element={<EditDocument />} />
+
 					<Route path="admin/instruction" element={<Instruction />} />
 					<Route path="admin/contacts" element={<ContactsAdmin />} />
 				</Route>
