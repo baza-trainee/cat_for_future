@@ -1,0 +1,83 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.wrapper {
+	display: flex;
+	min-width: 20rem;
+	min-height: 70vh;
+	width: 100%;
+	max-width: 92rem;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 2.5rem 1rem 1.75rem 1rem;
+
+	@include tablet {
+		justify-content: right;
+		align-items: center;
+		padding: 3.31rem 2rem 0 2rem;
+	}
+
+	@include full_desktop {
+		padding: 4.25rem 10.69rem 0 9.31rem;
+	}
+}
+
+.backBtn {
+	display: none;
+
+	@include tablet {
+		display: flex;
+		width: 100%;
+		justify-content: flex-start;
+		align-items: center;
+		padding-bottom: 1.5rem;
+		font-size: 1.25rem;
+	}
+
+	@include full_desktop {
+		padding-bottom: 0.75rem;
+	}
+}
+
+.title {
+	font-family: $secondary-font;
+	font-size: 1.375rem;
+	font-style: normal;
+	font-weight: 900;
+	line-height: 1.51rem;
+	text-align: center;
+	padding-bottom: 1.25rem;
+
+	@include tablet {
+		padding-bottom: 4rem;
+		font-size: 3rem;
+		line-height: 3.3rem;
+	}
+
+	@include full_desktop {
+		font-size: 3.5rem;
+		font-style: normal;
+		font-weight: 900;
+		line-height: 3.85rem;
+	}
+}
+
+.accountPanel {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	gap: 2.75rem;
+
+	@include tablet {
+		flex-direction: row;
+		justify-content: start;
+		align-items: start;
+		padding: 0;
+		gap: 1rem;
+	}
+
+	@include full_desktop {
+		gap: 7.25rem;
+	}
+}

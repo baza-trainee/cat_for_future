@@ -1,0 +1,53 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#root {
+	min-height: 100vh;
+}
+
+html,
+body {
+	min-height: 100%;
+}
+ul,
+li {
+	list-style: none;
+}
+textarea:focus,
+input:focus {
+	outline: none;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+:focus,
+:active {
+	outline: none;
+}
+button {
+	cursor:
+		url('src/assets/icons/cursor.svg') 15 15,
+		auto;
+	border: none;
+	outline: none;
+	color: inherit;
+	font-family: inherit;
+}
+h1,
+h1,
+h3,
+h4,
+h5 {
+	font-size: inherit;
+	font-weight: inherit;
+	font-size: inherit;
+}
+
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear {
+	display: none;
+}

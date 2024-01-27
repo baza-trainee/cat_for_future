@@ -1,0 +1,33 @@
+@import 'src/styles/variables';
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 2.25rem;
+
+	& h2 {
+		color: $color-system-default-100;
+		font-family: $primary-font;
+		font-size: 2rem;
+		font-weight: 700;
+		line-height: 120%;
+		text-align: center;
+	}
+
+	.form {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		gap: 1rem;
+		width: 28.9375rem;
+
+		& label {
+			color: $color-primary-orange;
+		}
+
+		& svg path {
+			stroke: #131313;
+		}
+	}
+}

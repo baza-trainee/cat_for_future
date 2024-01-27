@@ -1,0 +1,63 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $color-primary-green;
+	z-index: 99;
+}
+
+.container {
+	min-width: 20rem;
+	width: 100%;
+	max-width: 73.25rem;
+	height: 5rem;
+	padding: 1rem 1.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	@include tablet {
+		height: 5.75rem;
+		padding: 1rem 3.375rem;
+	}
+
+	@include full_desktop {
+		height: 7.625rem;
+		padding: 0.75rem 1rem;
+	}
+}
+.btnWrapper {
+	display: flex;
+	align-items: center;
+
+	.icon path {
+		fill: none;
+		stroke: $color-neutral-colors-white;
+		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+	}
+	@include hover {
+		button:hover .icon path {
+			stroke: $color-primary-dark-green;
+		}
+	}
+
+	button:active .icon path {
+		stroke: $color-primary-dark-green;
+	}
+
+	@include tablet {
+		button:active .icon path {
+			stroke: $color-system-default-10;
+		}
+	}
+
+	@include full_desktop {
+		gap: 1.25rem;
+	}
+}

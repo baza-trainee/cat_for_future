@@ -1,0 +1,34 @@
+$small-tablet-size: 576px;
+$tablet-size: 768px;
+$large-desktop-size: 992px;
+$full-desktop-size: 1280px;
+
+@mixin small_tablet {
+	@media (min-width: $small-tablet-size) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (min-width: $tablet-size) {
+		@content;
+	}
+}
+
+@mixin large_desktop {
+	@media (min-width: $large-desktop-size) {
+		@content;
+	}
+}
+
+@mixin full_desktop {
+	@media (min-width: $full-desktop-size) {
+		@content;
+	}
+}
+
+@mixin hover {
+	@media (hover: hover) and (pointer: fine) {
+		@content;
+	}
+}

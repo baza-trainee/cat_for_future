@@ -1,0 +1,49 @@
+@use 'src/styles/mixins' as *;
+@use 'src/styles/variables' as *;
+
+.wrapper {
+	padding: 2.13rem 0 2.5rem;
+
+	@include tablet {
+		padding: 4.63rem 2.13rem 0;
+	}
+	@include full_desktop {
+		padding: 6.44rem 9.37rem 0;
+	}
+}
+.title {
+	text-align: center;
+	font-family: $secondary-font;
+	font-size: 1.375rem;
+	font-weight: 900;
+	line-height: 110%;
+	margin-bottom: 2.56rem;
+	@include tablet {
+		font-size: 3rem;
+		margin-bottom: 2.63rem;
+	}
+	@include full_desktop {
+		font-size: 3.5rem;
+		margin-bottom: 3.87rem;
+	}
+}
+.cats {
+	display: grid;
+	grid-template-columns: repeat(1, 20rem);
+	place-content: center;
+	gap: 1.75rem;
+
+	@include tablet {
+		grid-template-columns: repeat(2, 21.44rem);
+		gap: 1.37rem 1rem;
+	}
+	@include full_desktop {
+		grid-template-columns: repeat(3, 22.94rem);
+		gap: 1.25rem 1.25rem;
+	}
+}
+.btnContainer {
+	padding: 1.56rem 1rem 0;
+	max-width: 20rem;
+	margin: 0 auto;
+}

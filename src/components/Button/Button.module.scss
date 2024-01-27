@@ -1,0 +1,271 @@
+/*Classes named by names of buttons from UI kit*/
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.button {
+	cursor: $cursor-paw;
+	transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+}
+
+.button:hover {
+	transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+}
+
+.button.primaryBtn {
+	height: 3rem;
+	display: flex;
+	padding: 0.875rem 2.3125rem;
+	justify-content: center;
+	align-items: center;
+	background: $color-primary-orange;
+	gap: 0.25rem;
+	color: $color-system-default-0;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 132%;
+
+	@include tablet {
+		height: 3.25rem;
+		padding: 0.875rem 2.4375rem;
+		font-size: 1.125rem;
+		gap: 0.375rem;
+	}
+
+	@include full_desktop {
+		height: 3.5rem;
+		padding: 1rem 3rem;
+		gap: 0.5rem;
+	}
+
+	&.primaryIconRight {
+		padding: 0.8125rem 1rem 0.8125rem 2.125rem;
+
+		@include tablet {
+			padding: 0.875rem 1.25rem 0.875rem 1.75rem;
+		}
+
+		@include full_desktop {
+			padding: 1rem 2rem 1rem 3rem;
+		}
+	}
+
+	&.primaryIconLeft {
+		padding: 0.8125rem 2.125rem 0.8125rem 1rem;
+
+		@include tablet {
+			padding: 0.875rem 1.75rem 0.875rem 1.25rem;
+		}
+
+		@include full_desktop {
+			padding: 1rem 3rem 1rem 2rem;
+		}
+	}
+	@include hover {
+		&:hover {
+			background: $color-ref-orange-10;
+		}
+	}
+
+	&:active {
+		background: $color-ref-orange-20;
+	}
+
+	&:disabled {
+		background: $color-ref-orange-0;
+	}
+
+	&.helpHeaderBtn {
+		display: none;
+
+		@include full_desktop {
+			display: flex;
+		}
+	}
+}
+
+.secondaryBtn {
+	height: 3rem;
+	display: inline-flex;
+	padding: 0.8125rem 2.3125rem;
+	justify-content: center;
+	align-items: center;
+	gap: 0.25rem;
+	background: transparent;
+	border: 2px solid $color-primary-orange;
+	color: $color-primary-orange;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 132%;
+
+	@include tablet {
+		height: 3.25rem;
+		padding: 0.6875rem 2.25rem;
+		gap: 0.375rem;
+		font-size: 1.125rem;
+	}
+
+	@include full_desktop {
+		height: 3.5rem;
+		gap: 0.5rem;
+	}
+	@include hover {
+		&:hover {
+			border-color: $color-ref-orange-10;
+			color: $color-ref-orange-10;
+		}
+	}
+
+	&:active {
+		border-color: $color-ref-orange-20;
+		color: $color-ref-orange-20;
+	}
+
+	&:disabled {
+		border-color: $color-ref-orange-0;
+		color: $color-ref-orange-0;
+	}
+
+	&.secondaryIconRight {
+		padding: 0.8125rem 1rem 0.8125rem 2.125rem;
+		display: flex;
+		flex-direction: row-reverse;
+
+		@include tablet {
+			padding: 0.6875rem 1.5rem 0.6875rem 1.25rem;
+		}
+
+		@include full_desktop {
+			padding: 0.8125rem 2rem 0.8125rem 2.6875rem;
+		}
+	}
+
+	&.secondaryIconLeft {
+		padding: 0.6875rem 1.8125rem 0.6875rem 1rem;
+		border: none;
+		color: $color-system-default-10;
+
+		@include hover {
+			&:hover {
+				color: $color-primary-dark-green;
+			}
+		}
+		&:active {
+			color: $color-primary-dark-green;
+		}
+
+		&:disabled {
+			color: $color-system-default-70;
+		}
+
+		@include tablet {
+			padding: 0.6875rem 1.5rem 0.6875rem 1.25rem;
+			border: 3px solid $color-system-default-10;
+			color: $color-system-default-10;
+
+			&:active {
+				background-color: $color-primary-dark-green;
+				color: $color-system-default-10;
+				border: none;
+			}
+
+			&:disabled {
+				color: $color-system-default-70;
+				border: 3px solid $color-system-default-70;
+			}
+		}
+
+		@include full_desktop {
+			padding: 0.8125rem 2.6875rem 0.8125rem 2rem;
+		}
+	}
+}
+
+.authBtn {
+	width: 100%;
+	height: 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid $color-system-default-20;
+	background: $color-neutral-colors-white;
+	gap: 0.5rem;
+	color: $color-neutral-colors-black;
+	font-family: Open Sans;
+	font-size: 0.875rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 132%;
+
+	@include tablet {
+		height: 3.25rem;
+		font-size: 1.125rem;
+		font-weight: 700;
+	}
+
+	@include full_desktop {
+		height: 3.25rem;
+	}
+
+	@include hover {
+		&:hover {
+			background: $color-system-default-30;
+		}
+	}
+
+	&:active {
+		background: $color-system-default-60;
+	}
+
+	&:disabled {
+		background: $color-system-default-80;
+	}
+}
+
+.tertiaryIconBtn {
+	display: flex;
+	width: 2.75rem;
+	height: 2.75rem;
+	justify-content: center;
+	align-items: center;
+	gap: 0.625rem;
+	flex-shrink: 0;
+	background-color: transparent;
+}
+
+.miniIconContainer {
+	display: block;
+	width: 1.5rem;
+	height: 1.5rem;
+	transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+}
+
+.bigIconContainer {
+	display: flex;
+	width: 2.5rem;
+	height: 2.5rem;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+
+	@include tablet {
+		width: 2.75rem;
+		height: 2.75rem;
+	}
+
+	&.burgerMenuBtn {
+		@include full_desktop {
+			display: none;
+		}
+	}
+}
+
+.bigIcon {
+	width: 2.5rem;
+	height: 2.5rem;
+}
+
+.hide {
+	display: none;
+}

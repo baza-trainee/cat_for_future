@@ -1,0 +1,122 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.kittenItem {
+	display: flex;
+	flex-direction: column;
+
+	@include full_desktop {
+		display: grid;
+		grid-template-columns: 26.375rem 1fr;
+		grid-auto-rows: auto;
+	}
+}
+
+.kittenTitle {
+	color: $color-primary-orange;
+	font-family: $secondary-font;
+	font-size: 1.375rem;
+	font-weight: 900;
+	line-height: 110%;
+	text-align: start;
+	width: 17.8125rem;
+
+	@include tablet {
+		width: 26.375rem;
+		font-size: 2.5rem;
+	}
+}
+
+.kittenDescrBody {
+	display: flex;
+	flex-direction: column;
+	margin: 0.75rem 0;
+	padding: 0.75rem 0;
+
+	@include tablet {
+		margin: 1.5rem 0;
+	}
+
+	@include full_desktop {
+		grid-column: 1 / 3;
+	}
+}
+
+.kittenId {
+	color: $color-primary-green;
+	font-family: $primary-font;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 120%; /* 1.2rem */
+
+	@include tablet {
+		font-weight: 500;
+	}
+}
+
+.kittenAge {
+	margin-top: 0.75rem;
+	color: $color-primary-green;
+	font-family: $primary-font;
+	font-size: 1.25rem;
+	font-weight: 700;
+	line-height: 120%; /* 1.5rem */
+
+	@include tablet {
+		font-weight: 900;
+	}
+}
+
+.kittenBirthday {
+	color: $color-primary-green;
+	font-family: $primary-font;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 120%; /* 1.2rem */
+
+	@include tablet {
+		font-weight: 900;
+	}
+}
+
+.sliderBlock {
+	margin: 0 auto;
+	margin-top: 1.31rem;
+	width: 100%;
+	position: relative;
+
+	@include small_tablet {
+		max-width: 36rem;
+		margin-top: 0.5rem;
+	}
+
+	@include tablet {
+		max-width: 100%;
+		margin-top: 1.25rem;
+	}
+
+	@include full_desktop {
+		margin: 0 auto;
+		justify-self: center;
+		min-width: 47rem;
+		max-width: 51rem;
+		grid-column: 1 / 3;
+		margin-top: 0.81rem;
+	}
+}
+
+.btnWrapper {
+	margin: 0 auto;
+	margin-top: 3.25rem;
+	width: 18rem;
+
+	@include small_tablet {
+		margin-top: 2.75rem;
+	}
+
+	@include full_desktop {
+		margin-top: 2.5rem;
+		grid-column: 1 / 3;
+		width: 16.25rem;
+	}
+}

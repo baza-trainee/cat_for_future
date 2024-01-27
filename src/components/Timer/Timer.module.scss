@@ -1,0 +1,97 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+@keyframes turnOver {
+	0% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.timerNumAnimating {
+	animation: turnOver 300ms ease-in-out;
+}
+
+.timerBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.timerBlockForMyKitten {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+
+	@include full_desktop {
+		grid-row: 1 / 2;
+		grid-column: 2 / 3;
+	}
+}
+
+.timerTitle {
+	color: $color-primary-dark-green;
+	text-align: center;
+	font-family: $primary-font;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 132%; /* 1.32rem */
+
+	@include tablet {
+		font-size: 1.125rem;
+	}
+
+	@include full_desktop {
+		font-size: 1.125rem;
+	}
+}
+
+.timerWrapper {
+	display: flex;
+	justify-content: center;
+	gap: 1.19rem;
+}
+
+.timerUnit {
+	// display: grid;
+	// grid-template-columns: repeat(2, 1fr);
+	// grid-template-rows: repeat(2, auto);
+	// column-gap: 0.25rem;
+	// justify-content: center;
+	display: flex;
+	min-width: 4.125rem;
+	max-width: 4.65rem;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.25rem;
+}
+
+.timerNum {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 2.5625rem;
+	width: 1.94rem;
+	background: $color-primary-green;
+}
+
+.timerDigit {
+	display: block;
+	color: $color-system-default-0;
+	font-family: $tertiary-font;
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: normal;
+}
+
+.timerNoun {
+	margin-top: 0.2rem;
+	color: $color-primary-dark-green;
+	font-family: $primary-font;
+	font-size: 1.125rem;
+	font-weight: 400;
+}
