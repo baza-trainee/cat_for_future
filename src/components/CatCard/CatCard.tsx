@@ -123,7 +123,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 						<Button
 							buttonClasses={'primaryBtn'}
 							name="Забронювати"
-							onClick={() => handleBookedClick(id, is_reserved)}
+							onClick={() => handleBookedClick(id)}
 							styleBtn={btnStyle}
 							children={<HeartIcon className={s.heartIconBtn} />}
 							disabled={is_reserved}

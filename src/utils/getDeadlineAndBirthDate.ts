@@ -1,12 +1,12 @@
 export const getDeadlineAndBirthDate = (birthdayDate: string, currentDate: number) => {
 	// currentDate it's a timestamp of current date, you can get it with Date.now() method
 
-	const dateComponents = birthdayDate.split('.');
+	const dateComponents = birthdayDate.split('-');
 
 	// get date, month, year from arr dateComponents
-	const birthdayDay = dateComponents[0];
+	const birthdayDay = dateComponents[2];
 	const birthdayMonth = dateComponents[1];
-	const birthdayYear = dateComponents[2];
+	const birthdayYear = dateComponents[0];
 
 	// Make date in format "year-month-dayT00:00:00"
 	const correctBirthdayDate = `${birthdayYear}-${birthdayMonth}-${birthdayDay}T00:00:00`;
