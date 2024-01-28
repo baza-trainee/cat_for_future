@@ -12,45 +12,15 @@
 	margin-bottom: 0.88rem;
 }
 
-.heartIconContainer {
-	z-index: 9;
-	position: absolute;
-	left: 1.25rem;
-	top: 3.75rem;
-	width: 2.875rem;
-	height: 2.875rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: rgba(255, 255, 255, 0.9);
-	border-radius: 50%;
-	padding: 0.75rem;
-	overflow: hidden;
-
-	@include tablet {
-		top: 1.25rem;
-	}
-}
-
-.heartIcon {
-	path {
-		transition: cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
-		stroke: $color-primary-orange;
-	}
-	&.isBooked path {
-		fill: $color-primary-orange;
-	}
-}
-
 .content {
 	padding-inline: 1rem;
-	margin-bottom: 3.31rem;
+	margin-bottom: 5.56rem;
 
 	@include tablet {
-		margin-bottom: 3.12rem;
+		margin-bottom: 5.25rem;
 	}
 	@include full_desktop {
-		margin-bottom: 3.25rem;
+		margin-bottom: 5.38rem;
 	}
 }
 
@@ -91,15 +61,6 @@
 	@include full_desktop {
 		line-height: normal;
 	}
-}
-
-.id {
-	display: block;
-	color: #f2f2f2;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: normal;
-	margin-bottom: 0.9rem;
 }
 
 .about {

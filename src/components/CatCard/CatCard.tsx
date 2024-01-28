@@ -93,9 +93,6 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 					) : (
 						<Carousel photos={photos} />
 					)}
-					<div className={s.heartIconContainer}>
-						<HeartIcon className={clsx(s.heartIcon, is_reserved && s.isBooked)} />
-					</div>
 				</div>
 				<div className={s.modWrapper}>
 					<div className={s.content}>
@@ -110,7 +107,6 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 								<span className={s.statusText}>{is_reserved ? 'Заброньований' : 'Шукаю дім'}</span>
 							</div>
 						</div>
-						<span className={s.id}>ID: {id}</span>
 						<div className={s.about}>
 							{is_male ? 'Кіт' : 'Кішка'}, {correctCatAgeInMonth(catAge)}
 						</div>
