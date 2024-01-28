@@ -79,7 +79,7 @@ const EditDocument = () => {
 						/>
 					</ModalAdmin>
 				)}
-				{isError && <div>error</div>}
+
 				<label htmlFor="document-name">
 					<span>Назва документу</span>
 					<input
@@ -123,6 +123,7 @@ const EditDocument = () => {
 						onClick={submitFormHandler}
 					/>
 				</div>
+				{isError && <div style={{ color: 'red' }}>Упс...Щось пішло не так</div>}
 			</div>
 		</div>
 	);
