@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useMediaQuery from 'src/hooks/useMediaQuery';
 
 import Button from '../Button/Button';
 import CatCard from '../CatCard/CatCard';
 import ModalShowCat from '../CatCard/ModalShowCat/ModalShowCat';
 
-import { cats } from 'src/data/cats.temp';
 import s from './OurCats.module.scss';
+import { useGetCatsQuery, useReserveCatMutation } from 'src/store/slice/catsSlice';
 
 const OurCats: React.FC = () => {
-	const { isTablet, isDesktop } = useMediaQuery();
+	const { data: cats = [] } = useGetCatsQuery('');
+	const [reserveCat] = useReserveCatMutation();
 
-	const [catsData, setCatsData] = useState(cats);
+	const { isTablet, isDesktop } = useMediaQuery();
 	const [isShowMore, setIsShowMore] = useState(false);
 	const [isModalCatID, setIsModalCatID] = useState<number>();
 	const [isCatModalOpen, setIsCatModalOpen] = useState(false);
 
-	useEffect(() => {
-		!isTablet && !isShowMore ? setCatsData(cats?.slice(0, 3)) : setCatsData(cats);
-	}, [isTablet, isShowMore]);
+	const slicedCats = !isTablet && !isShowMore ? cats?.slice(0, 3) : cats;
 
 	const handleShowMoreClick = () => {
 		setIsShowMore(true);
@@ -34,15 +33,15 @@ const OurCats: React.FC = () => {
 		openModal();
 	};
 
-	const onBookedClick = (id: number) => {
-		setCatsData(catsData.map((cat) => (cat.id === id ? { ...cat, booking_status: true } : cat)));
+	const onBookedClick = async (id: number) => {
+		await reserveCat(id).unwrap();
 	};
 
 	return (
 		<section id="ourCats" className={s.wrapper}>
 			<h2 className={s.title}>Наші кошенята</h2>
 			<div className={s.cats}>
-				{catsData.map((cat) => (
+				{slicedCats.map((cat) => (
 					<CatCard
 						key={cat.id}
 						{...cat}
@@ -51,7 +50,7 @@ const OurCats: React.FC = () => {
 					/>
 				))}
 			</div>
-			{!isTablet && catsData.length <= 3 && cats.length > 3 && (
+			{!isTablet && slicedCats.length <= 3 && cats.length > 3 && (
 				<div className={s.btnContainer}>
 					<Button
 						onClick={handleShowMoreClick}
@@ -62,7 +61,7 @@ const OurCats: React.FC = () => {
 				</div>
 			)}
 			{isCatModalOpen &&
-				catsData
+				slicedCats
 					.filter((item) => item.id === isModalCatID)
 					.map((cat) => (
 						<ModalShowCat

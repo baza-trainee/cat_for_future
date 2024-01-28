@@ -1,8 +1,9 @@
 import { apiSlice } from 'src/app/api/apiSlice.ts';
+import { ICat } from 'src/types/ICat';
 
 export const documentsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		getCats: builder.query({
+		getCats: builder.query<ICat[], string>({
 			query: () => ({
 				url: '/cats',
 				invalidatesTags: ['Cats'],

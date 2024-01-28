@@ -40,14 +40,14 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 	const {
 		id,
 		name,
-		sex,
-		birthday,
+		is_male,
+		date_of_birth,
 		photos,
 		variant,
 		slideStyle,
 		onBookedClick,
 		onCatCardClick,
-		booking_status,
+		is_reserved,
 		setIsCatModalOpen,
 	} = props;
 	const { isTablet } = useMediaQuery();
@@ -55,7 +55,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 	const desktopModal = variant === 'desktopModal';
 	const [showThanksModal, setShowThanksModal] = useState(false);
 	const [currentDate] = useState(Date.now());
-	const catAge = getDeadlineAndBirthDate(birthday, currentDate).getCatAge();
+	const catAge = getDeadlineAndBirthDate(date_of_birth, currentDate).getCatAge();
 
 	const handleThanksModalClose = () => {
 		setShowThanksModal(false);
@@ -77,7 +77,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 			>
 				<div className={s.images}>
 					{isTablet && !variant ? (
-						<ImageCatCard photo={photos[0]} />
+						<ImageCatCard photo={photos[0].media_path} />
 					) : !isTablet || (isTablet && tabletModal) ? (
 						<Slider
 							slidesPerView={tabletModal ? 1.148 : 1}
@@ -88,13 +88,13 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 							pagination={{ clickable: true }}
 							className={tabletModal ? 'inTabletModal' : ''}
 						>
-							{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
+							{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo.media_path} />)}
 						</Slider>
 					) : (
 						<Carousel photos={photos} />
 					)}
 					<div className={s.heartIconContainer}>
-						<HeartIcon className={clsx(s.heartIcon, booking_status && s.isBooked)} />
+						<HeartIcon className={clsx(s.heartIcon, is_reserved && s.isBooked)} />
 					</div>
 				</div>
 				<div className={s.modWrapper}>
@@ -104,19 +104,17 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 							<div className={s.status}>
 								<img
 									className={s.statusIcon}
-									src={booking_status ? lockIcon : homeIcon}
+									src={is_reserved ? lockIcon : homeIcon}
 									alt="booking_status"
 								/>
-								<span className={s.statusText}>
-									{booking_status ? 'Заброньований' : 'Шукаю дім'}
-								</span>
+								<span className={s.statusText}>{is_reserved ? 'Заброньований' : 'Шукаю дім'}</span>
 							</div>
 						</div>
 						<span className={s.id}>ID: {id}</span>
 						<div className={s.about}>
-							{sex === 'male' ? 'Кіт' : 'Кішка'}, {correctCatAgeInMonth(catAge)}
+							{is_male ? 'Кіт' : 'Кішка'}, {correctCatAgeInMonth(catAge)}
 						</div>
-						<span className={s.birthday}>День народження: {birthday} </span>
+						<span className={s.birthday}>День народження: {date_of_birth} </span>
 						{variant && (
 							<p className={s.desc}>
 								Грайливе та миле кошеня знаходиться у пошуку люблячого хазяїна якому подарує море
@@ -129,10 +127,10 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 						<Button
 							buttonClasses={'primaryBtn'}
 							name="Забронювати"
-							onClick={() => handleBookedClick(id)}
+							onClick={() => handleBookedClick(id, is_reserved)}
 							styleBtn={btnStyle}
 							children={<HeartIcon className={s.heartIconBtn} />}
-							disabled={booking_status}
+							disabled={is_reserved}
 						/>
 					</div>
 				</div>
@@ -141,7 +139,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 				<div onClick={(e) => e.stopPropagation()} className={s.thanksModalWrap}>
 					<ModalWhiteCat
 						handleCloseModal={handleThanksModalClose}
-						image={photos[0]}
+						image={photos[0].media_path}
 						message="Дякуємо! Кошеня успішно заброньоване"
 						name="На Головну"
 						handleNavBtn={handleThanksModalClose}
