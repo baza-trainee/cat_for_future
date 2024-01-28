@@ -18,6 +18,7 @@ import DocumentsAdmin from 'src/pages/AdminPanel/Documents/DocumentsAdmin.tsx';
 import Instruction from 'src/pages/AdminPanel/Instruction/Instruction.tsx';
 import ContactsAdmin from 'src/pages/AdminPanel/Contacts/ContactsAdmin.tsx';
 import EditDocument from 'src/pages/AdminPanel/Documents/EditDocument.tsx';
+import EditInstruction from 'src/pages/AdminPanel/Instruction/EditInstruction.tsx';
 
 const PersonalAccount = React.lazy(() => import('src/pages/PersonalAccount/PersonalAccount'));
 
@@ -49,6 +50,7 @@ function App() {
 					<Route path="admin/documents/:id" element={<EditDocument />} />
 
 					<Route path="admin/instruction" element={<Instruction />} />
+					<Route path="admin/instruction/:id" element={<EditInstruction />} />
 					<Route path="admin/contacts" element={<ContactsAdmin />} />
 				</Route>
 			</Route>
