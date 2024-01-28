@@ -3,7 +3,7 @@ import { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
 import { CalendarDays } from 'lucide-react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-	label: string;
+	label?: string;
 	component?: 'input' | 'textarea';
 	labelSmall?: boolean;
 	error?: string;
@@ -21,7 +21,9 @@ const InputAdmin = ({
 
 	return (
 		<label className={styles.wrapper}>
-			<span className={`${styles.label} ${labelSmall ? styles.small : ''}`}>{label}</span>
+			{label && (
+				<span className={`${styles.label} ${labelSmall ? styles.small : ''}`}>{label}</span>
+			)}
 			<div className={`${isDateInput ? styles.dateInputWrapper : ''} `}>
 				{component === 'textarea' ? (
 					<textarea
