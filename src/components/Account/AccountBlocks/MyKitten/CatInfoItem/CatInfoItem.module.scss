@@ -42,18 +42,6 @@
 	}
 }
 
-.kittenId {
-	color: $color-primary-green;
-	font-family: $primary-font;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 120%; /* 1.2rem */
-
-	@include tablet {
-		font-weight: 500;
-	}
-}
-
 .kittenAge {
 	margin-top: 0.75rem;
 	color: $color-primary-green;

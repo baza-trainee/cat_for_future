@@ -17,12 +17,12 @@ const primaryBtnStyle = {
 	width: '100%',
 };
 
-const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, birthday, photos }) => {
+const CatInfoItem: FC<CatInfoItemProps> = ({ id, is_male, date_of_birth, name, photos }) => {
 	const [currentDate] = useState(Date.now());
 	const { isTablet } = useMediaQuery();
 	const { isDesktop } = useMediaQuery();
-	const deadlineDate = getDeadlineAndBirthDate(birthday, currentDate).date;
-	const catAge = getDeadlineAndBirthDate(birthday, currentDate).getCatAge();
+	const deadlineDate = getDeadlineAndBirthDate(date_of_birth, currentDate).date;
+	const catAge = getDeadlineAndBirthDate(date_of_birth, currentDate).getCatAge();
 
 	const correctCatAgeInMonth = (ageNumber: number) => {
 		return ageNumber < 1 ? 'менше 1 місяця' : `${ageNumber} ${pluralize(ageNumber, 'місяц')}`;
@@ -34,19 +34,20 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, birthday, photos }) 
 		item < 10 ? `0${item}` : item.toString()
 	);
 
+	const formattedDate = date_of_birth.replace(/-/g, '.').split('.').reverse().join('.');
+
 	return (
 		<div className={s.kittenItem}>
 			<h2 className={s.kittenTitle}>Привіт, я твоє кошеня {name}</h2>
 
 			<div className={s.kittenDescrBody}>
-				<div className={s.kittenId}>ID: {id}</div>
 				<div className={s.kittenAge}>
-					{sex === 'male' ? 'Кіт' : 'Кішка'}, {correctCatAgeInMonth(catAge)}
+					{is_male ? 'Кіт' : 'Кішка'}, {correctCatAgeInMonth(catAge)}
 				</div>
-				<div className={s.kittenBirthday}>Дата народження: {birthday} </div>
+				<div className={s.kittenBirthday}>Дата народження: {formattedDate} </div>
 			</div>
 
-			{getDeadlineAndBirthDate(birthday, currentDate).lessFourMonths ? (
+			{getDeadlineAndBirthDate(date_of_birth, currentDate).lessFourMonths ? (
 				<Timer arrCorrectDate={arrCorrectDate} />
 			) : null}
 
@@ -61,7 +62,7 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, birthday, photos }) 
 						className={'inDesktopMyKitten'}
 						pagination={{ clickable: true }}
 					>
-						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
+						{photos?.map((photo) => <ImageCatCard key={photo.id} photo={photo.media_path} />)}
 					</Slider>
 				) : isTablet ? (
 					<CatPhotosItem photos={photos} id={id} />
@@ -75,7 +76,7 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, sex, name, birthday, photos }) 
 						className={'inMobileMyKitten'}
 						pagination={{ clickable: true }}
 					>
-						{photos?.map((photo, index) => <ImageCatCard key={index} photo={photo} />)}
+						{photos?.map((photo) => <ImageCatCard key={photo.id} photo={photo.media_path} />)}
 					</Slider>
 				)}
 			</div>

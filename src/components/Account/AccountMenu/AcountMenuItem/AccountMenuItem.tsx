@@ -6,7 +6,6 @@ import { AccountMenuItemProps } from '../ConstAccountMenu';
 
 const AccountMenuItem: React.FC<AccountMenuItemProps> = ({ name, to, icon, color }) => {
 	const match = useMatch(to);
-	console.log(match);
 	const classLink = match ? `${s.link} ${s.active} ` : s.link;
 	return (
 		<li className={classLink} style={{ color: color }}>
