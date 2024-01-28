@@ -54,8 +54,10 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 	const tabletModal = variant === 'tabletModal';
 	const desktopModal = variant === 'desktopModal';
 	const [showThanksModal, setShowThanksModal] = useState(false);
+
 	const [currentDate] = useState(Date.now());
 	const catAge = getDeadlineAndBirthDate(date_of_birth, currentDate).getCatAge();
+	const formattedDate = date_of_birth.replace(/-/g, '.').split('.').reverse().join('.');
 
 	const handleThanksModalClose = () => {
 		setShowThanksModal(false);
@@ -110,7 +112,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 						<div className={s.about}>
 							{is_male ? 'Кіт' : 'Кішка'}, {correctCatAgeInMonth(catAge)}
 						</div>
-						<span className={s.birthday}>День народження: {date_of_birth} </span>
+						<span className={s.birthday}>День народження: {formattedDate} </span>
 						{variant && (
 							<p className={s.desc}>
 								Грайливе та миле кошеня знаходиться у пошуку люблячого хазяїна якому подарує море
