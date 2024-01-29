@@ -13,12 +13,12 @@ const btn = {
 
 const AdoptKittenInstruction: FC = () => {
 	const { data: instructions } = useGetInstructionsQuery(undefined);
-	console.log(instructions);
+
 	return (
 		<section className={s.wrapper}>
 			<h2 className={s.title}>Як прихистити кошеня на виріст?</h2>
 			<div className={s.instructionList}>
-				{instructions.map(({ id, title, description }: IInstruction) => (
+				{instructions?.map(({ id, title, description }: IInstruction) => (
 					<Fragment key={id}>
 						<div className={s.instructionItem}>
 							<img src={paws} alt="Paws" className={s.paws} />
