@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
 import s from 'src/components/ContactsInfo/ContactsInfo.module.scss';
+import { useGetContactsQuery } from 'src/store/slice/contactsApiSlice.ts';
+import { formatPhoneNumber } from 'src/utils/formatPhoneNumber.ts';
 
 interface ContactsInfoProps {
 	type?: string;
@@ -15,6 +17,8 @@ interface ContactsInfoProps {
 }
 
 const ContactsInfo: React.FC<ContactsInfoProps> = ({ type, styleContacts, componentType }) => {
+	const { data: contacts } = useGetContactsQuery(undefined);
+
 	return (
 		<div className={clsx(s.contacts, type && s[type])} style={styleContacts}>
 			<div className={s.list}>
@@ -25,29 +29,33 @@ const ContactsInfo: React.FC<ContactsInfoProps> = ({ type, styleContacts, compon
 						<Phone
 							className={clsx(s.contactIcn, componentType === 'contactPage' && s.contactPage)}
 						/>
-						+38 063 628 66 30
+						{formatPhoneNumber(contacts?.phone_first)}
+					</p>
+					<p className={clsx(s.contactContainer, componentType === 'contactPage' && s.contactPage)}>
+						<Phone
+							className={clsx(s.contactIcn, componentType === 'contactPage' && s.contactPage)}
+						/>
+						{formatPhoneNumber(contacts?.phone_second)}
 					</p>
 
 					<p className={clsx(s.contactContainer, componentType === 'contactPage' && s.contactPage)}>
 						<Email
 							className={clsx(s.contactIcn, componentType === 'contactPage' && s.contactPage)}
 						/>
-						catforfuture@gmail.com
+						{contacts?.email}
 					</p>
 				</div>
 			</div>
 
 			<div className={clsx(s.socmediaContainer, type && s.burgerSocials)}>
 				<div className={s.socmediaIcn}>
-					{/*no link yet*/}
-					<Link to="*">
+					<Link to={contacts?.facebook}>
 						<Facebook className={clsx(componentType === 'contactPage' && s.contactPage)} />
 					</Link>
 				</div>
 
 				<div className={s.socmediaIcn}>
-					{/*no link yet*/}
-					<Link to="*">
+					<Link to={contacts?.instagram}>
 						<Instagram className={clsx(componentType === 'contactPage' && s.contactPage)} />
 					</Link>
 				</div>

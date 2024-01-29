@@ -60,12 +60,13 @@
 	@include tablet {
 		padding: 1.25rem;
 		gap: 1.25rem;
+		width: 28.6875rem;
 	}
 
 	@include full_desktop {
 		padding: 1.25rem;
 		gap: 1.88rem;
-		height: 17.625rem;
+		height: 20.625rem;
 		margin-top: 7.44rem;
 	}
 
@@ -75,9 +76,10 @@
 		font-style: normal;
 		font-weight: 400;
 		line-height: 1.2rem;
+		width: 90%;
 
 		@include tablet {
-			width: 29.6875rem;
+			//width: 29.6875rem;
 			text-align: left;
 			font-size: 1.25rem;
 			line-height: 1.5rem;
