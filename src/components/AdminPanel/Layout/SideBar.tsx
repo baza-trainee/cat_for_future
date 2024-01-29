@@ -21,7 +21,7 @@ const navMenu = [
 	},
 	{
 		url: 'admin/documents',
-		anchor: 'Звітність',
+		anchor: 'Документи',
 		icon: <ScrollText size={24} />,
 	},
 	{

@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
 					</div>
 				</div>
 
-				<div className={s.rights}>Розробка Baza Trainee Ukraine 2023 © Усі права захищені</div>
+				<div className={s.rights}>Розробка Baza Trainee Ukraine 2024 © Усі права захищені</div>
 			</div>
 		</footer>
 	);
