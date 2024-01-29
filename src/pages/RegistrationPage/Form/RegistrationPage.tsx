@@ -48,6 +48,9 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 	const formik = useFormik<FormValues>({
 		initialValues: initialValues,
 		validationSchema: signupSchema,
+		validateOnChange: true,
+		validateOnBlur: true,
+		enableReinitialize: true,
 		onSubmit: async (values) => {
 			const { name, password, email, phone } = values;
 			const cleanedNumber = phone.replace(/[^0-9+]/g, '');
@@ -115,6 +118,9 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									id="name"
 									placeholder="Введіть ваше ім’я"
 									required
+									value={formik.values.name}
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
 								/>
 								<ErrorMessage className={css.error} name="name" component="div" />
 							</div>
@@ -136,6 +142,9 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									} ${css.signUpField}`}
 									name="phone"
 									required
+									value={formik.values.phone}
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
 								/>
 								<ErrorMessage className={css.error} name="phone" component="div" />
 							</div>
@@ -156,6 +165,9 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									id="email"
 									placeholder="Введіть e-mail"
 									required
+									value={formik.values.email}
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
 								/>
 								<ErrorMessage className={css.error} name="email" component="div" />
 							</div>
@@ -171,12 +183,15 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									className={`${
 										formik.errors.password && formik.touched.password ? css.errorField : ''
 									} ${css.signUpField}`}
-									title="Пароль має містити від 8 до 15 символів (латинські літери нижнього, верхнього регістру, цифри, спецсимволи)"
+									title="Пароль має містити від 8 до 64 символів (латинські літери нижнього, верхнього регістру, цифри, спецсимволи)"
 									name="password"
 									type={visible ? 'text' : 'password'}
 									placeholder="Ввести пароль"
 									id="password"
 									required
+									value={formik.values.password}
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
 								/>
 
 								<div className={css.eye}>
@@ -207,6 +222,9 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									placeholder="Повторити пароль"
 									id="confirmpass"
 									required
+									value={formik.values.confirmpass}
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
 								/>
 								<div className={css.eye}>
 									<Eye
