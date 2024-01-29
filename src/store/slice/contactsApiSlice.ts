@@ -14,7 +14,15 @@ export const contactsApiSlice = apiSlice.injectEndpoints({
 				method: 'PATCH',
 			}),
 		}),
+		feedback: builder.mutation({
+			query: (data) => ({
+				url: `/feedback`,
+				body: data,
+				method: 'POST',
+			}),
+		}),
 	}),
 });
 
-export const { useEditContactMutation, useGetContactsQuery } = contactsApiSlice;
+export const { useEditContactMutation, useFeedbackMutation, useGetContactsQuery } =
+	contactsApiSlice;

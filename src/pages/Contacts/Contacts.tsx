@@ -7,9 +7,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { scrollOnTop } from 'src/utils/scrollToSection';
 
 import s from './Contacts.module.scss';
+import { useGetContactsQuery } from 'src/store/slice/contactsApiSlice.ts';
 
 const Contacts: React.FC = () => {
 	const [showModal, setShowModal] = useState<boolean>(false);
+	const { data: contacts } = useGetContactsQuery(undefined);
 
 	const location = useLocation();
 
@@ -27,6 +29,8 @@ const Contacts: React.FC = () => {
 		setShowModal(false);
 	};
 
+	console.log(contacts);
+
 	return (
 		<>
 			<div className={s.container}>
@@ -41,11 +45,7 @@ const Contacts: React.FC = () => {
 							componentType="contactPage"
 							styleContacts={{ flexDirection: 'column' }}
 						/>
-						<p>
-							Наше відділення Нової пошти для посилок
-							<br />№ 280 м.Київ, вул. Софії Русової, 5<br />
-							+38 098 450 06 09
-						</p>
+						<p>{contacts?.post_address}</p>
 					</div>
 				</div>
 			</div>
