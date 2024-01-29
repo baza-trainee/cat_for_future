@@ -11,29 +11,34 @@ import { getDeadlineAndBirthDate } from 'src/utils/getDeadlineAndBirthDate';
 import Timer from 'src/components/Timer/Timer';
 import s from './CatInfoItem.module.scss';
 
-interface CatInfoItemProps extends ICat {}
+interface CatInfoItemProps extends ICat {
+	handleCancelReservID: (id: number) => void;
+}
 
 const primaryBtnStyle = {
 	width: '100%',
 };
 
-const CatInfoItem: FC<CatInfoItemProps> = ({ id, is_male, date_of_birth, name, photos }) => {
+const CatInfoItem: FC<CatInfoItemProps> = ({
+	id,
+	is_male,
+	date_of_birth,
+	name,
+	photos,
+	handleCancelReservID,
+}) => {
 	const [currentDate] = useState(Date.now());
-	const { isTablet } = useMediaQuery();
-	const { isDesktop } = useMediaQuery();
+	const { isTablet, isDesktop } = useMediaQuery();
+
 	const deadlineDate = getDeadlineAndBirthDate(date_of_birth, currentDate).date;
 	const catAge = getDeadlineAndBirthDate(date_of_birth, currentDate).getCatAge();
-
 	const correctCatAgeInMonth = (ageNumber: number) => {
 		return ageNumber < 1 ? 'менше 1 місяця' : `${ageNumber} ${pluralize(ageNumber, 'місяц')}`;
 	};
-
 	const { days, hours, minutes, seconds } = useCountdownTimer(deadlineDate);
-
 	const arrCorrectDate = [days, hours, minutes, seconds].map((item) =>
 		item < 10 ? `0${item}` : item.toString()
 	);
-
 	const formattedDate = date_of_birth.replace(/-/g, '.').split('.').reverse().join('.');
 
 	return (
@@ -87,6 +92,7 @@ const CatInfoItem: FC<CatInfoItemProps> = ({ id, is_male, date_of_birth, name, p
 					buttonClasses={'primaryBtn'}
 					type={'button'}
 					styleBtn={primaryBtnStyle}
+					onClick={() => handleCancelReservID(id)}
 				/>
 			</div>
 		</div>

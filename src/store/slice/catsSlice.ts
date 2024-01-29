@@ -1,11 +1,18 @@
 import { apiSlice } from 'src/app/api/apiSlice.ts';
 import { ICat } from 'src/types/ICat';
 
-export const documentsApiSlice = apiSlice.injectEndpoints({
+export const catsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getCats: builder.query<ICat[], string>({
 			query: () => ({
 				url: '/cats',
+				invalidatesTags: ['Cats'],
+			}),
+			providesTags: (result) => (result ? [{ type: 'Cats', id: 'LIST' }] : []),
+		}),
+		getMyCats: builder.query<ICat[], string>({
+			query: () => ({
+				url: '/user/me/cats',
 				invalidatesTags: ['Cats'],
 			}),
 			providesTags: (result) => (result ? [{ type: 'Cats', id: 'LIST' }] : []),
@@ -27,5 +34,9 @@ export const documentsApiSlice = apiSlice.injectEndpoints({
 	}),
 });
 
-export const { useGetCatsQuery, useReserveCatMutation, useCancelReservationCatMutation } =
-	documentsApiSlice;
+export const {
+	useGetCatsQuery,
+	useReserveCatMutation,
+	useCancelReservationCatMutation,
+	useGetMyCatsQuery,
+} = catsApiSlice;
