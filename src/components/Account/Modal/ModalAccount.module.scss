@@ -1,0 +1,92 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+.modal {
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(77, 77, 77, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
+
+	.modalContent {
+		background: $color-system-default-0;
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+
+		.closeBtn {
+			position: absolute;
+			width: 1.5rem;
+			height: 1.5rem;
+			flex-shrink: 0;
+			top: 1.25rem;
+			right: 1.25rem;
+			cursor: pointer;
+		}
+	}
+}
+
+.question {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 19.15rem;
+	padding: 4.81rem 1.125rem 4.75rem;
+	color: $color-system-default-100;
+	text-align: center;
+	font-family: $primary-font;
+	@include tablet {
+		max-width: 32.813rem;
+		padding: 10.8rem 1.87rem 15.37rem;
+	}
+	@include full_desktop {
+		max-width: 45.83rem;
+		padding: 12.37rem 7.47rem 18.31rem;
+	}
+
+	& h2 {
+		width: 80%;
+		font-size: 1.5rem;
+		font-weight: 700;
+		line-height: 120%;
+		margin-bottom: 0.75rem;
+
+		@include tablet {
+			margin-bottom: 1.13rem;
+		}
+	}
+
+	& p {
+		font-size: 1.125rem;
+		font-weight: 400;
+		line-height: 140%;
+		margin-bottom: 2.81rem;
+		@include tablet {
+			margin-bottom: 1.13rem;
+		}
+	}
+
+	.buttons {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		padding: 0 2.435rem;
+		gap: 1.125rem;
+
+		@include tablet {
+			flex-direction: row;
+			gap: 1.25rem;
+			padding: 0 2.05rem;
+		}
+
+		@include full_desktop {
+			gap: 1.5rem;
+		}
+	}
+}

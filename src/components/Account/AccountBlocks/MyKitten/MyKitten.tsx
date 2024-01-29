@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import CatInfoItem from './CatInfoItem/CatInfoItem';
 import s from './MyKitten.module.scss';
 import { useCancelReservationCatMutation, useGetMyCatsQuery } from 'src/store/slice/catsSlice';
-import QuestionModal from 'src/components/AdminPanel/Modal/QuestionModal';
+import ModalAccount from '../../Modal/ModalAccount';
+import QuestionModalAccount from '../../Modal/QuestionModalAccount';
 
 interface RTKQueryError {
 	data: {
@@ -39,18 +40,16 @@ const MyKitten: React.FC = () => {
 					))}
 			</div>
 			{isQuestionModalOpen && (
-				<div onClick={(e) => e.stopPropagation()} className={s.questionModalWrap}>
-					<div className={s.container}>
-						<QuestionModal
-							question={'Скасувати бронь'}
-							text={'Ви впевнені що бажаєте скасувати бронь кошеняти?'}
-							btnLeft={'Ні'}
-							btnRight={'Так'}
-							successFnc={() => handleCancelReservation(cancelReservationID)}
-							declineFnc={() => setIsQuestionModalOpen(false)}
-						/>
-					</div>
-				</div>
+				<ModalAccount onClose={() => setIsQuestionModalOpen(false)}>
+					<QuestionModalAccount
+						question={'Скасувати бронь'}
+						text={'Ви впевнені що бажаєте скасувати бронь кошеняти?'}
+						btnLeft={'Ні'}
+						btnRight={'Так'}
+						successFnc={() => handleCancelReservation(cancelReservationID!)}
+						declineFnc={() => setIsQuestionModalOpen(false)}
+					/>
+				</ModalAccount>
 			)}
 		</div>
 	);
