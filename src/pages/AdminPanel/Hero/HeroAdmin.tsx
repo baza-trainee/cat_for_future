@@ -6,7 +6,6 @@ const HeroAdmin = () => {
 			<ListTable
 				header={['Заголовок', 'Підзаголовок', 'Фото', 'Текст 1', 'Текст 2']}
 				sectionTitle={'Hero section'}
-				withBtn
 			>
 				dfdf
 			</ListTable>

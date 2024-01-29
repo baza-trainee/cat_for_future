@@ -1,26 +1,32 @@
 import * as yup from 'yup';
 
 export const passwRegex =
-	/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*;:?'"`~()_=+[\]{}\-.,<>|/\\])[a-zA-Z0-9!@#$%^&*;:?'"`~()_=+[\]{}\-.,|<>/\\]{8,15}$/;
+	/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*;:?'"`~()_=+[\]{}\-.,<>|/\\])[a-zA-Z0-9!@#$%^&*;:?'"`~()_=+[\]{}\-.,|<>/\\]{8,64}$/;
 
-export const changePasswSchema = () => {
+export const changePasswSchema = (email: string) => {
 	return yup.object().shape({
-		oldPassw: yup
+		old_password: yup
 			.string()
-			.min(8, 'Перевірте коректність введеного паролю')
-			.max(15, 'Перевірте коректність введеного паролю')
+			.min(8, 'Мінімальна кількість символів 8')
+			.max(64, 'Максимальна кількість символів 64')
 			.required("Обов'язкове поле"),
-		newPassw: yup
+		new_password: yup
 			.string()
 			.min(8, 'Введіть коректний пароль')
-			.max(15, 'Введіть коректний пароль')
+			.max(64, 'Введіть коректний пароль')
 			.matches(passwRegex, {
 				message: 'Введіть коректний пароль',
 			})
+			.test('no-username-in-password', 'Пароль не може містити email', (value) => {
+				const username = email.split('@')[0].toLowerCase();
+				console.log('username', username);
+				console.log('value', value);
+				return !value?.toLowerCase().includes(username);
+			})
 			.required("Обов'язкове поле"),
-		confirmPassw: yup
+		new_password_confirm: yup
 			.string()
 			.required("Обов'язкове поле")
-			.oneOf([yup.ref('newPassw')], 'Пароль має збігатись'),
+			.oneOf([yup.ref('new_password')], 'Пароль має збігатись'),
 	});
 };

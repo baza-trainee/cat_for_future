@@ -6,12 +6,14 @@ import showLoginReducer from './slice/showLoginSlice';
 import authReducer from './slice/authSlice.ts';
 import { apiSlice } from 'src/app/api/apiSlice.ts';
 import { authApiSlice } from 'src/store/slice/authApiSlice.ts';
+import { userApiSlice } from 'src/store/slice/userApiSlice.ts';
 
 const rootReducer = combineReducers({
 	todos: todosReducer,
 	showLogin: showLoginReducer,
 	auth: authReducer,
 	[authApiSlice.reducerPath]: authApiSlice.reducer,
+	[userApiSlice.reducerPath]: userApiSlice.reducer,
 });
 
 const store = configureStore({
