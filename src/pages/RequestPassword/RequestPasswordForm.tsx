@@ -1,15 +1,12 @@
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
-
 import s from './RequestPasswordForm.module.scss';
-
 import ModalBack from 'src/components/ModalBack/ModalBack.tsx';
 import Button from 'src/components/Button/Button.tsx';
 import { requestPasswSchema } from 'src/schemas/requestPassword.schema.ts';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { useRequestPassMutation } from 'src/store/slice/authApiSlice.ts';
-import { useActions } from 'src/hooks/useActions.ts';
 
 interface InitValuesRequestPassw {
 	email: string;
@@ -31,7 +28,6 @@ const RequestPasswordForm = () => {
 	const [isSuccessResponse, setIsSuccessResponse] = useState<boolean>(false);
 	const navigate = useNavigate();
 	const [requestPass] = useRequestPassMutation();
-	const { resetEmail } = useActions();
 
 	const { handleSubmit, handleBlur, handleChange, values, errors, touched, isValid } = useFormik({
 		enableReinitialize: true,
@@ -40,7 +36,7 @@ const RequestPasswordForm = () => {
 		onSubmit: async (values, actions) => {
 			await requestPass(values).unwrap();
 			setIsSuccessResponse(true);
-			resetEmail(values.email);
+			localStorage.setItem('email', values.email);
 			actions.resetForm();
 		},
 	});
