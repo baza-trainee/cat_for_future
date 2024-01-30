@@ -1,9 +1,9 @@
 export interface ICat {
 	id: number;
 	name: string;
-	age: number;
-	sex: string;
-	birthday: string;
-	booking_status: boolean;
-	photos: string[];
+	is_male: boolean;
+	is_reserved: boolean;
+	description: string;
+	date_of_birth: string;
+	photos: { id: number; media_path: string }[];
 }

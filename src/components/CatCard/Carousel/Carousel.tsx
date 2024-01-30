@@ -2,38 +2,39 @@ import React, { useEffect, useState } from 'react';
 import s from './Carousel.module.scss';
 import clsx from 'clsx';
 
+interface IPhoto {
+	id: number;
+	media_path: string;
+}
 interface CarouselProps {
-	photos: string[];
+	photos: IPhoto[];
 }
 
-const swapArrayElements = function (arr: string[], indexA: number, indexB: number) {
-	const temp = arr[indexA];
-	arr[indexA] = arr[indexB];
-	arr[indexB] = temp;
-};
-
 const Carousel: React.FC<CarouselProps> = ({ photos }) => {
-	const [sliderData, setSliderData] = useState<string[]>(photos);
+	const [sliderData, setSliderData] = useState<IPhoto[]>(photos);
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
 	useEffect(() => {
-		const swapArray = [...sliderData];
 		if (selectedIndex !== null) {
-			swapArrayElements(swapArray, selectedIndex, 0);
+			const newSliderData = [...sliderData];
+			[newSliderData[0], newSliderData[selectedIndex]] = [
+				newSliderData[selectedIndex],
+				newSliderData[0],
+			];
+			setSliderData(newSliderData);
+			setSelectedIndex(null);
 		}
-		setSliderData(swapArray);
-		setSelectedIndex(null);
-	}, [selectedIndex]);
+	}, [selectedIndex, sliderData]);
 
 	return (
 		<div className={s.wrapper}>
 			<div className={s.selectedImage}>
-				<img src={sliderData[0]} alt="slider image" />
+				<img src={sliderData[0].media_path} alt="slider image" />
 			</div>
 			<div className={s.imagesRow}>
 				{sliderData.map((photo, index) => (
-					<div key={index} className={clsx(s.image, photo === sliderData[0] && s.selected)}>
-						<img src={photo} onClick={() => setSelectedIndex(index)} />
+					<div key={photo.id} className={clsx(s.image, photo === sliderData[0] && s.selected)}>
+						<img src={photo.media_path} onClick={() => setSelectedIndex(index)} />
 					</div>
 				))}
 			</div>
