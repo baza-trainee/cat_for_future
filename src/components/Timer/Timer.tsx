@@ -15,13 +15,16 @@ interface TimeState {
 
 const Timer: FC<TimerProps> = ({ arrCorrectDate, className }) => {
 	const [days, hours, minutes] = arrCorrectDate;
+	const hoursSliced = hours.slice(-2);
+	const minutesSliced = minutes.slice(-2);
+
 	const [dayOne, setDayOne] = useState({ value: days[0], name: 'dayOne' });
 	const [dayTwo, setDayTwo] = useState({ value: days[1], name: 'dayTwo' });
 	const [dayThree, setDayThree] = useState({ value: days[2], name: 'dayThree' });
-	const [hourOne, setHourOne] = useState({ value: hours[0], name: 'hourOne' });
-	const [hourTwo, setHourTwo] = useState({ value: hours[1], name: 'hourTwo' });
-	const [minuteOne, setMinuteOne] = useState({ value: minutes[0], name: 'minuteOne' });
-	const [minuteTwo, setMinuteTwo] = useState({ value: minutes[1], name: 'minuteTwo' });
+	const [hourOne, setHourOne] = useState({ value: hoursSliced[1], name: 'hourOne' });
+	const [hourTwo, setHourTwo] = useState({ value: hoursSliced[2], name: 'hourTwo' });
+	const [minuteOne, setMinuteOne] = useState({ value: minutesSliced[0], name: 'minuteOne' });
+	const [minuteTwo, setMinuteTwo] = useState({ value: minutesSliced[1], name: 'minuteTwo' });
 	// const [secondOne, setSecondOne] = useState({ value: seconds[0], name: 'secondOne' });
 	// const [secondTwo, setSecondTwo] = useState({ value: seconds[1], name: 'secondTwo' });
 
@@ -51,10 +54,10 @@ const Timer: FC<TimerProps> = ({ arrCorrectDate, className }) => {
 		checkChanges(days, dayOne, setDayOne, timerNumElements);
 		checkChanges(days, dayTwo, setDayTwo, timerNumElements);
 		checkChanges(days, dayThree, setDayThree, timerNumElements);
-		checkChanges(hours, hourOne, setHourOne, timerNumElements);
-		checkChanges(hours, hourTwo, setHourTwo, timerNumElements);
-		checkChanges(minutes, minuteOne, setMinuteOne, timerNumElements);
-		checkChanges(minutes, minuteTwo, setMinuteTwo, timerNumElements);
+		checkChanges(hoursSliced, hourOne, setHourOne, timerNumElements);
+		checkChanges(hoursSliced, hourTwo, setHourTwo, timerNumElements);
+		checkChanges(minutesSliced, minuteOne, setMinuteOne, timerNumElements);
+		checkChanges(minutesSliced, minuteTwo, setMinuteTwo, timerNumElements);
 		// checkChanges(seconds, secondOne, setSecondOne, timerNumElements);
 		// checkChanges(seconds, secondTwo, setSecondTwo, timerNumElements);
 	}, [arrCorrectDate]);

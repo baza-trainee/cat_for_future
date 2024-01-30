@@ -10,6 +10,7 @@ export interface AccountMenuItemProps {
 	to: string;
 	icon: React.ReactNode;
 	color?: string;
+	onClick?: () => void;
 }
 
 const menu: AccountMenuItemProps[] = [

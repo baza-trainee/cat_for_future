@@ -1,5 +1,6 @@
 import Button from 'src/components/Button/Button';
 import styles from './ModalAccount.module.scss';
+import { useMediaQuery } from 'src/hooks/useMediaQuery';
 
 const QuestionModalAccount = ({
 	question,
@@ -9,13 +10,12 @@ const QuestionModalAccount = ({
 }: {
 	question: string;
 	text?: string;
-	btnLeft: string;
-	btnRight: string;
 	successFnc: () => void;
 	declineFnc: () => void;
 }) => {
+	const { isTablet } = useMediaQuery();
 	const btnStyle = {
-		width: '100%',
+		width: isTablet ? '12.5rem' : '12rem',
 	};
 	return (
 		<div className={styles.question}>
