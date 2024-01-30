@@ -4,7 +4,7 @@ import styles from './ModalAdmin.module.scss';
 
 interface ModalAdminProps {
 	children: ReactNode;
-	onClose: () => void;
+	onClose?: () => void;
 	className?: string;
 }
 

@@ -9,8 +9,9 @@ export interface IFormValues {
 }
 
 export const useLoginForm = () => {
+	const [shouldFetchUser, setShouldFetchUser] = useState(false);
 	const [login] = useLoginMutation();
-	const { refetch } = useGetUserQuery(undefined);
+	const { refetch } = useGetUserQuery(undefined, { skip: !shouldFetchUser });
 	const [loginError, setLoginError] = useState<string | null>(null);
 
 	const initialValues: IFormValues = {
@@ -19,6 +20,7 @@ export const useLoginForm = () => {
 	};
 
 	const handleSubmit = async (values: IFormValues, actions: FormikHelpers<IFormValues>) => {
+		setShouldFetchUser(true);
 		const formData = new FormData();
 		formData.append('username', values.loginEmail);
 		formData.append('password', values.loginPassword);

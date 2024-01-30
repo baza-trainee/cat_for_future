@@ -11,16 +11,30 @@ import ButtonAdmin from 'src/components/AdminPanel/UIKit/Button/ButtonAdmin.tsx'
 import ModalAdmin from 'src/components/AdminPanel/Modal/ModalAdmin.tsx';
 import SuccessModal from 'src/components/AdminPanel/Modal/SuccessModal.tsx';
 import QuestionModal from 'src/components/AdminPanel/Modal/QuestionModal.tsx';
+import InputAdmin from 'src/components/AdminPanel/UIKit/Input/InputAdmin.tsx';
 
 const EditDocument = () => {
 	const { id } = useParams();
-	const { data: document } = useGetDocumentByIdQuery(id);
+	const { data: document, refetch } = useGetDocumentByIdQuery(id);
 	const [valueName, setValueName] = useState('');
 	const [errorFile, setErrorFile] = useState('');
 	const [file, setFile] = useState<File | null>(null);
 	const [editDocument, { isSuccess, isError }] = useEditDocumentMutation();
 	const [isQuestion, setIsQuestion] = useState(false);
 	const navigate = useNavigate();
+	const [inputError, setInputError] = useState('');
+
+	console.log(valueName.length);
+
+	useEffect(() => {
+		if (valueName.length > 60) {
+			setInputError('Максимальна кількість символів 60');
+		} else if (valueName.length < 2) {
+			setInputError('Мінімальна кількість символів 2');
+		} else {
+			setInputError('');
+		}
+	}, [valueName]);
 
 	useEffect(() => {
 		if (document) {
@@ -31,6 +45,7 @@ const EditDocument = () => {
 	const path = file ? file?.name.slice(0, 15) : document?.media_path.split('/').pop();
 
 	const MAX_SIZE = 2 * 1024 * 1024;
+
 	const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files ? event.target.files[0] : null;
 		if (file) {
@@ -54,6 +69,7 @@ const EditDocument = () => {
 		}
 
 		await editDocument({ formData, id }).unwrap();
+		refetch();
 	};
 
 	return (
@@ -80,16 +96,16 @@ const EditDocument = () => {
 					</ModalAdmin>
 				)}
 
-				<label htmlFor="document-name">
-					<span>Назва документу</span>
-					<input
-						id="document-name"
-						name="Name"
-						type="text"
-						value={valueName}
-						onChange={(e) => setValueName(e.target.value)}
-					/>
-				</label>
+				<InputAdmin
+					label="Назва документу"
+					id="document-name"
+					name="Name"
+					type="text"
+					value={valueName}
+					onChange={(e) => setValueName(e.target.value)}
+					error={inputError}
+				/>
+
 				<label htmlFor="document-file" style={{ width: '15.625rem' }}>
 					<span>Документ</span>
 					<div className={styles.fileInput}>
@@ -119,7 +135,7 @@ const EditDocument = () => {
 				<div className={styles.button}>
 					<ButtonAdmin
 						text={'Зберегти'}
-						disabled={!!errorFile || valueName.length <= 2}
+						disabled={!!errorFile || !!inputError}
 						onClick={submitFormHandler}
 					/>
 				</div>

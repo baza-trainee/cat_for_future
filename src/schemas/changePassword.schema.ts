@@ -19,8 +19,6 @@ export const changePasswSchema = (email: string) => {
 			})
 			.test('no-username-in-password', 'Пароль не може містити email', (value) => {
 				const username = email.split('@')[0].toLowerCase();
-				console.log('username', username);
-				console.log('value', value);
 				return !value?.toLowerCase().includes(username);
 			})
 			.required("Обов'язкове поле"),

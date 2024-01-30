@@ -7,7 +7,7 @@ import Page404 from 'src/components/Page404/Page404';
 import Contacts from 'src/pages/Contacts/Contacts';
 import RegPage from 'src/pages/RegistrationPage/RegPageIndex';
 import ConfirmPasswordForm from 'src/components/ConfirmPasswordForm/ConfirmPasswordForm';
-import RequestPasswordForm from 'src/components/RequestPasswordForm/RequestPasswordForm';
+import RequestPasswordForm from 'src/pages/RequestPassword/RequestPasswordForm';
 import AdminLayout from 'src/components/Layout/AdminLayout/AdminLayout.tsx';
 import ProtectedRoute from 'src/routes/ProtectedRouteAdmin.tsx';
 import LoginAdmin from 'src/pages/AdminPanel/LoginAdmin/LoginAdmin.tsx';
@@ -38,20 +38,19 @@ function App() {
 						</React.Suspense>
 					}
 				/>
-				<Route path="*" element={<Page404 />} />
 				<Route path="contacts" element={<Contacts />} />
+				<Route path="*" element={<Page404 />} />
 			</Route>
 			<Route element={<ProtectedRoute page="admin" />}>
-				<Route element={<AdminLayout />}>
-					<Route path="admin" element={<HeroAdmin />} />
-					<Route path="admin/cats" element={<CatsAdmin />} />
-					<Route path="admin/stories" element={<StoriesAdmin />} />
-					<Route path="admin/documents" element={<DocumentsAdmin />} />
-					<Route path="admin/documents/:id" element={<EditDocument />} />
-
-					<Route path="admin/instruction" element={<Instruction />} />
-					<Route path="admin/instruction/:id" element={<EditInstruction />} />
-					<Route path="admin/contacts" element={<ContactsAdmin />} />
+				<Route path="admin" element={<AdminLayout />}>
+					<Route path="hero" element={<HeroAdmin />} />
+					<Route path="cats" element={<CatsAdmin />} />
+					<Route path="stories" element={<StoriesAdmin />} />
+					<Route path="documents" element={<DocumentsAdmin />} />
+					<Route path="documents/:id" element={<EditDocument />} />
+					<Route path="instruction" element={<Instruction />} />
+					<Route path="instruction/:id" element={<EditInstruction />} />
+					<Route path="contacts" element={<ContactsAdmin />} />
 				</Route>
 			</Route>
 			<Route path="log-in" element={<LoginAdmin />} />

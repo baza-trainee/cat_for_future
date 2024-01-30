@@ -52,77 +52,83 @@ const EditInstruction = () => {
 	}, [instruction]);
 
 	return (
-		<div className={styles.container}>
-			<div onClick={() => setIsQuestion(true)} className={styles.header}>
-				<ChevronLeft /> Редагувати
-			</div>
-			{isSuccess && (
-				<ModalAdmin onClose={() => navigate(-1)}>
-					<SuccessModal text="Ваші зміни успішно збережено!" />
-				</ModalAdmin>
-			)}
-			{isGetError && <div className={styles.error}>Упс...Щось пішло не так</div>}
-			{isLoading ? (
-				<div className="loader" />
-			) : (
-				<Formik
-					initialValues={initialValues}
-					validationSchema={validationSchema}
-					onSubmit={async (values) => {
-						await editInstruction({ data: values, id }).unwrap();
-						refetch();
-					}}
-					validateOnChange={true}
-					validateOnBlur={true}
-					enableReinitialize={true}
-				>
-					{({ isValid, errors, touched, values, handleChange, handleBlur }) => (
-						<Form className={styles.formWrapper}>
-							<InputAdmin
-								name="title"
-								id="title"
-								label={'Заголовок'}
-								value={values.title}
-								onChange={handleChange}
-								onBlur={handleBlur}
-								error={touched.title ? errors.title : ''}
-							/>
-							<div className={styles.description}>
+		<>
+			<div className={styles.container}>
+				<div onClick={() => setIsQuestion(true)} className={styles.header}>
+					<ChevronLeft /> Редагувати
+				</div>
+				{isSuccess && (
+					<ModalAdmin onClose={() => navigate(-1)}>
+						<SuccessModal text="Ваші зміни успішно збережено!" />
+					</ModalAdmin>
+				)}
+				{isGetError && <div className={styles.error}>Упс...Щось пішло не так</div>}
+				{isLoading ? (
+					<div className="loader" />
+				) : (
+					<Formik
+						initialValues={initialValues}
+						validationSchema={validationSchema}
+						onSubmit={async (values) => {
+							await editInstruction({ data: values, id }).unwrap();
+							refetch();
+						}}
+						validateOnChange={true}
+						validateOnBlur={true}
+						enableReinitialize={true}
+					>
+						{({ isValid, errors, touched, values, handleChange, handleBlur }) => (
+							<Form className={styles.formWrapper}>
 								<InputAdmin
-									component={'textarea'}
-									name="description"
-									id="description"
-									label={'Опис інструкції'}
-									value={values.description}
+									name="title"
+									id="title"
+									label={'Заголовок'}
+									value={values.title}
 									onChange={handleChange}
 									onBlur={handleBlur}
-									error={touched.description ? errors.description : ''}
+									error={touched.title ? errors.title : ''}
 								/>
-								<p>{values.description.length}/500</p>
-							</div>
+								<div className={styles.description}>
+									<InputAdmin
+										component={'textarea'}
+										name="description"
+										id="description"
+										label={'Опис інструкції'}
+										value={values.description}
+										onChange={handleChange}
+										onBlur={handleBlur}
+										error={touched.description ? errors.description : ''}
+									/>
+									<p>{values.description.length}/500</p>
+								</div>
 
-							<div className={styles.button}>
-								<ButtonAdmin text={'Зберегти'} type={'submit'} disabled={!isValid} />
-							</div>
-							{isError && <div className={styles.errorEdit}>Упс...Щось пішло не так</div>}
-						</Form>
-					)}
-				</Formik>
-			)}
+								<div className={styles.button}>
+									<ButtonAdmin
+										text={'Зберегти'}
+										type={'submit'}
+										disabled={!isValid || !(touched.title || touched.description)}
+									/>
+								</div>
+								{isError && <div className={styles.errorEdit}>Упс...Щось пішло не так</div>}
+							</Form>
+						)}
+					</Formik>
+				)}
 
-			{isQuestion && (
-				<ModalAdmin onClose={() => setIsQuestion(false)}>
-					<QuestionModal
-						successFnc={() => navigate(-1)}
-						declineFnc={() => setIsQuestion(false)}
-						question="Ви впевнені що бажаєте залишити сторінку?"
-						text="Ваші зміни не буде збережені"
-						btnRight="ТАК"
-						btnLeft="НІ"
-					/>
-				</ModalAdmin>
-			)}
-		</div>
+				{isQuestion && (
+					<ModalAdmin onClose={() => setIsQuestion(false)}>
+						<QuestionModal
+							successFnc={() => navigate(-1)}
+							declineFnc={() => setIsQuestion(false)}
+							question="Ви впевнені що бажаєте залишити сторінку?"
+							text="Ваші зміни не буде збережені"
+							btnRight="ТАК"
+							btnLeft="НІ"
+						/>
+					</ModalAdmin>
+				)}
+			</div>
+		</>
 	);
 };
 
