@@ -5,10 +5,10 @@ const usePaymentHandler = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 
 	const handlePayment = async ({ paymentData }: { paymentData: { amount: number } }) => {
-		const baseUrl = import.meta.env.VITE_API_BASE_URL || '';
+		const baseUrl = 'https://cat-for-future.crabdance.com/api/v1' || '';
 
 		try {
-			const { data } = await axios.post(`${baseUrl}/api/v1/donate`, paymentData);
+			const { data } = await axios.post(`${baseUrl}/donate`, paymentData);
 			const checkoutUrl = data.payment_url;
 			return checkoutUrl;
 		} catch (error) {
