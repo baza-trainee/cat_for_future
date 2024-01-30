@@ -1,14 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useActions } from 'src/hooks/useActions.ts';
+import { useGetUserQuery } from 'src/store/slice/userApiSlice.ts';
 
 const ProtectedRoute = ({ page }: { page: 'admin' | 'account' }) => {
 	const { showLoginAdmin, showLogin } = useActions();
+	const [isFetch, setIsFetch] = useState(false);
+	const { data: user } = useGetUserQuery(undefined, { skip: !isFetch });
 
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
+			setIsFetch(true);
 			if (page === 'admin') {
-				showLoginAdmin(false);
+				if (user && user.is_superuser === true) {
+					showLoginAdmin(false);
+				} else {
+					showLoginAdmin(true);
+				}
 			} else {
 				showLogin(false);
 			}
@@ -19,7 +27,7 @@ const ProtectedRoute = ({ page }: { page: 'admin' | 'account' }) => {
 				showLogin(true);
 			}
 		}
-	}, [page, showLoginAdmin, showLogin]);
+	}, [user, page, showLoginAdmin, showLogin]);
 
 	return <Outlet />;
 };

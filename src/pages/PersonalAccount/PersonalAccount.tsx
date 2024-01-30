@@ -7,7 +7,7 @@ import AccountDelete from 'src/components/Account/AccountModals/AccountDelete';
 import MyData from 'src/components/Account/AccountBlocks/MyData/MyData';
 import ChangePassword from 'src/components/Account/AccountBlocks/ChangePassword/ChangePassword';
 import MyKitten from 'src/components/Account/AccountBlocks/MyKitten/MyKitten';
-import ProtectedRoute from 'src/routes/ProtectedRouteAdmin.tsx';
+import ProtectedRoute from 'src/routes/ProtectedRoute.tsx';
 import LogoutUser from 'src/components/Account/AccountBlocks/LogoutUser/LogoutUser';
 
 const PersonalAccount: React.FC = () => (
