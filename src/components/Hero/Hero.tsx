@@ -1,3 +1,8 @@
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+import ModalWhiteCat from '../ModalWhiteCat/ModalWhiteCat';
+import image from 'src/assets/images/modal/cat-donate.png';
 import paw from '../../assets/icons/hero/paw.svg';
 import Button from '../Button/Button';
 import { scrollToSection } from 'src/utils/scrollToSection';
@@ -8,6 +13,27 @@ const btn = {
 };
 
 const Hero: React.FC = () => {
+	const location = useLocation();
+	const [showSuccessModal, setShowSuccessModal] = useState(false);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const isPaymentSuccess = new URLSearchParams(location.search).get('payment') === 'success';
+
+		if (isPaymentSuccess) {
+			setShowSuccessModal(true);
+		}
+	}, [location.search]);
+
+	const handleCloseSuccessModal = () => {
+		setShowSuccessModal(false);
+	};
+
+	const handleNavBtn = () => {
+		handleCloseSuccessModal();
+		navigate('/');
+	};
+
 	return (
 		<div className={s.hero}>
 			<div className={s.content}>
@@ -30,6 +56,16 @@ const Hero: React.FC = () => {
 					Опікуємось котами, які поруч з нами переживають буремні часи. Прилаштовуємо у добрі руки.
 				</span>
 			</div>
+
+			{showSuccessModal && (
+				<ModalWhiteCat
+					image={image}
+					message={'Дякуємо за вашу допомогу!'}
+					name={'На Головну'}
+					handleCloseModal={handleCloseSuccessModal}
+					handleNavBtn={handleNavBtn}
+				/>
+			)}
 		</div>
 	);
 };

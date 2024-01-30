@@ -17,8 +17,8 @@ export const getDeadlineAndBirthDate = (birthdayDate: string, currentDate: numbe
 	};
 
 	// count of days for waiting
-	if (correctCatAgeInDay < 120) {
-		const differenceForWaiting = (120 - correctCatAgeInDay) * 24 * 60 * 60 * 1000;
+	if (correctCatAgeInDay < 150) {
+		const differenceForWaiting = (150 - correctCatAgeInDay) * 24 * 60 * 60 * 1000;
 
 		const deadline = differenceForWaiting + currentDate;
 

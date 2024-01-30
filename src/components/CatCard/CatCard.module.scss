@@ -33,12 +33,12 @@
 
 .name {
 	font-family: $secondary-font;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	font-weight: 900;
 	line-height: normal;
 
 	@include tablet {
-		font-size: 2.25rem;
+		font-size: 1.75rem;
 	}
 	@include full_desktop {
 		font-size: 2.5rem;
