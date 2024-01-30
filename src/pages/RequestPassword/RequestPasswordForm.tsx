@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router';
 
 import s from './RequestPasswordForm.module.scss';
 
-import ModalBack from 'src/components/ModalBack/ModalBack';
-import Button from 'src/components/Button/Button';
-import { requestPasswSchema } from 'src/schemas/requestPassword.schema';
+import ModalBack from 'src/components/ModalBack/ModalBack.tsx';
+import Button from 'src/components/Button/Button.tsx';
+import { requestPasswSchema } from 'src/schemas/requestPassword.schema.ts';
 import clsx from 'clsx';
 import { useState } from 'react';
+import { useRequestPassMutation } from 'src/store/slice/authApiSlice.ts';
+import { useActions } from 'src/hooks/useActions.ts';
 
 interface InitValuesRequestPassw {
 	email: string;
@@ -28,24 +30,23 @@ const initialValues: InitValuesRequestPassw = {
 const RequestPasswordForm = () => {
 	const [isSuccessResponse, setIsSuccessResponse] = useState<boolean>(false);
 	const navigate = useNavigate();
+	const [requestPass] = useRequestPassMutation();
+	const { resetEmail } = useActions();
 
-	const handleCloseForm = () => {
-		navigate('/');
-	};
 	const { handleSubmit, handleBlur, handleChange, values, errors, touched, isValid } = useFormik({
 		enableReinitialize: true,
 		initialValues: initialValues,
 		validationSchema: requestPasswSchema,
-		onSubmit: () => {
-			//! Update with request to backend
-			setTimeout(() => {
-				setIsSuccessResponse(true);
-			}, 500);
+		onSubmit: async (values, actions) => {
+			await requestPass(values).unwrap();
+			setIsSuccessResponse(true);
+			resetEmail(values.email);
+			actions.resetForm();
 		},
 	});
 
 	return (
-		<ModalBack handleCloseModal={handleCloseForm}>
+		<ModalBack handleCloseModal={() => navigate('/')}>
 			<div className={s.formWrap}>
 				<h2 className={s.title}>Відновлення пароля</h2>
 				<p className={clsx(s.subtitle, isSuccessResponse && s.responseText)}>

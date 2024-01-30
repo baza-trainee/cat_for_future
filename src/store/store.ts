@@ -1,17 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 
-import todosReducer from './slice/exampleSlices';
 import showLoginReducer from './slice/showLoginSlice';
-import authReducer from './slice/authSlice.ts';
+import resetPass from './slice/resetPassSlice.ts';
 import { apiSlice } from 'src/app/api/apiSlice.ts';
 import { authApiSlice } from 'src/store/slice/authApiSlice.ts';
 import { userApiSlice } from 'src/store/slice/userApiSlice.ts';
 
 const rootReducer = combineReducers({
-	todos: todosReducer,
 	showLogin: showLoginReducer,
-	auth: authReducer,
+	resetPass,
 	[authApiSlice.reducerPath]: authApiSlice.reducer,
 	[userApiSlice.reducerPath]: userApiSlice.reducer,
 });

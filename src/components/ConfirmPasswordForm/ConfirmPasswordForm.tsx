@@ -10,29 +10,34 @@ import { confirmPasswSchema } from 'src/schemas/confirmPassword.schema';
 import ModalMsg from 'src/components/ModalMsg/ModalMsg';
 import Button from 'src/components/Button/Button';
 import { useActions } from 'src/hooks/useActions';
+import { useTypedSelector } from 'src/hooks/useTypedSelectors.ts';
+import { useLocation } from 'react-router-dom';
+import { useResetPassMutation } from 'src/store/slice/authApiSlice.ts';
 
 interface InitValuesConfirmPassw {
-	newPassw: string;
-	confirmPassw: string;
+	password: string;
+	password_confirm: string;
 }
 
 const btnStyle = { width: '100%', marginTop: '0.5rem' };
 const styleModalBtn = { maxWidth: '28.9375rem', paddingLeft: '0.5rem', paddingRight: '0.5rem' };
 const initialValues: InitValuesConfirmPassw = {
-	newPassw: '',
-	confirmPassw: '',
+	password: '',
+	password_confirm: '',
 };
 
 const ConfirmPasswordForm = () => {
 	const [isSuccessResponse, setIsSuccessResponse] = useState<boolean>(false);
 	const navigate = useNavigate();
 	const { showLogin } = useActions();
+	const { email } = useTypedSelector((state) => state.resetPass);
+	const location = useLocation();
+	const [resetPass] = useResetPassMutation();
+
+	const queryParams = new URLSearchParams(location.search);
+	const token = queryParams.get('token');
 	const handleCloseModalMsg = () => {
 		setIsSuccessResponse(false);
-		navigate('/');
-	};
-
-	const handleCloseForm = () => {
 		navigate('/');
 	};
 
@@ -43,41 +48,45 @@ const ConfirmPasswordForm = () => {
 			showLogin(true);
 		});
 	};
-	const onSubmitForm = (
+	const onSubmitForm = async (
 		values: InitValuesConfirmPassw,
 		actions: FormikHelpers<InitValuesConfirmPassw>
 	) => {
-		console.log(values);
+		const data = {
+			token,
+			password: values.password,
+		};
+		await resetPass(data).unwrap();
 		setIsSuccessResponse(true);
 		actions.resetForm();
 	};
 
 	return (
-		<ModalBack handleCloseModal={handleCloseForm}>
+		<ModalBack handleCloseModal={() => navigate('/')}>
 			<div className={s.formWrap}>
 				<h2 className={s.title}>Завершення відновлення пароля</h2>
 				<Formik
 					initialValues={initialValues}
-					validationSchema={confirmPasswSchema}
+					validationSchema={confirmPasswSchema(email)}
 					onSubmit={onSubmitForm}
 				>
 					{({ handleSubmit, isValid, values }) => (
 						<form className={s.form} onSubmit={handleSubmit}>
 							<InputPassword
-								name="newPassw"
+								name="password"
 								label="Новий пароль*"
 								title={
-									'Пароль має містити від 8 до 15 символів (латинські літери нижнього, верхнього регістру, цифри, спецсимволи)'
+									'Пароль має містити від 8 до 64 символів (латинські літери нижнього, верхнього регістру, цифри, спецсимволи)'
 								}
 							/>
-							<InputPassword name="confirmPassw" label="Повторіть новий пароль*" />
+							<InputPassword name="password_confirm" label="Повторіть новий пароль*" />
 
 							<Button
 								styleBtn={btnStyle}
 								buttonClasses={'primaryBtn'}
 								name={'Змінити пароль'}
 								type={'submit'}
-								disabled={!isValid || !(values.newPassw && values.confirmPassw)}
+								disabled={!isValid || !(values.password && values.password_confirm)}
 							/>
 						</form>
 					)}

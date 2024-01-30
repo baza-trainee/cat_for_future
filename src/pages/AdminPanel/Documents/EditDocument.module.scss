@@ -44,16 +44,6 @@
 				line-height: 120%;
 			}
 
-			& input[type='text'] {
-				display: flex;
-				width: 33.5625rem;
-				padding: 0.75rem 1rem;
-				align-items: center;
-				font-size: 1.25rem;
-				font-style: normal;
-				font-weight: 400;
-			}
-
 			.fileInput {
 				margin-top: 0.69rem;
 				display: flex;
@@ -71,6 +61,11 @@
 				font-style: normal;
 				font-weight: 400;
 				line-height: normal;
+
+				&:hover {
+					border: 1px dashed $color-system-default-40;
+					background: $color-system-default-10;
+				}
 
 				.error {
 					color: $color-secondary-error;

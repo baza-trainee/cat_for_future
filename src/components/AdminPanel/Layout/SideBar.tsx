@@ -5,32 +5,32 @@ import { Cat, Contact, Heart, Newspaper, ScrollText, UserRound } from 'lucide-re
 
 const navMenu = [
 	{
-		url: 'admin',
+		url: 'hero',
 		anchor: 'Hero section',
 		icon: <UserRound size={24} />,
 	},
 	{
-		url: 'admin/cats',
+		url: 'cats',
 		anchor: 'Кошенята',
 		icon: <Cat size={24} />,
 	},
 	{
-		url: 'admin/stories',
+		url: 'stories',
 		anchor: 'Щасливі історії',
 		icon: <Heart size={24} />,
 	},
 	{
-		url: 'admin/documents',
+		url: 'documents',
 		anchor: 'Документи',
 		icon: <ScrollText size={24} />,
 	},
 	{
-		url: 'admin/instruction',
+		url: 'instruction',
 		anchor: 'Інструкція',
 		icon: <Newspaper size={24} />,
 	},
 	{
-		url: 'admin/contacts',
+		url: 'contacts',
 		anchor: 'Контакти',
 		icon: <Contact size={24} />,
 	},
@@ -47,7 +47,6 @@ const SideBar = () => {
 								className={({ isActive }) =>
 									isActive ? `${styles['nav-link']} ${styles.active}` : `${styles['nav-link']}  `
 								}
-								end
 							>
 								{link.icon}
 								{link.anchor}

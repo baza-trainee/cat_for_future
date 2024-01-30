@@ -22,4 +22,8 @@
 		pointer-events: none;
 		background: $color-ref-orange-0;
 	}
+
+	&:hover {
+		background: $color-ref-orange-10;
+	}
 }
