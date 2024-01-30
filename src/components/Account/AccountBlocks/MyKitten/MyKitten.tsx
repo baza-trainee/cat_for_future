@@ -44,8 +44,6 @@ const MyKitten: React.FC = () => {
 					<QuestionModalAccount
 						question={'Скасувати бронь'}
 						text={'Ви впевнені що бажаєте скасувати бронь кошеняти?'}
-						btnLeft={'Ні'}
-						btnRight={'Так'}
 						successFnc={() => handleCancelReservation(cancelReservationID!)}
 						declineFnc={() => setIsQuestionModalOpen(false)}
 					/>
