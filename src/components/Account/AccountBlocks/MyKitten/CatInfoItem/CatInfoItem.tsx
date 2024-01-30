@@ -39,7 +39,6 @@ const CatInfoItem: FC<CatInfoItemProps> = ({
 	const arrCorrectDate = [days, hours, minutes, seconds].map((item) =>
 		item < 10 ? `00${item}` : item < 100 ? `0${item}` : item.toString()
 	);
-	console.log(days);
 
 	const formattedDate = date_of_birth.replace(/-/g, '.').split('.').reverse().join('.');
 
