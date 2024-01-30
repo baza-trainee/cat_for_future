@@ -10,7 +10,7 @@ import { useGetCatsQuery, useReserveCatMutation } from 'src/store/slice/catsSlic
 
 const OurCats: React.FC = () => {
 	const { data: cats = [] } = useGetCatsQuery('');
-	const [reserveCat] = useReserveCatMutation();
+	const [reserveCat, { isSuccess }] = useReserveCatMutation();
 
 	const { isTablet, isDesktop } = useMediaQuery();
 	const [isShowMore, setIsShowMore] = useState(false);
@@ -47,6 +47,7 @@ const OurCats: React.FC = () => {
 						{...cat}
 						onCatCardClick={onCatCardClick}
 						onBookedClick={onBookedClick}
+						isSuccess={isSuccess}
 					/>
 				))}
 			</div>
@@ -73,6 +74,7 @@ const OurCats: React.FC = () => {
 									onBookedClick={onBookedClick}
 									variant={isDesktop ? 'desktopModal' : 'tabletModal'}
 									{...cat}
+									isSuccess={isSuccess}
 								/>
 							}
 							variant={isDesktop ? 'desktopModal' : 'tabletModal'}

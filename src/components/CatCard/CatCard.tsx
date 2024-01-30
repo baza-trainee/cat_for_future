@@ -31,6 +31,7 @@ interface CatCardProps extends ICat {
 	variant?: 'tabletModal' | 'desktopModal';
 	slideStyle?: React.CSSProperties;
 	onBookedClick: (id: number) => void;
+	isSuccess: boolean;
 }
 
 const correctCatAgeInMonth = (catAge: number): string => {
@@ -50,6 +51,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 		onCatCardClick,
 		is_reserved,
 		setIsCatModalOpen,
+		isSuccess,
 	} = props;
 	const { isTablet } = useMediaQuery();
 	const tabletModal = variant === 'tabletModal';
@@ -134,7 +136,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 					</div>
 				</div>
 			</div>
-			{showThanksModal && (
+			{showThanksModal && isSuccess && (
 				<div onClick={(e) => e.stopPropagation()} className={s.thanksModalWrap}>
 					<ModalWhiteCat
 						handleCloseModal={handleThanksModalClose}
