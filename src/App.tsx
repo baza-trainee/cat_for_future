@@ -9,7 +9,7 @@ import RegPage from 'src/pages/RegistrationPage/RegPageIndex';
 import ConfirmPasswordForm from 'src/components/ConfirmPasswordForm/ConfirmPasswordForm';
 import RequestPasswordForm from 'src/pages/RequestPassword/RequestPasswordForm';
 import AdminLayout from 'src/components/Layout/AdminLayout/AdminLayout.tsx';
-import ProtectedRoute from 'src/routes/ProtectedRouteAdmin.tsx';
+import ProtectedRoute from 'src/routes/ProtectedRoute.tsx';
 import LoginAdmin from 'src/pages/AdminPanel/LoginAdmin/LoginAdmin.tsx';
 import HeroAdmin from 'src/pages/AdminPanel/Hero/HeroAdmin.tsx';
 import CatsAdmin from 'src/pages/AdminPanel/Cats/CatsAdmin.tsx';
