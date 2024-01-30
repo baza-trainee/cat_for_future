@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Formik, FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router';
 
@@ -10,7 +10,6 @@ import { confirmPasswSchema } from 'src/schemas/confirmPassword.schema';
 import ModalMsg from 'src/components/ModalMsg/ModalMsg';
 import Button from 'src/components/Button/Button';
 import { useActions } from 'src/hooks/useActions';
-import { useTypedSelector } from 'src/hooks/useTypedSelectors.ts';
 import { useLocation } from 'react-router-dom';
 import { useResetPassMutation } from 'src/store/slice/authApiSlice.ts';
 
@@ -30,12 +29,19 @@ const ConfirmPasswordForm = () => {
 	const [isSuccessResponse, setIsSuccessResponse] = useState<boolean>(false);
 	const navigate = useNavigate();
 	const { showLogin } = useActions();
-	const { email } = useTypedSelector((state) => state.resetPass);
 	const location = useLocation();
 	const [resetPass] = useResetPassMutation();
-
 	const queryParams = new URLSearchParams(location.search);
 	const token = queryParams.get('token');
+	const [email, setEmail] = useState('');
+
+	useEffect(() => {
+		const data = localStorage.getItem('email');
+		if (data) {
+			setEmail(data);
+		}
+	}, []);
+
 	const handleCloseModalMsg = () => {
 		setIsSuccessResponse(false);
 		navigate('/');
@@ -59,6 +65,7 @@ const ConfirmPasswordForm = () => {
 		await resetPass(data).unwrap();
 		setIsSuccessResponse(true);
 		actions.resetForm();
+		localStorage.removeItem('email');
 	};
 
 	return (
@@ -67,7 +74,7 @@ const ConfirmPasswordForm = () => {
 				<h2 className={s.title}>Завершення відновлення пароля</h2>
 				<Formik
 					initialValues={initialValues}
-					validationSchema={confirmPasswSchema(email)}
+					validationSchema={confirmPasswSchema(email || '')}
 					onSubmit={onSubmitForm}
 				>
 					{({ handleSubmit, isValid, values }) => (
