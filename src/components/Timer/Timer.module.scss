@@ -64,9 +64,14 @@
 	// justify-content: center;
 	display: flex;
 	min-width: 4.125rem;
-	max-width: 4.65rem;
+	max-width: min-content;
 	flex-wrap: wrap;
 	justify-content: center;
+	gap: 0.25rem;
+}
+
+.timerNums {
+	display: flex;
 	gap: 0.25rem;
 }
 

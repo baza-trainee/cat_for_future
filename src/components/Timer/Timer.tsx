@@ -15,8 +15,9 @@ interface TimeState {
 
 const Timer: FC<TimerProps> = ({ arrCorrectDate, className }) => {
 	const [days, hours, minutes] = arrCorrectDate;
-	const [dayOne, setDayOne] = useState({ value: hours[0], name: 'dayOne' });
-	const [dayTwo, setDayTwo] = useState({ value: hours[1], name: 'dayTwo' });
+	const [dayOne, setDayOne] = useState({ value: days[0], name: 'dayOne' });
+	const [dayTwo, setDayTwo] = useState({ value: days[1], name: 'dayTwo' });
+	const [dayThree, setDayThree] = useState({ value: days[2], name: 'dayThree' });
 	const [hourOne, setHourOne] = useState({ value: hours[0], name: 'hourOne' });
 	const [hourTwo, setHourTwo] = useState({ value: hours[1], name: 'hourTwo' });
 	const [minuteOne, setMinuteOne] = useState({ value: minutes[0], name: 'minuteOne' });
@@ -30,7 +31,7 @@ const Timer: FC<TimerProps> = ({ arrCorrectDate, className }) => {
 		setter: Dispatch<SetStateAction<TimeState>>,
 		elementList: NodeListOf<Element>
 	) => {
-		const newValueIndex = oldValue.name.endsWith('One') ? 0 : 1;
+		const newValueIndex = oldValue.name.endsWith('One') ? 0 : oldValue.name.endsWith('Two') ? 1 : 2;
 		if (oldValue.value !== newValue[newValueIndex]) {
 			elementList.forEach((element, index) => {
 				if (element instanceof HTMLSpanElement && element.dataset.time === `${oldValue.name}`) {
@@ -49,6 +50,7 @@ const Timer: FC<TimerProps> = ({ arrCorrectDate, className }) => {
 		timerNumElements.forEach((element) => element.classList.remove(s.timerNumAnimating));
 		checkChanges(days, dayOne, setDayOne, timerNumElements);
 		checkChanges(days, dayTwo, setDayTwo, timerNumElements);
+		checkChanges(days, dayThree, setDayThree, timerNumElements);
 		checkChanges(hours, hourOne, setHourOne, timerNumElements);
 		checkChanges(hours, hourTwo, setHourTwo, timerNumElements);
 		checkChanges(minutes, minuteOne, setMinuteOne, timerNumElements);
@@ -62,49 +64,75 @@ const Timer: FC<TimerProps> = ({ arrCorrectDate, className }) => {
 			<h3 className={s.timerTitle}>Я поїду додому через</h3>
 			<div className={s.timerWrapper}>
 				<div className={s.timerUnit}>
-					<div className={s.timerNum}>
-						<span className={clsx(s.timerDigit, s.timerNumAnimating)} data-time={`${dayOne.name}`}>
-							{dayOne.value}
-						</span>
+					<div className={s.timerNums}>
+						<div className={s.timerNum}>
+							<span
+								className={clsx(s.timerDigit, s.timerNumAnimating)}
+								data-time={`${dayOne.name}`}
+							>
+								{dayOne.value}
+							</span>
+						</div>
+						<div className={s.timerNum}>
+							<span
+								className={clsx(s.timerDigit, s.timerNumAnimating)}
+								data-time={`${dayTwo.name}`}
+							>
+								{dayTwo.value}
+							</span>
+						</div>
+						<div className={s.timerNum}>
+							<span
+								className={clsx(s.timerDigit, s.timerNumAnimating)}
+								data-time={`${dayThree.name}`}
+							>
+								{dayThree.value}
+							</span>
+						</div>
 					</div>
-					<div className={s.timerNum}>
-						<span className={clsx(s.timerDigit, s.timerNumAnimating)} data-time={`${dayTwo.name}`}>
-							{dayTwo.value}
-						</span>
-					</div>
-					<div className={s.timerNoun}>{pluralize(Number(days), 'дн')}</div>
+					<div className={s.timerNoun}>{pluralize(Number(days), 'д', 'нів', 'ень', 'ні')}</div>
 				</div>
 
 				<div className={s.timerUnit}>
-					<div className={s.timerNum}>
-						<span className={clsx(s.timerDigit, s.timerNumAnimating)} data-time={`${hourOne.name}`}>
-							{hourOne.value}
-						</span>
-					</div>
-					<div className={s.timerNum}>
-						<span className={clsx(s.timerDigit, s.timerNumAnimating)} data-time={`${hourTwo.name}`}>
-							{hourTwo.value}
-						</span>
+					<div className={s.timerNums}>
+						<div className={s.timerNum}>
+							<span
+								className={clsx(s.timerDigit, s.timerNumAnimating)}
+								data-time={`${hourOne.name}`}
+							>
+								{hourOne.value}
+							</span>
+						</div>
+						<div className={s.timerNum}>
+							<span
+								className={clsx(s.timerDigit, s.timerNumAnimating)}
+								data-time={`${hourTwo.name}`}
+							>
+								{hourTwo.value}
+							</span>
+						</div>
 					</div>
 					<div className={s.timerNoun}>{pluralizeForTimer(Number(hours), 'год')}</div>
 				</div>
 
 				<div className={s.timerUnit}>
-					<div className={s.timerNum}>
-						<span
-							className={clsx(s.timerDigit, s.timerNumAnimating)}
-							data-time={`${minuteOne.name}`}
-						>
-							{minuteOne.value}
-						</span>
-					</div>
-					<div className={s.timerNum}>
-						<span
-							className={clsx(s.timerDigit, s.timerNumAnimating)}
-							data-time={`${minuteTwo.name}`}
-						>
-							{minuteTwo.value}
-						</span>
+					<div className={s.timerNums}>
+						<div className={s.timerNum}>
+							<span
+								className={clsx(s.timerDigit, s.timerNumAnimating)}
+								data-time={`${minuteOne.name}`}
+							>
+								{minuteOne.value}
+							</span>
+						</div>
+						<div className={s.timerNum}>
+							<span
+								className={clsx(s.timerDigit, s.timerNumAnimating)}
+								data-time={`${minuteTwo.name}`}
+							>
+								{minuteTwo.value}
+							</span>
+						</div>
 					</div>
 					<div className={s.timerNoun}>{pluralizeForTimer(Number(minutes), 'хвил')}</div>
 				</div>
