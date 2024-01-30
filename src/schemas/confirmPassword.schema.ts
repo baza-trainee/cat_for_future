@@ -1,9 +1,8 @@
 import * as yup from 'yup';
-
-const passwRegex =
-	/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*;:?'"`~()_=+[\]{}\-.,<>|/\\])[a-zA-Z0-9!@#$%^&*;:?'"`~()_=+[\]{}\-.,|<>/\\]{8,64}$/;
+import { passwRegex } from 'src/schemas/login.schema.ts';
 
 export const confirmPasswSchema = (email: string) => {
+	console.log(email);
 	return yup.object().shape({
 		password: yup
 			.string()
@@ -12,7 +11,7 @@ export const confirmPasswSchema = (email: string) => {
 			.matches(passwRegex, {
 				message: 'Введіть коректний пароль',
 			})
-			.test('no-username-in-password', 'Пароль не може містити email', (value) => {
+			.test('no-username-in-pass', 'Пароль не може містити email', (value) => {
 				const username = email.split('@')[0].toLowerCase();
 				return !value?.toLowerCase().includes(username);
 			})
