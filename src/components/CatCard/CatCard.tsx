@@ -13,6 +13,7 @@ import clsx from 'clsx';
 import { ICat } from 'src/types/ICat';
 
 import { ReactComponent as HeartIcon } from 'src/assets/icons/cat_card/heart.svg';
+import { ReactComponent as LockIcon } from 'src/assets/icons/cat_card/lock.svg';
 import lockIcon from 'src/assets/icons/cat_card/lock.svg';
 import homeIcon from 'src/assets/icons/cat_card/home.svg';
 
@@ -124,10 +125,10 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 					<div onClick={(e) => e.stopPropagation()} className={s.buttonContainer}>
 						<Button
 							buttonClasses={'primaryBtn'}
-							name="Забронювати"
+							name={is_reserved ? 'Заброньований' : 'Забронювати'}
 							onClick={() => handleBookedClick(id)}
 							styleBtn={btnStyle}
-							children={<HeartIcon className={s.heartIconBtn} />}
+							children={is_reserved ? <LockIcon /> : <HeartIcon className={s.heartIconBtn} />}
 							disabled={is_reserved}
 						/>
 					</div>
