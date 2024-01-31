@@ -10,9 +10,10 @@ interface FileUploaderProps {
 	value: string | null;
 	onChange: (file: File | null) => void;
 	setImage?: (file: File | null) => void;
+	page?: 'hero' | 'cats' | 'stories';
 }
 
-const FileUploader: React.FC<FileUploaderProps> = ({ id, avatar, onChange, name }) => {
+const FileUploader: React.FC<FileUploaderProps> = ({ page, id, avatar, onChange, name }) => {
 	const [drag, setDrag] = useState(false);
 	const [preview, setPreview] = useState<string | null>(avatar);
 
@@ -67,7 +68,11 @@ const FileUploader: React.FC<FileUploaderProps> = ({ id, avatar, onChange, name 
 					onDragOver={(e) => dragStartHandler(e)}
 					onDrop={(e) => onDropHandler(e)}
 				>
-					<label className={styles.regLabel} title="Drag and drop or click here to select a file">
+					<label
+						className={styles.regLabel}
+						title="Drag and drop or click here to select a file"
+						data-page={page}
+					>
 						{preview ? (
 							<img src={preview} alt="preview" id="preview" className={styles.imgAfter} />
 						) : (
@@ -83,6 +88,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ id, avatar, onChange, name 
 							id={id}
 						/>
 						<ErrorMessage className={styles.error} name="avatar" component="div" />
+						{page && <p>Змінити фото</p>}
 					</label>
 				</div>
 			</div>

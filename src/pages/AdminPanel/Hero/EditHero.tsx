@@ -167,6 +167,7 @@ const EditHero = () => {
 										avatar={hero?.media_path}
 										value={values.avatar}
 										name="media_path"
+										page="hero"
 									/>
 								</div>
 							</div>
