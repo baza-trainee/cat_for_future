@@ -15,6 +15,7 @@ export const heroApiSlice = apiSlice.injectEndpoints({
 				method: 'PATCH',
 				body: data,
 			}),
+			invalidatesTags: [{ type: 'Hero', id: 'Hero' }],
 		}),
 	}),
 });

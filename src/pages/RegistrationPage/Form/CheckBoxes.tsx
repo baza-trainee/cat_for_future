@@ -3,6 +3,8 @@ import css from 'src/pages/RegistrationPage/Form/RegistrationPage.module.scss';
 import { checkboxData } from 'src/pages/RegistrationPage/checkboxData.tsx';
 import { ErrorMessage, Field } from 'formik';
 import Button from 'src/components/Button/Button.tsx';
+import { useGetDocumentQuery } from 'src/store/slice/documentsSlice.ts';
+import { IDocuments } from 'src/types/IDocuments.ts';
 
 const CheckBoxes = ({
 	checkboxesState,
@@ -18,6 +20,32 @@ const CheckBoxes = ({
 	error: string;
 }) => {
 	const [allChecked, setAllChecked] = useState<boolean>(false);
+	const { data: docs } = useGetDocumentQuery(undefined);
+
+	const checkBoxes = checkboxData.map((item) => {
+		const matchingDoc = docs.find((doc: IDocuments) => {
+			if (
+				item.linkText === 'Рекомендаціями по утриманню тварин' &&
+				doc.name === 'Рекомендації по утриманню тварин'
+			) {
+				return true;
+			} else if (
+				item.linkText === 'Політикою конфіденційності' &&
+				doc.name === 'Політика конфіденційності'
+			) {
+				return true;
+			} else if (
+				item.linkText === 'Правилами користування сайтом' &&
+				doc.name === 'Правила користування сайтом'
+			) {
+				return true;
+			}
+			return false;
+		});
+
+		item.linkUrl = matchingDoc ? matchingDoc.media_path : null;
+		return item;
+	});
 
 	useEffect(() => {
 		const areAllCheckboxesChecked = checkboxesState.every((checkbox) => checkbox === true);
@@ -40,7 +68,7 @@ const CheckBoxes = ({
 				</p>
 
 				<div className={css.checkboxes}>
-					{checkboxData.map((item, index) => (
+					{checkBoxes.map((item, index) => (
 						<label key={index} className={`${css.check} ${css.option}`}>
 							<Field
 								className={css.checkInput}

@@ -76,7 +76,8 @@
 }
 
 .blockWrapper,
-.blockWrapperBig {
+.blockWrapperBig,
+.blockWrapperSmall {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
@@ -95,5 +96,11 @@
 .blockWrapperBig {
 	& textarea {
 		width: 33.5625rem;
+	}
+}
+
+.blockWrapperSmall {
+	& textarea {
+		width: 16.3rem;
 	}
 }

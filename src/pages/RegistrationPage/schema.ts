@@ -4,7 +4,7 @@ const passwordRules =
 	/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*;:?'"`~()_=+[\]{}\-.,<>|/\\])[a-zA-Z0-9!@#$%^&*;:?'"`~()_=+[\]{}\-.,|<>/\\]{8,64}$/;
 const emailRules = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 const nameRules = /^([a-zA-Z\u0400-\u04FF][a-zA-Z\u0400-\u04FF-'./ ]*)$/;
-
+const phoneRegExp = /^\+380\s\d{2}\s\d{3}\s\d{4}$/;
 export const signupSchema = () => {
 	return yup.object().shape({
 		name: yup
@@ -16,7 +16,10 @@ export const signupSchema = () => {
 			.required('Обов`язкове поле')
 			.min(2, 'Введіть ім`я від 2 до 25 символів')
 			.max(25, 'Введіть ім`я від 2 до 25 символів'),
-		phone: yup.string().required('Обов`язкове поле').min(9, 'Введіть коректний номер телефону'),
+		phone: yup
+			.string()
+			.matches(phoneRegExp, 'Введіть коректний номер телефону')
+			.required('Обов`язкове поле'),
 		email: yup
 			.string()
 			.max(50, 'Максимальна кількість символів 50')

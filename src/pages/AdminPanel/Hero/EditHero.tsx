@@ -2,7 +2,6 @@ import { useEditHeroMutation, useGetHeroQuery } from 'src/store/slice/heroApiSli
 import styles from './EditHero.module.scss';
 import { ChevronLeft } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { IHero } from 'src/types/IHero.ts';
 import ModalAdmin from 'src/components/AdminPanel/Modal/ModalAdmin.tsx';
 import SuccessModal from 'src/components/AdminPanel/Modal/SuccessModal.tsx';
 import { useNavigate } from 'react-router';
@@ -11,16 +10,26 @@ import InputAdmin from 'src/components/AdminPanel/UIKit/Input/InputAdmin.tsx';
 import ButtonAdmin from 'src/components/AdminPanel/UIKit/Button/ButtonAdmin.tsx';
 import QuestionModal from 'src/components/AdminPanel/Modal/QuestionModal.tsx';
 import { heroSchema } from 'src/schemas/hero.schema.ts';
+import FileUploader from 'src/components/AdminPanel/UIKit/FileUploader/FileUploader.tsx';
+
+type InitialValues = {
+	id: number;
+	left_text: string;
+	avatar: string;
+	right_text: string;
+	sub_title: string;
+	title: string;
+};
 
 const EditHero = () => {
 	const { data: hero, isError: isGetError, isLoading, refetch } = useGetHeroQuery(undefined);
 	const [isQuestion, setIsQuestion] = useState(false);
 	const [editHero, { isSuccess, isError }] = useEditHeroMutation();
 	const navigate = useNavigate();
-	const [initialValues, setInitialValues] = useState<IHero>({
+	const [initialValues, setInitialValues] = useState<InitialValues>({
 		id: 1,
 		left_text: '',
-		media_path: '',
+		avatar: '',
 		right_text: '',
 		sub_title: '',
 		title: '',
@@ -31,7 +40,7 @@ const EditHero = () => {
 			setInitialValues({
 				id: 1,
 				left_text: hero.left_text,
-				media_path: hero.media_path,
+				avatar: hero.media_path,
 				right_text: hero.right_text,
 				sub_title: hero.sub_title,
 				title: hero.title,
@@ -58,22 +67,38 @@ const EditHero = () => {
 					initialValues={initialValues}
 					validationSchema={heroSchema}
 					onSubmit={async (values) => {
+						const changedValues: Partial<Record<keyof InitialValues, any>> = {};
+
+						(Object.keys(values) as Array<keyof InitialValues>).forEach((key) => {
+							if (values[key] !== initialValues[key]) {
+								changedValues[key] = values[key];
+							}
+						});
 						const data = new FormData();
 
-						data.append('left_text', values.left_text);
-						data.append('right_text', values.right_text);
-						data.append('title', values.title);
-						data.append('sub_title', values.sub_title);
-						data.append('media_path', values.media_path);
+						(Object.keys(changedValues) as Array<keyof InitialValues>).forEach((key) => {
+							data.append(key, changedValues[key]);
+						});
 
-						await editHero({ data }).unwrap();
+						if (Object.keys(changedValues).length > 0) {
+							await editHero(data).unwrap();
+						}
 						refetch();
 					}}
 					validateOnChange={true}
 					validateOnBlur={true}
 					enableReinitialize={true}
 				>
-					{({ isValid, errors, touched, values, handleChange, handleBlur }) => (
+					{({
+						isValid,
+						errors,
+						dirty,
+						setFieldValue,
+						touched,
+						values,
+						handleChange,
+						handleBlur,
+					}) => (
 						<Form className={styles.wrapper}>
 							<div className={styles.form}>
 								<div className={styles.formLeft}>
@@ -104,7 +129,7 @@ const EditHero = () => {
 									</div>
 
 									<div className={styles.textWrapper}>
-										<div className={styles.blockWrapper} style={{ width: '16.3rem' }}>
+										<div className={styles.blockWrapperSmall}>
 											<InputAdmin
 												component={'textarea'}
 												labelSmall
@@ -118,7 +143,7 @@ const EditHero = () => {
 											/>
 											<p>{values.left_text.length}/100</p>
 										</div>
-										<div className={styles.blockWrapper} style={{ width: '16.3rem' }}>
+										<div className={styles.blockWrapperSmall}>
 											<InputAdmin
 												component={'textarea'}
 												labelSmall
@@ -130,16 +155,24 @@ const EditHero = () => {
 												onBlur={handleBlur}
 												error={touched.right_text ? errors.right_text : ''}
 											/>
-											<p>{values.right_text.length}/200</p>
+											<p style={{ width: '16.3rem' }}>{values.right_text.length}/200</p>
 										</div>
 									</div>
 								</div>
 
-								<div className={styles.formRight}>image input</div>
+								<div className={styles.formRight}>
+									<FileUploader
+										id="media_path"
+										onChange={(img) => setFieldValue('media_path', img)}
+										avatar={hero?.media_path}
+										value={values.avatar}
+										name="media_path"
+									/>
+								</div>
 							</div>
 
 							<div className={styles.button}>
-								<ButtonAdmin text={'Зберегти'} type={'submit'} disabled={!isValid} />
+								<ButtonAdmin text={'Зберегти'} type={'submit'} disabled={!isValid || !dirty} />
 							</div>
 							{isError && <div className={styles.errorEdit}>Упс...Щось пішло не так</div>}
 						</Form>

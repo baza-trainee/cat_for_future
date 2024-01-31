@@ -1,19 +1,20 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { ErrorMessage } from 'formik';
 import styles from './FileUploader.module.scss';
 
 interface FileUploaderProps {
 	id: string;
-	type: string;
+	type?: string;
+	name: string;
 	avatar: string | null;
 	value: string | null;
 	onChange: (file: File | null) => void;
-	setImage: (file: File | null) => void;
+	setImage?: (file: File | null) => void;
 }
 
-const FileUploader: React.FC<FileUploaderProps> = ({ id, avatar, onChange }) => {
+const FileUploader: React.FC<FileUploaderProps> = ({ id, avatar, onChange, name }) => {
 	const [drag, setDrag] = useState(false);
-	const [image, setImage] = useState<File | null>(null);
+	const [preview, setPreview] = useState<string | null>(avatar);
 
 	const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -21,7 +22,8 @@ const FileUploader: React.FC<FileUploaderProps> = ({ id, avatar, onChange }) => 
 		const file = event.target.files?.[0];
 
 		if (file) {
-			setImage(file);
+			const imageUrl = URL.createObjectURL(file);
+			setPreview(imageUrl);
 			onChange(file);
 		}
 	};
@@ -45,22 +47,13 @@ const FileUploader: React.FC<FileUploaderProps> = ({ id, avatar, onChange }) => 
 
 		if (files.length > 0) {
 			const file = files[0];
-			setImage(file);
+			const imageUrl = URL.createObjectURL(file);
+			setPreview(imageUrl);
 			onChange(file);
 		}
 
 		setDrag(false);
 	}
-
-	useEffect(() => {
-		if (avatar) {
-			fetch(avatar)
-				.then((response) => response.blob())
-				.then((blob) => {
-					setImage(new File([blob], 'avatar') as File);
-				});
-		}
-	}, [avatar]);
 
 	return (
 		<div className={styles.fileinputWrapper}>
@@ -68,29 +61,24 @@ const FileUploader: React.FC<FileUploaderProps> = ({ id, avatar, onChange }) => 
 			<div className={styles.inputWrapper}>
 				<div
 					className={`${drag ? styles.dropArea : styles.dragArea}`}
-					style={{ border: image ? 'none' : `1px dashed $color-system-default-30` }}
+					style={{ border: preview ? 'none' : `1px dashed $color-system-default-30` }}
 					onDragStart={(e) => dragStartHandler(e)}
 					onDragLeave={(e) => dragLeaveHandler(e)}
 					onDragOver={(e) => dragStartHandler(e)}
 					onDrop={(e) => onDropHandler(e)}
 				>
 					<label className={styles.regLabel} title="Drag and drop or click here to select a file">
-						{image ? (
-							<img
-								src={URL.createObjectURL(image)}
-								alt="preview"
-								id="preview"
-								className={styles.imgAfter}
-							/>
+						{preview ? (
+							<img src={preview} alt="preview" id="preview" className={styles.imgAfter} />
 						) : (
 							<div className={styles.text}>Drag and drop or click here to select a file</div>
 						)}
 						<input
 							ref={fileInputRef}
 							className={styles.filesField}
-							accept="image/jpeg, image/png, image/gif"
+							accept="image/jpeg, image/png, image/gif, image/webp"
 							onChange={handleImageChange}
-							name="avatar"
+							name={name}
 							type="file"
 							id={id}
 						/>

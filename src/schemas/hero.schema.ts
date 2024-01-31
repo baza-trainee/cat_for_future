@@ -16,5 +16,5 @@ export const heroSchema = Yup.object({
 		.min(2, `Введіть ім'я від 2 до 120 символів`)
 		.max(120, `Введіть ім'я від 2 до 120 символів`)
 		.required("Обов'язкове поле"),
-	media_path: Yup.string().required("Обов'язкове поле"),
+	avatar: Yup.string().required("Обов'язкове поле"),
 });
