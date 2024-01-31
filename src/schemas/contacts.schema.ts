@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 export const contactsSchema = Yup.object().shape({
 	email: Yup.string()
 		.email('Введіть коректну e-mail адресу')
-		.max(50, 'Максимальна кількість символів 50')
+		.max(35, 'Максимальна кількість символів 50')
 		.matches(
 			/^[A-Z0-9_%+-]+(\.[A-Z0-9_%+-]+)*@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
 			'Введіть коректну e-mail адресу'
@@ -27,5 +27,7 @@ export const contactsSchema = Yup.object().shape({
 		.max(18, 'Невірний формат телефону. Правильний формат: +38 ### ### ## ##')
 		.matches(/^\+38 \d{3} \d{3} \d{2} \d{2}$/, 'Невірний формат номеру. Приклад: +38 ### ### ## ##')
 		.required("Поле обов'язкове"),
-	post_address: Yup.string(),
+	post_address: Yup.string()
+		.max(100, 'Максимальна кількість символів 50')
+		.required("Поле обов'язкове"),
 });
