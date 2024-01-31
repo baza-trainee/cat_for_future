@@ -22,6 +22,17 @@ export interface IInitialValues extends Partial<ICat> {
 	photo4: string;
 }
 
+type CatsValidationErrors = {
+	date_of_birth?: string;
+	description?: string;
+	is_male?: string;
+	name?: string;
+	photo1?: string;
+	photo2?: string;
+	photo3?: string;
+	photo4?: string;
+};
+
 const CatsActions = () => {
 	const { id } = useParams();
 	const [isQuestion, setIsQuestion] = useState(false);
@@ -45,7 +56,7 @@ const CatsActions = () => {
 		photo4: cat?.photos[3].media_path || '',
 	};
 
-	const isFormFilledCorrectly = (values, errors) => {
+	const isFormFilledCorrectly = (values: IInitialValues, errors: CatsValidationErrors) => {
 		const allFieldsFilled = Object.values(values).every((value) => value != null && value !== '');
 		const noErrors = Object.values(errors).length === 0;
 
