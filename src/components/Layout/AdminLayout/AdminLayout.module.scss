@@ -1,4 +1,5 @@
 @import 'src/styles/variables';
+@import 'src/styles/mixins';
 
 .container {
 	display: flex;
@@ -58,12 +59,16 @@
 		gap: 3.44rem;
 
 		.header {
-			width: 71.25rem;
+			width: 57.25rem;
 			padding: 0;
 			height: 5.125rem;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+
+			@include full_desktop {
+				width: 66.25rem;
+			}
 
 			& h1 {
 				font-family: $primary-font;

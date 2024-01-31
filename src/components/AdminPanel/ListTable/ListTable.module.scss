@@ -1,10 +1,15 @@
 @import 'src/styles/variables';
+@import 'src/styles/mixins';
 
 .container {
-	width: 68.25rem;
+	width: 57.25rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1.25rem;
+
+	@include full_desktop {
+		width: 66.25rem;
+	}
 
 	.header {
 		display: flex;
