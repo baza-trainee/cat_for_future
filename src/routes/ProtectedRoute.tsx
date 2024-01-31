@@ -7,11 +7,11 @@ const ProtectedRoute = ({ page }: { page: 'admin' | 'account' }) => {
 	const { showLoginAdmin, showLogin } = useActions();
 	const [isFetch, setIsFetch] = useState(false);
 	const { data: user } = useGetUserQuery(undefined, { skip: !isFetch });
-
+	const token = localStorage.getItem('token');
 	useEffect(() => {
-		if (localStorage.getItem('token')) {
-			setIsFetch(true);
+		if (token) {
 			if (page === 'admin') {
+				setIsFetch(true);
 				if (user && user.is_superuser === true) {
 					showLoginAdmin(false);
 				} else {
@@ -27,7 +27,7 @@ const ProtectedRoute = ({ page }: { page: 'admin' | 'account' }) => {
 				showLogin(true);
 			}
 		}
-	}, [user, page, showLoginAdmin, showLogin]);
+	}, [token, user, page, showLoginAdmin, showLogin]);
 
 	return <Outlet />;
 };
