@@ -1,0 +1,76 @@
+@import 'src/styles/variables';
+
+.container {
+	position: relative;
+	width: 100%;
+
+	.item {
+		display: flex;
+		padding: 0.625rem 3rem;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom: 1px solid $color-system-default-30;
+		color: #000;
+		font-family: $primary-font;
+		font-size: 1.25rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 120%;
+
+		.images {
+			display: flex;
+			width: 6.75rem;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: 0.6875rem 0.25rem;
+			flex-wrap: wrap;
+
+			& img {
+				width: 3.25rem;
+				height: 3.4375rem;
+				flex-shrink: 0;
+				object-fit: cover;
+			}
+		}
+
+		.name {
+			width: 5rem;
+		}
+
+		.sex {
+			width: 6rem;
+		}
+
+		.birth {
+			width: 10rem;
+		}
+
+		.description {
+			font-size: 1.125rem;
+			width: 15.9375rem;
+		}
+
+		.icons {
+			display: inline-flex;
+			align-items: flex-start;
+			gap: 1.25rem;
+
+			& svg {
+				cursor: pointer;
+			}
+		}
+	}
+
+	.modal {
+		width: 37.5rem;
+		height: 34.0625rem;
+		padding: 10rem 6.36rem 8.63rem;
+
+		.question {
+			gap: 7.19rem;
+			& h2 {
+				width: 24.75rem;
+			}
+		}
+	}
+}

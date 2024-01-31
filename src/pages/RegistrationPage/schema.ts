@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 
-const passwordRules =
-	/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*;:?'"`~()_=+[\]{}\-.,<>|/\\])[a-zA-Z0-9!@#$%^&*;:?'"`~()_=+[\]{}\-.,|<>/\\]{8,64}$/;
+const passwordRules = /^(?=.*[a-zA-Z0-9@#$%^&+=!]).{8,64}$/;
 const emailRules = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 const nameRules = /^([a-zA-Z\u0400-\u04FF][a-zA-Z\u0400-\u04FF-'./ ]*)$/;
 const phoneRegExp = /^\+380\s\d{2}\s\d{3}\s\d{4}$/;

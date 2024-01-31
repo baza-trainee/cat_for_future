@@ -1,14 +1,18 @@
 import ListTable from 'src/components/AdminPanel/ListTable/ListTable.tsx';
+import CatsList from 'src/components/AdminPanel/Cats/CatsList.tsx';
+import { useNavigate } from 'react-router';
 
 const CatsAdmin = () => {
+	const navigate = useNavigate();
 	return (
 		<section>
 			<ListTable
-				header={['Фото', 'Ім’я', 'Стать', 'Дата народження', 'Опис']}
+				header={['Фото', 'Ім’я', 'Стать', 'Дата народження', 'Опис', '']}
 				sectionTitle={'Мої кошенята'}
 				withBtn
+				onClick={() => navigate('add')}
 			>
-				dfdf
+				<CatsList />
 			</ListTable>
 		</section>
 	);

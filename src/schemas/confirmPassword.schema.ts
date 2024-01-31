@@ -2,7 +2,6 @@ import * as yup from 'yup';
 import { passwRegex } from 'src/schemas/login.schema.ts';
 
 export const confirmPasswSchema = (email: string) => {
-	console.log(email);
 	return yup.object().shape({
 		password: yup
 			.string()

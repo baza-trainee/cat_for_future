@@ -18,8 +18,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
-	justify-content: flex-end;
-	align-items: flex-start;
+	justify-content: center;
+	align-items: center;
 	cursor: pointer;
 	overflow: hidden;
 	color: $color-system-default-40;
@@ -28,10 +28,14 @@
 	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 120%;
+	border: 1px dashed $color-system-default-30;
 
 	&[data-page='hero'],
 	&[data-page='stories'] {
-		height: 11.5625rem;
+		justify-content: flex-end;
+		align-items: flex-start;
+		height: auto;
+		border: none;
 
 		.imgAfter {
 			height: 6.5625rem;
@@ -39,7 +43,10 @@
 	}
 
 	&[data-page='cats'] {
-		height: 17.5625rem;
+		justify-content: flex-end;
+		align-items: flex-start;
+		height: auto;
+		border: none;
 
 		.imgAfter {
 			height: 9.41313rem;
