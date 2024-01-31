@@ -10,7 +10,6 @@ import ConfirmPasswordForm from 'src/components/ConfirmPasswordForm/ConfirmPassw
 import RequestPasswordForm from 'src/pages/RequestPassword/RequestPasswordForm';
 import AdminLayout from 'src/components/Layout/AdminLayout/AdminLayout.tsx';
 import ProtectedRoute from 'src/routes/ProtectedRoute.tsx';
-import LoginAdmin from 'src/pages/AdminPanel/LoginAdmin/LoginAdmin.tsx';
 import HeroAdmin from 'src/pages/AdminPanel/Hero/HeroAdmin.tsx';
 import CatsAdmin from 'src/pages/AdminPanel/Cats/CatsAdmin.tsx';
 import StoriesAdmin from 'src/pages/AdminPanel/Stories/StoriesAdmin.tsx';
@@ -19,6 +18,7 @@ import Instruction from 'src/pages/AdminPanel/Instruction/Instruction.tsx';
 import ContactsAdmin from 'src/pages/AdminPanel/Contacts/ContactsAdmin.tsx';
 import EditDocument from 'src/pages/AdminPanel/Documents/EditDocument.tsx';
 import EditInstruction from 'src/pages/AdminPanel/Instruction/EditInstruction.tsx';
+import EditHero from 'src/pages/AdminPanel/Hero/EditHero.tsx';
 
 const PersonalAccount = React.lazy(() => import('src/pages/PersonalAccount/PersonalAccount'));
 
@@ -44,6 +44,7 @@ function App() {
 			<Route element={<ProtectedRoute page="admin" />}>
 				<Route path="admin" element={<AdminLayout />}>
 					<Route path="hero" element={<HeroAdmin />} />
+					<Route path="hero/edit" element={<EditHero />} />
 					<Route path="cats" element={<CatsAdmin />} />
 					<Route path="stories" element={<StoriesAdmin />} />
 					<Route path="documents" element={<DocumentsAdmin />} />
@@ -53,7 +54,7 @@ function App() {
 					<Route path="contacts" element={<ContactsAdmin />} />
 				</Route>
 			</Route>
-			<Route path="log-in" element={<LoginAdmin />} />
+			{/*<Route path="log-in" element={<LoginAdmin />} />*/}
 			<Route path="registration" element={<RegPage />} />
 		</Routes>
 	);

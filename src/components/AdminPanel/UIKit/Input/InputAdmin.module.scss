@@ -26,14 +26,13 @@
 	& textarea,
 	& select {
 		display: flex;
-		width: 33.5625rem;
 		height: 3rem;
 		padding: 0 1rem;
 		align-items: center;
 		gap: 16.125rem;
 		border: 1px solid $color-system-default-50;
 		color: $color-system-default-100;
-		font-size: 1.25rem;
+
 		font-style: normal;
 		font-weight: 400;
 		line-height: 120%;
@@ -47,11 +46,17 @@
 			border: 1px solid $color-system-default-50;
 		}
 	}
+	& input,
+	& select {
+		width: 33.5625rem;
+		font-size: 1.25rem;
+	}
 
 	& textarea {
 		resize: initial;
 		height: 7.75rem;
 		padding: 0.75rem 1rem;
+		font-size: 1.125rem;
 	}
 
 	.dateInputWrapper {

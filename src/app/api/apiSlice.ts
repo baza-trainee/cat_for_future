@@ -37,7 +37,7 @@ const baseQueryReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryEr
 
 export const apiSlice = createApi({
 	reducerPath: 'apiSlice',
-	tagTypes: ['Document', 'Instructions', 'Cats'],
+	tagTypes: ['Document', 'Instructions', 'Cats', 'Hero'],
 	baseQuery: baseQueryReAuth,
 	endpoints: () => ({}),
 });
