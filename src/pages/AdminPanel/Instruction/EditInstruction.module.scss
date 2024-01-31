@@ -53,6 +53,10 @@
 			gap: 0.25rem;
 			width: 33.5625rem;
 
+			& textarea {
+				width: 33.5625rem;
+			}
+
 			& p {
 				color: $color-system-default-50;
 				font-family: $tertiary-font;

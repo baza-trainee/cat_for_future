@@ -24,8 +24,6 @@ const EditDocument = () => {
 	const navigate = useNavigate();
 	const [inputError, setInputError] = useState('');
 
-	console.log(valueName.length);
-
 	useEffect(() => {
 		if (valueName.length > 60) {
 			setInputError('Максимальна кількість символів 60');

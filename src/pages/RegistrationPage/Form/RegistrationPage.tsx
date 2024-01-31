@@ -59,7 +59,6 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 				await registration({ name, password, email, phone: cleanedNumber }).unwrap();
 				onOpenModalWhiteCat();
 			} catch (error: any) {
-				// Якщо помилка містить відповідь від сервера
 				if (error?.data?.detail) {
 					setError(error.data.detail);
 				} else {
@@ -145,6 +144,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									value={formik.values.phone}
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
+									error={formik.errors.phone}
 								/>
 								<ErrorMessage className={css.error} name="phone" component="div" />
 							</div>
@@ -183,7 +183,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									className={`${
 										formik.errors.password && formik.touched.password ? css.errorField : ''
 									} ${css.signUpField}`}
-									title="Пароль має містити від 8 до 64 символів (латинські літери нижнього, верхнього регістру, цифри, спецсимволи)"
+									title="Пароль має містити від 8 до 64 символів (латинські літери нижнього, верхнього регістру, цифри, та @, #, $, %, ^, &, +, =, !)"
 									name="password"
 									type={visible ? 'text' : 'password'}
 									placeholder="Ввести пароль"

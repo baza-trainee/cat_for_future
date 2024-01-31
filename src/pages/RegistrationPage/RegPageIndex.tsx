@@ -40,7 +40,6 @@ const RegPage: React.FC = () => {
 			<Login />
 			<Header onOpenModalDonate={openModal} />
 			{isModalWhiteCatOpen && (
-				// <div className={s.modalWhitecat}>
 				<ModalWhiteCat
 					image={image}
 					message={'Реєстрація успішна!'}
@@ -48,7 +47,6 @@ const RegPage: React.FC = () => {
 					handleCloseModal={closeModal}
 					handleNavBtn={handleNavBtn}
 				/>
-				// </div>
 			)}
 			<main className={s.main}>
 				<RegistrationPage onOpenModalWhiteCat={onOpenModalWhiteCat} />
