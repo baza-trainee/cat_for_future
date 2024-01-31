@@ -7,8 +7,10 @@ const QuestionModal = ({
 	btnRight,
 	successFnc,
 	declineFnc,
+	className,
 }: {
 	question: string;
+	className?: string;
 	text?: string;
 	btnLeft: string;
 	btnRight: string;
@@ -16,7 +18,7 @@ const QuestionModal = ({
 	declineFnc: () => void;
 }) => {
 	return (
-		<div className={styles.question}>
+		<div className={`${styles.question} ${className ? className : null}`}>
 			<h2>{question}</h2>
 			{text && <p>{text}</p>}
 			<div className={styles.buttons}>

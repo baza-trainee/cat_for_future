@@ -161,6 +161,7 @@ const EditHero = () => {
 								</div>
 
 								<div className={styles.formRight}>
+									<h2>Фото</h2>
 									<FileUploader
 										id="media_path"
 										onChange={(img) => setFieldValue('media_path', img)}

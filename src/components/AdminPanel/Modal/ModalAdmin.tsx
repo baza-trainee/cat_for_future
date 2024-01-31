@@ -6,15 +6,18 @@ interface ModalAdminProps {
 	children: ReactNode;
 	onClose?: () => void;
 	className?: string;
+	withCLose?: boolean;
 }
 
-const ModalAdmin = ({ children, className, onClose }: ModalAdminProps) => {
+const ModalAdmin = ({ children, className, onClose, withCLose = true }: ModalAdminProps) => {
 	return (
-		<div className={`${styles.modal} ${className ? className : null}`}>
-			<div className={styles.modalContent}>
-				<div onClick={onClose} className={styles.closeBtn}>
-					<X />
-				</div>
+		<div className={`${styles.modal} `}>
+			<div className={`${styles.modalContent} ${className ? className : null}`}>
+				{withCLose && (
+					<div onClick={onClose} className={styles.closeBtn}>
+						<X />
+					</div>
+				)}
 				{children}
 			</div>
 		</div>

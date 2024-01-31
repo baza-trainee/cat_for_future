@@ -19,6 +19,7 @@ import ContactsAdmin from 'src/pages/AdminPanel/Contacts/ContactsAdmin.tsx';
 import EditDocument from 'src/pages/AdminPanel/Documents/EditDocument.tsx';
 import EditInstruction from 'src/pages/AdminPanel/Instruction/EditInstruction.tsx';
 import EditHero from 'src/pages/AdminPanel/Hero/EditHero.tsx';
+import CatsActions from 'src/pages/AdminPanel/Cats/CatsActions.tsx';
 
 const PersonalAccount = React.lazy(() => import('src/pages/PersonalAccount/PersonalAccount'));
 
@@ -46,6 +47,8 @@ function App() {
 					<Route path="hero" element={<HeroAdmin />} />
 					<Route path="hero/edit" element={<EditHero />} />
 					<Route path="cats" element={<CatsAdmin />} />
+					<Route path="cats/add" element={<CatsActions />} />
+					<Route path="cats/edit/:id" element={<CatsActions />} />
 					<Route path="stories" element={<StoriesAdmin />} />
 					<Route path="documents" element={<DocumentsAdmin />} />
 					<Route path="documents/:id" element={<EditDocument />} />

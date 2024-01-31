@@ -47,6 +47,11 @@
 				border: 2px solid $color-ref-orange-0;
 				color: $color-ref-orange-0;
 			}
+
+			&:hover {
+				border: 2px solid $color-ref-orange-10;
+				color: var(--Ref-Orange-10, $color-ref-orange-10);
+			}
 		}
 	}
 

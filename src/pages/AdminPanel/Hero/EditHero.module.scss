@@ -64,6 +64,17 @@
 
 			.formRight {
 				width: 100%;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+
+				& h2 {
+					color: $text-color;
+					font-size: 1.5rem;
+					font-style: normal;
+					font-weight: 700;
+					line-height: 120%; /* 1.8rem */
+				}
 			}
 		}
 	}
