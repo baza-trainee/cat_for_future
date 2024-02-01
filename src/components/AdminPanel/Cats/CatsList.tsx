@@ -1,4 +1,4 @@
-import { useGetCatsQuery } from 'src/store/slice/catsSlice.ts';
+import { useGetCatsQuery } from 'src/store/slice/catsApiSlice.ts';
 import styles from './CatsList.module.scss';
 import { Fragment } from 'react';
 import CatItem from 'src/components/AdminPanel/Cats/CatItem.tsx';

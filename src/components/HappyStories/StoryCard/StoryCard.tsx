@@ -16,7 +16,7 @@ interface StoryCardProps extends IStory {
 }
 const StoryCard = ({
 	i,
-	imgSrc,
+	media_path,
 	title,
 	text,
 	handleChangeTextState,
@@ -32,7 +32,7 @@ const StoryCard = ({
 
 	return (
 		<div className={s.card}>
-			<img src={imgSrc} alt={title} className={s.img} />
+			<img src={media_path} alt={title} className={s.img} />
 			<div className={s.cardBody}>
 				<h3 className={s.title}>{title}</h3>
 				<p className={clsx(s.description, isCollapsedText && s.textCollapsed)}>{text}</p>

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import styles from './ListTable.module.scss';
 import { PlusCircle } from 'lucide-react';
 
@@ -9,6 +9,7 @@ const ListTable = ({
 	withBtn = false,
 	onClick,
 	btnText = 'Додати',
+	headerStyle,
 }: {
 	sectionTitle: string;
 	header?: string[];
@@ -16,6 +17,7 @@ const ListTable = ({
 	withBtn?: boolean;
 	onClick?: () => void;
 	btnText?: string;
+	headerStyle?: CSSProperties;
 }) => {
 	return (
 		<div className={styles.container}>
@@ -31,7 +33,7 @@ const ListTable = ({
 				)}
 			</div>
 			<div className={styles.table}>
-				<div className={styles.header}>
+				<div className={styles.header} style={headerStyle}>
 					{header?.map((item, index) => <div key={index}>{item}</div>)}
 				</div>
 				{children}

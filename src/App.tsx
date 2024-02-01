@@ -20,6 +20,7 @@ import EditDocument from 'src/pages/AdminPanel/Documents/EditDocument.tsx';
 import EditInstruction from 'src/pages/AdminPanel/Instruction/EditInstruction.tsx';
 import EditHero from 'src/pages/AdminPanel/Hero/EditHero.tsx';
 import CatsActions from 'src/pages/AdminPanel/Cats/CatsActions.tsx';
+import EditStory from 'src/pages/AdminPanel/Stories/EditStory.tsx';
 
 const PersonalAccount = React.lazy(() => import('src/pages/PersonalAccount/PersonalAccount'));
 
@@ -50,6 +51,7 @@ function App() {
 					<Route path="cats/add" element={<CatsActions />} />
 					<Route path="cats/edit/:id" element={<CatsActions />} />
 					<Route path="stories" element={<StoriesAdmin />} />
+					<Route path="stories/:id" element={<EditStory />} />
 					<Route path="documents" element={<DocumentsAdmin />} />
 					<Route path="documents/:id" element={<EditDocument />} />
 					<Route path="instruction" element={<Instruction />} />

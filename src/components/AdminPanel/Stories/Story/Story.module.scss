@@ -1,0 +1,39 @@
+@import 'src/styles/variables';
+
+.item {
+	display: flex;
+	width: 100%;
+	height: 4.625rem;
+	padding: 0.75rem 3.5625rem 0.75rem 6.0625rem;
+	justify-content: space-between;
+	align-items: center;
+	flex-shrink: 0;
+	border-bottom: 1px solid #e6e6e6;
+	color: $color-system-default-100;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 120%;
+
+	& img {
+		width: 5.11375rem;
+		height: 3.125rem;
+		flex-shrink: 0;
+		object-fit: cover;
+		object-position: top;
+	}
+
+	.title {
+		width: 16.43rem;
+	}
+
+	.text {
+		width: 22.16rem;
+	}
+	.icons {
+		display: flex;
+		width: 4.25rem;
+		justify-content: flex-end;
+		align-items: flex-end;
+	}
+}
