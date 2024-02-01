@@ -5,8 +5,9 @@ const HeroAdmin = () => {
 	return (
 		<section>
 			<ListTable
-				header={['Заголовок', '', 'Підзаголовок', 'Фото', 'Текст 1', 'Текст 2']}
+				header={['Заголовок', '', 'Підзаголовок', '', 'Фото', '', 'Текст 1', '', 'Текст 2']}
 				sectionTitle={'Hero section'}
+				headerStyle={{ paddingRight: '10rem', paddingLeft: '3.88rem' }}
 			>
 				<HeroList />
 			</ListTable>
