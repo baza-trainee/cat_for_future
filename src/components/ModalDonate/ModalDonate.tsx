@@ -110,7 +110,7 @@ const ModalDonate: React.FC<ModalProps> = ({ onClose, status }) => {
 							name="amount"
 							value={price}
 							onChange={(e) => setValue(e.target.value)}
-							placeholder="Інша сума"
+							placeholder="Інша сума, UAH"
 							type="number"
 							min={1}
 							required
