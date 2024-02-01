@@ -6,7 +6,7 @@ import {
 	useAddCatMutation,
 	useEditCatMutation,
 	useGetCatByIdQuery,
-} from 'src/store/slice/catsSlice.ts';
+} from 'src/store/slice/catsApiSlice.ts';
 import '../../../components/Loader/loader.css';
 import { Form, Formik } from 'formik';
 import Modals from 'src/components/AdminPanel/Cats/Modals/Modals.tsx';

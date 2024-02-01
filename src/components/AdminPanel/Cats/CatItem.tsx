@@ -3,7 +3,7 @@ import { ICat } from 'src/types/ICat.ts';
 import { Fragment, useState } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-import { useRemoveCatMutation } from 'src/store/slice/catsSlice.ts';
+import { useRemoveCatMutation } from 'src/store/slice/catsApiSlice.ts';
 import ModalAdmin from 'src/components/AdminPanel/Modal/ModalAdmin.tsx';
 import QuestionModal from 'src/components/AdminPanel/Modal/QuestionModal.tsx';
 import SuccessModal from 'src/components/AdminPanel/Modal/SuccessModal.tsx';

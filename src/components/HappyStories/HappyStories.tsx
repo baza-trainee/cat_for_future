@@ -1,28 +1,33 @@
-import { useState } from 'react';
-
-import { happyStories } from 'src/data/stories.temp';
+import { useEffect, useState } from 'react';
 import { IStory } from 'src/types/IStory';
 import { scrollToSection } from 'src/utils/scrollToSection';
 import useMediaQuery from 'src/hooks/useMediaQuery';
-
 import s from './HappyStories.module.scss';
-
 import StoryCard from 'src/components/HappyStories/StoryCard/StoryCard';
 import Slider from 'src/components/Slider/Slider';
 import Button from 'src/components/Button/Button';
 import { ReactComponent as ArrayRight } from 'src/assets/icons/arrow-right.svg';
+import { useGetStoriesQuery } from 'src/store/slice/storiesApiSlice.ts';
 
 const HappyStories = () => {
-	const [isTextStateArr, setIsTextStateArr] = useState<boolean[]>(happyStories.map(() => true));
-
+	const { data: stories } = useGetStoriesQuery('');
+	const [isTextStateArr, setIsTextStateArr] = useState<boolean[] | []>([]);
 	const { isDesktop } = useMediaQuery();
+
+	useEffect(() => {
+		if (stories) {
+			setIsTextStateArr(stories.map(() => true));
+		}
+	}, [stories]);
 
 	const handleChangeTextState = (i: number) => {
 		setIsTextStateArr((prev) => prev.map((state, index) => (i === index ? !state : state)));
 	};
 
 	const onCollapseText = () => {
-		setIsTextStateArr(isTextStateArr.map(() => true));
+		if (isTextStateArr) {
+			setIsTextStateArr(isTextStateArr.map(() => true));
+		}
 	};
 
 	return (
@@ -30,14 +35,14 @@ const HappyStories = () => {
 			<div className={s.container}>
 				<h2 className={s.title}>Щасливі історії</h2>
 				<div className={s.storiesWrap}>
-					{!isDesktop ? (
+					{stories && !isDesktop ? (
 						<Slider
 							slidesPerView={1}
 							spaceBetween={20}
 							slidesPerGroup={1}
 							onSlideChange={onCollapseText}
 						>
-							{happyStories.map((story: IStory, i) => (
+							{stories.map((story: IStory, i) => (
 								<StoryCard
 									key={story.id}
 									{...story}
@@ -48,7 +53,7 @@ const HappyStories = () => {
 							))}
 						</Slider>
 					) : (
-						happyStories.map((story: IStory, i) => (
+						stories?.map((story: IStory, i) => (
 							<StoryCard
 								i={i}
 								key={story.id}
