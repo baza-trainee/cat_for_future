@@ -101,7 +101,8 @@ const ConfirmPasswordForm = () => {
 				{isSuccessResponse && (
 					<ModalMsg
 						handleCloseModal={handleCloseModalMsg}
-						name="Увійти в Особистий кабінет"
+						title="Ваш пароль успішно змінено!"
+						btnText="Увійти в Особистий кабінет"
 						handleBtnClick={handleNavigateToLogin}
 						styleBtn={styleModalBtn}
 					/>
