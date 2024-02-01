@@ -85,7 +85,8 @@ const ChangePassword = () => {
 			{isSuccess && (
 				<ModalMsg
 					handleCloseModal={handleBtnClick}
-					name="Ок"
+					btnText="ОK"
+					title="Пароль успішно змінено!"
 					handleBtnClick={handleBtnClick}
 					styleBtn={{ width: '8.75rem' }}
 				/>
