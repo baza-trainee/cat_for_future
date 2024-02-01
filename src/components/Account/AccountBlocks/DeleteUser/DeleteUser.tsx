@@ -26,6 +26,7 @@ const DeleteUser: React.FC = () => {
 					text="Ви впевнені що бажаєте видалити акаунт? Видалення акаунту призведе до втрати всіх даних профілю, бронювання кошенят буде відмінено"
 					successFnc={successFnc}
 					declineFnc={declineFnc}
+					className="delete"
 				/>
 			</ModalAccount>
 		</div>
