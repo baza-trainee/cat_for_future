@@ -1,6 +1,3 @@
-import { useState } from 'react';
-
-import { happyStories } from 'src/data/stories.temp';
 import { IStory } from 'src/types/IStory';
 import { scrollToSection } from 'src/utils/scrollToSection';
 import useMediaQuery from 'src/hooks/useMediaQuery';
@@ -12,18 +9,12 @@ import Slider from 'src/components/Slider/Slider';
 import Button from 'src/components/Button/Button';
 import { ReactComponent as ArrayRight } from 'src/assets/icons/arrow-right.svg';
 
+import { useGetStoriesQuery } from 'src/store/slice/storiesSlice';
+
 const HappyStories = () => {
-	const [isTextStateArr, setIsTextStateArr] = useState<boolean[]>(happyStories.map(() => true));
+	const { data: stories } = useGetStoriesQuery(undefined);
 
 	const { isDesktop } = useMediaQuery();
-
-	const handleChangeTextState = (i: number) => {
-		setIsTextStateArr((prev) => prev.map((state, index) => (i === index ? !state : state)));
-	};
-
-	const onCollapseText = () => {
-		setIsTextStateArr(isTextStateArr.map(() => true));
-	};
 
 	return (
 		<section className={s.happyStories} id="happyStories">
@@ -31,32 +22,11 @@ const HappyStories = () => {
 				<h2 className={s.title}>Щасливі історії</h2>
 				<div className={s.storiesWrap}>
 					{!isDesktop ? (
-						<Slider
-							slidesPerView={1}
-							spaceBetween={20}
-							slidesPerGroup={1}
-							onSlideChange={onCollapseText}
-						>
-							{happyStories.map((story: IStory, i) => (
-								<StoryCard
-									key={story.id}
-									{...story}
-									i={i}
-									handleChangeTextState={handleChangeTextState}
-									isCollapsedText={isTextStateArr[i]}
-								/>
-							))}
+						<Slider slidesPerView={1} spaceBetween={20} slidesPerGroup={1}>
+							{stories?.map((story: IStory) => <StoryCard key={story.id} {...story} />)}
 						</Slider>
 					) : (
-						happyStories.map((story: IStory, i) => (
-							<StoryCard
-								i={i}
-								key={story.id}
-								{...story}
-								handleChangeTextState={handleChangeTextState}
-								isCollapsedText={isTextStateArr[i]}
-							/>
-						))
+						stories?.map((story: IStory) => <StoryCard key={story.id} {...story} />)
 					)}
 				</div>
 				{!isDesktop && (
