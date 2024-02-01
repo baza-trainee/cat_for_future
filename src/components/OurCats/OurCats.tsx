@@ -6,7 +6,7 @@ import CatCard from '../CatCard/CatCard';
 import ModalShowCat from '../CatCard/ModalShowCat/ModalShowCat';
 
 import s from './OurCats.module.scss';
-import { useGetCatsQuery, useReserveCatMutation } from 'src/store/slice/catsSlice';
+import { useGetCatsQuery, useReserveCatMutation } from 'src/store/slice/catsApiSlice.ts';
 
 const OurCats: React.FC = () => {
 	const { data: cats = [] } = useGetCatsQuery('');

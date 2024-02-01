@@ -1,13 +1,12 @@
 import { IStory } from 'src/types/IStory';
 import { scrollToSection } from 'src/utils/scrollToSection';
 import useMediaQuery from 'src/hooks/useMediaQuery';
-
 import s from './HappyStories.module.scss';
-
 import StoryCard from 'src/components/HappyStories/StoryCard/StoryCard';
 import Slider from 'src/components/Slider/Slider';
 import Button from 'src/components/Button/Button';
 import { ReactComponent as ArrayRight } from 'src/assets/icons/arrow-right.svg';
+import { useGetStoriesQuery } from 'src/store/slice/storiesApiSlice.ts';
 
 import { useGetStoriesQuery } from 'src/store/slice/storiesSlice';
 
