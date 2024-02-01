@@ -155,6 +155,7 @@
 	text-align: center;
 	@include tablet {
 		margin-bottom: 1.56rem;
+		font-size: 1.125rem;
 	}
 	@include full_desktop {
 		margin-bottom: 2rem;
