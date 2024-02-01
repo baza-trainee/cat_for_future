@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
-export const passwRegex = /^(?=.*[a-zA-Z0-9@#$%^&+=!]).{8,64}$/;
+export const passwRegex =
+	/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=!]{8,64}$/;
 
 export const changePasswSchema = (email: string) => {
 	return yup.object().shape({
