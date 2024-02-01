@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import CatInfoItem from './CatInfoItem/CatInfoItem';
 import s from './MyKitten.module.scss';
-import { useCancelReservationCatMutation, useGetMyCatsQuery } from 'src/store/slice/catsSlice';
+import {
+	useCancelReservationCatMutation,
+	useGetMyCatsQuery,
+} from 'src/store/slice/catsApiSlice.ts';
 import ModalAccount from '../../Modal/ModalAccount';
 import QuestionModalAccount from '../../Modal/QuestionModalAccount';
 
