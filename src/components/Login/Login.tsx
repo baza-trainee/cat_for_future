@@ -88,6 +88,7 @@ const Login = () => {
 					validationSchema={loginSchema}
 					onSubmit={handleSubmit}
 					validateOnChange={true}
+					validateOnBlur={true}
 					enableReinitialize={true}
 				>
 					{({ isSubmitting, isValid }) => {
