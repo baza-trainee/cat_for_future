@@ -18,7 +18,8 @@ interface FormValues {
 
 const LoginFields = ({ labelEmail, labelPass, loginError, setLoginError }: TLoginFieldsProps) => {
 	const [onShowPass, setOnShowPass] = useState<boolean>(false);
-	const { errors, touched, handleChange, handleBlur } = useFormikContext<FormValues>();
+	const { errors, touched, validateField, handleChange, handleBlur } =
+		useFormikContext<FormValues>();
 
 	return (
 		<div className={s.inputWrapper}>
@@ -43,10 +44,16 @@ const LoginFields = ({ labelEmail, labelPass, loginError, setLoginError }: TLogi
 						onChange={(e) => {
 							setLoginError(null);
 							handleChange(e);
+							validateField('loginEmail');
 						}}
-						onBlur={handleBlur}
+						onBlur={(e) => {
+							handleBlur(e);
+							validateField('loginEmail');
+						}}
 					/>
-					{errors.loginEmail ? <div className={s.errorMessage}>{errors.loginEmail}</div> : null}
+					{errors.loginEmail && touched.loginEmail ? (
+						<div className={s.errorMessage}>{errors.loginEmail}</div>
+					) : null}
 				</div>
 			</div>
 

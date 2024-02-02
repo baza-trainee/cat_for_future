@@ -8,7 +8,7 @@ import { useParams } from 'react-router';
 
 const CatsFormFields = () => {
 	const { id } = useParams();
-	const { values, errors, handleChange, handleBlur, setFieldValue } =
+	const { values, errors, handleChange, handleBlur, validateField, setFieldValue } =
 		useFormikContext<IInitialValues>();
 	const genderOptions = [
 		{ value: 'true', label: 'Кіт' },
@@ -21,7 +21,10 @@ const CatsFormFields = () => {
 					label="Ім’я"
 					name="name"
 					value={values.name}
-					onChange={handleChange}
+					onChange={(e) => {
+						handleChange(e);
+						validateField('name');
+					}}
 					onBlur={handleBlur}
 					placeholder="Введіть ім’я"
 					error={errors.name || ''}
@@ -49,7 +52,10 @@ const CatsFormFields = () => {
 						component="textarea"
 						name="description"
 						value={values.description}
-						onChange={handleChange}
+						onChange={(e) => {
+							handleChange(e);
+							validateField('description');
+						}}
 						onBlur={handleBlur}
 						error={errors.description || ''}
 					/>

@@ -4,7 +4,7 @@ export const catsValidation = yup.object({
 	date_of_birth: yup.string().required("Обов'язкове поле"),
 	description: yup
 		.string()
-		.max(200, 'Максимальна кількість символів 10')
+		.max(200, 'Максимальна кількість символів 200')
 		.required("Обов'язкове поле"),
 	is_male: yup.string().required("Обов'язкове поле"),
 	name: yup.string().max(10, 'Максимальна кількість символів 10').required("Обов'язкове поле"),

@@ -83,7 +83,7 @@ const ConfirmPasswordForm = () => {
 								name="password"
 								label="Новий пароль*"
 								title={
-									'Пароль має містити від 8 до 64 символів (латинські літери нижнього, верхнього регістру, цифри, спецсимволи)'
+									'Пароль має містити від 8 до 64 символів (латинські літери нижнього, верхнього регістру, цифри, та @, #, $, %, ^, &, +, =, !)'
 								}
 							/>
 							<InputPassword name="password_confirm" label="Повторіть новий пароль*" />
@@ -101,7 +101,8 @@ const ConfirmPasswordForm = () => {
 				{isSuccessResponse && (
 					<ModalMsg
 						handleCloseModal={handleCloseModalMsg}
-						name="Увійти в Особистий кабінет"
+						title="Ваш пароль успішно змінено!"
+						btnText="Увійти в Особистий кабінет"
 						handleBtnClick={handleNavigateToLogin}
 						styleBtn={styleModalBtn}
 					/>
