@@ -25,7 +25,10 @@ const CatsFormFields = () => {
 						handleChange(e);
 						validateField('name');
 					}}
-					onBlur={handleBlur}
+					onBlur={(e) => {
+						handleBlur(e);
+						validateField('name');
+					}}
 					placeholder="Введіть ім’я"
 					error={errors.name || ''}
 				/>
@@ -56,7 +59,10 @@ const CatsFormFields = () => {
 							handleChange(e);
 							validateField('description');
 						}}
-						onBlur={handleBlur}
+						onBlur={(e) => {
+							handleBlur(e);
+							validateField('description');
+						}}
 						error={errors.description || ''}
 					/>
 					<p>{values?.description?.length}/200</p>
