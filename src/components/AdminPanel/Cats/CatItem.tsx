@@ -19,6 +19,8 @@ const CatItem = ({ cat }: { cat: ICat }) => {
 	const parts = cat.date_of_birth.split('-');
 	const formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
 
+	const description = cat.description.slice(0, 120);
+
 	return (
 		<div className={styles.item}>
 			<div className={styles.images}>
@@ -31,7 +33,9 @@ const CatItem = ({ cat }: { cat: ICat }) => {
 			<div className={styles.name}> {cat.name} </div>
 			<div className={styles.sex}> {cat.is_male ? 'Кіт' : 'Кішка'} </div>
 			<div className={styles.birth}> {formattedDate} </div>
-			<div className={styles.description}>{cat.description} </div>
+			<div className={styles.description}>
+				{cat.description.length > 120 ? `${description}...` : cat.description}{' '}
+			</div>
 			<div className={styles.icons}>
 				<NavLink to={`edit/${cat.id}`}>
 					<Pencil />
