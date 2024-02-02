@@ -38,6 +38,7 @@ const InputAdmin = ({
 						data-placeholder={'Оберіть дату народження'}
 						className={isValue ? styles.placeholder : ''}
 						style={error ? { border: '1px solid red' } : undefined}
+						min="2022-01-01"
 					/>
 				)}
 				{error && <div className={styles.error}>{error}</div>}
