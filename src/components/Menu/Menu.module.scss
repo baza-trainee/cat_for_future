@@ -17,7 +17,6 @@
 
 		&::after {
 			transition: 0.2s;
-			opacity: 0;
 			content: '';
 			position: absolute;
 			bottom: 0;
@@ -25,10 +24,13 @@
 			right: 0;
 			background-color: $color-system-default-10;
 			height: 1px;
+			transform: scale(0);
 		}
+
 		@include hover {
 			&:hover::after {
-				opacity: 1;
+				transform: scale(1);
+				transition: transform 1s ease;
 			}
 		}
 	}
