@@ -5,6 +5,7 @@ import s from './AccountLayout.module.scss';
 import { Outlet } from 'react-router';
 import ButtonBack from '../ButtonBack/ButtonBack';
 import AccountMenu from '../AccountMenu/AccountMenu';
+import { scrollOnTop } from 'src/utils/scrollToSection';
 
 const AccountLayout: React.FC = () => {
 	const [isToken, setIsToken] = useState(false);
@@ -14,6 +15,10 @@ const AccountLayout: React.FC = () => {
 			setIsToken(true);
 		}
 	}, []);
+	useEffect(() => {
+		scrollOnTop();
+	});
+
 	return (
 		<div className={s.wrapper}>
 			{isToken && (

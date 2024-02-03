@@ -123,6 +123,7 @@ const MyData: FC = () => {
 									<InputMask
 										mask="+380 99 999 9999"
 										autoClear={false}
+										placeholder="+380 __ ___ ____"
 										className={
 											errors.number && touched.number
 												? clsx(s.detailsInput, s.inputError)
