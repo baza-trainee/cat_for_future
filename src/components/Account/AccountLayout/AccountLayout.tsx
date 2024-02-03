@@ -15,9 +15,10 @@ const AccountLayout: React.FC = () => {
 			setIsToken(true);
 		}
 	}, []);
+
 	useEffect(() => {
 		scrollOnTop();
-	});
+	}, []);
 
 	return (
 		<div className={s.wrapper}>
