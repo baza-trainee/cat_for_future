@@ -9,12 +9,16 @@ const QuestionModalAccount = ({
 	successFnc,
 	declineFnc,
 	className,
+	textBtnLeft,
+	textBtnRight,
 }: {
 	question: string;
 	text?: string;
 	successFnc: () => void;
 	declineFnc: () => void;
 	className?: string;
+	textBtnLeft?: string;
+	textBtnRight?: string;
 }) => {
 	const { isTablet } = useMediaQuery();
 	const btnStyle = {
@@ -26,16 +30,16 @@ const QuestionModalAccount = ({
 			{text && <p>{text}</p>}
 			<div className={styles.buttons}>
 				<Button
-					onClick={successFnc}
-					name="Так"
-					buttonClasses={'primaryBtn'}
-					styleBtn={btnStyle}
+					onClick={declineFnc}
+					name={textBtnLeft ? textBtnLeft : 'Ні'}
+					styleBtn={{ ...btnStyle }}
+					buttonClasses={'secondaryBtn tertiary'}
 				></Button>
 				<Button
-					onClick={declineFnc}
-					name="Ні"
-					styleBtn={{ ...btnStyle, color: '#131313', borderColor: '#131313' }}
-					buttonClasses={'secondaryBtn'}
+					onClick={successFnc}
+					name={textBtnRight ? textBtnRight : 'Так'}
+					buttonClasses={'primaryBtn'}
+					styleBtn={btnStyle}
 				></Button>
 			</div>
 		</div>

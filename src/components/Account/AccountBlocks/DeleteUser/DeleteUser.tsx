@@ -27,6 +27,8 @@ const DeleteUser: React.FC = () => {
 					successFnc={successFnc}
 					declineFnc={declineFnc}
 					className="delete"
+					textBtnLeft="Назад"
+					textBtnRight="Видалити"
 				/>
 			</ModalAccount>
 		</div>

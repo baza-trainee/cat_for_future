@@ -26,6 +26,8 @@ const LogoutUser: React.FC = () => {
 					text="Ви впевнені, що хочете вийти з акаунту?"
 					successFnc={successFnc}
 					declineFnc={declineFnc}
+					textBtnLeft="Назад"
+					textBtnRight="Вихід"
 				/>
 			</ModalAccount>
 		</div>
