@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import useMediaQuery from 'src/hooks/useMediaQuery';
 import clsx from 'clsx';
 
@@ -22,13 +21,7 @@ const StoryCard = ({
 	handleChangeTextState,
 	isCollapsedText,
 }: StoryCardProps) => {
-	const { isDesktop } = useMediaQuery();
-
-	useEffect(() => {
-		if (isCollapsedText && !isDesktop) {
-			scrollToSection('happyStories');
-		}
-	}, [isCollapsedText, isDesktop]);
+	const { isDesktop, isTablet } = useMediaQuery();
 
 	return (
 		<div className={s.card}>
@@ -37,7 +30,14 @@ const StoryCard = ({
 				<h3 className={s.title}>{title}</h3>
 				<p className={clsx(s.description, isCollapsedText && s.textCollapsed)}>{text}</p>
 				<div className={s.btnWrap}>
-					<button type="button" className={s.btn} onClick={() => handleChangeTextState(i)}>
+					<button
+						type="button"
+						className={s.btn}
+						onClick={() => {
+							handleChangeTextState(i);
+							!isCollapsedText && !isTablet && !isDesktop && scrollToSection('happyStories');
+						}}
+					>
 						{isCollapsedText ? 'Читати далі' : 'Згорнути'}
 					</button>
 					{isDesktop && (
