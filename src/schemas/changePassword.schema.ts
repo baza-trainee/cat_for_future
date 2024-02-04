@@ -9,7 +9,10 @@ export const changePasswSchema = (email: string) => {
 			.string()
 			.min(8, 'Мінімальна кількість символів 8')
 			.max(64, 'Максимальна кількість символів 64')
-			.required("Обов'язкове поле"),
+			.required("Обов'язкове поле")
+			.matches(passwRegex, {
+				message: 'Введіть коректний пароль',
+			}),
 		new_password: yup
 			.string()
 			.min(8, 'Введіть коректний пароль')
