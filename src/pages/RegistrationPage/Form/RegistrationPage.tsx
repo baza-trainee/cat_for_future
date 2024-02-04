@@ -11,6 +11,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useRegistrationMutation } from 'src/store/slice/authApiSlice.ts';
 import { useNavigate } from 'react-router-dom';
 import { checkboxData } from 'src/pages/RegistrationPage/checkboxData.tsx';
+import { useActions } from 'src/hooks/useActions.ts';
 
 interface RegistrationPageProps {
 	onOpenModalWhiteCat: () => void;
@@ -44,6 +45,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 		Array(checkboxData.length).fill(false)
 	);
 	const [error, setError] = useState('');
+	const { setUserData } = useActions();
 
 	const formik = useFormik<FormValues>({
 		initialValues: initialValues,
@@ -58,6 +60,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 			try {
 				await registration({ name, password, email, phone: cleanedNumber }).unwrap();
 				onOpenModalWhiteCat();
+				setUserData({ email, password });
 			} catch (error: any) {
 				if (error?.data?.detail) {
 					setError(error.data.detail);

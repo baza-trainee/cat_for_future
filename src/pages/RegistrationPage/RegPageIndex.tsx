@@ -10,10 +10,14 @@ import image from 'src/assets/images/modal/thanks-reg.png';
 
 import RegistrationPage from 'src/pages/RegistrationPage/Form/RegistrationPage';
 import ModalWhiteCat from 'src/components/ModalWhiteCat/ModalWhiteCat';
+import { useLoginMutation } from 'src/store/slice/authApiSlice.ts';
+import { useTypedSelector } from 'src/hooks/useTypedSelectors.ts';
 
 const RegPage: React.FC = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const [isModalWhiteCatOpen, setIsModalWhiteCatOpen] = useState<boolean>(false);
+	const [login] = useLoginMutation();
+	const { email, password } = useTypedSelector((state) => state.setUserData.user);
 
 	const openModal = () => {
 		setIsModalOpen(true);
@@ -30,7 +34,12 @@ const RegPage: React.FC = () => {
 
 	const navigate = useNavigate();
 
-	const handleNavBtn = () => {
+	const handleNavBtn = async () => {
+		const formData = new FormData();
+		formData.append('username', email);
+		formData.append('password', password);
+		const userToken = await login(formData).unwrap();
+		localStorage.setItem('token', userToken.access_token);
 		navigate('/account/');
 	};
 
