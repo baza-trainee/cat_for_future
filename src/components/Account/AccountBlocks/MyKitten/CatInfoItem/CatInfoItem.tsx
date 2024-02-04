@@ -53,7 +53,7 @@ const CatInfoItem: FC<CatInfoItemProps> = ({
 				<div className={s.kittenBirthday}>Дата народження: {formattedDate} </div>
 			</div>
 
-			{getDeadlineAndBirthDate(date_of_birth, currentDate).lessFourMonths ? (
+			{getDeadlineAndBirthDate(date_of_birth, currentDate).lessFourMonths && days !== 0 ? (
 				<Timer arrCorrectDate={arrCorrectDate} />
 			) : null}
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CatInfoItem from './CatInfoItem/CatInfoItem';
 import s from './MyKitten.module.scss';
 import {
@@ -7,6 +7,7 @@ import {
 } from 'src/store/slice/catsApiSlice.ts';
 import ModalAccount from '../../Modal/ModalAccount';
 import QuestionModalAccount from '../../Modal/QuestionModalAccount';
+import { scrollOnTop } from 'src/utils/scrollToSection';
 
 interface RTKQueryError {
 	data: {
@@ -33,6 +34,10 @@ const MyKitten: React.FC = () => {
 	};
 
 	const errorStatus = error as RTKQueryError;
+
+	useEffect(() => {
+		error && scrollOnTop();
+	}, [error]);
 
 	return (
 		<div className={s.wrapper}>

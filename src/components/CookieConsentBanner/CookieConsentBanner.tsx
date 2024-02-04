@@ -4,13 +4,13 @@ import close from 'src/assets/icons/close_black.svg';
 import Button from '../Button/Button';
 
 const CookieConsentBanner: React.FC = () => {
-	const [showBanner, setShowBanner] = useState<boolean>(true);
+	const [showBanner, setShowBanner] = useState<boolean>(false);
 
 	const hasAcceptedCookies = localStorage.getItem('acceptedCookies');
 
 	useEffect(() => {
-		if (hasAcceptedCookies) {
-			setShowBanner(false);
+		if (!hasAcceptedCookies) {
+			setShowBanner(true);
 		}
 	}, [hasAcceptedCookies]);
 

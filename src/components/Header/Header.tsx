@@ -39,6 +39,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModalDonate }) => {
 
 	const handleNavigateToCabinet = () => {
 		navigate('/account');
+		closeBurgerMenu();
 	};
 
 	return (
