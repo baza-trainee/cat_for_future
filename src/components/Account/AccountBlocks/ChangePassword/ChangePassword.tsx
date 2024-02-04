@@ -16,6 +16,13 @@ interface InitValues {
 	new_password_confirm: string;
 }
 
+interface RTKQueryError {
+	data: {
+		detail: string;
+	};
+	status: number;
+}
+
 const btnStyle = { width: '100%', marginTop: '1.25rem', minWidth: '17rem' };
 
 const initialValues: InitValues = {
@@ -33,8 +40,10 @@ const ChangePassword = () => {
 		setIsModalOpen(false);
 	};
 
+	const IsError = error as RTKQueryError;
+
 	useEffect(() => {
-		if (isSuccess || error) {
+		if (isSuccess || IsError?.status === 422) {
 			setIsModalOpen(true);
 		}
 	}, [isSuccess, error]);
