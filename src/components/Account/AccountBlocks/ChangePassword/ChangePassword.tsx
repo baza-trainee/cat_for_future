@@ -25,19 +25,20 @@ const initialValues: InitValues = {
 };
 
 const ChangePassword = () => {
-	const [changePassword, { isSuccess }] = usePassChangeMutation();
+	const [changePassword, { isSuccess, error }] = usePassChangeMutation();
 	const { data: userData } = useGetUserQuery('');
-	const [isSuccessModal, setIsSuccessModal] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleBtnClick = () => {
-		setIsSuccessModal(false);
+		setIsModalOpen(false);
 	};
 
 	useEffect(() => {
-		if (isSuccess) {
-			setIsSuccessModal(true);
+		if (isSuccess || error) {
+			setIsModalOpen(true);
 		}
-	}, [isSuccess]);
+	}, [isSuccess, error]);
+
 	const onSubmitForm = async (values: InitValues, actions: FormikHelpers<InitValues>) => {
 		const formData = new FormData();
 		formData.append('old_password', values.old_password);
@@ -86,13 +87,14 @@ const ChangePassword = () => {
 					</form>
 				)}
 			</Formik>
-			{isSuccessModal && (
+			{isModalOpen && (
 				<ModalMsg
 					handleCloseModal={handleBtnClick}
 					btnText="ОK"
-					title="Пароль успішно змінено!"
+					title={error ? 'Введено невірний пароль!' : 'Пароль успішно змінено!'}
 					handleBtnClick={handleBtnClick}
 					styleBtn={{ width: '8.75rem' }}
+					isWarning={error ? true : false}
 				/>
 			)}
 		</section>
