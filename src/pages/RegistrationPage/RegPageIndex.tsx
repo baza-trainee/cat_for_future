@@ -43,7 +43,7 @@ const RegPage: React.FC = () => {
 				<ModalWhiteCat
 					image={image}
 					message={'Реєстрація успішна!'}
-					name={'Кабінет'}
+					name={'Вхід'}
 					handleCloseModal={closeModal}
 					handleNavBtn={handleNavBtn}
 				/>
