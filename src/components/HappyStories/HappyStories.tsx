@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IStory } from 'src/types/IStory';
 import { scrollToSection } from 'src/utils/scrollToSection';
 import useMediaQuery from 'src/hooks/useMediaQuery';
@@ -13,6 +13,7 @@ const HappyStories = () => {
 	const { data: stories } = useGetStoriesQuery('');
 	const [isTextStateArr, setIsTextStateArr] = useState<boolean[] | []>([]);
 	const { isDesktop } = useMediaQuery();
+	const sliderRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		if (stories) {
@@ -28,13 +29,18 @@ const HappyStories = () => {
 		if (isTextStateArr) {
 			setIsTextStateArr(isTextStateArr.map(() => true));
 		}
+		if (sliderRef.current) {
+			sliderRef.current?.scrollIntoView({
+				behavior: 'smooth',
+			});
+		}
 	};
 
 	return (
 		<section className={s.happyStories} id="happyStories">
 			<div className={s.container}>
 				<h2 className={s.title}>Щасливі історії</h2>
-				<div className={s.storiesWrap}>
+				<div className={s.storiesWrap} ref={sliderRef}>
 					{stories && !isDesktop ? (
 						<Slider
 							slidesPerView={1}
