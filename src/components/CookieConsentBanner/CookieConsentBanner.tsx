@@ -2,11 +2,21 @@ import { useState, useEffect } from 'react';
 import s from './CookieConsentBanner.module.scss';
 import close from 'src/assets/icons/close_black.svg';
 import Button from '../Button/Button';
+import { useGetDocumentQuery } from 'src/store/slice/documentsSlice.ts';
+import { IDocuments } from 'src/types/IDocuments.ts';
 
 const CookieConsentBanner: React.FC = () => {
 	const [showBanner, setShowBanner] = useState<boolean>(false);
-
+	const { data: policy } = useGetDocumentQuery('');
+	const [link, setLink] = useState('');
 	const hasAcceptedCookies = localStorage.getItem('acceptedCookies');
+
+	useEffect(() => {
+		if (policy) {
+			const item = policy.find((item: IDocuments) => item.name === 'Політика конфіденційності');
+			setLink(item.media_path);
+		}
+	}, [policy]);
 
 	useEffect(() => {
 		if (!hasAcceptedCookies) {
@@ -35,7 +45,7 @@ const CookieConsentBanner: React.FC = () => {
 						Цей сайт використовує файли cookies для правильної роботи та покращення сервісу. Якщо ви
 						погоджуєтесь з їх використанням, натисніть OK. Більше інформації в
 					</p>
-					<a href="src/assets/documents/privacy-policy.pdf" className={s.link}>
+					<a href={link} className={s.link}>
 						Політика конфіденційності
 					</a>
 				</div>
