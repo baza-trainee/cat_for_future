@@ -7,6 +7,7 @@ import { IStory } from 'src/types/IStory';
 import Button from 'src/components/Button/Button';
 import { ReactComponent as ArrayRight } from 'src/assets/icons/arrow-right.svg';
 import { scrollToSection } from 'src/utils/scrollToSection';
+import { useRef } from 'react';
 
 interface StoryCardProps extends IStory {
 	i: number;
@@ -22,22 +23,23 @@ const StoryCard = ({
 	isCollapsedText,
 }: StoryCardProps) => {
 	const { isDesktop, isTablet } = useMediaQuery();
+	const sliderRef = useRef<HTMLDivElement | null>(null);
+
+	const collapseTextHandler = () => {
+		handleChangeTextState(i);
+		if (!isCollapsedText && !isTablet && !isDesktop && sliderRef.current) {
+			sliderRef.current?.scrollIntoView({ block: 'start' });
+		}
+	};
 
 	return (
-		<div className={s.card}>
+		<div className={s.card} ref={sliderRef}>
 			<img src={media_path} alt={title} className={s.img} />
 			<div className={s.cardBody}>
 				<h3 className={s.title}>{title}</h3>
 				<p className={clsx(s.description, isCollapsedText && s.textCollapsed)}>{text}</p>
 				<div className={s.btnWrap}>
-					<button
-						type="button"
-						className={s.btn}
-						onClick={() => {
-							handleChangeTextState(i);
-							!isCollapsedText && !isTablet && !isDesktop && scrollToSection('happyStories');
-						}}
-					>
+					<button type="button" className={s.btn} onClick={collapseTextHandler}>
 						{isCollapsedText ? 'Читати далі' : 'Згорнути'}
 					</button>
 					{isDesktop && (
