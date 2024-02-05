@@ -30,9 +30,13 @@ const HappyStories = () => {
 			setIsTextStateArr(isTextStateArr.map(() => true));
 		}
 		if (sliderRef.current) {
-			sliderRef.current?.scrollIntoView({
+			window.scrollTo({
+				top: sliderRef.current.offsetTop,
 				behavior: 'smooth',
 			});
+			// sliderRef.current?.scrollIntoView({
+			// 	behavior: 'smooth',
+			// });
 		}
 	};
 
