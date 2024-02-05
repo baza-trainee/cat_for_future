@@ -18,7 +18,11 @@
 	color: $color-system-default-100;
 	margin: auto;
 	z-index: 100;
-	box-shadow: 0px 0px 50px 0px #76a88d;
+	box-shadow: 0 0 50px 0 #76a88d;
+
+	@media (orientation: landscape) {
+		bottom: 2rem;
+	}
 
 	@include small_tablet {
 		height: 15rem;
@@ -48,7 +52,7 @@
 	flex-direction: column;
 	justify-content: center;
 	text-align: left;
-	font-family: Open Sans;
+	font-family: $primary-font;
 	font-size: 1rem;
 	font-style: normal;
 	font-weight: 400;
