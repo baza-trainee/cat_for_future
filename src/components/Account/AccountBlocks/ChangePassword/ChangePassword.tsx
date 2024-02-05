@@ -16,6 +16,13 @@ interface InitValues {
 	new_password_confirm: string;
 }
 
+interface RTKQueryError {
+	data: {
+		detail: string;
+	};
+	status: number;
+}
+
 const btnStyle = { width: '100%', marginTop: '1.25rem', minWidth: '17rem' };
 
 const initialValues: InitValues = {
@@ -25,19 +32,22 @@ const initialValues: InitValues = {
 };
 
 const ChangePassword = () => {
-	const [changePassword, { isSuccess }] = usePassChangeMutation();
+	const [changePassword, { isSuccess, error }] = usePassChangeMutation();
 	const { data: userData } = useGetUserQuery('');
-	const [isSuccessModal, setIsSuccessModal] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleBtnClick = () => {
-		setIsSuccessModal(false);
+		setIsModalOpen(false);
 	};
 
+	const IsError = error as RTKQueryError;
+
 	useEffect(() => {
-		if (isSuccess) {
-			setIsSuccessModal(true);
+		if (isSuccess || IsError?.status === 422) {
+			setIsModalOpen(true);
 		}
-	}, [isSuccess]);
+	}, [isSuccess, error]);
+
 	const onSubmitForm = async (values: InitValues, actions: FormikHelpers<InitValues>) => {
 		const formData = new FormData();
 		formData.append('old_password', values.old_password);
@@ -86,13 +96,14 @@ const ChangePassword = () => {
 					</form>
 				)}
 			</Formik>
-			{isSuccessModal && (
+			{isModalOpen && (
 				<ModalMsg
 					handleCloseModal={handleBtnClick}
 					btnText="ОK"
-					title="Пароль успішно змінено!"
+					title={error ? 'Введено невірний пароль!' : 'Пароль успішно змінено!'}
 					handleBtnClick={handleBtnClick}
 					styleBtn={{ width: '8.75rem' }}
+					isWarning={error ? true : false}
 				/>
 			)}
 		</section>

@@ -3,6 +3,7 @@ import s from './ModalMsg.module.scss';
 import ModalBack from 'src/components/ModalBack/ModalBack';
 import Button from 'src/components/Button/Button';
 import greenCheck from 'src/assets/images/green_check.png';
+import warning from 'src/assets/images/warning.png';
 
 interface ModalMsgProps {
 	btnText: string;
@@ -10,6 +11,7 @@ interface ModalMsgProps {
 	handleBtnClick: () => void;
 	handleCloseModal: () => void;
 	styleBtn?: React.CSSProperties;
+	isWarning?: boolean;
 }
 
 const ModalMsg = ({
@@ -18,10 +20,15 @@ const ModalMsg = ({
 	handleBtnClick,
 	handleCloseModal,
 	styleBtn,
+	isWarning,
 }: ModalMsgProps) => {
 	return (
 		<ModalBack handleCloseModal={handleCloseModal}>
-			<img src={greenCheck} alt="green click" className={s.img} />
+			<img
+				src={isWarning ? warning : greenCheck}
+				alt={isWarning ? 'warning' : 'green click'}
+				className={s.img}
+			/>
 			<h2 className={s.title}>{title}</h2>
 			<Button
 				buttonClasses={'primaryBtn'}
