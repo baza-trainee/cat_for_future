@@ -32,11 +32,22 @@
 		top: 50%;
 		transform: translateY(-50%);
 
+		@media (orientation: landscape) {
+			overflow: auto;
+		}
+
 		&_layout {
 			position: static;
 			transform: none;
 			top: 0;
 			left: 0;
+
+			@media (orientation: landscape) {
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				overflow: auto;
+			}
 		}
 		@include tablet {
 			width: 23.8rem;
