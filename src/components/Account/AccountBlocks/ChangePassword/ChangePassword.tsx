@@ -8,12 +8,19 @@ import { changePasswSchema } from 'src/schemas/changePassword.schema';
 import ModalMsg from 'src/components/ModalMsg/ModalMsg';
 import { usePassChangeMutation } from 'src/store/slice/authApiSlice';
 import { useGetUserQuery } from 'src/store/slice/userApiSlice';
-import { useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
 
 interface InitValues {
 	old_password: string;
 	new_password: string;
 	new_password_confirm: string;
+}
+
+interface RTKQueryError {
+	data: {
+		detail: string;
+	};
+	status: number;
 }
 
 const btnStyle = { width: '100%', marginTop: '1.25rem', minWidth: '17rem' };
@@ -25,21 +32,28 @@ const initialValues: InitValues = {
 };
 
 const ChangePassword = () => {
-	const [changePassword, { isSuccess }] = usePassChangeMutation();
+	const [changePassword, { isSuccess, error }] = usePassChangeMutation();
 	const { data: userData } = useGetUserQuery('');
-
-	const navigate = useNavigate();
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleBtnClick = () => {
-		navigate(0);
+		setIsModalOpen(false);
 	};
+
+	const IsError = error as RTKQueryError;
+
+	useEffect(() => {
+		if (isSuccess || IsError?.status === 422) {
+			setIsModalOpen(true);
+		}
+	}, [isSuccess, error]);
+
 	const onSubmitForm = async (values: InitValues, actions: FormikHelpers<InitValues>) => {
 		const formData = new FormData();
 		formData.append('old_password', values.old_password);
 		formData.append('new_password', values.new_password);
 		formData.append('new_password_confirm', values.new_password_confirm);
 		await changePassword(formData).unwrap();
-		localStorage.removeItem('token');
 		actions.resetForm();
 	};
 
@@ -82,13 +96,14 @@ const ChangePassword = () => {
 					</form>
 				)}
 			</Formik>
-			{isSuccess && (
+			{isModalOpen && (
 				<ModalMsg
 					handleCloseModal={handleBtnClick}
 					btnText="ОK"
-					title="Пароль успішно змінено!"
+					title={error ? 'Введено невірний пароль!' : 'Пароль успішно змінено!'}
 					handleBtnClick={handleBtnClick}
 					styleBtn={{ width: '8.75rem' }}
+					isWarning={error ? true : false}
 				/>
 			)}
 		</section>
