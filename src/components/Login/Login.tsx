@@ -95,8 +95,8 @@ const Login = () => {
 						return (
 							<Form className={s.login__form}>
 								<LoginFields
-									labelEmail="E-mail"
-									labelPass="Пароль"
+									labelEmail="E-mail*"
+									labelPass="Пароль*"
 									loginError={loginError}
 									setLoginError={setLoginError}
 								/>
