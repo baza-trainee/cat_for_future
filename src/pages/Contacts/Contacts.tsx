@@ -5,19 +5,19 @@ import ContactsInfo from 'src/components/ContactsInfo/ContactsInfo';
 import ModalWhiteCat from 'src/components/ModalWhiteCat/ModalWhiteCat';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { scrollOnTop } from 'src/utils/scrollToSection';
-
 import s from './Contacts.module.scss';
 import { useGetContactsQuery } from 'src/store/slice/contactsApiSlice.ts';
 
 const Contacts: React.FC = () => {
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const { data: contacts } = useGetContactsQuery(undefined);
-
 	const location = useLocation();
 
 	useEffect(() => {
-		location.pathname === '/contacts' ? scrollOnTop() : null;
-	}, [location]);
+		if (location.pathname === '/contacts') {
+			setTimeout(scrollOnTop, 100);
+		}
+	}, [location, contacts]);
 
 	const navigate = useNavigate();
 
@@ -28,8 +28,6 @@ const Contacts: React.FC = () => {
 	const closeModal = () => {
 		setShowModal(false);
 	};
-
-	console.log(contacts);
 
 	return (
 		<>

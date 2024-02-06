@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { IStory } from 'src/types/IStory';
-import { scrollToSection } from 'src/utils/scrollToSection';
 import useMediaQuery from 'src/hooks/useMediaQuery';
 import s from './HappyStories.module.scss';
 import StoryCard from 'src/components/HappyStories/StoryCard/StoryCard';
@@ -8,12 +7,18 @@ import Slider from 'src/components/Slider/Slider';
 import Button from 'src/components/Button/Button';
 import { ReactComponent as ArrayRight } from 'src/assets/icons/arrow-right.svg';
 import { useGetStoriesQuery } from 'src/store/slice/storiesApiSlice.ts';
+import { useScroll } from 'src/hooks/useScroll.ts';
 
 const HappyStories = () => {
 	const { data: stories } = useGetStoriesQuery('');
 	const [isTextStateArr, setIsTextStateArr] = useState<boolean[] | []>([]);
 	const { isDesktop } = useMediaQuery();
-	const sliderRef = useRef<HTMLDivElement | null>(null);
+	const { executeScroll, registerRef } = useScroll();
+	const storyRef = useRef(null);
+
+	useEffect(() => {
+		registerRef('happyStories', storyRef);
+	}, [registerRef]);
 
 	useEffect(() => {
 		if (stories) {
@@ -29,16 +34,14 @@ const HappyStories = () => {
 		if (isTextStateArr) {
 			setIsTextStateArr(isTextStateArr.map(() => true));
 		}
-		if (sliderRef.current) {
-			sliderRef.current?.scrollIntoView({ block: 'start' });
-		}
+		executeScroll('happyStories');
 	};
 
 	return (
-		<section className={s.happyStories} id="happyStories">
+		<section className={s.happyStories} id="happyStories" ref={storyRef}>
 			<div className={s.container}>
 				<h2 className={s.title}>Щасливі історії</h2>
-				<div className={s.storiesWrap} ref={sliderRef}>
+				<div className={s.storiesWrap}>
 					{stories && !isDesktop ? (
 						<Slider
 							slidesPerView={1}
@@ -73,7 +76,7 @@ const HappyStories = () => {
 						buttonClasses={'secondaryBtn  secondaryIconRight'}
 						type={'button'}
 						name="Обери кота для піклування"
-						onClick={() => scrollToSection('ourCats')}
+						onClick={() => executeScroll('ourCats')}
 						styleBtn={{
 							border: 'none',
 							marginTop: '1.25rem',
