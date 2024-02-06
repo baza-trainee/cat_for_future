@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useMediaQuery from 'src/hooks/useMediaQuery';
 
 import Button from '../Button/Button';
@@ -7,6 +7,7 @@ import ModalShowCat from '../CatCard/ModalShowCat/ModalShowCat';
 
 import s from './OurCats.module.scss';
 import { useGetCatsQuery, useReserveCatMutation } from 'src/store/slice/catsApiSlice.ts';
+import { useScroll } from 'src/hooks/useScroll.ts';
 
 const OurCats: React.FC = () => {
 	const { data: cats = [] } = useGetCatsQuery('');
@@ -16,6 +17,12 @@ const OurCats: React.FC = () => {
 	const [isShowMore, setIsShowMore] = useState(false);
 	const [isModalCatID, setIsModalCatID] = useState<number>();
 	const [isCatModalOpen, setIsCatModalOpen] = useState(false);
+	const sectionRef = useRef(null);
+	const { registerRef } = useScroll();
+
+	useEffect(() => {
+		registerRef('ourCats', sectionRef);
+	}, [registerRef]);
 
 	const slicedCats = !isTablet && !isShowMore ? cats?.slice(0, 3) : cats;
 
@@ -38,7 +45,7 @@ const OurCats: React.FC = () => {
 	};
 
 	return (
-		<section id="ourCats" className={s.wrapper}>
+		<section id="ourCats" className={s.wrapper} ref={sectionRef}>
 			<h2 className={s.title}>Наші кошенята</h2>
 			<div className={s.cats}>
 				{slicedCats.map((cat) => (

@@ -5,9 +5,9 @@ import ModalWhiteCat from '../ModalWhiteCat/ModalWhiteCat';
 import image from 'src/assets/images/modal/cat-donate.png';
 import paw from '../../assets/icons/hero/paw.svg';
 import Button from '../Button/Button';
-import { scrollToSection } from 'src/utils/scrollToSection';
 import s from './Hero.module.scss';
 import { useGetHeroQuery } from 'src/store/slice/heroApiSlice.ts';
+import { useScroll } from 'src/hooks/useScroll.ts';
 
 const btn = {
 	width: '100%',
@@ -18,6 +18,7 @@ const Hero: React.FC = () => {
 	const [showSuccessModal, setShowSuccessModal] = useState(false);
 	const navigate = useNavigate();
 	const { data: hero } = useGetHeroQuery(undefined);
+	const { executeScroll } = useScroll();
 
 	useEffect(() => {
 		const isPaymentSuccess = new URLSearchParams(location.search).get('payment') === 'success';
@@ -53,7 +54,7 @@ const Hero: React.FC = () => {
 				<span className={s.contentText}>{hero ? hero.sub_title : 'Вони чекають на тебе'}</span>
 				<div className={s.contentBtn}>
 					<Button
-						onClick={() => scrollToSection('ourCats')}
+						onClick={() => executeScroll('ourCats')}
 						name={'Знайти друга'}
 						buttonClasses={'primaryBtn'}
 						type={'submit'}

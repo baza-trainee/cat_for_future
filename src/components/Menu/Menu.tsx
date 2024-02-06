@@ -43,7 +43,6 @@ const Menu: React.FC<IMenuProps> = ({ documents, unListClass, navClass, onClick 
 						</Link>
 					</li>
 				))}
-
 				{documents &&
 					documentList?.map(({ id, name, media_path: url }: IDocuments) => (
 						<li className={s.item} key={id}>
