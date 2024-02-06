@@ -81,8 +81,12 @@ const LoginFields = ({ labelEmail, labelPass, loginError, setLoginError }: TLogi
 						onChange={(e) => {
 							setLoginError(null);
 							handleChange(e);
+							validateField('loginPassword');
 						}}
-						onBlur={handleBlur}
+						onBlur={(e) => {
+							handleBlur(e);
+							validateField('loginPassword');
+						}}
 					/>
 					<div className={s.hiddenPass}>
 						<Eye
