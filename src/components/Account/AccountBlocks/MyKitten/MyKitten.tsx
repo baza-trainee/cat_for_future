@@ -36,6 +36,12 @@ const MyKitten: React.FC = () => {
 	const errorStatus = error as RTKQueryError;
 
 	useEffect(() => {
+		if (errorStatus?.status === 401) {
+			localStorage.removeItem('token');
+		}
+	}, [errorStatus]);
+
+	useEffect(() => {
 		error && scrollOnTop();
 	}, [error]);
 

@@ -6,9 +6,29 @@ import { Outlet } from 'react-router';
 import ButtonBack from '../ButtonBack/ButtonBack';
 import AccountMenu from '../AccountMenu/AccountMenu';
 import { scrollOnTop } from 'src/utils/scrollToSection';
+import { useGetUserQuery } from 'src/store/slice/userApiSlice';
 
+interface IError {
+	data: {
+		detail: string;
+	};
+	status: number;
+}
 const AccountLayout: React.FC = () => {
 	const [isToken, setIsToken] = useState(false);
+
+	const { error } = useGetUserQuery('', {
+		refetchOnMountOrArgChange: true,
+	});
+
+	const userError = error as IError;
+
+	useEffect(() => {
+		if (userError?.status === 401) {
+			localStorage.removeItem('token');
+			setIsToken(false);
+		}
+	}, [userError]);
 
 	useEffect(() => {
 		if (localStorage.getItem('token')) {

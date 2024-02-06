@@ -13,9 +13,29 @@ const btnWrapper = {
 	width: '100%',
 };
 
+interface IError {
+	data: {
+		detail: string;
+	};
+	status: number;
+}
+
 const MyData: FC = () => {
 	const { data: userData } = useGetUserQuery('');
 	const [updateUser, { isSuccess }] = useUpdateUserMutation();
+
+	const { error } = useGetUserQuery('', {
+		refetchOnMountOrArgChange: true,
+	});
+
+	const userError = error as IError;
+
+	useEffect(() => {
+		if (userError?.status === 401) {
+			localStorage.removeItem('token');
+		}
+	}, [userError]);
+
 	const initialValues = {
 		name: userData?.name || '',
 		number: userData?.phone || '',

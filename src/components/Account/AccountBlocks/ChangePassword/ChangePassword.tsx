@@ -16,7 +16,7 @@ interface InitValues {
 	new_password_confirm: string;
 }
 
-interface RTKQueryError {
+interface IError {
 	data: {
 		detail: string;
 	};
@@ -36,11 +36,23 @@ const ChangePassword = () => {
 	const { data: userData } = useGetUserQuery('');
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
+	const { error: getUserError } = useGetUserQuery('', {
+		refetchOnMountOrArgChange: true,
+	});
+
+	const userError = getUserError as IError;
+
+	useEffect(() => {
+		if (userError?.status === 401) {
+			localStorage.removeItem('token');
+		}
+	}, [userError]);
+
 	const handleBtnClick = () => {
 		setIsModalOpen(false);
 	};
 
-	const IsError = error as RTKQueryError;
+	const IsError = error as IError;
 
 	useEffect(() => {
 		if (isSuccess || IsError?.status === 422) {
