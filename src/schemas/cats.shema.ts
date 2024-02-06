@@ -7,7 +7,7 @@ export const catsValidation = yup.object({
 		.max(200, 'Максимальна кількість символів 200')
 		.required("Обов'язкове поле"),
 	is_male: yup.string().required("Обов'язкове поле"),
-	name: yup.string().max(10, 'Максимальна кількість символів 10').required("Обов'язкове поле"),
+	name: yup.string().max(6, 'Максимальна кількість символів 6').required("Обов'язкове поле"),
 	photo1: yup.mixed().required("Це поле обов'язкове"),
 	photo2: yup.mixed().required("Це поле обов'язкове"),
 	photo3: yup.mixed().required("Це поле обов'язкове"),
