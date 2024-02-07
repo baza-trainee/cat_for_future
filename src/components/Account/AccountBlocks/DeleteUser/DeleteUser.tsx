@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ModalAccount from '../../Modal/ModalAccount';
 import QuestionModalAccount from '../../Modal/QuestionModalAccount';
 import { useNavigate } from 'react-router';
-import { useDeleteUserMutation } from 'src/store/slice/userApiSlice';
+import { useDeleteUserMutation, useGetUserQuery } from 'src/store/slice/userApiSlice';
 
+interface IError {
+	data: {
+		detail: string;
+	};
+	status: number;
+}
 const DeleteUser: React.FC = () => {
 	const [deleteUser] = useDeleteUserMutation();
+
+	const { error } = useGetUserQuery('', {
+		refetchOnMountOrArgChange: true,
+	});
+
+	const userError = error as IError;
+
+	useEffect(() => {
+		if (userError?.status === 401) {
+			localStorage.removeItem('token');
+		}
+	}, [userError]);
 
 	const navigate = useNavigate();
 
