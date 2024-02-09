@@ -52,6 +52,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 		is_reserved,
 		setIsCatModalOpen,
 		isSuccess,
+		description,
 	} = props;
 	const { isTablet } = useMediaQuery();
 	const tabletModal = variant === 'tabletModal';
@@ -116,12 +117,7 @@ const CatCard: React.FC<CatCardProps> = (props) => {
 							{is_male ? 'Кіт' : 'Кішка'}, {correctCatAgeInMonth(catAge)}
 						</div>
 						<span className={s.birthday}>День народження: {formattedDate} </span>
-						{variant && (
-							<p className={s.desc}>
-								Грайливе та миле кошеня знаходиться у пошуку люблячого хазяїна якому подарує море
-								радості та щастя.
-							</p>
-						)}
+						{variant && <p className={s.desc}>{description}</p>}
 					</div>
 
 					<div onClick={(e) => e.stopPropagation()} className={s.buttonContainer}>
