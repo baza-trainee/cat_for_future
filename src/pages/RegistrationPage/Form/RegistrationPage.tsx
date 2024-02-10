@@ -121,11 +121,11 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									placeholder="Введіть ваше ім’я"
 									required
 									value={formik.values.name}
-									onChange={(e) => {
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 										formik.handleChange(e);
 										formik.validateField('name');
 									}}
-									onBlur={(e) => {
+									onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
 										formik.handleBlur(e);
 										formik.validateField('name');
 									}}
@@ -151,11 +151,11 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									name="phone"
 									required
 									value={formik.values.phone}
-									onChange={(e) => {
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 										formik.handleChange(e);
 										formik.validateField('phone');
 									}}
-									onBlur={(e) => {
+									onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
 										formik.handleBlur(e);
 										formik.validateField('phone');
 									}}
@@ -181,11 +181,11 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									placeholder="Введіть e-mail"
 									required
 									value={formik.values.email}
-									onChange={(e) => {
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 										formik.handleChange(e);
 										formik.validateField('email');
 									}}
-									onBlur={(e) => {
+									onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
 										formik.handleBlur(e);
 										formik.validateField('email');
 									}}
@@ -211,11 +211,11 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									id="password"
 									required
 									value={formik.values.password}
-									onChange={(e) => {
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 										formik.handleChange(e);
 										formik.validateField('password');
 									}}
-									onBlur={(e) => {
+									onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
 										formik.handleBlur(e);
 										formik.validateField('password');
 									}}
@@ -250,11 +250,11 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									id="confirmpass"
 									required
 									value={formik.values.confirmpass}
-									onChange={(e) => {
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 										formik.handleChange(e);
 										formik.validateField('confirmpass');
 									}}
-									onBlur={(e) => {
+									onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
 										formik.handleBlur(e);
 										formik.validateField('confirmpass');
 									}}
