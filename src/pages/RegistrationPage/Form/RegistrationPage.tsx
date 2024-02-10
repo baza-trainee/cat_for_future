@@ -50,8 +50,8 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 	const formik = useFormik<FormValues>({
 		initialValues: initialValues,
 		validationSchema: signupSchema,
-		validateOnChange: true,
-		validateOnBlur: true,
+		validateOnChange: false,
+		validateOnBlur: false,
 		enableReinitialize: true,
 		onSubmit: async (values) => {
 			const { name, password, email, phone } = values;
@@ -121,8 +121,14 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									placeholder="Введіть ваше ім’я"
 									required
 									value={formik.values.name}
-									onChange={formik.handleChange}
-									onBlur={formik.handleBlur}
+									onChange={(e) => {
+										formik.handleChange(e);
+										formik.validateField('name');
+									}}
+									onBlur={(e) => {
+										formik.handleBlur(e);
+										formik.validateField('name');
+									}}
 								/>
 								<ErrorMessage className={css.error} name="name" component="div" />
 							</div>
@@ -145,8 +151,14 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									name="phone"
 									required
 									value={formik.values.phone}
-									onChange={formik.handleChange}
-									onBlur={formik.handleBlur}
+									onChange={(e) => {
+										formik.handleChange(e);
+										formik.validateField('phone');
+									}}
+									onBlur={(e) => {
+										formik.handleBlur(e);
+										formik.validateField('phone');
+									}}
 									error={formik.errors.phone}
 								/>
 								<ErrorMessage className={css.error} name="phone" component="div" />
@@ -169,8 +181,14 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									placeholder="Введіть e-mail"
 									required
 									value={formik.values.email}
-									onChange={formik.handleChange}
-									onBlur={formik.handleBlur}
+									onChange={(e) => {
+										formik.handleChange(e);
+										formik.validateField('email');
+									}}
+									onBlur={(e) => {
+										formik.handleBlur(e);
+										formik.validateField('email');
+									}}
 								/>
 								<ErrorMessage className={css.error} name="email" component="div" />
 							</div>
@@ -193,8 +211,14 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									id="password"
 									required
 									value={formik.values.password}
-									onChange={formik.handleChange}
-									onBlur={formik.handleBlur}
+									onChange={(e) => {
+										formik.handleChange(e);
+										formik.validateField('password');
+									}}
+									onBlur={(e) => {
+										formik.handleBlur(e);
+										formik.validateField('password');
+									}}
 								/>
 
 								<div className={css.eye}>
@@ -226,8 +250,14 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									id="confirmpass"
 									required
 									value={formik.values.confirmpass}
-									onChange={formik.handleChange}
-									onBlur={formik.handleBlur}
+									onChange={(e) => {
+										formik.handleChange(e);
+										formik.validateField('confirmpass');
+									}}
+									onBlur={(e) => {
+										formik.handleBlur(e);
+										formik.validateField('confirmpass');
+									}}
 								/>
 								<div className={css.eye}>
 									<Eye
@@ -247,7 +277,16 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onOpenModalWhiteCat
 									name={'Продовжити'}
 									onClick={() => next()}
 									styleBtn={{ width: '100%' }}
-									disabled={!formik.isValid || !formik.dirty}
+									disabled={
+										!formik.isValid ||
+										!(
+											formik.touched.confirmpass &&
+											formik.touched.password &&
+											formik.touched.email &&
+											formik.touched.name &&
+											formik.touched.phone
+										)
+									}
 								/>
 							</div>
 
