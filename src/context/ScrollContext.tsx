@@ -1,23 +1,28 @@
-import { createContext, FC, PropsWithChildren, RefObject, useCallback, useRef } from 'react';
+import { createContext, FC, PropsWithChildren, useCallback, useRef } from 'react';
 
 interface ScrollContextType {
-	registerRef: (id: string, ref: RefObject<HTMLElement>) => void;
-	executeScroll: (id: string) => void;
+	registerRef: (id: string, ref: React.RefObject<HTMLElement>) => void;
+	executeScroll: (id: string, offset?: number) => void; // Оновлення типів для підтримки зсуву
 }
 
 export const ScrollContext = createContext<ScrollContextType | null>(null);
 
 export const ScrollProvider: FC<PropsWithChildren<object>> = ({ children }) => {
-	const refs = useRef<{ [key: string]: RefObject<HTMLElement> }>({});
+	const refs = useRef<{ [key: string]: React.RefObject<HTMLElement> }>({});
 
-	const registerRef = useCallback((id: string, ref: RefObject<HTMLElement>) => {
+	const registerRef = useCallback((id: string, ref: React.RefObject<HTMLElement>) => {
 		refs.current[id] = ref;
 	}, []);
 
-	const executeScroll = useCallback((id: string) => {
+	// Оновлення executeScroll для прийняття другого параметру (offset)
+	const executeScroll = useCallback((id: string, offset: number = 0) => {
 		const ref = refs.current[id];
 		if (ref?.current) {
-			ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			const elementTop = ref.current.getBoundingClientRect().top + window.scrollY + offset; // Врахування зсуву
+			window.scrollTo({
+				top: elementTop,
+				behavior: 'smooth',
+			});
 		}
 	}, []);
 
