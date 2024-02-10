@@ -42,6 +42,7 @@ function App() {
 				/>
 				<Route path="contacts" element={<Contacts />} />
 				<Route path="*" element={<Page404 />} />
+				<Route path="registration" element={<RegPage />} />
 			</Route>
 			<Route element={<ProtectedRoute page="admin" />}>
 				<Route path="admin" element={<AdminLayout />}>
@@ -60,7 +61,6 @@ function App() {
 				</Route>
 			</Route>
 			{/*<Route path="log-in" element={<LoginAdmin />} />*/}
-			<Route path="registration" element={<RegPage />} />
 		</Routes>
 	);
 }
