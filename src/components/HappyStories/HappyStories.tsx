@@ -34,7 +34,7 @@ const HappyStories = () => {
 		if (isTextStateArr) {
 			setIsTextStateArr(isTextStateArr.map(() => true));
 		}
-		executeScroll('happyStories');
+		executeScroll('happyStories', -100);
 	};
 
 	return (

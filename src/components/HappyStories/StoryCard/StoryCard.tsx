@@ -28,7 +28,9 @@ const StoryCard = ({
 	const collapseTextHandler = () => {
 		handleChangeTextState(i);
 		if (!isCollapsedText && !isTablet && !isDesktop) {
-			executeScroll('happyStories');
+			setTimeout(() => {
+				executeScroll('happyStories', -100);
+			}, 100);
 		}
 	};
 
