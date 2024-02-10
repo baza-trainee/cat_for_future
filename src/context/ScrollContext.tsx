@@ -1,4 +1,4 @@
-import { createContext, FC, PropsWithChildren, RefObject, useCallback, useRef } from 'react';
+import { createContext, FC, PropsWithChildren, useCallback, useRef } from 'react';
 
 interface ScrollContextType {
 	registerRef: (id: string, ref: React.RefObject<HTMLElement>) => void;
