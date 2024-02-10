@@ -14,7 +14,7 @@ const Home: React.FC = () => {
 
 	useEffect(() => {
 		if (location.hash) {
-			executeScroll(location.hash.slice(1));
+			executeScroll(location.hash.slice(1), -80);
 		} else if (location.pathname === '/') {
 			scrollOnTop();
 		}
