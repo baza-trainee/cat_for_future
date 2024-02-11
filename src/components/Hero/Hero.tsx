@@ -54,7 +54,7 @@ const Hero: React.FC = () => {
 				<span className={s.contentText}>{hero ? hero.sub_title : 'Вони чекають на тебе'}</span>
 				<div className={s.contentBtn}>
 					<Button
-						onClick={() => executeScroll('ourCats')}
+						onClick={() => executeScroll('ourCats', -80)}
 						name={'Знайти друга'}
 						buttonClasses={'primaryBtn'}
 						type={'submit'}
