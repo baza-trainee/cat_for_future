@@ -8,17 +8,17 @@ export const signupSchema = () => {
 	return yup.object().shape({
 		name: yup
 			.string()
+			.required('Обов`язкове поле')
 			.label('Обов`язкове поле')
+			.min(2, 'Введіть ім`я від 2 до 25 символів')
+			.max(25, 'Введіть ім`я від 2 до 25 символів')
 			.matches(nameRules, {
 				message: 'Введіть ім`я латиницею або кирилицею!',
-			})
-			.required('Обов`язкове поле')
-			.min(2, 'Введіть ім`я від 2 до 25 символів')
-			.max(25, 'Введіть ім`я від 2 до 25 символів'),
+			}),
 		phone: yup
 			.string()
-			.matches(phoneRegExp, 'Введіть коректний номер телефону')
-			.required('Обов`язкове поле'),
+			.required('Обов`язкове поле')
+			.matches(phoneRegExp, 'Введіть коректний номер телефону'),
 		email: yup
 			.string()
 			.max(50, 'Максимальна кількість символів 50')
@@ -30,6 +30,7 @@ export const signupSchema = () => {
 		password: yup
 			.string()
 			.label('Введіть коректний пароль')
+			.required('Обов`язкове поле')
 			.min(8, 'Мінімальна кількість символів 8')
 			.max(64, 'Максимальна кількість символів 64')
 			.matches(passwordRules, {
@@ -39,8 +40,8 @@ export const signupSchema = () => {
 				const loginEmail = this.parent.email;
 				const username = loginEmail.split('@')[0].toLowerCase();
 				return !value?.toLowerCase().includes(username);
-			})
-			.required('Обов`язкове поле'),
+			}),
+
 		confirmpass: yup
 			.string()
 			.label('Підтвердження паролю')
