@@ -34,7 +34,9 @@ const HappyStories = () => {
 		if (isTextStateArr) {
 			setIsTextStateArr(isTextStateArr.map(() => true));
 		}
-		executeScroll('happyStories', -100);
+		setTimeout(() => {
+			executeScroll('happyStories', -100);
+		}, 100);
 	};
 
 	return (
