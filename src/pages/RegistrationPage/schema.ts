@@ -38,8 +38,12 @@ export const signupSchema = () => {
 			})
 			.test('no-username-in-password', 'Пароль не може містити email', function (value) {
 				const loginEmail = this.parent.email;
-				const username = loginEmail.split('@')[0].toLowerCase();
-				return !value?.toLowerCase().includes(username);
+				if (loginEmail) {
+					const username = loginEmail.split('@')[0].toLowerCase();
+					return !value?.toLowerCase().includes(username);
+				}
+				// Якщо email не заповнений, то перевірка не проводиться
+				return true;
 			}),
 
 		confirmpass: yup

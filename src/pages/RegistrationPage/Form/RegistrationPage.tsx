@@ -207,6 +207,9 @@ const RegistrationPage: React.FC = () => {
 										onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 											formik.handleChange(e);
 											formik.validateField('email');
+											if (formik.values.password) {
+												formik.validateField('password');
+											}
 										}}
 										onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
 											formik.handleBlur(e);
