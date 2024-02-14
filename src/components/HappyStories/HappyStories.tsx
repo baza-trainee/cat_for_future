@@ -78,7 +78,7 @@ const HappyStories = () => {
 						buttonClasses={'secondaryBtn  secondaryIconRight'}
 						type={'button'}
 						name="Обери кота для піклування"
-						onClick={() => executeScroll('ourCats')}
+						onClick={() => executeScroll('ourCats', -80)}
 						styleBtn={{
 							border: 'none',
 							marginTop: '1.25rem',

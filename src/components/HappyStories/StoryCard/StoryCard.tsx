@@ -6,7 +6,6 @@ import s from './StoryCard.module.scss';
 import { IStory } from 'src/types/IStory';
 import Button from 'src/components/Button/Button';
 import { ReactComponent as ArrayRight } from 'src/assets/icons/arrow-right.svg';
-import { scrollToSection } from 'src/utils/scrollToSection';
 import { useScroll } from 'src/hooks/useScroll.ts';
 
 interface StoryCardProps extends IStory {
@@ -29,7 +28,7 @@ const StoryCard = ({
 		handleChangeTextState(i);
 		if (!isCollapsedText && !isTablet && !isDesktop) {
 			setTimeout(() => {
-				executeScroll('happyStories', -100);
+				executeScroll('happyStories', -80);
 			}, 100);
 		}
 	};
@@ -49,7 +48,7 @@ const StoryCard = ({
 							buttonClasses={'secondaryBtn  secondaryIconRight'}
 							type={'button'}
 							name="Обери кота для піклування"
-							onClick={() => scrollToSection('ourCats')}
+							onClick={() => executeScroll('ourCats', -100)}
 							styleBtn={{ border: 'none', paddingTop: '1rem', paddingBottom: '1rem' }}
 						>
 							<ArrayRight className={s.icon} />
