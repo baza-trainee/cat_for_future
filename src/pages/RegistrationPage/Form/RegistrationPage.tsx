@@ -240,10 +240,16 @@ const RegistrationPage: React.FC = () => {
 										onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 											formik.handleChange(e);
 											formik.validateField('password');
+											if (formik.values.confirmpass) {
+												formik.validateField('confirmpass');
+											}
 										}}
 										onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
 											formik.handleBlur(e);
 											formik.validateField('password');
+											if (formik.values.confirmpass) {
+												formik.validateField('confirmpass');
+											}
 										}}
 									/>
 
